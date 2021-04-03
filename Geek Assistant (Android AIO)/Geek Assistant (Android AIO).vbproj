@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9911D25A-7C15-450E-A8E0-E0C33CA05173}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>GeekAssistant.My.MyApplication</StartupObject>
+    <RootNamespace>GeekAssistant</RootNamespace>
+    <AssemblyName>Geek Assistant %28Android AIO%29</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Geek Assistant %28Android AIO%29.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Geek Assistant %28Android AIO%29.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>G.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6C5AAB501A50AD421546855A1286DBA81E202274</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Geek Assistant %28Android AIO%29_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Geek Assistant %28Android AIO%29.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Geek Assistant %28Android AIO%29.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Camalot.Common, Version=1.0.5937.17275, Culture=neutral, PublicKeyToken=02434577b8ec3216, processorArchitecture=MSIL">
+      <HintPath>..\packages\Camalot.Common.1.0.5937.17275\lib\net45\Camalot.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DownloadQueue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DownloadQueue.1.2.2\lib\netstandard2.0\DownloadQueue.dll</HintPath>
+    </Reference>
+    <Reference Include="Managed.Adb, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ed3761c9cde2a680, processorArchitecture=x86">
+      <HintPath>..\packages\Managed.Adb.2.0.131.13916\lib\net45\Managed.Adb.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Transitions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dot-net-transitions.1.2.1.0\lib\net40-full\Transitions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\Donate.Designer.vb">
+      <DependentUpon>Donate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Donate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\info.Designer.vb">
+      <DependentUpon>info.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\info.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Extra\Preparing.Designer.vb">
+      <DependentUpon>Preparing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Extra\Preparing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Android\Function\CheckFastbootCompatible.vb" />
+    <Compile Include="Modules\Android\Function\madb_Functions.vb" />
+    <Compile Include="Modules\Android\Action\Essentials\adbCMD.vb" />
+    <Compile Include="Modules\Android\Function\GA_adb_Functions.vb" />
+    <Compile Include="Modules\Android\Action\AutoDetect.vb" />
+    <Compile Include="Modules\Android\Action\Essentials\cmd.vb" />
+    <Compile Include="Modules\Deprecated\adb_DeviceInfo_Deprecated.vb" />
+    <Compile Include="Modules\Android\Action\Essentials\fbCMD.vb" />
+    <Compile Include="Modules\Android\Action\UnlockBL.vb" />
+    <Compile Include="Modules\Android\Action\FlashZip.vb" />
+    <Compile Include="Modules\General\Action\FeatureUnavailable_MessageBox.vb" />
+    <Compile Include="Modules\General\Action\GA_infoAsk.vb" />
+    <Compile Include="Modules\General\Function\GA_SwitchButton_Style.vb" />
+    <Compile Include="Modules\General\Action\GA_Msg.vb" />
+    <Compile Include="Modules\General\Action\GA_HideAllForms.vb" />
+    <Compile Include="Modules\General\Action\GA_Log.vb" />
+    <Compile Include="Modules\General\Action\GA_PleaseWait.vb" />
+    <Compile Include="Modules\General\Action\GA_PrepareAppdata.vb" />
+    <Compile Include="Modules\General\Action\GA_Reset.vb" />
+    <Compile Include="Modules\General\Action\GA_SetTooltipInfo.vb" />
+    <Compile Include="Modules\General\Function\GA_Ver.vb" />
+    <Compile Include="Modules\General\Action\GA_SetProgressText.vb" />
+    <Compile Include="Modules\General\Action\GA_SwitchTheme.vb" />
+    <Compile Include="Modules\Deprecated\Animation_Deprecated.vb" />
+    <Compile Include="Modules\General\Function\MathFunctions.vb" />
+    <Compile Include="Modules\General\Function\txt.vb" />
+    <Compile Include="Modules\Deprecated\XFunction_Deprecated.vb" />
+    <Compile Include="Modules\General\Function\GA_PublicDeclarations.vb" />
+    <Compile Include="Forms\Extra\PleaseWait.Designer.vb">
+      <DependentUpon>PleaseWait.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Extra\PleaseWait.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GA_Settings.Designer.vb">
+      <DependentUpon>GA_Settings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GA_Settings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppMode.Designer.vb">
+      <DependentUpon>AppMode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AppMode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToU.Designer.vb">
+      <DependentUpon>ToU.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToU.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Donate.resx">
+      <DependentUpon>Donate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\info.resx">
+      <DependentUpon>info.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Extra\Preparing.resx">
+      <DependentUpon>Preparing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Android\Function\AndroidVer.resx" />
+    <EmbeddedResource Include="Forms\Extra\PleaseWait.resx">
+      <DependentUpon>PleaseWait.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GA_Settings.resx">
+      <DependentUpon>GA_Settings.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppMode.resx">
+      <DependentUpon>AppMode.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToU.resx">
+      <DependentUpon>ToU.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Geek Assistant %28Android AIO%29_TemporaryKey.pfx" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="G.ico" />
+    <Compile Include="Modules\Android\Action\AndroidMonitor.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

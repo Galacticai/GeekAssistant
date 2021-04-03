@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FeatureUnavailable" xml:space="preserve">
+    <value>Geek Assistant is still in development... This feature will probably be available in futrue updates.</value>
+  </data>
+  <data name="RuntimeError" xml:space="preserve">
+    <value>Runtime Error! Contact the developer for further help.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Clear_Data_50_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Custom\Clea_Data.50-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copy_B_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Copy-B-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainLayout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Layout\MainLayout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Backspace_B_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Backspace-B-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenFolder_B_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\OpenFolder_B_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Geek_Assistant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Geek Assistant - 75%.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Copy_W_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Copy-W-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenFolder_W_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\OpenFolder_W_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clipboard_B_28x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Custom\clipboard-B-28x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SelectAll_W_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\SelectAll-W-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Backspace_W_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Backspace-W-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="G_noG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon\G-noG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clipboard_W_28x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Custom\clipboard-W-28x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenFile_24_noBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\OpenFile-24-noBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SelectAll_B_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\SelectAll-B-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LightBlue_Up_Gradient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\LightBlue_Up_Gradient.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Commands_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Commands-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Info_Yellow_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Info-Yellow-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Settings-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smile_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Smile-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning_Red_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Warning-Red-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToU_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\ToU-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToU_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\ToU-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TermsOfUse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TermsOfUse.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;iso-8859-1</value>
+  </data>
+  <data name="adb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\adb.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AdbWinApi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\AdbWinApi.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AdbWinUsbApi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\AdbWinUsbApi.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="fastboot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\fastboot.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AutoDetect_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\AutoDetect-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Commands_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x16\Commands-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AutoDetect_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\AutoDetect_dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Commands_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Commands-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Info_Yellow_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Info-Yellow-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Settings-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smile_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Smile-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToU_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\ToU-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning_Red_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Warning-Red-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlashZip_gray_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\illustrations\flashzip-gray-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Magisk_gray_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\illustrations\magisk-gray-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnlockBL_gray_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\illustrations\unlockbl-gray-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Commands_dark_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x16\Commands-dark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Geek_Assistant_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Geek Assistant - 25%.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Theme_Dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Theme_Dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Theme_Light_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Theme_Light-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Layout_3DLine_toDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Layout\Layout_3DLine-toDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Layout_3DLine_toRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Layout\Layout_3DLine-toRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Info_Yellow_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Info-Yellow-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning_Red_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\Warning-Red-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Info_Yellow_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Info-Yellow-dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Settings-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Settings-dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ToU_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\ToU-dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning_Red_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Warning-Red-dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TroubleshootConnection" xml:space="preserve">
+    <value> Make sure to properly connect your device and try again...
+ - Install the correct USB drivers for your device
+ - Turn on USB Debugging
+ - Allow this PC to access your device (Pop-up)
+ - Unlock the lockscreen
+ - Try another USB cable / port
+ &gt;  Process aborted.</value>
+  </data>
+  <data name="PleaseWait_GeekAssistant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\images\pleasewait-geekassistant\pleasewait-geekassistant.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ContactDevFix" xml:space="preserve">
+    <value>Please contact the developer and provide the error code to fix this bug.</value>
+  </data>
+  <data name="EnableVerboseLogging" xml:space="preserve">
+    <value>Enable Verbose Logging in the settings to help the developer pin down the problem.</value>
+  </data>
+  <data name="Geek_Assistant___50__alpha40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Geek Assistant - 50% alpha40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TermsOfUse_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TermsOfUse-Dark.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="BTCaddress" xml:space="preserve">
+    <value>3MiXsFtm3qVasYa1Zfpu3TCsQiZym2cWmY</value>
+  </data>
+  <data name="DonateHeart_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\DonateHeart-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DonateHeart_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\DonateHeart-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DonateHeart_Dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x24\DonateHeart_Dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DonateHeart_Dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\DonateHeart_Dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BTCAddressQR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BTCAddressQR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BTCAddressQR_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BTCAddressQR-Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\G.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bitcoin_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Bitcoin-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GooglePay_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\GooglePay-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Question_Blue_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Question-Blue-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Question_Blue_Dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Question-Blue-Dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smile_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Smile-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smile_dark_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x64\Smile-dark-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="linkIcon_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x16\linkIcon-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="linkIcon_dark_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x16\linkIcon-dark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="linkIcon_gray75_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\x16\linkIcon-gray75-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>
