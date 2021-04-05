@@ -1,15 +1,14 @@
-﻿Module FeatureUnavailable_MessageBox
-
+Module FeatureUnavailable_MessageBox
     Public Sub Run(title As String)
         Dim state As String = "cooking progress"
         Select Case My.Application.Info.Version.Revision
             Case 1
-                state = "beta"
+                state = "beta phase"
             Case 2
-                state = "testing stages"
+                state = "testing phase"
             Case 3
-                state = "development"
+                state = "development phase"
         End Select
-        MessageBox.Show("Geek Assistant is still in " & state & "... " & title & " might be added in future updates. Stay tuned!", title & " - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        DoMsg(0, $"{title}{vbCrLf}Geek Assistant is still in {state}... {title} might be added in future updates. Stay tuned!")
     End Sub
 End Module
