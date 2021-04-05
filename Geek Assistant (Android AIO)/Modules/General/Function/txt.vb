@@ -6,7 +6,7 @@
     ''' <returns>[[0-----------]]{vbcrlf}</returns>
     Public Function txt_GetFirstLine(txt As String) As String
         'Foolproof
-        If txt Is Nothing Then Return Nothing
+        If String.IsNullOrEmpty(txt) Then Return Nothing
 
         'Failsafe: return if only 1 line
         If txt.IndexOf(Environment.NewLine) < 1 Then Return txt
@@ -23,7 +23,7 @@
     ''' <returns>0---------{vbcrlf}[[---------- ...]]</returns>
     Public Function txt_CutFirstLine(txt As String) As String
         'Foolproof
-        If txt Is Nothing Then Return Nothing
+        If String.IsNullOrEmpty(txt) Then Return Nothing
 
         'Failsafe: return if only 1 line
         If txt.IndexOf(Environment.NewLine) < 1 Then Return txt
@@ -41,7 +41,7 @@
     ''' <returns>0---- [[--- ------ --- ...]]</returns>
     Public Function txt_CutFirstWord(txt As String) As String
         'Foolproof
-        If txt Is Nothing Then Return Nothing
+        If String.IsNullOrEmpty(txt) Then Return Nothing
         'Failsafe: return if no spaces (1 word only)
         If txt.IndexOf(" ") < 1 Then Return txt
         'Remove double space if present
