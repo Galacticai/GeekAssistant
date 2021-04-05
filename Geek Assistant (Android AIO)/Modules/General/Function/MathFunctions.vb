@@ -23,13 +23,10 @@ Module MathFunctions
     ''' <item>Returns <c>min</c> — if <c>input</c> &lt; <c>min</c></item>
     ''' <item>Returns <c>input</c> — if it is already in the specified range</item>
     ''' </list></returns> 
-    Public Function math_ForceInRange(ByRef input As Double, min As Double, max As Double)
-        If input > max Then
-            Return max
-        ElseIf input < min Then
-            Return min
-        Else Return input
-        End If
+    Public Function math_ForceInRange(input As Double, min As Double, max As Double)
+        If input > max Then Return max
+        If input < min Then Return min
+        Return input
     End Function
 
 
