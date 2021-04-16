@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>GeekAssistant</RootNamespace>
+    <UseWindowsForms>true</UseWindowsForms>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>Res\Images\GeekAssistant\Icon\G.ico</ApplicationIcon>
+    <AppDesignerFolder>prop</AppDesignerFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
+    <PackageReference Include="dot-net-transitions" Version="1.2.1" />
+    <PackageReference Include="FluentTransitions" Version="2.0.1" />
+    <PackageReference Include="Managed.Adb" Version="2.0.82.7204" />
+    <PackageReference Include="Markdig" Version="0.24.0" />
+    <PackageReference Include="MaterialSkin.Updated" Version="0.2.2" />
+    <PackageReference Include="MetroModernUI" Version="1.4.0" />
+    <PackageReference Include="morelinq" Version="1.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="8.0.3" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\ToU.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="prop\resx\GA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\layout.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>layout.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\tools.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>tools.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\x16.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>x16.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\x24.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>x24.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\x64.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>x64.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\resx\xXX.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>xXX.resx</DependentUpon>
+    </Compile>
+    <Compile Update="prop\S.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>S.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="prop\resx\GA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GA.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\layout.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>layout.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\tools.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>tools.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\x16.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>x16.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\x24.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>x24.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\x64.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>x64.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="prop\resx\xXX.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>xXX.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="prop\S.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>S.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>prop</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+</Project>
