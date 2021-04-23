@@ -139,29 +139,5 @@ namespace prop {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Segoe UI;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\froman\fprq2\fcharset2 Symbol;}{\f3\fswiss\fprq2\fcharset0 Calibri;}}
-        ///{\colortbl ;\red0\green0\blue0;}
-        ///{\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
-        ///\pard\widctlpar\sa200\qj\cf1\b\i\f0\fs20\lang9 Privacy Disclaimer:\b0  Geek Assistant has 0 hidden trackers; Your experience is saved locally in your AppData fold [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string TermsOfUse {
-            get {
-                return ResourceManager.GetString("TermsOfUse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Segoe UI;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\froman\fprq2\fcharset2 Symbol;}{\f3\fswiss\fprq2\fcharset0 Calibri;}{\f4\fnil\fcharset0 Calibri;}}
-        ///{\colortbl ;\red255\green255\blue255;}
-        ///{\*\generator Riched20 10.0.19041}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
-        ///\pard\widctlpar\sa200\qj\cf1\b\i\f0\fs20\lang9 Privacy Disclaimer:\b0  Geek Assistant has 0 hidden trackers; Your experience is [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string TermsOfUse_Dark {
-            get {
-                return ResourceManager.GetString("TermsOfUse_Dark", resourceCulture);
-            }
-        }
     }
 }

@@ -66,7 +66,7 @@ namespace GeekAssistant {
 
 
         private void Load_ToU_rtf() {
-            string terms_rtf = $"{common.GA}\terms.rtf"; //set destination
+            string terms_rtf = $"{common.GA}\\terms.rtf"; //set destination
             var Current_rtf = prop.GA.TermsOfUse; //set default file
             if (common.S.DarkTheme) Current_rtf = prop.GA.TermsOfUse_Dark; //set dark file if dark theme
             if (!Directory.Exists(common.GA)) Directory.CreateDirectory(common.GA); //create GA folder if not present

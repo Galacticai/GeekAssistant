@@ -1,5 +1,6 @@
 ﻿
 using System.Drawing;
+using System.Windows.Forms;
 
 internal static partial class GA_SwitchButton_Style {
 
@@ -7,7 +8,7 @@ internal static partial class GA_SwitchButton_Style {
     // Public Shared Left As Integer
     // Public Shared ButtonOriginalPosition As Integer()
     private static Color Current_bg_Active() {
-        if (S.DarkTheme) {
+        if (common.S.DarkTheme) {
             return Color.FromArgb(0, 120, 0);
         } else {
             return Color.Green;
@@ -15,7 +16,7 @@ internal static partial class GA_SwitchButton_Style {
     }
 
     private static Color Current_bg_Hover() {
-        if (S.DarkTheme) {
+        if (common.S.DarkTheme) {
             return Color.FromArgb(32, 72, 32);
         } else {
             return Color.Honeydew;
@@ -23,7 +24,7 @@ internal static partial class GA_SwitchButton_Style {
     }
 
     private static Color Current_bg_Neutral() {
-        if (S.DarkTheme) {
+        if (common.S.DarkTheme) {
             return Color.FromArgb(32, 32, 32);
         } else {
             return Color.WhiteSmoke;
@@ -32,12 +33,12 @@ internal static partial class GA_SwitchButton_Style {
 
     public static bool ButtonPressedAlready;
 
-    public static void SettingsButtonSwitch_Style_EnableIfTrue(ref Button aButton, ref bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_EnableIfTrue(ref Button aButton,  bool aBoolean) {
         if (aBoolean) {
-            aButton.ForeColor = Color.White();
+            aButton.ForeColor = Color.White;
             aButton.BackColor = Current_bg_Active();
         } else {
-            aButton.ForeColor = Current_fgColor();
+            aButton.ForeColor = GA_SetTheme. Current_fgColor();
             aButton.BackColor = Current_bg_Neutral();
         }
     }
@@ -61,7 +62,7 @@ internal static partial class GA_SwitchButton_Style {
 
     public static void SettingsButtonSwitch_Style_MouseUp_KeyUp(ref Button aButton) {
         ButtonPressedAlready = false;
-        aButton.ForeColor = Current_fgColor();
+        aButton.ForeColor = GA_SetTheme. Current_fgColor();
         if (aButton.BackColor == Color.Green | aButton.BackColor == Color.FromArgb(0, 130, 0)) {
             aButton.ForeColor = Color.White;
         }
@@ -72,37 +73,37 @@ internal static partial class GA_SwitchButton_Style {
         aButton.Top = aButton_xy.y;
     }
 
-    public static void SettingsButtonSwitch_Style_MouseEnter(ref Button aButton, ref bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_MouseEnter(ref Button aButton,  bool aBoolean) {
         if (aBoolean) {
             aButton.BackColor = Color.FromArgb(0, 130, 0);
             aButton.ForeColor = Color.White;
         } else {
             aButton.BackColor = Current_bg_Hover();
-            aButton.ForeColor = Current_fgColor();
+            aButton.ForeColor = GA_SetTheme. Current_fgColor();
         }
     }
 
-    public static void SettingsButtonSwitch_Style_MouseLeave(ref Button aButton, ref bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_MouseLeave(ref Button aButton,  bool aBoolean) {
         if (aBoolean) {
             aButton.BackColor = Current_bg_Active();
             aButton.ForeColor = Color.White;
         } else {
             aButton.BackColor = Current_bg_Neutral();
-            aButton.ForeColor = Current_fgColor();
+            aButton.ForeColor = GA_SetTheme.Current_fgColor();
         }
     }
 
-    public static void SettingsButtonSwitch_Style_MouseClick(ref Button aButton, ref bool aBoolean, ref ToolTip aTooltip, string aTooltip_txt) {
+    public static void SettingsButtonSwitch_Style_MouseClick(ref Button aButton,  bool aBoolean, ref ToolTip aTooltip, string aTooltip_txt) {
         if (aBoolean) {
             aButton.BackColor = Current_bg_Neutral();
             aBoolean = false;
-            S.Save();
+            common.S.Save();
             if (aTooltip is object & aTooltip_txt is object)
                 aTooltip.SetToolTip(aButton, $"(Disabled) {aTooltip_txt}");
         } else {
             aButton.BackColor = Current_bg_Active();
             aBoolean = true;
-            S.Save();
+            common.S.Save();
             if (aTooltip is object & aTooltip_txt is object)
                 aTooltip.SetToolTip(aButton, $"(Enabled) {aTooltip_txt}");
         }

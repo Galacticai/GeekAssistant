@@ -1,10 +1,11 @@
 ﻿using GeekAssistant;
 using GeekAssistant.Forms;
-using System; 
+using System;
+using System.Linq;
 
 internal static partial class common {
 
-    #region Geek Assistant
+    #region GA Directories
     /// <summary>
     /// Geek Assistant home directory ( ...\AppData\Roaming\Geek Assistant (Android AIO) )
     /// </summary>
@@ -17,14 +18,11 @@ internal static partial class common {
     /// Geek Assistant logs directory (Saved every session) ( {GA}\log )
     /// </summary>
     public readonly static string GA_logs = $@"{GA}\log";
-     
+
     #endregion
 
 
-    #region Public constants
-
-    public readonly static Version V = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-    public readonly static prop.S S = new  prop.S();
+    #region GA Elements 
 
     public readonly static PleaseWait PleaseWait = new PleaseWait();
     public readonly static Preparing Preparing = new Preparing();
@@ -34,8 +32,9 @@ internal static partial class common {
     public readonly static Info Info = new Info();
     public readonly static Settings Settings = new Settings();
     public readonly static ToU ToU = new ToU();
-    //public readonly static Managed.Adb ADB = new Managed.Adb;
-    /**/
+
+    public readonly static prop.S S = new prop.S();
+    /*
     public readonly static prop.GA RGA = new prop.GA();
     public readonly static prop.strings Pstrings = new prop.strings();
     public readonly static prop.layout Playout = new prop.layout();
@@ -44,9 +43,12 @@ internal static partial class common {
     public readonly static prop.x24 Px24 = new prop.x24();
     public readonly static prop.x16 Px16 = new prop.x16();
     public readonly static prop.xXX PxXX = new prop.xXX();
-    /**/
-    //public readonly static GeekAssistant.Home Main;
+    */
+    #endregion
 
+    #region Public Abbreviations
+
+    public readonly static Version V = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
     /// <summary>
     /// Simple .NET new line (Environment.NewLine)
     /// </summary>
@@ -77,6 +79,7 @@ internal static partial class common {
     /// </summary>
     public static bool Working = false;
 
+    private static (string code, int lvl, string msg) _ErrorInfo;
     /// <summary>
     /// <list>
     /// <item>Current Error lvl and msg </item>
@@ -84,37 +87,15 @@ internal static partial class common {
     /// <item>When an Exception is thrown the (info) form will use this ErrorInfo</item>
     /// </list>
     /// </summary>
-    public static (string code, int lvl, string msg) ErrorInfo;
-    // ' 'Public Property ErrorInfo = () As (lvl As Integer, msg As String)
-    // ' '    Get
-    // ' '        Return _ErrorInfo : End Get
-    // ' '    Set(value As (lvl As Integer, msg As String))
-    // ' '        If value.lvl <= 10 And value.lvl >= -1 Then _ErrorInfo.lvl = value.lvl
-    // ' '        If Not String.IsNullOrEmpty(value.msg) Then _ErrorInfo.msg = value.msg
-    // ' '    End Set
-    // ' 'End Property
-    // 'Public Structure ErrorInfo_
-    // '    Public Shared Property lvl As Integer
-    // '        Get
-    // '            Return _ErrorInfo.lvl : End Get
-    // '        Set(value As Integer)
-    // '            If value <= 10 And value >= -1 Then _ErrorInfo.lvl = value
-    // '        End Set
-    // '    End Property
-    // '    Public Shared Property msg As String
-    // '        Get
-    // '            Return _ErrorInfo.msg : End Get
-    // '        Set(value As String)
-    // '            If Not String.IsNullOrEmpty(value) Then _ErrorInfo.msg = value
-    // '        End Set
-    // '    End Property
-    // 'End Structure
-    // Public Function ErrorInfo = (Optional lvl As Integer = -100, Optional msg As String = Nothing) As (lvl As Integer, msg As String)
-    // If lvl <= 10 And lvl >= -1 Then _ErrorInfo.lvl = lvl
-    // If Not String.IsNullOrEmpty(msg) Then _ErrorInfo.msg = msg
-    // Return (lvl, msg)
-    // End Function
+    public static (string code, int lvl, string msg) ErrorInfo; /*{
+        get { return _ErrorInfo; }
+        set {
+            if (value.lvl >= - 1 && value.lvl <= 10)
+                throw new Exception(); else _ErrorInfo.lvl = value.lvl; 
+            if (value.code == null) 
+                throw new Exception(); else _ErrorInfo.code = value.code;
+        }*/
+    } 
      
     #endregion 
-
-}
+ 

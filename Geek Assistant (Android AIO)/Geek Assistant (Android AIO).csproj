@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Res\**" />
+    <EmbeddedResource Remove="Res\**" />
+    <None Remove="Res\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
     <PackageReference Include="dot-net-transitions" Version="1.2.1" />
     <PackageReference Include="FluentTransitions" Version="2.0.1" />
