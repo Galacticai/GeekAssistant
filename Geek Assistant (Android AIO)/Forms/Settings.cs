@@ -18,9 +18,83 @@ namespace GeekAssistant.Forms {
     public Settings() {
             InitializeComponent();
         }
+        private void AssignEvents() {
+            Close_Button.Click += Close_Button_Click;
 
+            ResetGA.Click += ResetGA_Click;
+            ResetGA.MouseEnter += ResetGA_MouseEnter;
+            ResetGA.MouseDown += ResetGA_MouseDown;
+            ResetGA.MouseUp += ResetGA_MouseUp;
+
+            ResetGA_SelectAll.MouseEnter += ResetGA_SelectAll_MouseEnter; ResetGA_SelectAll.MouseDown += ResetGA_SelectAll_MouseDown;
+            ResetGA_SelectAll.MouseUp += ResetGA_SelectAll_MouseUp; ResetGA_SelectAll.Click += ResetGA_SelectAll_Click;
+
+
+            ResetGA_Settings_CheckBox.CheckedChanged += ResetGA_Settings_LogsOnly_CheckBox_CheckedChanged; ResetGA_LogsOnly_CheckBox.CheckedChanged += ResetGA_Settings_LogsOnly_CheckBox_CheckedChanged;
+            ResetGA_Settings_CheckBox.MouseEnter += ResetGA_Settings_CheckBox_AndLabel_MouseEnter; ResetGA_Settings_CheckBox_Label.MouseEnter += ResetGA_Settings_CheckBox_AndLabel_MouseEnter;
+            ResetGA_Settings_CheckBox_Label.Click += ClearData_Settings_CheckBox_Label_Click; ResetGA_Settings_UI.Click += ClearData_Settings_CheckBox_Label_Click;
+
+            ResetGA_LogsOnly_CheckBox.MouseEnter += ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter; ResetGA_LogsOnly_CheckBox_Label.MouseEnter += ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter;
+            ResetGA_LogsOnly_CheckBox_Label.Click += ResetGA_LogsOnly_CheckBox_Label_Click;
+            ResetGA_LogsOnly_UI.Click += ResetGA_LogsOnly_CheckBox_Label_Click;
+
+            ToU_SwitchButton.MouseDown += ToU_SwitchButton_MouseDown; ToU_SwitchButton.KeyDown += ToU_SwitchButton_MouseDown;
+            ToU_SwitchButton.MouseUp += ToU_SwitchButton_MouseUp; ToU_SwitchButton.KeyUp += ToU_SwitchButton_MouseUp;
+            ToU_SwitchButton.MouseEnter += ToU_SwitchButton_MouseEnter; ToU_SwitchButton.MouseEnter += ToU_SwitchButton_MouseEnter;
+            ToU_SwitchButton.MouseUp += ToU_SwitchButton_MouseUp; ToU_SwitchButton.KeyUp += ToU_SwitchButton_MouseUp;
+            ToU_SwitchButton.MouseLeave += ToU_SwitchButton_MouseLeave;
+            ToU_SwitchButton.Click += ToU_SwitchButton_Click;
+
+            AppMode_SwitchButton.MouseDown += AppMode_SwitchButton_MouseDown; AppMode_SwitchButton.KeyDown += AppMode_SwitchButton_MouseDown;
+            AppMode_SwitchButton.MouseUp += AppMode_SwitchButton_MouseUp; AppMode_SwitchButton.KeyUp += AppMode_SwitchButton_MouseUp;
+            AppMode_SwitchButton.MouseEnter += AppMode_SwitchButton_MouseEnter;
+            AppMode_SwitchButton.MouseLeave += AppMode_SwitchButton_MouseLeave;
+            AppMode_SwitchButton.Click += AppMode_SwitchButton_Click;
+
+            PopupMessages_SwitchButton.MouseUp += PopupMessages_SwitchButton_MouseUp; PopupMessages_SwitchButton.KeyUp += PopupMessages_SwitchButton_MouseUp;
+            PopupMessages_SwitchButton.MouseDown += PopupMessages_SwitchButton_MouseDown; PopupMessages_SwitchButton.KeyDown += PopupMessages_SwitchButton_MouseDown;
+            PopupMessages_SwitchButton.MouseEnter += PopupMessages_SwitchButton_MouseEnter;
+            PopupMessages_SwitchButton.MouseLeave += PopupMessages_SwitchButton_MouseLeave;
+            PopupMessages_SwitchButton.Click += PopupMessages_SwitchButton_Click;
+
+            VerbousLogging_SwitchButton.MouseDown += VerbousLogging_SwitchButton_MouseDown; VerbousLogging_SwitchButton.KeyDown += VerbousLogging_SwitchButton_MouseDown;
+            VerbousLogging_SwitchButton.MouseUp += VerbousLogging_SwitchButton_MouseUp; VerbousLogging_SwitchButton.KeyUp += VerbousLogging_SwitchButton_MouseUp;
+            VerbousLogging_SwitchButton.MouseEnter += VerbousLogging_SwitchButton_MouseEnter;
+            VerbousLogging_SwitchButton.MouseLeave += VerbousLogging_SwitchButton_MouseLeave;
+            VerbousLogging_SwitchButton.Click += VerbousLogging_SwitchButton_Click;
+
+            VerbousLoggingPrompt_SwitchButton.MouseDown += VerbousLoggingPrompt_SwitchButton_MouseDown; VerbousLoggingPrompt_SwitchButton.KeyDown += VerbousLoggingPrompt_SwitchButton_MouseDown;
+            VerbousLoggingPrompt_SwitchButton.MouseUp += VerbousLoggingPrompt_SwitchButton_MouseUp; VerbousLoggingPrompt_SwitchButton.KeyUp += VerbousLoggingPrompt_SwitchButton_MouseUp;
+            VerbousLoggingPrompt_SwitchButton.MouseEnter += VerbousLoggingPrompt_SwitchButton_MouseEnter;
+            VerbousLoggingPrompt_SwitchButton.MouseLeave += VerbousLoggingPrompt_SwitchButton_MouseLeave;
+            VerbousLoggingPrompt_SwitchButton.Click += VerbousLoggingPrompt_SwitchButton_Click;
+
+            ShowToolTips_SwitchButton.MouseDown += ShowToolTips_SwitchButton_MouseDown; ShowToolTips_SwitchButton.KeyDown += ShowToolTips_SwitchButton_MouseDown;
+            ShowToolTips_SwitchButton.MouseUp += ShowToolTips_SwitchButton_MouseUp; ShowToolTips_SwitchButton.KeyUp += ShowToolTips_SwitchButton_MouseUp;
+            ShowToolTips_SwitchButton.MouseEnter += ShowToolTips_SwitchButton_MouseEnter;
+            ShowToolTips_SwitchButton.MouseLeave += ShowToolTips_SwitchButton_MouseLeave;
+            ShowToolTips_SwitchButton.Click += ShowToolTips_SwitchButton_Click;
+
+            OpenLogsFolder.MouseEnter += OpenLogsFolder_MouseEnter;
+            OpenLogsFolder.MouseLeave += OpenLogsFolder_MouseLeave;
+            OpenLogsFolder.MouseDown += OpenLogsFolder_MouseDown; OpenLogsFolder.KeyDown += OpenLogsFolder_MouseDown;
+            OpenLogsFolder.MouseUp += OpenLogsFolder_MouseUp; OpenLogsFolder.KeyUp += OpenLogsFolder_MouseUp;
+            OpenLogsFolder.Click += OpenLogsFolder_Click;
+
+            AutoClearLogs_SwitchButton.MouseDown += AutoClearLogs_SwitchButton_MouseDown; AutoClearLogs_SwitchButton.KeyDown += AutoClearLogs_SwitchButton_MouseDown;
+            AutoClearLogs_SwitchButton.MouseUp += AutoClearLogs_SwitchButton_MouseUp; AutoClearLogs_SwitchButton.KeyUp += AutoClearLogs_SwitchButton_MouseUp;
+            AutoClearLogs_SwitchButton.MouseEnter += AutoClearLogs_SwitchButton_MouseEnter;
+            AutoClearLogs_SwitchButton.MouseLeave += AutoClearLogs_SwitchButton_MouseLeave;
+            AutoClearLogs_SwitchButton.Click += AutoClearLogs_SwitchButton_Click;
+
+            PerformAnimation_SwitchButton.MouseDown += PerformAnimation_SwitchButton_MouseDown; PerformAnimation_SwitchButton.KeyDown += PerformAnimation_SwitchButton_MouseDown;
+            PerformAnimation_SwitchButton.MouseUp += PerformAnimation_SwitchButton_MouseUp; PerformAnimation_SwitchButton.KeyUp += PerformAnimation_SwitchButton_MouseUp;
+            PerformAnimation_SwitchButton.MouseEnter += PerformAnimation_SwitchButton_MouseEnter;
+            PerformAnimation_SwitchButton.MouseLeave += PerformAnimation_SwitchButton_MouseLeave;
+            PerformAnimation_SwitchButton.Click += PerformAnimation_SwitchButton_Click;
+        }
         private void Settings_Load(Object sender, EventArgs e) {
-
+            AssignEvents();
 
             GA_SetTheme.Run(Name);
             SetBounds((common.Home.Width / 2) - (Width / 2) + common.Home.Location.X, common.Home.Top, Width, Height);
@@ -54,13 +128,13 @@ namespace GeekAssistant.Forms {
         }
 
         private void ResetGA_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref (object)ResetGA, "Reset Geek Assistant", willClear);
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", willClear);
             if (willClear == null) {
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", "First, select something of the above.");
                 return;
             }
             if (willClear.Length <= 9)
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", "First, select something of the above.");
         }
         private void ResetGA_MouseDown(Object sender, EventArgs e) {
             ResetGA.ForeColor = GA_SetTheme.Current_bgColor();
@@ -83,7 +157,7 @@ namespace GeekAssistant.Forms {
 
         #region "ResetGA_SelectAll"
         private void ResetGA_SelectAll_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA_SelectAll, "Select All", tooltip.GetToolTip(ResetGA_SelectAll));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_SelectAll, "Select All", tooltip.GetToolTip(ResetGA_SelectAll));
         }
         private void ResetGA_SelectAll_MouseDown(Object sender, EventArgs e) {
             if (common.S.DarkTheme)
@@ -136,15 +210,15 @@ namespace GeekAssistant.Forms {
             //    willClear += " only"
             //}
             //willClear += "?"
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA, "Reset Geek Assistant", willClear);
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA, "Reset Geek Assistant", willClear);
             if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked)
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA, "Reset Geek Assistant", "First, select something of the above.");
         }
 
         ////ResetGA_Settings_CheckBox - Label
         private void ResetGA_Settings_CheckBox_AndLabel_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA_Settings_CheckBox, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox));
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA_Settings_CheckBox_Label, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox_Label));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA_Settings_CheckBox, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA_Settings_CheckBox_Label, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox_Label));
         }
         private void ClearData_Settings_CheckBox_Label_Click(Object sender, EventArgs e) {
             ResetGA_Settings_CheckBox.Checked = !ResetGA_Settings_CheckBox.Checked;
@@ -152,8 +226,8 @@ namespace GeekAssistant.Forms {
 
         ////ResetGA_LogsOnly_CheckBox - Label
         private void ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA_LogsOnly_CheckBox, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox));
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ResetGA_LogsOnly_CheckBox_Label, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox_Label));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_LogsOnly_CheckBox, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_LogsOnly_CheckBox_Label, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox_Label));
         }
         private void ResetGA_LogsOnly_CheckBox_Label_Click(Object sender, EventArgs e) {
             ResetGA_LogsOnly_CheckBox.Checked = !ResetGA_LogsOnly_CheckBox.Checked;
@@ -167,7 +241,7 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref ToU_SwitchButton);
         }
         private void ToU_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ToU_SwitchButton, "Skip Terms of Use on startup", tooltip.GetToolTip(ToU_SwitchButton)); // tooltip.GetToolTip(ShowToolTips_SwitchButton))
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ToU_SwitchButton, "Skip Terms of Use on startup", tooltip.GetToolTip(ToU_SwitchButton)); // tooltip.GetToolTip(ShowToolTips_SwitchButton))
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref ToU_SwitchButton, common.S.ToU_dontShow);
         }
         private void ToU_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -187,7 +261,7 @@ namespace GeekAssistant.Forms {
         }
         private void AppMode_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref AppMode_SwitchButton, "Skip App Mode on startup", tooltip.GetToolTip(AppMode_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   AppMode_SwitchButton, "Skip App Mode on startup", tooltip.GetToolTip(AppMode_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref AppMode_SwitchButton, common.S.AppMode_dontshow);
         }
         private void AppMode_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -207,7 +281,7 @@ namespace GeekAssistant.Forms {
             }
         private void PopupMessages_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref PopupMessages_SwitchButton, "Pop-up Messages", tooltip.GetToolTip(PopupMessages_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   PopupMessages_SwitchButton, "Pop-up Messages", tooltip.GetToolTip(PopupMessages_SwitchButton));
                GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PopupMessages_SwitchButton, common.S.PopupMessages);
             }
         private void PopupMessages_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -216,7 +290,7 @@ namespace GeekAssistant.Forms {
             }
         private void PopupMessages_SwitchButton_Click(Object sender, EventArgs e) {
 
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref PopupMessages_SwitchButton, ref common.S.PopupMessages, tooltip, PopupMessages_SwitchButton_ToolTip);
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref PopupMessages_SwitchButton,   common.S.PopupMessages, ref tooltip, PopupMessages_SwitchButton_ToolTip);
             }
 
         ////VerbousLogging_SwitchButton
@@ -229,7 +303,7 @@ namespace GeekAssistant.Forms {
             }
         private void VerbousLogging_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref VerbousLogging_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLogging_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   VerbousLogging_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLogging_SwitchButton));
                GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref VerbousLogging_SwitchButton, common.S.VerboseLogging);
             }
         private void VerbousLogging_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -263,7 +337,7 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref VerbousLoggingPrompt_SwitchButton);
         }
         private void VerbousLoggingPrompt_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref VerbousLoggingPrompt_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLoggingPrompt_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   VerbousLoggingPrompt_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLoggingPrompt_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref VerbousLoggingPrompt_SwitchButton, common.S.VerboseLoggingPrompt);
         }
         private void VerbousLoggingPrompt_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -285,7 +359,7 @@ namespace GeekAssistant.Forms {
         }
         private void ShowToolTips_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref ShowToolTips_SwitchButton, "Show Tooltips", tooltip.GetToolTip(ShowToolTips_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ShowToolTips_SwitchButton, "Show Tooltips", tooltip.GetToolTip(ShowToolTips_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref ShowToolTips_SwitchButton, common.S.ShowToolTips);
         }
         private void ShowToolTips_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -324,7 +398,7 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref AutoClearLogs_SwitchButton);
         }
         private void AutoClearLogs_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref AutoClearLogs_SwitchButton, "Auto Clear Logs", tooltip.GetToolTip(AutoClearLogs_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   AutoClearLogs_SwitchButton, "Auto Clear Logs", tooltip.GetToolTip(AutoClearLogs_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref AutoClearLogs_SwitchButton, common.S.AutoClearLogs);
                 }
         private void AutoClearLogs_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -342,7 +416,7 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref PerformAnimation_SwitchButton);
                 }
         private void PerformAnimation_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ref PerformAnimation_SwitchButton, "Perform Theme Animation", tooltip.GetToolTip(PerformAnimation_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   PerformAnimation_SwitchButton, "Perform Theme Animation", tooltip.GetToolTip(PerformAnimation_SwitchButton));
                    GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PerformAnimation_SwitchButton, common.S.PerformAnimations);
                 }
         private void PerformAnimation_SwitchButton_MouseLeave(Object sender, EventArgs e) {

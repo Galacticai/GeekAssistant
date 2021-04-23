@@ -13,6 +13,23 @@ namespace GeekAssistant.Forms {
         public Info() {
             InitializeComponent();
         }
+        private void AssignEvents() {
+            Yes_Button.MouseDown += Yes_Button_Mousedown;
+            Yes_Button.MouseUp += Yes_Button_MouseUp;
+            Yes_Button.Click += Yes_Button_Click;
+
+            No_Button.Click += No_Button_Click;
+
+            Copy_Button.MouseDown += Copy_Button_MouseDown;
+            Copy_Button.MouseUp += Copy_Button_MouseUp;
+            Copy_Button.Click += Copy_Button_Click;
+
+            CopyToClipboard_Timer.Tick += CopyToClipboard_Timer_Tick;
+
+            title_Label.TextChanged += title_Label_TextChanged;
+            title_Label.Click += title_Label_Click;
+            title_Label_Click_Timer.Tick += title_Label_Click_Timer_Tick;
+        }
 
         public Image info_IconLight;
         public Image info_IconDark;
@@ -20,9 +37,10 @@ namespace GeekAssistant.Forms {
         public Color info_TextColorDark;
 
         private void Info_Load(object sender, EventArgs e) {
+            AssignEvents();
 
             //Reset info answer
-           GA_infoAsk. infoAnswer = false;
+            GA_infoAsk.infoAnswer = false;
             No_Button.Select();
 
             if (common.S.info_MsgTitle == null || common.S.info_Msg == null || common.S.info_MsgLevel < -1) {
@@ -33,7 +51,7 @@ namespace GeekAssistant.Forms {
 
             //Reset to default
             No_Button.Text = "Close";
-            Yes_Button.Text = "(Yes)";
+            Yes_Button.Text = "Yes";
             //GeekAssistant_PictureBox.Visible = false;
             Yes_Button.Visible = false;
             Copy_Button.Visible = true;
@@ -111,13 +129,11 @@ namespace GeekAssistant.Forms {
             GA_SetTheme.Run(Name);
         }
 
-
         private void Yes_Button_Mousedown(object sender, EventArgs e) {
-            if (Yes_Button.ForeColor.GetBrightness() >= .5) {
+            if (Yes_Button.ForeColor.GetBrightness() >= .5)
                 Yes_Button.ForeColor = Color.Black;
-            } else {
-                Yes_Button.ForeColor = Color.White;
-            }
+            else Yes_Button.ForeColor = Color.White;
+
         }
         private void Yes_Button_MouseUp(object sender, EventArgs e) {
             Yes_Button.ForeColor = title_Label.ForeColor;
@@ -157,13 +173,12 @@ namespace GeekAssistant.Forms {
             Copy_Button.Image = prop.x24.Copy_W_24;
             Copy_Button.ForeColor = Color.White;
         }
-        private void Copy_Button_MouseUp(object sender, EventArgs e) { 
+        private void Copy_Button_MouseUp(object sender, EventArgs e) {
             Copy_Button.Image = prop.x24.Copy_B_24;
-            if (CopyToClipboard_Timer.Enabled) {
+            if (CopyToClipboard_Timer.Enabled)
                 Copy_Button.ForeColor = Color.DarkGreen;
-            } else {
-                Copy_Button.ForeColor = SystemColors.ControlText;
-            }
+            else Copy_Button.ForeColor = SystemColors.ControlText;
+
         }
         private void Copy_Button_Click(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
@@ -180,11 +195,10 @@ namespace GeekAssistant.Forms {
         }
 
         private void title_Label_TextChanged(object sender, EventArgs e) {
-            if (title_Label.Text.Length < 25) {
+            if (title_Label.Text.Length < 25)
                 title_Label.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            } else {
-                title_Label.Font = new Font("Segoe UI", 12.0F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            }
+            else title_Label.Font = new Font("Segoe UI", 12.0F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
         }
 
         private Timer title_Label_Click_Timer = new Timer { Interval = 1500 };
@@ -192,17 +206,17 @@ namespace GeekAssistant.Forms {
         private string CopiedText = "Copied information...";
         private void title_Label_Click(object sender, EventArgs e) {
             if (title_Label.Text == CopiedText) return;
-                if (common.S.info_MsgLevel != 2) {
-                    savedTitle = title_Label.Text;
-                    title_Label.Text = CopiedText;
-                    Clipboard.SetText(savedTitle);
-                    title_Label_Click_Timer.Start();
-                }
-            } 
+            if (common.S.info_MsgLevel != 2) {
+                savedTitle = title_Label.Text;
+                title_Label.Text = CopiedText;
+                Clipboard.SetText(savedTitle);
+                title_Label_Click_Timer.Start();
+            }
+        }
         private void title_Label_Click_Timer_Tick(object sender, EventArgs e) {
             title_Label.Text = savedTitle;
             title_Label_Click_Timer.Stop();
         }
 
-    } 
+    }
 }

@@ -39,7 +39,7 @@ namespace GeekAssistant.Forms {
             this.ResetGA_Settings_CheckBox = new System.Windows.Forms.CheckBox();
             this.ResetGA_LogsOnly_UI = new System.Windows.Forms.PictureBox();
             this.ResetGA_Settings_UI = new System.Windows.Forms.PictureBox();
-            this.Close_Button = new System.Windows.Forms.Button(); 
+            this.Close_Button = new System.Windows.Forms.Button();
             this.PopupMessages_SwitchButton = new System.Windows.Forms.Button();
             this.ShowToolTips_SwitchButton = new System.Windows.Forms.Button();
             this.ToU_SwitchButton = new System.Windows.Forms.Button();
@@ -60,13 +60,6 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.SettingsIcon_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_PictureBox)).BeginInit();
             this.SuspendLayout();
-
-            this.tooltip.AutomaticDelay = 100;
-            this.tooltip.AutoPopDelay = 10000;
-            this.tooltip.InitialDelay = 100;
-            this.tooltip.ReshowDelay = 0;
-            this.tooltip.ToolTipIcon = ToolTipIcon.Info;
-            this.tooltip.ToolTipTitle = "Selected:";
             // 
             // ResetGA_GroupBox
             // 
@@ -90,7 +83,7 @@ namespace GeekAssistant.Forms {
             // 
             // AutoClearLogs_SwitchButton
             // 
-            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AutoClearLogs_SwitchButton.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AutoClearLogs_SwitchButton.FlatAppearance.BorderSize = 0;
@@ -117,7 +110,7 @@ namespace GeekAssistant.Forms {
             // 
             // ResetGA
             // 
-            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ResetGA.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ResetGA.FlatAppearance.BorderSize = 0;
@@ -230,7 +223,7 @@ namespace GeekAssistant.Forms {
             this.Close_Button.Size = new System.Drawing.Size(91, 30);
             this.Close_Button.TabIndex = 6;
             this.Close_Button.Text = "Close";
-            this.Close_Button.UseVisualStyleBackColor = true; 
+            this.Close_Button.UseVisualStyleBackColor = true;
             // 
             // PopupMessages_SwitchButton
             // 
@@ -338,7 +331,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -361,11 +354,11 @@ namespace GeekAssistant.Forms {
             // 
             // SettingsTitle_Label
             // 
-            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsTitle_Label.BackColor = System.Drawing.Color.Transparent;
             this.SettingsTitle_Label.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SettingsTitle_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(125)))));
+            this.SettingsTitle_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(106)))), ((int)(((byte)(128)))));
             this.SettingsTitle_Label.Location = new System.Drawing.Point(103, 13);
             this.SettingsTitle_Label.Name = "SettingsTitle_Label";
             this.SettingsTitle_Label.Size = new System.Drawing.Size(374, 45);
@@ -387,7 +380,7 @@ namespace GeekAssistant.Forms {
             // 
             // Thanks_Label
             // 
-            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Thanks_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Thanks_Label.Location = new System.Drawing.Point(107, 51);
@@ -396,6 +389,15 @@ namespace GeekAssistant.Forms {
             this.Thanks_Label.TabIndex = 85591;
             this.Thanks_Label.Text = "How do you want things to roll?";
             this.Thanks_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tooltip
+            // 
+            this.tooltip.AutomaticDelay = 100;
+            this.tooltip.AutoPopDelay = 10000;
+            this.tooltip.InitialDelay = 100;
+            this.tooltip.ReshowDelay = 0;
+            this.tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.tooltip.ToolTipTitle = "Selected:";
             // 
             // Settings
             // 
@@ -412,7 +414,6 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.ToU_SwitchButton);
             this.Controls.Add(this.PopupMessages_SwitchButton);
             this.Controls.Add(this.PerformAnimation_SwitchButton);
-            this.Controls.Add(this.ShowToolTips_SwitchButton);
             this.Controls.Add(this.VerbousLogging_SwitchButton);
             this.Controls.Add(this.Close_Button);
             this.Controls.Add(this.ResetGA_GroupBox);
@@ -427,82 +428,6 @@ namespace GeekAssistant.Forms {
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings — Geek Assistant";
             this.Load += new System.EventHandler(this.Settings_Load);
-            ResetGA.Click += ResetGA_Click;
-
-            ResetGA.MouseEnter += ResetGA_MouseEnter;
-
-            ResetGA.MouseDown += ResetGA_MouseDown;
-
-            Close_Button.Click += Close_Button_Click;
-
-            ResetGA.MouseUp += ResetGA_MouseUp;
-
-            ResetGA_SelectAll.MouseEnter += ResetGA_SelectAll_MouseEnter; ResetGA_SelectAll.MouseDown += ResetGA_SelectAll_MouseDown;
-            ResetGA_SelectAll.MouseUp += ResetGA_SelectAll_MouseUp; ResetGA_SelectAll.Click += ResetGA_SelectAll_Click;
-
-            ResetGA_Settings_CheckBox.CheckedChanged += ResetGA_Settings_LogsOnly_CheckBox_CheckedChanged; ResetGA_LogsOnly_CheckBox.CheckedChanged += ResetGA_Settings_LogsOnly_CheckBox_CheckedChanged;
-            ResetGA_Settings_CheckBox.MouseEnter += ResetGA_Settings_CheckBox_AndLabel_MouseEnter; ResetGA_Settings_CheckBox_Label.MouseEnter += ResetGA_Settings_CheckBox_AndLabel_MouseEnter;
-            ResetGA_Settings_CheckBox_Label.Click += ClearData_Settings_CheckBox_Label_Click; ResetGA_Settings_UI.Click += ClearData_Settings_CheckBox_Label_Click;
-
-            ResetGA_LogsOnly_CheckBox.MouseEnter += ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter; ResetGA_LogsOnly_CheckBox_Label.MouseEnter += ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter;
-            ResetGA_LogsOnly_CheckBox_Label.Click += ResetGA_LogsOnly_CheckBox_Label_Click;
-            ResetGA_LogsOnly_UI.Click += ResetGA_LogsOnly_CheckBox_Label_Click;
-
-            ToU_SwitchButton.MouseDown += ToU_SwitchButton_MouseDown; ToU_SwitchButton.KeyDown += ToU_SwitchButton_MouseDown;
-            ToU_SwitchButton.MouseUp += ToU_SwitchButton_MouseUp; ToU_SwitchButton.KeyUp += ToU_SwitchButton_MouseUp;
-            ToU_SwitchButton.MouseEnter += ToU_SwitchButton_MouseEnter; ToU_SwitchButton.MouseEnter += ToU_SwitchButton_MouseEnter;
-            ToU_SwitchButton.MouseUp += ToU_SwitchButton_MouseUp; ToU_SwitchButton.KeyUp += ToU_SwitchButton_MouseUp;
-            ToU_SwitchButton.MouseLeave += ToU_SwitchButton_MouseLeave;
-            ToU_SwitchButton.Click += ToU_SwitchButton_Click;
-
-            AppMode_SwitchButton.MouseDown += AppMode_SwitchButton_MouseDown; AppMode_SwitchButton.KeyDown += AppMode_SwitchButton_MouseDown;
-            AppMode_SwitchButton.MouseUp += AppMode_SwitchButton_MouseUp; AppMode_SwitchButton.KeyUp += AppMode_SwitchButton_MouseUp;
-            AppMode_SwitchButton.MouseEnter += AppMode_SwitchButton_MouseEnter;
-            AppMode_SwitchButton.MouseLeave += AppMode_SwitchButton_MouseLeave;
-            AppMode_SwitchButton.Click += AppMode_SwitchButton_Click;
-
-            PopupMessages_SwitchButton.MouseUp += PopupMessages_SwitchButton_MouseUp; PopupMessages_SwitchButton.KeyUp += PopupMessages_SwitchButton_MouseUp;
-            PopupMessages_SwitchButton.MouseDown += PopupMessages_SwitchButton_MouseDown; PopupMessages_SwitchButton.KeyDown+= PopupMessages_SwitchButton_MouseDown;
-            PopupMessages_SwitchButton.MouseEnter += PopupMessages_SwitchButton_MouseEnter;
-            PopupMessages_SwitchButton.MouseLeave += PopupMessages_SwitchButton_MouseLeave;
-            PopupMessages_SwitchButton.Click += PopupMessages_SwitchButton_Click;
-
-            VerbousLogging_SwitchButton.MouseDown += VerbousLogging_SwitchButton_MouseDown; VerbousLogging_SwitchButton.KeyDown += VerbousLogging_SwitchButton_MouseDown;
-            VerbousLogging_SwitchButton.MouseUp += VerbousLogging_SwitchButton_MouseUp; VerbousLogging_SwitchButton.KeyUp += VerbousLogging_SwitchButton_MouseUp;
-            VerbousLogging_SwitchButton.MouseEnter += VerbousLogging_SwitchButton_MouseEnter;
-            VerbousLogging_SwitchButton.MouseLeave += VerbousLogging_SwitchButton_MouseLeave;
-            VerbousLogging_SwitchButton.Click += VerbousLogging_SwitchButton_Click;
-
-            VerbousLoggingPrompt_SwitchButton.MouseDown += VerbousLoggingPrompt_SwitchButton_MouseDown; VerbousLoggingPrompt_SwitchButton.KeyDown += VerbousLoggingPrompt_SwitchButton_MouseDown;
-            VerbousLoggingPrompt_SwitchButton.MouseUp += VerbousLoggingPrompt_SwitchButton_MouseUp; VerbousLoggingPrompt_SwitchButton.KeyUp+=VerbousLoggingPrompt_SwitchButton_MouseUp;
-            VerbousLoggingPrompt_SwitchButton.MouseEnter += VerbousLoggingPrompt_SwitchButton_MouseEnter;
-            VerbousLoggingPrompt_SwitchButton.MouseLeave += VerbousLoggingPrompt_SwitchButton_MouseLeave;
-            VerbousLoggingPrompt_SwitchButton.Click += VerbousLoggingPrompt_SwitchButton_Click;
-
-            ShowToolTips_SwitchButton.MouseDown += ShowToolTips_SwitchButton_MouseDown; ShowToolTips_SwitchButton.KeyDown += ShowToolTips_SwitchButton_MouseDown;
-            ShowToolTips_SwitchButton.MouseUp += ShowToolTips_SwitchButton_MouseUp; ShowToolTips_SwitchButton.KeyUp += ShowToolTips_SwitchButton_MouseUp;
-            ShowToolTips_SwitchButton.MouseEnter += ShowToolTips_SwitchButton_MouseEnter;
-            ShowToolTips_SwitchButton.MouseLeave += ShowToolTips_SwitchButton_MouseLeave;
-            ShowToolTips_SwitchButton.Click += ShowToolTips_SwitchButton_Click;
-
-            OpenLogsFolder.MouseEnter += OpenLogsFolder_MouseEnter;
-            OpenLogsFolder.MouseLeave += OpenLogsFolder_MouseLeave;
-            OpenLogsFolder.MouseDown += OpenLogsFolder_MouseDown; OpenLogsFolder.KeyDown += OpenLogsFolder_MouseDown;
-            OpenLogsFolder.MouseUp += OpenLogsFolder_MouseUp; OpenLogsFolder.KeyUp += OpenLogsFolder_MouseUp;
-            OpenLogsFolder.Click += OpenLogsFolder_Click;
-
-            AutoClearLogs_SwitchButton.MouseDown += AutoClearLogs_SwitchButton_MouseDown; AutoClearLogs_SwitchButton.KeyDown += AutoClearLogs_SwitchButton_MouseDown;
-            AutoClearLogs_SwitchButton.MouseUp += AutoClearLogs_SwitchButton_MouseUp; AutoClearLogs_SwitchButton.KeyUp += AutoClearLogs_SwitchButton_MouseUp;
-            AutoClearLogs_SwitchButton.MouseEnter += AutoClearLogs_SwitchButton_MouseEnter;
-            AutoClearLogs_SwitchButton.MouseLeave += AutoClearLogs_SwitchButton_MouseLeave;
-            AutoClearLogs_SwitchButton.Click += AutoClearLogs_SwitchButton_Click;
-
-            PerformAnimation_SwitchButton.MouseDown += PerformAnimation_SwitchButton_MouseDown;  PerformAnimation_SwitchButton.KeyDown += PerformAnimation_SwitchButton_MouseDown;
-            PerformAnimation_SwitchButton.MouseUp += PerformAnimation_SwitchButton_MouseUp; PerformAnimation_SwitchButton.KeyUp += PerformAnimation_SwitchButton_MouseUp;
-            PerformAnimation_SwitchButton.MouseEnter += PerformAnimation_SwitchButton_MouseEnter;
-            PerformAnimation_SwitchButton.MouseLeave += PerformAnimation_SwitchButton_MouseLeave;
-            PerformAnimation_SwitchButton.Click += PerformAnimation_SwitchButton_Click;
-
             this.ResetGA_GroupBox.ResumeLayout(false);
             this.ResetGA_GroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResetGA_LogsOnly_UI)).EndInit();

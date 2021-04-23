@@ -14,6 +14,30 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
 
+        private void AssignEvents() {
+            this.FormClosed += AppMode_Closed;
+            this.GotFocus += AppMode_GotFocus;
+            this.GotFocus += AppMode_GotFocus;
+            this.LostFocus += AppMode_GotFocus;
+            this.MouseEnter += AppMode_GotFocus;
+            this.MouseLeave += AppMode_GotFocus;
+
+            startup_dontShow.MouseEnter += startup_dontShow_MouseEnter;
+            startup_dontShow.MouseLeave += startup_dontShow_MouseLeave;
+            startup_dontShow.MouseDown += startup_dontShow_MouseDown; startup_dontShow.KeyDown += startup_dontShow_MouseDown;
+            startup_dontShow.MouseUp += startup_dontShow_Mouseup; startup_dontShow.KeyUp += startup_dontShow_Mouseup;
+            startup_dontShow.Click += startup_dontShow_Click;
+
+            start_newbie.Click += start_newbie_Click;
+            start_newbie.MouseEnter += start_newbie_MouseEnter_MouseUp; start_newbie.MouseUp += start_newbie_MouseEnter_MouseUp; start_newbie.KeyUp += start_newbie_MouseEnter_MouseUp;
+            start_newbie.MouseDown += start_newbie_MouseDown; start_newbie.KeyDown += start_newbie_MouseDown;
+            start_newbie.MouseLeave += start_newbie_MouseLeave;
+
+            start_default.Click += start_default_Click;
+            start_default.MouseEnter += start_default_MouseEnter_MouseUp; start_default.MouseUp += start_default_MouseEnter_MouseUp; start_default.KeyUp += start_default_MouseEnter_MouseUp;
+            start_default.MouseDown += start_default_MouseUp_KeyDown; start_default.KeyDown += start_default_MouseUp_KeyDown;
+            start_default.MouseLeave += start_default_MouseLeave;
+        }
         private void AppMode_Closed(object sender, EventArgs e) {  
             common.S.Save();
         }
@@ -28,7 +52,9 @@ namespace GeekAssistant.Forms {
     //    Dispose()
     //}
 
-        private void AppMode_Load(object sender, EventArgs e) {  
+        private void AppMode_Load(object sender, EventArgs e) {
+            AssignEvents();
+
             if (common.S.AppMode_dontshow ) {
     
                 if (common.S.AppMode_newbie ) {

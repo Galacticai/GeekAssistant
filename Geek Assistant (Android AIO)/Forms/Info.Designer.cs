@@ -197,21 +197,6 @@ namespace GeekAssistant.Forms {
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Info_Load);
 
-            Yes_Button.MouseDown += Yes_Button_Mousedown;
-            Yes_Button.MouseUp += Yes_Button_MouseUp;
-            Yes_Button.Click += Yes_Button_Click;
-
-            No_Button.Click += No_Button_Click;
-
-            Copy_Button.MouseDown += Copy_Button_MouseDown;
-            Copy_Button.MouseUp += Copy_Button_MouseUp;
-            Copy_Button.Click += Copy_Button_Click;
-
-            CopyToClipboard_Timer.Tick += CopyToClipboard_Timer_Tick;
-
-            title_Label.TextChanged += title_Label_TextChanged;
-            title_Label.Click += title_Label_Click;
-            title_Label_Click_Timer.Tick += title_Label_Click_Timer_Tick;
 
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.info_PictureBox)).EndInit();

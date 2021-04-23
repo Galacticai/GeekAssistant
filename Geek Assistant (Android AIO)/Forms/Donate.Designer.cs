@@ -108,7 +108,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -120,7 +120,7 @@ namespace GeekAssistant.Forms {
             // 
             // BitcoinAddressQR
             // 
-            this.BitcoinAddressQR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BitcoinAddressQR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.BitcoinAddressQR.BackColor = System.Drawing.Color.Transparent;
             this.BitcoinAddressQR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -251,6 +251,7 @@ namespace GeekAssistant.Forms {
             this.GooglePayLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.GooglePayLink.TabIndex = 85593;
             this.GooglePayLink.TabStop = false;
+            this.GooglePayLink.Click += new System.EventHandler(this.GooglePayLink_Click);
             // 
             // Donate
             // 
@@ -282,7 +283,7 @@ namespace GeekAssistant.Forms {
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(427, 522);
             this.MinimizeBox = false;
-        this.MinimumSize = new System.Drawing.Size(427, 522);
+            this.MinimumSize = new System.Drawing.Size(427, 522);
             this.Name = "Donate";
             this.Text = "Support The Developer — Geek Assistant";
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
@@ -297,25 +298,25 @@ namespace GeekAssistant.Forms {
             this.ResumeLayout(false);
             this.PerformLayout();
 
-    }
-        private Label BitcoinAddress;
-    private Label title; 
-    private PictureBox pic;
-        private Button Close_Button; 
-    private PictureBox ButtonsBG_UI;
-    private PictureBox BitcoinAddressQR ;
-        private Label BitcoinNote; 
-    private PictureBox GeekAssistant_PictureBox;
-    private PictureBox BitcoinIcon;
-        private Label BitcoinTitle;
-    private Label GooglePayTitle;
-    private PictureBox GooglePayIcon;
-        private Label GooglePayEmail;
-    private Label Thanks_Label;
-    private PictureBox GooglePay_ClickableBG;
-    private PictureBox Bitcoin_ClickableBG;
-    private PictureBox GooglePayLink;
         }
+        private Label BitcoinAddress;
+        private Label title;
+        private PictureBox pic;
+        private Button Close_Button;
+        private PictureBox ButtonsBG_UI;
+        private PictureBox BitcoinAddressQR;
+        private Label BitcoinNote;
+        private PictureBox GeekAssistant_PictureBox;
+        private PictureBox BitcoinIcon;
+        private Label BitcoinTitle;
+        private Label GooglePayTitle;
+        private PictureBox GooglePayIcon;
+        private Label GooglePayEmail;
+        private Label Thanks_Label;
+        private PictureBox GooglePay_ClickableBG;
+        private PictureBox Bitcoin_ClickableBG;
+        private PictureBox GooglePayLink;
+    }
 
-        #endregion
-    } 
+    #endregion
+}

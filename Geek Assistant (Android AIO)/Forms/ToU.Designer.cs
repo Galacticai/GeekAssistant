@@ -219,20 +219,6 @@ namespace GeekAssistant {
             this.Text = "Terms of Use — Geek Assistance";
             this.Load += new System.EventHandler(this.ToU_Load);
 
-            ToU_Reject.MouseEnter += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.MouseDown += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.KeyDown += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.MouseLeave += ToU_Reject_MouseLeave_KeyUp;
-            ToU_Reject.KeyUp += ToU_Reject_MouseLeave_KeyUp;
-            ToU_Reject.Click += ToU_Reject_Click;
-            ToU_Accept.MouseEnter += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.MouseDown += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.KeyDown += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.MouseLeave += ToU_Accept_MouseLeave_KeyUp;
-            ToU_Accept.KeyUp += ToU_Accept_MouseLeave_KeyUp;
-            ToU_Accept.Click += ToU_Accept_Click;
-            AcceptCheck_ToU.CheckedChanged += AcceptCheck_ToU_CheckedChanged;
-            ToURead_Timer.Tick += ToURead_Timer_Tick;
 
             ((System.ComponentModel.ISupportInitialize)(this.Icon_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();

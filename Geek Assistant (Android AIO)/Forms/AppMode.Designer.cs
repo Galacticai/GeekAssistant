@@ -158,7 +158,7 @@ namespace GeekAssistant.Forms {
             this.startup_dontShow.Name = "startup_dontShow";
             this.startup_dontShow.Size = new System.Drawing.Size(403, 26);
             this.startup_dontShow.TabIndex = 14;
-            this.startup_dontShow.Text = "&Remember && Don//t Ask Again";
+            this.startup_dontShow.Text = "&Remember && Don\'t Ask Again";
             this.startup_dontShow.UseVisualStyleBackColor = false;
             // 
             // AppMode
@@ -187,29 +187,6 @@ namespace GeekAssistant.Forms {
             this.Text = "Application Mode — Geek Assistant";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AppMode_Load);
-            this.FormClosed += AppMode_Closed;
-            this.GotFocus += AppMode_GotFocus;
-            this.GotFocus += AppMode_GotFocus;
-            this.LostFocus += AppMode_GotFocus;
-            this.MouseEnter += AppMode_GotFocus;
-            this.MouseLeave += AppMode_GotFocus;
-
-            startup_dontShow.MouseEnter += startup_dontShow_MouseEnter;
-            startup_dontShow.MouseLeave += startup_dontShow_MouseLeave;
-            startup_dontShow.MouseDown += startup_dontShow_MouseDown; startup_dontShow.KeyDown += startup_dontShow_MouseDown;
-            startup_dontShow.MouseUp += startup_dontShow_Mouseup; startup_dontShow.KeyUp += startup_dontShow_Mouseup;
-            startup_dontShow.Click += startup_dontShow_Click;
-
-            start_newbie.Click += start_newbie_Click;
-            start_newbie.MouseEnter += start_newbie_MouseEnter_MouseUp; start_newbie.MouseUp += start_newbie_MouseEnter_MouseUp; start_newbie.KeyUp += start_newbie_MouseEnter_MouseUp;
-            start_newbie.MouseDown += start_newbie_MouseDown; start_newbie.KeyDown += start_newbie_MouseDown;
-            start_newbie.MouseLeave += start_newbie_MouseLeave;
-
-            start_default.Click += start_default_Click;
-            start_default.MouseEnter += start_default_MouseEnter_MouseUp; start_default.MouseUp += start_default_MouseEnter_MouseUp; start_default.KeyUp += start_default_MouseEnter_MouseUp;
-            start_default.MouseDown += start_default_MouseUp_KeyDown; start_default.KeyDown += start_default_MouseUp_KeyDown;
-            start_default.MouseLeave += start_default_MouseLeave;
-NOOOOOOOOOOOOOOOOOOOOOOOOOOO
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
             this.ResumeLayout(false);
