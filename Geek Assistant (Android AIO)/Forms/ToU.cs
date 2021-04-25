@@ -1,7 +1,7 @@
-﻿ 
-using System; 
+﻿
+using System;
 using System.Drawing;
-using System.IO; 
+using System.IO;
 using System.Windows.Forms;
 
 namespace GeekAssistant {
@@ -102,12 +102,12 @@ namespace GeekAssistant {
             ToU_Reject.ForeColor = GA_SetTheme.Current_fgColor();
         }
 
-        private void ToU_Reject_Click(Object sender, EventArgs e) { 
+        private void ToU_Reject_Click(Object sender, EventArgs e) {
             common.ErrorInfo.code = "ToU-R-H"; // ToU Rejected Hide
             GA_HideAllForms.Run(true);
             if (GA_infoAsk.Run("Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
-                               "Exit", "Back")) { 
+                               "Exit", "Back")) {
                 Application.Exit();
             } else {
                 common.ErrorInfo.code = "ToU-R-S";

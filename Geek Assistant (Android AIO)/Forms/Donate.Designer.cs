@@ -299,23 +299,23 @@ namespace GeekAssistant.Forms {
             this.PerformLayout();
 
         }
-        private Label BitcoinAddress;
-        private Label title;
-        private PictureBox pic;
-        private Button Close_Button;
-        private PictureBox ButtonsBG_UI;
-        private PictureBox BitcoinAddressQR;
-        private Label BitcoinNote;
-        private PictureBox GeekAssistant_PictureBox;
-        private PictureBox BitcoinIcon;
-        private Label BitcoinTitle;
-        private Label GooglePayTitle;
-        private PictureBox GooglePayIcon;
-        private Label GooglePayEmail;
-        private Label Thanks_Label;
-        private PictureBox GooglePay_ClickableBG;
-        private PictureBox Bitcoin_ClickableBG;
-        private PictureBox GooglePayLink;
+        public Label BitcoinAddress;
+        public Label title;
+        public PictureBox pic;
+        public Button Close_Button;
+        public PictureBox ButtonsBG_UI;
+        public PictureBox BitcoinAddressQR;
+        public Label BitcoinNote;
+        public PictureBox GeekAssistant_PictureBox;
+        public PictureBox BitcoinIcon;
+        public Label BitcoinTitle;
+        public Label GooglePayTitle;
+        public PictureBox GooglePayIcon;
+        public Label GooglePayEmail;
+        public Label Thanks_Label;
+        public PictureBox GooglePay_ClickableBG;
+        public PictureBox Bitcoin_ClickableBG;
+        public PictureBox GooglePayLink;
     }
 
     #endregion

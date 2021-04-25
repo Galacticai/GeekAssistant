@@ -206,15 +206,15 @@ namespace GeekAssistant.Forms {
 
         }
 
-        private Button No_Button;
-        private PictureBox ButtonsBG_UI;
-        private PictureBox info_PictureBox;
-        private Button Yes_Button;
-        private Label title_Label;
-        private TextBox msg_Textbox;
-        private Button Copy_Button;
-        private Timer CopyToClipboard_Timer;
-        private PictureBox GeekAssistant_PictureBox;
+        public Button No_Button;
+        public PictureBox ButtonsBG_UI;
+        public PictureBox info_PictureBox;
+        public Button Yes_Button;
+        public Label title_Label;
+        public TextBox msg_Textbox;
+        public Button Copy_Button;
+        public Timer CopyToClipboard_Timer;
+        public PictureBox GeekAssistant_PictureBox;
         #endregion
     }
 }

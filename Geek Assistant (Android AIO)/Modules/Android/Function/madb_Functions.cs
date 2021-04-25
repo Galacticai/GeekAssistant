@@ -71,7 +71,7 @@ internal static partial class madb {
     public static string Convert_DeviceState_IntToString() {
         string result = "";
         switch (GetDeviceState()) {
-        
+
         case 0: {
             result = "recovery";
             break;

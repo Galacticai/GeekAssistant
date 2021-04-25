@@ -17,25 +17,25 @@ internal static partial class FastbootFlash {
         }
 
         common.Working = true;
-        common.ErrorInfo.code="FF-00";
+        common.ErrorInfo.code = "FF-00";
         GA_Log.LogEvent("Fastboot Flash", 2);
         GA_PleaseWait.Run(true);
         try {
-            common.ErrorInfo.code =  "FF-F0" ;
+            common.ErrorInfo.code = "FF-F0";
             if (string.IsNullOrEmpty(img)) // check zip string 
             {
                 // ErrorInfo = (10, "File name is not set!")
                 throw new Exception();
             }
 
-            common.ErrorInfo.code = "FF-T0" ;
+            common.ErrorInfo.code = "FF-T0";
             if (type < 0 | type > 5) {
                 // ErrorInfo = (10, "File type is out of range!")
                 throw new Exception();
             }
 
             // ' check if fb compatible 
-            if (!CheckConnectionIsCompatible. fbIsCompatible("FF"))
+            if (!CheckConnectionIsCompatible.fbIsCompatible("FF"))
                 throw new Exception();
             Managed.Adb.Device dev = madb.GetListOfDevice()[0];
 
@@ -44,11 +44,11 @@ internal static partial class FastbootFlash {
             if (common.S.DeviceState == "Connected (ADB)") {
                 if (GA_infoAsk.Run("Rebooting your device!", $"Now we need to reboot your device into fastboot mode to proceed with the installation.\n\n" + $"Please save your work then confirm the reboot.", "Reboot into fastboot", "Cancel")) {
                     dev.Reboot("bootloader");
-                    GA_SetProgressText.Run( "Waiting for your device to enter fastboot...", -1);
+                    GA_SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
                     fbCMD.fbDo("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
-                    common.ErrorInfo.code =  "FF-uX" ;
+                    common.ErrorInfo.code = "FF-uX";
                     // ErrorInfo = (0, "You have cancelled the process.")
                     GA_Log.LogEvent("Fastboot Flash Cancelled", 1);
                     throw new Exception();
@@ -76,7 +76,7 @@ internal static partial class FastbootFlash {
             ;
             if (!common.S.DeviceBootloaderUnlockSupported) {
                 // ' cancel if not unlockable
-                 common.ErrorInfo.code = "FF-BLX" ;
+                common.ErrorInfo.code = "FF-BLX";
                 // ErrorInfo = (1, "Bootloader unlock is not supported.") 'you can enable with checkbox
                 throw new Exception();
             }
@@ -91,24 +91,24 @@ internal static partial class FastbootFlash {
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
             fbCMD.fbDo("oem device-info");
             if (!fbCMD.fbOutput.Contains("Device unlocked: true")) {
-                common.ErrorInfo.code = "FF-BLuX" ;
+                common.ErrorInfo.code = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
                 throw new Exception();
             }
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
-            common.ErrorInfo.code = "FF-F" ;
+            common.ErrorInfo.code = "FF-F";
             fbCMD.fbDo($"flash {TypeToString(type)} \"{img}\"");
             if (fbCMD.fbOutput.Contains("error")) {
-                common.ErrorInfo.code = "FF-BLuX" ;
+                common.ErrorInfo.code = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first.")
                 throw new Exception();
             }
 
-            GA_Log.LogAppendText(  fbCMD.fbOutput, -1);
+            GA_Log.LogAppendText(fbCMD.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
-            common.ErrorInfo.code="FF-rX";
+            common.ErrorInfo.code = "FF-rX";
         } catch (Exception ex) {
             GA_PleaseWait.Run(false); // Close before error dialog 
             GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 2, ex.ToString());

@@ -192,15 +192,15 @@ namespace GeekAssistant.Forms {
             this.ResumeLayout(false);
 
         }
-        private Button start_expert;
-        private Button start_default;
-        private Button start_newbie;
-        private Label startup_info;
-        private PictureBox PictureBox1;
-        private ToolTip Unavalable_Tooltip;
-        private Label Label1;
-        private PictureBox PictureBox2;
-        private Button startup_dontShow;
+        public Button start_expert;
+        public Button start_default;
+        public Button start_newbie;
+        public Label startup_info;
+        public PictureBox PictureBox1;
+        public ToolTip Unavalable_Tooltip;
+        public Label Label1;
+        public PictureBox PictureBox2;
+        public Button startup_dontShow;
 
         #endregion
     }

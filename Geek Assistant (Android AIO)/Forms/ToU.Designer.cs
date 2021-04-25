@@ -229,18 +229,18 @@ namespace GeekAssistant {
         }
 
 
-        private PictureBox Icon_PictureBox;
-        private Label ToUTitle_Label;
-        private Label ToUTitle_Description_Label;
-        private RichTextBox TermsOfUse_Box;
-        private Label Copyright_Label;
-        private PictureBox ButtonsBG_UI;
-        private Button ToU_Reject;
-        private Button ToU_Accept;
-        private PictureBox GeekAssistant_PictureBox;
-        private CheckBox AcceptCheck_ToU;
-        private CheckBox DontShow_ToU;
-        private Timer ToURead_Timer;
+        public PictureBox Icon_PictureBox;
+        public Label ToUTitle_Label;
+        public Label ToUTitle_Description_Label;
+        public RichTextBox TermsOfUse_Box;
+        public Label Copyright_Label;
+        public PictureBox ButtonsBG_UI;
+        public Button ToU_Reject;
+        public Button ToU_Accept;
+        public PictureBox GeekAssistant_PictureBox;
+        public CheckBox AcceptCheck_ToU;
+        public CheckBox DontShow_ToU;
+        public Timer ToURead_Timer;
 
         #endregion
     }

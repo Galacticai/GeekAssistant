@@ -5,7 +5,7 @@ using System.Windows.Forms;
 internal static partial class GA_Msg {
 
     // Private ErrorCode As String
-    public static string msgIcon = " ⚠  "; 
+    public static string msgIcon = " ⚠  ";
 
     public static void DoMsg(int level, string msg, int lines = 1, string FullError = "") // , Optional YesProcessStart As String = "")  
     {
@@ -44,11 +44,11 @@ internal static partial class GA_Msg {
         if (level == 10)
             msg += $"\n{prop.strings.ContactDevFix}";
         if (common.S.VerboseLogging & !string.IsNullOrEmpty(FullError)) {
-            msg += $"\n\n" + 
-                $"————— #Verbose Logging# Full Error:\n" + 
-                $" ❰{common.ErrorInfo.code}❱" + 
-                $"\n{FullError}\n" + 
-                $" ❰/{common.ErrorInfo.code}❱\n" + 
+            msg += $"\n\n" +
+                $"————— #Verbose Logging# Full Error:\n" +
+                $" ❰{common.ErrorInfo.code}❱" +
+                $"\n{FullError}\n" +
+                $" ❰/{common.ErrorInfo.code}❱\n" +
                 $"————— #Verbose Logging# End —————";
         } else if (level == 10)
             msg += $"\n > {prop.strings.EnableVerboseLogging}";

@@ -95,7 +95,6 @@ internal static partial class common {
             if (value.code == null) 
                 throw new Exception(); else _ErrorInfo.code = value.code;
         }*/
-    } 
-     
-    #endregion 
- 
+}
+
+#endregion

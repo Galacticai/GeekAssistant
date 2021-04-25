@@ -37,39 +37,45 @@ namespace GeekAssistant.Forms {
             start_default.MouseEnter += start_default_MouseEnter_MouseUp; start_default.MouseUp += start_default_MouseEnter_MouseUp; start_default.KeyUp += start_default_MouseEnter_MouseUp;
             start_default.MouseDown += start_default_MouseUp_KeyDown; start_default.KeyDown += start_default_MouseUp_KeyDown;
             start_default.MouseLeave += start_default_MouseLeave;
+
+            start_expert.MouseEnter += start_expert_MouseEnter_MouseUp; start_expert.MouseUp += start_expert_MouseEnter_MouseUp; start_expert.KeyUp += start_expert_MouseEnter_MouseUp;
+            start_expert.MouseDown += start_expert_MouseDown_KeyDown; start_expert.KeyDown += start_expert_MouseDown_KeyDown;
+            start_expert.MouseLeave += start_expert_MouseLeave;
+
+
         }
-        private void AppMode_Closed(object sender, EventArgs e) {  
+        private void AppMode_Closed(object sender, EventArgs e) {
             common.S.Save();
         }
-        private void AppMode_GotFocus(object sender, EventArgs e) { 
-            start_newbie.ForeColor = Color.Green; 
-            start_default.ForeColor = SystemColors.Highlight; 
+        private void AppMode_GotFocus(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
+            start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.Firebrick;
-    
+
         }
-    //private void AppMode_Disposed() { MyBase.Disposed
-    //    MessageBox.Show("Disposed")
-    //    Dispose()
-    //}
+        //private void AppMode_Disposed() { MyBase.Disposed
+        //    MessageBox.Show("Disposed")
+        //    Dispose()
+        //}
 
         private void AppMode_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            if (common.S.AppMode_dontshow ) {
-    
-                if (common.S.AppMode_newbie ) {
+            if (common.S.AppMode_dontshow) {
+
+                if (common.S.AppMode_newbie) {
 
                     AppMode_Do(0);
-            } else if ( common.S.AppMode_moderate ) {
+                } else if (common.S.AppMode_moderate) {
                     AppMode_Do(1);
-            }
+                }
                 Close();
-        }
+            }
             GA_SetTheme.Run(Name);
-    }
+        }
 
-    private void AppMode_Do(int StartupLevel ) { 
-        switch (StartupLevel) { 
+        private void AppMode_Do(int StartupLevel) {
+            switch (StartupLevel) {
             //case 0:
             //common.S.startup_newbie = true
             //common.S.startup_moderate = false
@@ -87,36 +93,36 @@ namespace GeekAssistant.Forms {
                 MessageBox.Show("Okay... There//s no \"Expert Mode\". You will be redirected to the default mode.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 start_default.PerformClick();
                 break;
+            }
         }
-    }
 
-    private void startup_dontShow_MouseEnter(object sender, EventArgs e) { 
-        if (common.S.AppMode_dontshow ) {
+        private void startup_dontShow_MouseEnter(object sender, EventArgs e) {
+            if (common.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.FromArgb(0, 130, 0);
-            startup_dontShow.ForeColor = Color.White;
-        } else {
-            if (common.S.DarkTheme ) 
+                startup_dontShow.ForeColor = Color.White;
+            } else {
+                if (common.S.DarkTheme)
                     startup_dontShow.BackColor = Color.FromArgb(0, 120, 0);
-              else   startup_dontShow.BackColor = Color.Honeydew;
-             
+                else startup_dontShow.BackColor = Color.Honeydew;
+
                 startup_dontShow.ForeColor = SystemColors.ControlText;
+            }
         }
-    }
-    private void startup_dontShow_MouseLeave(object sender, EventArgs e) {  
-        if (common.S.AppMode_dontshow ) {
+        private void startup_dontShow_MouseLeave(object sender, EventArgs e) {
+            if (common.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.Green;
                 startup_dontShow.ForeColor = Color.White;
-        } else {
+            } else {
                 startup_dontShow.BackColor = Color.Transparent;
-                startup_dontShow.ForeColor =GA_SetTheme. Current_fgColor();
+                startup_dontShow.ForeColor = GA_SetTheme.Current_fgColor();
+            }
         }
-    }
-    private void startup_dontShow_MouseDown(object sender, EventArgs e) { 
-       GA_SwitchButton_Style. SettingsButtonSwitch_Style_MouseDown_KeyDown(ref startup_dontShow);
-    }
-    private void startup_dontShow_Mouseup(object sender, EventArgs e) {
+        private void startup_dontShow_MouseDown(object sender, EventArgs e) {
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref startup_dontShow);
+        }
+        private void startup_dontShow_Mouseup(object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref startup_dontShow);
-    }
+        }
         private void startup_dontShow_Click(object sender, EventArgs e) {
             if (common.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.Transparent;
@@ -129,71 +135,71 @@ namespace GeekAssistant.Forms {
             common.S.Save();
         }
 
-#region "start_newbie"
-    private void start_newbie_Click(object sender, EventArgs e) { 
-      common.ErrorInfo.code=  "NM-00";
-        GA_FeatureUnavailable.Run("Newbie Mode");
-        AppMode_Do(0);
-    }
-    private void start_newbie_MouseEnter_MouseUp(object sender, EventArgs e) {  
-        start_newbie.ForeColor = Color.White;
-        start_default.ForeColor = SystemColors.Highlight;
-        start_expert.ForeColor = Color.Firebrick;
-    }
-    private void start_newbie_MouseDown(object sender, EventArgs e) {  
-        start_newbie.ForeColor = Color.White;
-        start_default.ForeColor = SystemColors.Highlight;
-        start_expert.ForeColor = Color.Firebrick;
-    }
-    private void start_newbie_MouseLeave(object sender, EventArgs e) { 
-        start_newbie.ForeColor = Color.Green;
-        start_default.ForeColor = SystemColors.Highlight;
-        start_expert.ForeColor = Color.Firebrick;
-    }
-#endregion
+        #region "start_newbie"
+        private void start_newbie_Click(object sender, EventArgs e) {
+            common.ErrorInfo.code = "NM-00";
+            GA_FeatureUnavailable.Run("Newbie Mode");
+            AppMode_Do(0);
+        }
+        private void start_newbie_MouseEnter_MouseUp(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.White;
+            start_default.ForeColor = SystemColors.Highlight;
+            start_expert.ForeColor = Color.Firebrick;
+        }
+        private void start_newbie_MouseDown(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.White;
+            start_default.ForeColor = SystemColors.Highlight;
+            start_expert.ForeColor = Color.Firebrick;
+        }
+        private void start_newbie_MouseLeave(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
+            start_default.ForeColor = SystemColors.Highlight;
+            start_expert.ForeColor = Color.Firebrick;
+        }
+        #endregion
 
-#region "start_default"
-    private void start_default_Click(object sender, EventArgs e ) { 
-        AppMode_Do(1);
-    }
-    private void start_default_MouseEnter_MouseUp(object sender, EventArgs e) { 
-        start_newbie.ForeColor = Color.Green;
+        #region "start_default"
+        private void start_default_Click(object sender, EventArgs e) {
+            AppMode_Do(1);
+        }
+        private void start_default_MouseEnter_MouseUp(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = Color.White;
             start_expert.ForeColor = Color.Firebrick;
-    }
-    private void start_default_MouseUp_KeyDown(object sender, EventArgs e) { 
-        start_newbie.ForeColor = Color.Green;
+        }
+        private void start_default_MouseUp_KeyDown(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = Color.White;
             start_expert.ForeColor = Color.Firebrick;
-    }
-    private void start_default_MouseLeave(object sender, EventArgs e) { 
-        start_newbie.ForeColor = Color.Green;
+        }
+        private void start_default_MouseLeave(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.Firebrick;
-    }
-#endregion
+        }
+        #endregion
 
-#region "start_expert"
-    private void start_expert_Click(object sender, EventArgs e) { 
-        AppMode_Do(2);
-    }
-    private void start_expert_MouseEnter_MouseUp(object sender, EventArgs e) { start_expert.MouseEnter, start_expert.MouseUp, start_expert.KeyUp
-        start_newbie.ForeColor = Color.Green;
-            start_default.ForeColor = SystemColors.Highlight;  
-            start_expert.ForeColor = Color.White;
-    }
-    private void start_expert_MouseDown_KeyDown(object sender, EventArgs e) { start_expert.MouseDown, start_expert.KeyDown
-        start_newbie.ForeColor = Color.Green;
+        #region "start_expert"
+        private void start_expert_Click(object sender, EventArgs e) {
+            AppMode_Do(2);
+        }
+        private void start_expert_MouseEnter_MouseUp(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.White;
-    }
-    private void start_expert_MouseLeave(object sender, EventArgs e) { start_expert.MouseLeave
-        start_newbie.ForeColor = Color.Green;
+        }
+        private void start_expert_MouseDown_KeyDown(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
+            start_default.ForeColor = SystemColors.Highlight;
+            start_expert.ForeColor = Color.White;
+        }
+        private void start_expert_MouseLeave(object sender, EventArgs e) {
+            start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.Firebrick;
-    }
+        }
 
-#endregion
+        #endregion
 
     }
 }

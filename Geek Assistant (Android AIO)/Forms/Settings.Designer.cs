@@ -83,7 +83,7 @@ namespace GeekAssistant.Forms {
             // 
             // AutoClearLogs_SwitchButton
             // 
-            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AutoClearLogs_SwitchButton.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AutoClearLogs_SwitchButton.FlatAppearance.BorderSize = 0;
@@ -110,7 +110,7 @@ namespace GeekAssistant.Forms {
             // 
             // ResetGA
             // 
-            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ResetGA.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ResetGA.FlatAppearance.BorderSize = 0;
@@ -331,7 +331,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -354,7 +354,7 @@ namespace GeekAssistant.Forms {
             // 
             // SettingsTitle_Label
             // 
-            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsTitle_Label.BackColor = System.Drawing.Color.Transparent;
             this.SettingsTitle_Label.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -380,7 +380,7 @@ namespace GeekAssistant.Forms {
             // 
             // Thanks_Label
             // 
-            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Thanks_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Thanks_Label.Location = new System.Drawing.Point(107, 51);
@@ -439,31 +439,31 @@ namespace GeekAssistant.Forms {
 
         }
 
-        private Button ResetGA;
-        private GroupBox ResetGA_GroupBox;
-        private CheckBox ResetGA_LogsOnly_CheckBox;
-        private CheckBox ResetGA_Settings_CheckBox;
-        private Button Close_Button;
-        private Button ResetGA_SelectAll; 
-        private PictureBox ButtonsBG_UI;
-        private Button VerbousLogging_SwitchButton;
-        private Button PopupMessages_SwitchButton;
-        private Label ResetGA_Settings_CheckBox_Label;
-        private Label ResetGA_LogsOnly_CheckBox_Label;
-        private Button ShowToolTips_SwitchButton;
-        private Button ToU_SwitchButton;
-        private Button AppMode_SwitchButton;
-        private Label OpenLogsFolder;
-        private ToolTip tooltip;
-        private Button VerbousLoggingPrompt_SwitchButton;
-        private Button AutoClearLogs_SwitchButton;
-        private Button PerformAnimation_SwitchButton;
-        private PictureBox SettingsIcon_PictureBox;
-        private Label SettingsTitle_Label;
-        private PictureBox GeekAssistant_PictureBox;
-        private Label Thanks_Label;
-        private PictureBox ResetGA_LogsOnly_UI;
-        private PictureBox ResetGA_Settings_UI;
+        public Button ResetGA;
+        public GroupBox ResetGA_GroupBox;
+        public CheckBox ResetGA_LogsOnly_CheckBox;
+        public CheckBox ResetGA_Settings_CheckBox;
+        public Button Close_Button;
+        public Button ResetGA_SelectAll;
+        public PictureBox ButtonsBG_UI;
+        public Button VerbousLogging_SwitchButton;
+        public Button PopupMessages_SwitchButton;
+        public Label ResetGA_Settings_CheckBox_Label;
+        public Label ResetGA_LogsOnly_CheckBox_Label;
+        public Button ShowToolTips_SwitchButton;
+        public Button ToU_SwitchButton;
+        public Button AppMode_SwitchButton;
+        public Label OpenLogsFolder;
+        public ToolTip tooltip;
+        public Button VerbousLoggingPrompt_SwitchButton;
+        public Button AutoClearLogs_SwitchButton;
+        public Button PerformAnimation_SwitchButton;
+        public PictureBox SettingsIcon_PictureBox;
+        public Label SettingsTitle_Label;
+        public PictureBox GeekAssistant_PictureBox;
+        public Label Thanks_Label;
+        public PictureBox ResetGA_LogsOnly_UI;
+        public PictureBox ResetGA_Settings_UI;
         #endregion
     }
 }

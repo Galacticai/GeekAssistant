@@ -15,7 +15,7 @@ internal static partial class AutoDetect {
         // Factory Reset: "adb shell su -c recovery --wipe_data"
 
         common.Working = true;
-        common.ErrorInfo.code="AD-00";  // adb Auto - Begin
+        common.ErrorInfo.code = "AD-00";  // adb Auto - Begin
         if (!Silent)
             GA_Log.LogEvent("Auto Detect", 2);
         common.Home.ProgressBar.Value = 0;
@@ -37,13 +37,13 @@ internal static partial class AutoDetect {
             case 0: {
                 common.Home.DeviceState_Label.Text = "Disconnected";
                 common.ErrorInfo = ("AD-D0", 0, $"We haven't found any device.\n{prop.strings.TroubleshootConnection}"); // Auto Detect - Device 0 (0 devices connected) 
-                throw new Exception(); 
+                throw new Exception();
             }
 
             case var @case when @case > 1: {
                 common.Home.DeviceState_Label.Text = "Multiple";
                 common.ErrorInfo = ("AD-DX", 0, $"Oh there are several devices.\nWould you mind keeping 1 and disconnecting the rest please?"); // Auto Detect - Device X-number (More than 1 connected)
-                throw new Exception(); 
+                throw new Exception();
             }
             }
 
@@ -58,7 +58,7 @@ internal static partial class AutoDetect {
                 common.Home.DeviceState_Label.Text = "Unknown";
                 DeviceState_String += $"in an unknown state...\n{prop.strings.TroubleshootConnection}";
                 ErrorInfo = ("AD-DU", -1, DeviceState_String); // Auto Detect - Device 0 (No devices connected) 
-                throw new Exception(); 
+                throw new Exception();
             }
 
             case 2: // offline
@@ -66,7 +66,7 @@ internal static partial class AutoDetect {
                 common.Home.DeviceState_Label.Text = "Offline";
                 DeviceState_String += $"offline. \n{prop.strings.TroubleshootConnection}";
                 common.ErrorInfo = ("AD-DO", 0, DeviceState_String); // Auto Detect - Device Offline (PC not allowed to debug device) 
-                throw new Exception(); 
+                throw new Exception();
             }
 
             case 0: // recovery
@@ -74,7 +74,7 @@ internal static partial class AutoDetect {
                 common.Home.DeviceState_Label.Text = "Recovery mode";
                 DeviceState_String += $"in recovery mode.\nPlease enter adb mode and try again."; // Please enter adb mode or reboot to system and try again."
                 common.ErrorInfo = ("AD-DR", 0, DeviceState_String); // Auto Detect - Device Recovery 
-                throw new Exception(); 
+                throw new Exception();
             }
 
             case 4: // download
@@ -82,7 +82,7 @@ internal static partial class AutoDetect {
                 common.Home.DeviceState_Label.Text = "Download mode";
                 DeviceState_String += $"in download mode.\nPlease enter adb mode and try again.";
                 common.ErrorInfo = ("AD-DD", 0, DeviceState_String); // Auto Detect - Device Download 
-                throw new Exception(); 
+                throw new Exception();
             }
 
             // ^^   All the above will jump to > Catch e As Exception   ^^
@@ -126,7 +126,7 @@ internal static partial class AutoDetect {
                 common.Home.ProgressBar.Value = 13;
                 dev.ExecuteShellCommand($"getprop ro.product.manufacturer", Manufacturer_CommandResultReceiver);
                 common.Home.ProgressBar.Value = 15;
-                common.S.DeviceManufacturer =  GA_adb_Functions.FixManufacturerString((string)Manufacturer_CommandResultReceiver.Result);
+                common.S.DeviceManufacturer = GA_adb_Functions.FixManufacturerString((string)Manufacturer_CommandResultReceiver.Result);
                 common.S.Save();
                 common.Home.Manufacturer_ComboBox.Text = common.S.DeviceManufacturer;
                 common.ErrorInfo = ("AD-D-mc", 1, "Failed to check your device model or codename."); // Auto Detect - Device - model codename
@@ -164,7 +164,7 @@ internal static partial class AutoDetect {
                 var BLunlockable_CommandResultReceiver = new Managed.Adb.CommandResultReceiver();
                 common.Home.ProgressBar.Value = 26;
                 dev.ExecuteShellCommand($"getprop ro.oem_unlock_supported", BLunlockable_CommandResultReceiver);
-                common.S.DeviceBootloaderUnlockSupported = Convert.ToBoolean( BLunlockable_CommandResultReceiver.Result);
+                common.S.DeviceBootloaderUnlockSupported = Convert.ToBoolean(BLunlockable_CommandResultReceiver.Result);
                 common.S.Save();
                 common.Home.BootloaderUnlockable_CheckBox.Checked = common.S.DeviceBootloaderUnlockSupported;
                 common.Home.ProgressBar.Value = 27;
@@ -201,7 +201,7 @@ internal static partial class AutoDetect {
                     if (!Silent)
                         GA_SetProgressText.Run("Battery not present!", -1);
                     batteryString = "❌";
-                } 
+                }
                 common.S.Save();
                 common.Home.ProgressBar.Value = 38;
                 if (!Silent)

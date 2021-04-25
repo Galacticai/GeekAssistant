@@ -9,7 +9,7 @@ internal static partial class GA_HideAllForms {
     /// </summary>
     /// <param name="Hide">Set if it should hide or not (show)</param>
     /// <param name="FormToFront">Bring this form to front when done</param>
-    public static void Run(bool Hide){//, Form FormToFront) {
+    public static void Run(bool Hide) {//, Form FormToFront) {
         // SET ERROR CODE WHEN CALLING, DO NOT SET HERE
         currentForm = Form.ActiveForm; //Set before hiding to save
         if (Hide) {

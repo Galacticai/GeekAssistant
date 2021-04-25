@@ -44,7 +44,7 @@ internal static partial class cmd {
 
         }
     }
-    private static void invalidCMD(string command) { 
+    private static void invalidCMD(string command) {
         System.Media.SystemSounds.Beep.Play();
         string invalid_text = $"⮜⮜ {command}\n⮞⮞ ⚠  Invalid Command.\nPlease use a valid adb or fastboot command";
         if (command.Contains("adb") && command.Contains("fastboot")) {

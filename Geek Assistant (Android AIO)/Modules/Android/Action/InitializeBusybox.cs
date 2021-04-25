@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
         if (common.Working) {
@@ -10,10 +10,10 @@ internal static partial class InitializeBusybox {
         }
 
         common.Working = true;
-        common.ErrorInfo.code="BI-00";
+        common.ErrorInfo.code = "BI-00";
         if (!GA_infoAsk.Run("madb_MakeBusyboxReady", "This is not finished. Go?", "Go", "Cancel"))
             return;
-        GA_Msg.DoMsg(1, "Disabled", 1); 
+        GA_Msg.DoMsg(1, "Disabled", 1);
         var dev = madb.GetListOfDevice()[0];
         if (dev.BusyBox.Available) {
             // ErrorInfo = (0, "Busybox is set and ready for use.")

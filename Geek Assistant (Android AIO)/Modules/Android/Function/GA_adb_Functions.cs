@@ -7,12 +7,12 @@ internal static partial class GA_adb_Functions {
 
     /* TODO ERROR: Skipped RegionDirectiveTrivia */
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
-        if (DeviceSerial !=null) common.S.DeviceSerial = DeviceSerial;
-        if (DeviceState != null)  common.S.DeviceState = DeviceState;
-        if (DeviceManufacturer != null)  common.S.DeviceManufacturer = DeviceManufacturer;
-        if (DeviceAPILevel > 0)   common.S.DeviceAPILevel = DeviceAPILevel;
-        if (DeviceUnlockedBootloader != default)  common.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
-        if (DeviceUnlockedBootloader != default)   common.S.DeviceCustomRecovery = DeviceCustomRecovery;
+        if (DeviceSerial != null) common.S.DeviceSerial = DeviceSerial;
+        if (DeviceState != null) common.S.DeviceState = DeviceState;
+        if (DeviceManufacturer != null) common.S.DeviceManufacturer = DeviceManufacturer;
+        if (DeviceAPILevel > 0) common.S.DeviceAPILevel = DeviceAPILevel;
+        if (DeviceUnlockedBootloader != default) common.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
+        if (DeviceUnlockedBootloader != default) common.S.DeviceCustomRecovery = DeviceCustomRecovery;
         if (DeviceUnlockedBootloader != default) common.S.DeviceCustomROM = DeviceCustomRom;
         common.S.Save();
     }
@@ -48,7 +48,7 @@ internal static partial class GA_adb_Functions {
     }
 
     private static string AndroidVersion;
-    private static Dictionary<int, string[]> ApiToVer = new Dictionary<int, string[]>(); 
+    private static Dictionary<int, string[]> ApiToVer = new Dictionary<int, string[]>();
     public static void PrepareAndroidDictionary() {
         ApiToVer.Clear();
         string K_ = "KitKat 4.4 (And Below)";
@@ -167,8 +167,8 @@ internal static partial class GA_adb_Functions {
             2 => "blalbla",
             3 => "lolollo",
             _ => "default"
-        }
-        switch (AVer)   {
+        };
+        switch (AVer) {
         case 1:
         case 2:
         case 3:
@@ -189,7 +189,7 @@ internal static partial class GA_adb_Functions {
         case 18:
         case 19: {
             result = Conversions.ToInteger(K_); break;
-        } 
+        }
         case 21:
         case 22: {
             result = Conversions.ToInteger(L_); break;
@@ -227,7 +227,7 @@ internal static partial class GA_adb_Functions {
     }*/
 
     public static void ResetDeviceInfo() {
-        { 
+        {
             common.S.DeviceAPILevel = 0;
             common.S.DeviceBatteryLevel = 0;
             common.S.DeviceBootloaderUnlockSupported = false;
@@ -240,13 +240,13 @@ internal static partial class GA_adb_Functions {
             common.S.DeviceState = "";
         }
 
-        { 
-            Home.Manufacturer_ComboBox.SelectedIndex = -1;
-            Home.AndroidVersion_ComboBox.SelectedIndex = -1;
-            Home.BootloaderUnlockable_CheckBox.Checked = false;
-            Home.Rooted_Checkbox.Checked = false;
-            Home.CustomROM_CheckBox.Checked = false;
-            Home.CustomRecovery_CheckBox.Checked = false;
+        {
+            common.Home.Manufacturer_ComboBox.SelectedIndex = -1;
+            common.Home.AndroidVersion_ComboBox.SelectedIndex = -1;
+            common.Home.BootloaderUnlockable_CheckBox.Checked = false;
+            common.Home.Rooted_Checkbox.Checked = false;
+            common.Home.CustomROM_CheckBox.Checked = false;
+            common.Home.CustomRecovery_CheckBox.Checked = false;
         }
     }
 

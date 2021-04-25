@@ -33,12 +33,12 @@ internal static partial class GA_SwitchButton_Style {
 
     public static bool ButtonPressedAlready;
 
-    public static void SettingsButtonSwitch_Style_EnableIfTrue(ref Button aButton,  bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_EnableIfTrue(ref Button aButton, bool aBoolean) {
         if (aBoolean) {
             aButton.ForeColor = Color.White;
             aButton.BackColor = Current_bg_Active();
         } else {
-            aButton.ForeColor = GA_SetTheme. Current_fgColor();
+            aButton.ForeColor = GA_SetTheme.Current_fgColor();
             aButton.BackColor = Current_bg_Neutral();
         }
     }
@@ -62,7 +62,7 @@ internal static partial class GA_SwitchButton_Style {
 
     public static void SettingsButtonSwitch_Style_MouseUp_KeyUp(ref Button aButton) {
         ButtonPressedAlready = false;
-        aButton.ForeColor = GA_SetTheme. Current_fgColor();
+        aButton.ForeColor = GA_SetTheme.Current_fgColor();
         if (aButton.BackColor == Color.Green | aButton.BackColor == Color.FromArgb(0, 130, 0)) {
             aButton.ForeColor = Color.White;
         }
@@ -73,17 +73,17 @@ internal static partial class GA_SwitchButton_Style {
         aButton.Top = aButton_xy.y;
     }
 
-    public static void SettingsButtonSwitch_Style_MouseEnter(ref Button aButton,  bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_MouseEnter(ref Button aButton, bool aBoolean) {
         if (aBoolean) {
             aButton.BackColor = Color.FromArgb(0, 130, 0);
             aButton.ForeColor = Color.White;
         } else {
             aButton.BackColor = Current_bg_Hover();
-            aButton.ForeColor = GA_SetTheme. Current_fgColor();
+            aButton.ForeColor = GA_SetTheme.Current_fgColor();
         }
     }
 
-    public static void SettingsButtonSwitch_Style_MouseLeave(ref Button aButton,  bool aBoolean) {
+    public static void SettingsButtonSwitch_Style_MouseLeave(ref Button aButton, bool aBoolean) {
         if (aBoolean) {
             aButton.BackColor = Current_bg_Active();
             aButton.ForeColor = Color.White;
@@ -93,7 +93,7 @@ internal static partial class GA_SwitchButton_Style {
         }
     }
 
-    public static void SettingsButtonSwitch_Style_MouseClick(ref Button aButton,  bool aBoolean, ref ToolTip aTooltip, string aTooltip_txt) {
+    public static void SettingsButtonSwitch_Style_MouseClick(ref Button aButton, bool aBoolean, ref ToolTip aTooltip, string aTooltip_txt) {
         if (aBoolean) {
             aButton.BackColor = Current_bg_Neutral();
             aBoolean = false;

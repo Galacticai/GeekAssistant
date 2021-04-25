@@ -5,7 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>GeekAssistant</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject></StartupObject>
+    <StartupObject>GeekAssistant.ToU</StartupObject>
     <ApplicationIcon>Res\Images\GeekAssistant\Icon\G.ico</ApplicationIcon>
     <AppDesignerFolder>prop</AppDesignerFolder>
   </PropertyGroup>
@@ -20,19 +20,42 @@
     <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
     <PackageReference Include="dot-net-transitions" Version="1.2.1" />
     <PackageReference Include="FluentTransitions" Version="2.0.1" />
-    <PackageReference Include="Managed.Adb" Version="2.0.82.7204" />
+    <PackageReference Include="Managed.Adb" Version="2.0.131.13916" />
     <PackageReference Include="Markdig" Version="0.24.0" />
     <PackageReference Include="MaterialSkin.Updated" Version="0.2.2" />
+    <PackageReference Include="MetroFramework" Version="1.2.0.3" />
     <PackageReference Include="MetroModernUI" Version="1.4.0" />
     <PackageReference Include="morelinq" Version="1.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="8.0.3" />
     <PackageReference Include="System.Buffers" Version="4.5.1" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
     <PackageReference Include="System.Memory" Version="4.5.4" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\AppMode.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Donate.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Extra\PleaseWait.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Extra\Preparing.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Home.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Info.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Settings.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
     <Compile Update="Forms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>

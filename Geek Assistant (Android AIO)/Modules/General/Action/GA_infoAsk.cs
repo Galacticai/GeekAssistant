@@ -13,12 +13,12 @@ internal static partial class GA_infoAsk {
     /// <param name="YesButton">Text of the Left YesButton</param>
     /// <param name="NoButton">Text of the Right NoButton</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run(string Title, 
+    public static bool Run(string Title,
                            string body,
-                           string YesButton, string NoButton, 
-                           Image IconLight = default, 
-                           Image IconDark = default, 
-                           object TextColorLight = null, 
+                           string YesButton, string NoButton,
+                           Image IconLight = default,
+                           Image IconDark = default,
+                           object TextColorLight = null,
                            object TextColorDark = null) {
         // #Region "failsafe"
         // If String.IsNullOrEmpty(NoButton) Then Return False

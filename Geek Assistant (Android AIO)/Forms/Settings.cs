@@ -1,7 +1,7 @@
-﻿using System; 
+﻿using System;
 using System.Diagnostics;
-using System.Drawing; 
-using System.Windows.Forms; 
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
     public partial class Settings : Form {
@@ -15,7 +15,7 @@ namespace GeekAssistant.Forms {
         private readonly string PerformAnimation_SwitchButton_ToolTip = $"Perform theme and movement animations.{common.n}Recommended: Disable for old systems.";
 
         //private ToolTip tooltip = new ToolTip {};
-    public Settings() {
+        public Settings() {
             InitializeComponent();
         }
         private void AssignEvents() {
@@ -101,7 +101,7 @@ namespace GeekAssistant.Forms {
 
             ResetGA_Settings_CheckBox.Checked = false;
             ResetGA_LogsOnly_CheckBox.Checked = false;
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref ToU_SwitchButton,   common.S.ToU_dontShow);
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref ToU_SwitchButton, common.S.ToU_dontShow);
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref AppMode_SwitchButton, common.S.AppMode_dontshow);
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref PopupMessages_SwitchButton, common.S.PopupMessages);
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref VerbousLogging_SwitchButton, common.S.VerboseLogging);
@@ -128,13 +128,13 @@ namespace GeekAssistant.Forms {
         }
 
         private void ResetGA_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", willClear);
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA, "Reset Geek Assistant", willClear);
             if (willClear == null) {
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
                 return;
             }
             if (willClear.Length <= 9)
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
         }
         private void ResetGA_MouseDown(Object sender, EventArgs e) {
             ResetGA.ForeColor = GA_SetTheme.Current_bgColor();
@@ -157,7 +157,7 @@ namespace GeekAssistant.Forms {
 
         #region "ResetGA_SelectAll"
         private void ResetGA_SelectAll_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_SelectAll, "Select All", tooltip.GetToolTip(ResetGA_SelectAll));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA_SelectAll, "Select All", tooltip.GetToolTip(ResetGA_SelectAll));
         }
         private void ResetGA_SelectAll_MouseDown(Object sender, EventArgs e) {
             if (common.S.DarkTheme)
@@ -210,15 +210,15 @@ namespace GeekAssistant.Forms {
             //    willClear += " only"
             //}
             //willClear += "?"
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA, "Reset Geek Assistant", willClear);
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA, "Reset Geek Assistant", willClear);
             if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked)
-                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+                GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
         }
 
         ////ResetGA_Settings_CheckBox - Label
         private void ResetGA_Settings_CheckBox_AndLabel_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA_Settings_CheckBox, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox));
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,  ResetGA_Settings_CheckBox_Label, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox_Label));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA_Settings_CheckBox, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA_Settings_CheckBox_Label, "Internal Data", tooltip.GetToolTip(ResetGA_Settings_CheckBox_Label));
         }
         private void ClearData_Settings_CheckBox_Label_Click(Object sender, EventArgs e) {
             ResetGA_Settings_CheckBox.Checked = !ResetGA_Settings_CheckBox.Checked;
@@ -226,8 +226,8 @@ namespace GeekAssistant.Forms {
 
         ////ResetGA_LogsOnly_CheckBox - Label
         private void ResetGA_LogsOnly_CheckBox_AndLabel_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_LogsOnly_CheckBox, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox));
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ResetGA_LogsOnly_CheckBox_Label, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox_Label));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA_LogsOnly_CheckBox, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ResetGA_LogsOnly_CheckBox_Label, "Log files", tooltip.GetToolTip(ResetGA_LogsOnly_CheckBox_Label));
         }
         private void ResetGA_LogsOnly_CheckBox_Label_Click(Object sender, EventArgs e) {
             ResetGA_LogsOnly_CheckBox.Checked = !ResetGA_LogsOnly_CheckBox.Checked;
@@ -241,7 +241,7 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref ToU_SwitchButton);
         }
         private void ToU_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ToU_SwitchButton, "Skip Terms of Use on startup", tooltip.GetToolTip(ToU_SwitchButton)); // tooltip.GetToolTip(ShowToolTips_SwitchButton))
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ToU_SwitchButton, "Skip Terms of Use on startup", tooltip.GetToolTip(ToU_SwitchButton)); // tooltip.GetToolTip(ShowToolTips_SwitchButton))
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref ToU_SwitchButton, common.S.ToU_dontShow);
         }
         private void ToU_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -261,7 +261,7 @@ namespace GeekAssistant.Forms {
         }
         private void AppMode_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   AppMode_SwitchButton, "Skip App Mode on startup", tooltip.GetToolTip(AppMode_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, AppMode_SwitchButton, "Skip App Mode on startup", tooltip.GetToolTip(AppMode_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref AppMode_SwitchButton, common.S.AppMode_dontshow);
         }
         private void AppMode_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -278,41 +278,41 @@ namespace GeekAssistant.Forms {
         }
         private void PopupMessages_SwitchButton_MouseUp(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref PopupMessages_SwitchButton);
-            }
+        }
         private void PopupMessages_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   PopupMessages_SwitchButton, "Pop-up Messages", tooltip.GetToolTip(PopupMessages_SwitchButton));
-               GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PopupMessages_SwitchButton, common.S.PopupMessages);
-            }
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, PopupMessages_SwitchButton, "Pop-up Messages", tooltip.GetToolTip(PopupMessages_SwitchButton));
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PopupMessages_SwitchButton, common.S.PopupMessages);
+        }
         private void PopupMessages_SwitchButton_MouseLeave(Object sender, EventArgs e) {
 
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseLeave(ref PopupMessages_SwitchButton, common.S.PopupMessages);
-            }
+        }
         private void PopupMessages_SwitchButton_Click(Object sender, EventArgs e) {
 
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref PopupMessages_SwitchButton,   common.S.PopupMessages, ref tooltip, PopupMessages_SwitchButton_ToolTip);
-            }
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref PopupMessages_SwitchButton, common.S.PopupMessages, ref tooltip, PopupMessages_SwitchButton_ToolTip);
+        }
 
         ////VerbousLogging_SwitchButton
         private void VerbousLogging_SwitchButton_MouseDown(Object sender, EventArgs e) {
 
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref VerbousLogging_SwitchButton);
-            }
-        private void VerbousLogging_SwitchButton_MouseUp(Object sender, EventArgs e) { 
-               GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref VerbousLogging_SwitchButton);
-            }
+        }
+        private void VerbousLogging_SwitchButton_MouseUp(Object sender, EventArgs e) {
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref VerbousLogging_SwitchButton);
+        }
         private void VerbousLogging_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   VerbousLogging_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLogging_SwitchButton));
-               GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref VerbousLogging_SwitchButton, common.S.VerboseLogging);
-            }
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, VerbousLogging_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLogging_SwitchButton));
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref VerbousLogging_SwitchButton, common.S.VerboseLogging);
+        }
         private void VerbousLogging_SwitchButton_MouseLeave(Object sender, EventArgs e) {
 
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseLeave(ref VerbousLogging_SwitchButton, common.S.VerboseLogging);
-            }
+        }
         private void VerbousLogging_SwitchButton_Click(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref VerbousLogging_SwitchButton, common.S.VerboseLogging, ref tooltip, VerbousLogging_SwitchButton_ToolTip);
-                VerbousLoggingStateSet();
+            VerbousLoggingStateSet();
         }
         private void VerbousLoggingStateSet() {
             if (common.S.VerboseLogging) {
@@ -322,22 +322,22 @@ namespace GeekAssistant.Forms {
                         VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(64, 64, 64);
                     else VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(191, 191, 191);
                 }
-                    VerbousLoggingPrompt_SwitchButton.Enabled = false;
-                } else {
-                    VerbousLoggingPrompt_SwitchButton.Enabled = true;
-                    GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref VerbousLoggingPrompt_SwitchButton, common.S.VerboseLoggingPrompt);
-                }
-            } 
+                VerbousLoggingPrompt_SwitchButton.Enabled = false;
+            } else {
+                VerbousLoggingPrompt_SwitchButton.Enabled = true;
+                GA_SwitchButton_Style.SettingsButtonSwitch_Style_EnableIfTrue(ref VerbousLoggingPrompt_SwitchButton, common.S.VerboseLoggingPrompt);
+            }
+        }
 
         ////VerbousLoggingPrompt_SwitchButton
         private void VerbousLoggingPrompt_SwitchButton_MouseDown(Object sender, EventArgs e) {
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref  VerbousLoggingPrompt_SwitchButton);
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref VerbousLoggingPrompt_SwitchButton);
         }
         private void VerbousLoggingPrompt_SwitchButton_MouseUp(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref VerbousLoggingPrompt_SwitchButton);
         }
         private void VerbousLoggingPrompt_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   VerbousLoggingPrompt_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLoggingPrompt_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, VerbousLoggingPrompt_SwitchButton, "Verbous Logging", tooltip.GetToolTip(VerbousLoggingPrompt_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref VerbousLoggingPrompt_SwitchButton, common.S.VerboseLoggingPrompt);
         }
         private void VerbousLoggingPrompt_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -359,7 +359,7 @@ namespace GeekAssistant.Forms {
         }
         private void ShowToolTips_SwitchButton_MouseEnter(Object sender, EventArgs e) {
 
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   ShowToolTips_SwitchButton, "Show Tooltips", tooltip.GetToolTip(ShowToolTips_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, ShowToolTips_SwitchButton, "Show Tooltips", tooltip.GetToolTip(ShowToolTips_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref ShowToolTips_SwitchButton, common.S.ShowToolTips);
         }
         private void ShowToolTips_SwitchButton_MouseLeave(Object sender, EventArgs e) {
@@ -398,32 +398,32 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref AutoClearLogs_SwitchButton);
         }
         private void AutoClearLogs_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   AutoClearLogs_SwitchButton, "Auto Clear Logs", tooltip.GetToolTip(AutoClearLogs_SwitchButton));
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, AutoClearLogs_SwitchButton, "Auto Clear Logs", tooltip.GetToolTip(AutoClearLogs_SwitchButton));
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref AutoClearLogs_SwitchButton, common.S.AutoClearLogs);
-                }
+        }
         private void AutoClearLogs_SwitchButton_MouseLeave(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseLeave(ref AutoClearLogs_SwitchButton, common.S.AutoClearLogs);
-                }
+        }
         private void AutoClearLogs_SwitchButton_Click(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref AutoClearLogs_SwitchButton, common.S.AutoClearLogs, ref tooltip, AutoClearLogs_SwitchButton_ToolTip);
-                }
+        }
 
         ////PerformAnimation_SwitchButton
         private void PerformAnimation_SwitchButton_MouseDown(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref PerformAnimation_SwitchButton);
-                }
+        }
         private void PerformAnimation_SwitchButton_MouseUp(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref PerformAnimation_SwitchButton);
-                }
+        }
         private void PerformAnimation_SwitchButton_MouseEnter(Object sender, EventArgs e) {
-            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip,   PerformAnimation_SwitchButton, "Perform Theme Animation", tooltip.GetToolTip(PerformAnimation_SwitchButton));
-                   GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PerformAnimation_SwitchButton, common.S.PerformAnimations);
-                }
+            GA_SetTooltipInfo.SetToolTipInfo(ref tooltip, PerformAnimation_SwitchButton, "Perform Theme Animation", tooltip.GetToolTip(PerformAnimation_SwitchButton));
+            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseEnter(ref PerformAnimation_SwitchButton, common.S.PerformAnimations);
+        }
         private void PerformAnimation_SwitchButton_MouseLeave(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseLeave(ref PerformAnimation_SwitchButton, common.S.PerformAnimations);
-                }
+        }
         private void PerformAnimation_SwitchButton_Click(Object sender, EventArgs e) {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseClick(ref PerformAnimation_SwitchButton, common.S.PerformAnimations, ref tooltip, PerformAnimation_SwitchButton_ToolTip);
-                }
+        }
     }
 }

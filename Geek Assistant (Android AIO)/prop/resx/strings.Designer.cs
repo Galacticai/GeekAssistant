@@ -10,8 +10,8 @@
 
 namespace prop {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace prop {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class strings {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal strings() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace prop {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace prop {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 3MiXsFtm3qVasYa1Zfpu3TCsQiZym2cWmY.
         /// </summary>
@@ -68,7 +68,7 @@ namespace prop {
                 return ResourceManager.GetString("BTCaddress", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Please contact the developer and provide the error code to fix this bug. (Click the error title for easy copy).
         /// </summary>
@@ -77,7 +77,7 @@ namespace prop {
                 return ResourceManager.GetString("ContactDevFix", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Verbose Logging in the settings to help the developer pin down the problem..
         /// </summary>
@@ -86,7 +86,7 @@ namespace prop {
                 return ResourceManager.GetString("EnableVerboseLogging", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Geek Assistant is still in development... This feature will probably be available in futrue updates..
         /// </summary>
@@ -95,7 +95,7 @@ namespace prop {
                 return ResourceManager.GetString("FeatureUnavailable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Make sure to properly connect your device and try again...
         /// - Install the correct USB drivers for your device

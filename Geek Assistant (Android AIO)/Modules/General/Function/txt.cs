@@ -65,36 +65,36 @@ internal static partial class txt {
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomWorkText() {
-        return math.RandomObjectFromArr(new[] { 
-            "Hold on... We're doing magic!", 
-            "Stuff... Please be patient...", 
-            "Wait a second... Magic ongoing...", 
-            "Things are happening... Please wait.", 
-            "Things are happening... Hold on...", 
-            "Working... Please be patient.", 
-            "Progressing... Wait a moment.", 
-            "Hold on... Things are happening...", 
-            "Preparing... It shall take seconds.", 
-            "Sit tight! This won't take long.", 
-            "Magic rays everywhere! Please wait.", 
-            "Magic rays everywhere! Please be patient.", 
-            "Something is happening... Hold on...", 
-            "Progressing, we will finish soon", 
-            "Want a snack? Finishing soon..." 
+        return math.RandomObjectFromArr(new[] {
+            "Hold on... We're doing magic!",
+            "Stuff... Please be patient...",
+            "Wait a second... Magic ongoing...",
+            "Things are happening... Please wait.",
+            "Things are happening... Hold on...",
+            "Working... Please be patient.",
+            "Progressing... Wait a moment.",
+            "Hold on... Things are happening...",
+            "Preparing... It shall take seconds.",
+            "Sit tight! This won't take long.",
+            "Magic rays everywhere! Please wait.",
+            "Magic rays everywhere! Please be patient.",
+            "Something is happening... Hold on...",
+            "Progressing, we will finish soon",
+            "Want a snack? Finishing soon..."
         });
     }
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomFactText() {
-        return math.RandomObjectFromArr(new[] { 
-            "The first oranges weren’t orange.", 
-            "Samsung uses a butt-shaped robot to test phone durability.", 
-            "Peanuts aren’t technically nuts.", 
-            "Titin protein name is 189,819 letters long.", 
-            "Cats have fewer toes on their back paws.", 
-            "Blue whales consume half a million calories in one monch.", 
-            "Cows have no top front teeth.", 
-            "NASA can email tools to astronauts to 3D print." 
+        return math.RandomObjectFromArr(new[] {
+            "The first oranges weren’t orange.",
+            "Samsung uses a butt-shaped robot to test phone durability.",
+            "Peanuts aren’t technically nuts.",
+            "Titin protein name is 189,819 letters long.",
+            "Cats have fewer toes on their back paws.",
+            "Blue whales consume half a million calories in one monch.",
+            "Cows have no top front teeth.",
+            "NASA can email tools to astronauts to 3D print."
         });
     }
 

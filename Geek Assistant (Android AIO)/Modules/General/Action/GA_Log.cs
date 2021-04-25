@@ -36,7 +36,7 @@ internal static partial class GA_Log {
     public static void LogAppendText(string logText, int lines) {
         // Dim StringLines As String() = logText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
 
-        for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) { 
+        for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) {
             // Main.htmlLog.DocumentText &= br
             Home.log.Text += common.n;
         }
@@ -51,7 +51,7 @@ internal static partial class GA_Log {
 
     public static void StopNotifyIfLogSeen() {
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
-            { 
+            {
                 Home.ShowLog_ErrorBlink_Timer.Stop();
                 Home.ShowLog_InfoBlink_Timer.Stop();
                 if (common.S.DarkTheme) {
