@@ -38,35 +38,28 @@ namespace GeekAssistant.Forms {
             start_default.MouseDown += new(start_default_MouseUp_KeyDown); start_default.KeyDown += new(start_default_MouseUp_KeyDown);
             start_default.MouseLeave += new(start_default_MouseLeave);
 
+            start_expert.Click += new(start_expert_Click);
             start_expert.MouseEnter += new(start_expert_MouseEnter_MouseUp); start_expert.MouseUp += new(start_expert_MouseEnter_MouseUp); start_expert.KeyUp += new(start_expert_MouseEnter_MouseUp);
             start_expert.MouseDown += new(start_expert_MouseDown_KeyDown); start_expert.KeyDown += new(start_expert_MouseDown_KeyDown);
             start_expert.MouseLeave += new(start_expert_MouseLeave);
         }
+
         private void AppMode_Closed(object sender, EventArgs e) {
-            common.S.Save();
+            c.S.Save();
         }
         private void AppMode_GotFocus(object sender, EventArgs e) {
             start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.Firebrick;
 
-        }
-        //private void AppMode_Disposed() { MyBase.Disposed
-        //    MessageBox.Show("Disposed")
-        //    Dispose()
-        //}
+        } 
 
         private void AppMode_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            if (common.S.AppMode_dontshow) {
-
-                if (common.S.AppMode_newbie) {
-
-                    AppMode_Do(0);
-                } else if (common.S.AppMode_moderate) {
-                    AppMode_Do(1);
-                }
+            if (c.S.AppMode_dontshow) { 
+                if (c.S.AppMode_newbie) AppMode_Do(0);
+                else if (c.S.AppMode_moderate) AppMode_Do(1); 
                 Close();
             }
             GA_SetTheme.Run(Name);
@@ -74,32 +67,33 @@ namespace GeekAssistant.Forms {
 
         private void AppMode_Do(int StartupLevel) {
             switch (StartupLevel) {
-            //case 0:
-            //common.S.startup_newbie = true
-            //common.S.startup_moderate = false
-
+            case 0:
+                //common.S.startup_newbie = true
+                //common.S.startup_moderate = false
+                c.ErrorInfo.code = "NM-00";
+                GA_FeatureUnavailable.Run("Newbie Mode");
+                break;
             case 1:
-                common.S.AppMode_newbie = false;
-                common.S.AppMode_moderate = true;
-
-                common.Home.Show();
+                c.S.AppMode_newbie = false;
+                c.S.AppMode_moderate = true;
+                c.Home.Show();
                 Close();
                 break;
             case 2:
                 System.Media.SystemSounds.Beep.Play();
-                MessageBox.Show("Come on.. Experts don//t need assitance.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                MessageBox.Show("Okay... There//s no \"Expert Mode\". You will be redirected to the default mode.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("Come on.. Experts don't need assitance.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Okay... There's no \"Expert Mode\". You will be redirected to the default mode.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 start_default.PerformClick();
                 break;
             }
         }
 
         private void startup_dontShow_MouseEnter(object sender, EventArgs e) {
-            if (common.S.AppMode_dontshow) {
+            if (c.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.FromArgb(0, 130, 0);
                 startup_dontShow.ForeColor = Color.White;
             } else {
-                if (common.S.DarkTheme)
+                if (c.S.DarkTheme)
                     startup_dontShow.BackColor = Color.FromArgb(0, 120, 0);
                 else startup_dontShow.BackColor = Color.Honeydew;
 
@@ -107,7 +101,7 @@ namespace GeekAssistant.Forms {
             }
         }
         private void startup_dontShow_MouseLeave(object sender, EventArgs e) {
-            if (common.S.AppMode_dontshow) {
+            if (c.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.Green;
                 startup_dontShow.ForeColor = Color.White;
             } else {
@@ -122,21 +116,19 @@ namespace GeekAssistant.Forms {
             GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref startup_dontShow);
         }
         private void startup_dontShow_Click(object sender, EventArgs e) {
-            if (common.S.AppMode_dontshow) {
+            if (c.S.AppMode_dontshow) {
                 startup_dontShow.BackColor = Color.Transparent;
-                common.S.AppMode_dontshow = false;
+                c.S.AppMode_dontshow = false;
             } else {
                 startup_dontShow.BackColor = Color.Green;
-                common.S.AppMode_dontshow = true;
-                common.S.Save();
+                c.S.AppMode_dontshow = true;
+                c.S.Save();
             }
-            common.S.Save();
+            c.S.Save();
         }
 
         #region "start_newbie"
         private void start_newbie_Click(object sender, EventArgs e) {
-            common.ErrorInfo.code = "NM-00";
-            GA_FeatureUnavailable.Run("Newbie Mode");
             AppMode_Do(0);
         }
         private void start_newbie_MouseEnter_MouseUp(object sender, EventArgs e) {

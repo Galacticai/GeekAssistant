@@ -15,7 +15,7 @@ internal static partial class adbCMD {
     public static string adbDo(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
-            common.ErrorInfo.code = $"{common.ErrorInfo.code}-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
+            c.ErrorInfo.code = $"{c.ErrorInfo.code}-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
             GA_Msg.DoMsg(10, "Unable to run the adb command.", 2);
         }
 
@@ -30,7 +30,7 @@ internal static partial class adbCMD {
         // <Failsafe
         {
             var adbPstartInfo = adb_process.StartInfo;
-            adbPstartInfo.FileName = $@"{common.GA_tools}\adb.exe";
+            adbPstartInfo.FileName = $@"{c.GA_tools}\adb.exe";
             adbPstartInfo.Arguments = arguments;
             adbPstartInfo.UseShellExecute = false;
             adbPstartInfo.CreateNoWindow = true;

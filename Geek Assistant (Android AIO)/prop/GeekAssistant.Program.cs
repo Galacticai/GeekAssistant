@@ -1,4 +1,5 @@
-﻿using System.Diagnostics; 
+﻿using System;
+using System.Diagnostics; 
 using System.Windows.Forms;
 
 namespace GeekAssistant {
@@ -6,18 +7,19 @@ namespace GeekAssistant {
         private static void AssignEvents() {
             //FormClosed event for all forms
             FormClosedEventHandler ev_FormClosed = new(ev_FormClosed_Run);
-            common.Preparing.FormClosed += ev_FormClosed;
-            common.AppMode.FormClosed += ev_FormClosed;
-            common.Home.FormClosed += ev_FormClosed;
-            common.Donate.FormClosed += ev_FormClosed;
-            common.Home.FormClosed += ev_FormClosed;
-            common.Info.FormClosed += ev_FormClosed;
-            common.Settings.FormClosed += ev_FormClosed;
-            common.ToU.FormClosed += ev_FormClosed;
+            EventHandler ev_Load = new(ev_Load_Run);
+            foreach (Form f in c.AllForms) {
+                f.FormClosed += ev_FormClosed;
+                f.Load += ev_Load;
+            } 
         }
         private static void ev_FormClosed_Run(object sender, System.EventArgs e) {
             if (Application.OpenForms.Count == 0) Application.Exit();  //Ensure GA exits when all forms have closed
         }
+        private static void ev_Load_Run(object sender, EventArgs e) {
+            //forgot why i made this
+        }
+
         private static void Main() {
             //Single Instance
             int instanceCount = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length;
@@ -25,7 +27,7 @@ namespace GeekAssistant {
               
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);  
-            common.ToU.Show(); 
+            c.ToU().Show(); 
             Application.Run();
              
             AssignEvents();

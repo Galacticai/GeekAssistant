@@ -21,7 +21,7 @@ namespace GeekAssistant.Forms {
         private void CheckADBProcess_Timer_Tick(object sender, EventArgs e) {
             if (Process.GetProcessesByName("adb").Count() > 0) {
                 CheckADBProcess_Timer.Enabled = false;
-                common.Home.Show();
+                c.Home.Show();
                 Dispose();
             }
         }

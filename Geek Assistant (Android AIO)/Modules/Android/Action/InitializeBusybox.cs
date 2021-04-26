@@ -4,13 +4,13 @@ using System.Linq;
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
-        if (common.Working) {
+        if (c.Working) {
             GA_Msg.DoMsg(1, "We need to wait the current process to finish first...", 2);
             return;
         }
 
-        common.Working = true;
-        common.ErrorInfo.code = "BI-00";
+        c.Working = true;
+        c.ErrorInfo.code = "BI-00";
         if (!GA_infoAsk.Run("madb_MakeBusyboxReady", "This is not finished. Go?", "Go", "Cancel"))
             return;
         GA_Msg.DoMsg(1, "Disabled", 1);
@@ -20,7 +20,7 @@ internal static partial class InitializeBusybox {
             goto Finish_madb_InstallBusyboxReady;
         }
 
-        if (!File.Exists($@"{common.GA_tools}\busybox"))
+        if (!File.Exists($@"{c.GA_tools}\busybox"))
             GA_PrepareAppdata.Run();
         adbCMD.adbDo("shell mkdir /data/busybox");
         GA_Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
@@ -32,8 +32,8 @@ internal static partial class InitializeBusybox {
             GA_Log.LogAppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         }
 
-        adbCMD.adbDo($@"push ""{common.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
-        GA_Log.LogAppendText($@"<< push ""{common.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox\n>>\n{adbCMD.adbOutput}", 1);
+        adbCMD.adbDo($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
+        GA_Log.LogAppendText($@"<< push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
         GA_Log.LogAppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c 'chmod 664 /data/busybox'");
@@ -63,7 +63,7 @@ internal static partial class InitializeBusybox {
         // ErrorInfo = (0, "Busybox is set and ready for use.")
         Finish_madb_InstallBusyboxReady:
         ;
-        if (!silent) GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 1);
-        common.Working = false;
+        if (!silent) GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 1);
+        c.Working = false;
     }
 }

@@ -121,9 +121,6 @@
   <data name="G" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\GeekAssistant\Icon\G.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="G1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\Res\Images\GeekAssistant\Icon\G.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Geek_Assistant" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\GeekAssistant\Geek Assistant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,6 +133,9 @@
   <data name="Geek_Assistant___75_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\GeekAssistant\Geek Assistant - 75%.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="G_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Res\Images\GeekAssistant\Icon\G.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="G_noG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\GeekAssistant\Icon\G-noG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -143,9 +143,9 @@
     <value>..\..\Res\Images\GeekAssistant\Icon\G_noG_gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TermsOfUse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\Res\Terms\TermsOfUse.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\..\Res\Terms\TermsOfUse.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TermsOfUse_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\Res\Terms\TermsOfUse-Dark.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\..\Res\Terms\TermsOfUse-Dark.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

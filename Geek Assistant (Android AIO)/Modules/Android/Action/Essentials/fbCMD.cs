@@ -13,13 +13,13 @@ internal static partial class fbCMD {
     public static string fbDo(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
-            common.ErrorInfo.code = $"{common.ErrorInfo.code}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
+            c.ErrorInfo.code = $"{c.ErrorInfo.code}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
             GA_Msg.DoMsg(10, "Unable to run the fastboot command.", 2);
         }
 
         if (!CheckConnectionIsCompatible.fbIsReady(txt.GA_GetErrorInitials())) {
-            common.ErrorInfo.code = $"{common.ErrorInfo.code}-fbD0"; // error code (last process) - adb device 0 (no device)
-            GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 2);
+            c.ErrorInfo.code = $"{c.ErrorInfo.code}-fbD0"; // error code (last process) - adb device 0 (no device)
+            GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 2);
         }
 
         // kill all fastboot instances before starting a new one
@@ -32,7 +32,7 @@ internal static partial class fbCMD {
         // <Failsafe
         {
             var withBlock = fb_process.StartInfo;
-            withBlock.FileName = $@"{common.GA_tools}\fastboot.exe";
+            withBlock.FileName = $@"{c.GA_tools}\fastboot.exe";
             withBlock.Arguments = arguments;
             withBlock.UseShellExecute = false;
             withBlock.CreateNoWindow = true;

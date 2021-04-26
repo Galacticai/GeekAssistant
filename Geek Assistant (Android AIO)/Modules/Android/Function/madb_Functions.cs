@@ -9,7 +9,7 @@ internal static partial class madb {
     /// <param name="forceNewBridge">Kill previous server if true</param>
     /// <returns>Managed.Adb.AndroidDebugBridge</returns>
     public static Managed.Adb.AndroidDebugBridge madbBridge(bool forceNewBridge = false) {
-        return Managed.Adb.AndroidDebugBridge.CreateBridge($@"{common.GA_tools}\adb.exe", forceNewBridge); // .Start()
+        return Managed.Adb.AndroidDebugBridge.CreateBridge($@"{c.GA_tools}\adb.exe", forceNewBridge); // .Start()
     }
     /// <summary>
     /// Start adb server at $"{GA_tools}\adb.exe"
@@ -111,7 +111,7 @@ internal static partial class madb {
     public static bool madb_IsRooted(string ErrorCode_init) {
         var dev = GetListOfDevice()[0];
         if (!dev.CanSU()) {
-            common.ErrorInfo = ($"{ErrorCode_init}-Xsu", 1, $"Your device is not rooted.\n > Process aborted."); // X su (Device cannot run su)
+            c.ErrorInfo = ($"{ErrorCode_init}-Xsu", 1, $"Your device is not rooted.\n > Process aborted."); // X su (Device cannot run su)
             return false;
         }
 

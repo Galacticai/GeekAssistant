@@ -20,7 +20,7 @@ internal static partial class GA_HideAllForms {
                formname.Hide(); 
         } else {
             if (HiddenForms.Count == 0) { // failsafe
-                common.ErrorInfo.code += "-HF0";
+                c.ErrorInfo.code += "-HF0";
                 GA_Msg.DoMsg(10, "Something went wrong.\nWe failed to revive hidden windows.", 2);
                 if (GA_infoAsk.Run("Refresh Geek Assistant?",
                                      "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",
@@ -31,7 +31,13 @@ internal static partial class GA_HideAllForms {
             foreach (Form formname in HiddenForms) // Show all forms saved in list
                 formname.Show();
 
+            HiddenForms = null; //reset
             currentForm.BringToFront();
         }
     }
+    //public static bool noHiddenForms() {
+    //    if (HiddenForms == null) return false;
+    //    if (HiddenForms.Count == 0) return false;
+    //    return true;
+    //}
 }

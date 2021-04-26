@@ -43,7 +43,7 @@ namespace GeekAssistant.Forms {
             GA_infoAsk.infoAnswer = false;
             No_Button.Select();
 
-            if (common.S.info_MsgTitle == null || common.S.info_Msg == null || common.S.info_MsgLevel < -1) {
+            if (c.S.info_MsgTitle == null || c.S.info_Msg == null || c.S.info_MsgLevel < -1) {
                 Dispose(); //dispose before starting again
                 GA_Msg.DoMsg(10, $"Where//s the error message??\n" +
                           "if ( you see this please contact the developer to fix this bug.\nPlease provide the log when reporting.", 2);
@@ -57,25 +57,25 @@ namespace GeekAssistant.Forms {
             Copy_Button.Visible = true;
 
             string msglevelText = "Warning";
-            if (common.S.info_MsgLevel == 1 | common.S.info_MsgLevel == 10) {
+            if (c.S.info_MsgLevel == 1 | c.S.info_MsgLevel == 10) {
                 msglevelText = "Error";
-                if (common.S.DarkTheme) {
+                if (c.S.DarkTheme) {
                     info_PictureBox.Image = prop.x64.Warning_Red_dark_64;
                     title_Label.ForeColor = Color.FromArgb(255, 191, 191);
                 } else {
                     info_PictureBox.Image = prop.x64.Warning_Red_64;
                     title_Label.ForeColor = Color.FromArgb(154, 0, 0);
                 }
-            } else if (common.S.info_MsgLevel == 2) {
+            } else if (c.S.info_MsgLevel == 2) {
                 //msglevelText = "Question"
                 No_Button.Text = GA_infoAsk.infoButtonText.RightButton;
                 Yes_Button.Text = GA_infoAsk.infoButtonText.LeftButton;
                 Yes_Button.Visible = true;
-                Text = $"{common.S.info_MsgTitle} — Geek Assistant";
-                title_Label.Text = common.S.info_MsgTitle;
+                Text = $"{c.S.info_MsgTitle} — Geek Assistant";
+                title_Label.Text = c.S.info_MsgTitle;
                 //GeekAssistant_PictureBox.Visible = true;
                 Copy_Button.Visible = false;
-                if (common.S.DarkTheme) {
+                if (c.S.DarkTheme) {
                     info_PictureBox.Image = prop.x64.Question_Blue_Dark_64;
                     title_Label.ForeColor = Color.FromArgb(186, 221, 253);
                 } else {
@@ -83,7 +83,7 @@ namespace GeekAssistant.Forms {
                     title_Label.ForeColor = Color.FromArgb(64, 109, 128);
                 }
             } else {
-                if (common.S.DarkTheme) {
+                if (c.S.DarkTheme) {
                     info_PictureBox.Image = prop.x64.Info_Yellow_dark_64;
                     title_Label.ForeColor = Color.FromArgb(255, 238, 191);
                 } else {
@@ -93,15 +93,15 @@ namespace GeekAssistant.Forms {
             }
 
 
-            if (common.S.info_MsgLevel != 2) {   //Avoid when it is a question
-                Text = $"{GA_Msg.msgIcon}{msglevelText}: ❰{common.ErrorInfo.code}❱ — Geek Assistant";
-                title_Label.Text = $"❰{common.ErrorInfo.code}❱ {common.S.info_MsgTitle}";
+            if (c.S.info_MsgLevel != 2) {   //Avoid when it is a question
+                Text = $"{GA_Msg.msgIcon}{msglevelText}: ❰{c.ErrorInfo.code}❱ — Geek Assistant";
+                title_Label.Text = $"❰{c.ErrorInfo.code}❱ {c.S.info_MsgTitle}";
             }
-            msg_Textbox.Text = common.S.info_Msg;
+            msg_Textbox.Text = c.S.info_Msg;
 
             ////////Special Cases
             if (title_Label.Text == "Send Feedback") {
-                if (common.S.DarkTheme) {
+                if (c.S.DarkTheme) {
                     info_PictureBox.Image = prop.x64.Smile_dark_64;
                     title_Label.ForeColor = Color.FromArgb(191, 255, 191);
                 } else {
@@ -123,7 +123,7 @@ namespace GeekAssistant.Forms {
                 Height += 75;
                 break;
             }
-            SetBounds((common.Home.Width / 2) - (Width / 2) + common.Home.Location.X, common.Home.Top, Width, Height);
+            SetBounds((c.Home.Width / 2) - (Width / 2) + c.Home.Location.X, c.Home.Top, Width, Height);
 
 
             GA_SetTheme.Run(Name);
@@ -139,7 +139,7 @@ namespace GeekAssistant.Forms {
             Yes_Button.ForeColor = title_Label.ForeColor;
         }
         private void Yes_Button_Click(object sender, EventArgs e) {
-            if (common.S.info_MsgLevel == 2) {
+            if (c.S.info_MsgLevel == 2) {
                 GA_infoAsk.infoAnswer = true;
                 Close();
             }
@@ -152,20 +152,20 @@ namespace GeekAssistant.Forms {
         //    Close_Button.ForeColor = SystemColors.ControlText
         //}
         private void No_Button_Click(object sender, EventArgs e) {
-            if (!common.S.VerboseLogging && common.S.VerboseLoggingPrompt
-            && common.S.info_MsgLevel != 2) { //&& ! title_Label.Text = "Enable Verbose Logging?" && ! title_Label.Text = "Send Feedback" ) {
+            if (!c.S.VerboseLogging && c.S.VerboseLoggingPrompt
+            && c.S.info_MsgLevel != 2) { //&& ! title_Label.Text = "Enable Verbose Logging?" && ! title_Label.Text = "Send Feedback" ) {
                                               //Close();
                 Dispose();
                 if (GA_infoAsk.Run("Enable Verbose Logging?",
                                    $"For better troubleshooting, enable verbose logging in Settings and try again.",
                                   "Enable", "Close"))
-                    common.Settings.ShowDialog();
+                    c.Settings().ShowDialog();
 
-                common.S.VerboseLoggingPrompt = false;
+                c.S.VerboseLoggingPrompt = false;
             }
-            if (common.S.info_MsgLevel == 2) GA_infoAsk.infoAnswer = false;
+            if (c.S.info_MsgLevel == 2) GA_infoAsk.infoAnswer = false;
             Close();
-            common.Home.BringToFront();
+            c.Home.BringToFront();
             //Dispose();
         }
 
@@ -206,7 +206,7 @@ namespace GeekAssistant.Forms {
         private string CopiedText = "Copied information...";
         private void title_Label_Click(object sender, EventArgs e) {
             if (title_Label.Text == CopiedText) return;
-            if (common.S.info_MsgLevel != 2) {
+            if (c.S.info_MsgLevel != 2) {
                 savedTitle = title_Label.Text;
                 title_Label.Text = CopiedText;
                 Clipboard.SetText(savedTitle);

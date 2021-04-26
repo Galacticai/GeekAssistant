@@ -35,7 +35,7 @@ namespace GeekAssistant {
         public bool RunningAlready = false;
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
-            common.S.Save();
+            c.S.Save();
             RunningAlready = false;
             if (ToURead_Timer.Enabled) ToURead_Timer.Stop();
         }
@@ -55,7 +55,7 @@ namespace GeekAssistant {
             //Accept || xy // Size xy: 337, 405 // 173, 46
             //Reject || xy // Size xy: 204, 405 // 133, 46
             if (RunningAlready) {
-                SetBounds((common.Home.Width / 2) - (Width / 2) + common.Home.Location.X, common.Home.Top, Width, Height);
+                SetBounds((c.Home.Width / 2) - (Width / 2) + c.Home.Location.X, c.Home.Top, Width, Height);
                 AcceptCheck_ToU.Visible = false;
                 DontShow_ToU.Visible = false;
                 ToU_Reject.Text = "✖";
@@ -73,7 +73,7 @@ namespace GeekAssistant {
                 return;
             }
 
-            if (common.V.Revision < 3) {
+            if (c.V.Revision < 3) {
                 ToURead_Timer.Enabled=true;
             } else { ////Skip the 6sec timer for #Dev version 
                 ToU_Accept.BackColor = BackColor;
@@ -81,21 +81,25 @@ namespace GeekAssistant {
                 AcceptCheck_ToU.Checked = true;
             }
 
-            if (common.S.ToU_dontShow) {  //ToU:[ Dont show ToU >> Show Startup:[ Don//t show AppMode >> Start newbie / moderate ] ]
-                if (common.S.AppMode_dontshow) common.Home.Show(); else common.AppMode.Show();
+            if (c.S.ToU_dontShow) {  //ToU:[ Dont show ToU >> Show Startup:[ Don//t show AppMode >> Start newbie / moderate ] ]
+                if (c.S.AppMode_dontshow) c.Home.Show(); else c.AppMode.Show();
                 Close();
             }
         }
 
 
         private void Load_ToU_rtf() {
-            string terms_rtf = $"{common.GA}\\terms.rtf"; //set destination
+            string terms_rtf = $@"{c.GA}\terms.rtf"; //set destination
+
             var Current_rtf = prop.GA.TermsOfUse; //set default file
-            if (common.S.DarkTheme) Current_rtf = prop.GA.TermsOfUse_Dark; //set dark file if dark theme
-            if (!Directory.Exists(common.GA)) Directory.CreateDirectory(common.GA); //create GA folder if not present
+            if (c.S.DarkTheme) Current_rtf = prop.GA.TermsOfUse_Dark; //set dark file if dark theme
+
+            if (!Directory.Exists(c.GA)) Directory.CreateDirectory(c.GA); //create GA folder if not present
             if (File.Exists(terms_rtf)) File.Delete(terms_rtf); //delete old file if present
+
             File.WriteAllText(terms_rtf, Current_rtf); //write file to GA
             TermsOfUse_Box.LoadFile(terms_rtf); //load file to the box
+
             TermsOfUse_Box.SelectionLength = 0; //deselect everything
         }
 
@@ -108,14 +112,14 @@ namespace GeekAssistant {
         }
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
-            common.ErrorInfo.code = "ToU-R-H"; // ToU Rejected Hide
+            c.ErrorInfo.code = "ToU-R-H"; // ToU Rejected Hide
             GA_HideAllForms.Run(true);
             if (GA_infoAsk.Run("Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
                                "Exit", "Back")) {
                 Application.Exit();
             } else {
-                common.ErrorInfo.code = "ToU-R-S";
+                c.ErrorInfo.code = "ToU-R-S";
                 GA_HideAllForms.Run(false);
             }
         }
@@ -127,13 +131,13 @@ namespace GeekAssistant {
             ToU_Accept.ForeColor = GA_SetTheme.Current_fgColor();
         }
         private void ToU_Accept_Click(object sender, EventArgs e) {
-            if (DontShow_ToU.Checked) common.S.ToU_dontShow = true;
+            if (DontShow_ToU.Checked) c.S.ToU_dontShow = true;
 
                 if (RunningAlready) { Close(); return; }
 
-                if (common.S.AppMode_dontshow) { common.Home.Show(); } 
+                if (c.S.AppMode_dontshow) { c.Home.Show(); } 
                 else {
-                    common.AppMode.Show();
+                 c.AppMode.Show();
                     Close();
                 }
              

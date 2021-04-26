@@ -73,6 +73,16 @@ namespace prop {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap G_ {
+            get {
+                object obj = ResourceManager.GetObject("G_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap G_noG {
             get {
                 object obj = ResourceManager.GetObject("G_noG", resourceCulture);
@@ -86,16 +96,6 @@ namespace prop {
         internal static System.Drawing.Bitmap G_noG_gif {
             get {
                 object obj = ResourceManager.GetObject("G_noG_gif", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap G1 {
-            get {
-                object obj = ResourceManager.GetObject("G1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

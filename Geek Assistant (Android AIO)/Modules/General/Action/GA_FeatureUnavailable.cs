@@ -2,7 +2,7 @@
 internal static partial class GA_FeatureUnavailable {
     public static void Run(string title) {
         string state = "cooking progress";
-        switch (common.V.Revision) {
+        switch (c.V.Revision) {
         case 1: {
             state = "beta phase";
             break;

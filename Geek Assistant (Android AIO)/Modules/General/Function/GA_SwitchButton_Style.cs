@@ -8,7 +8,7 @@ internal static partial class GA_SwitchButton_Style {
     // Public Shared Left As Integer
     // Public Shared ButtonOriginalPosition As Integer()
     private static Color Current_bg_Active() {
-        if (common.S.DarkTheme) {
+        if (c.S.DarkTheme) {
             return Color.FromArgb(0, 120, 0);
         } else {
             return Color.Green;
@@ -16,7 +16,7 @@ internal static partial class GA_SwitchButton_Style {
     }
 
     private static Color Current_bg_Hover() {
-        if (common.S.DarkTheme) {
+        if (c.S.DarkTheme) {
             return Color.FromArgb(32, 72, 32);
         } else {
             return Color.Honeydew;
@@ -24,7 +24,7 @@ internal static partial class GA_SwitchButton_Style {
     }
 
     private static Color Current_bg_Neutral() {
-        if (common.S.DarkTheme) {
+        if (c.S.DarkTheme) {
             return Color.FromArgb(32, 32, 32);
         } else {
             return Color.WhiteSmoke;
@@ -97,13 +97,13 @@ internal static partial class GA_SwitchButton_Style {
         if (aBoolean) {
             aButton.BackColor = Current_bg_Neutral();
             aBoolean = false;
-            common.S.Save();
+            c.S.Save();
             if (aTooltip is object & aTooltip_txt is object)
                 aTooltip.SetToolTip(aButton, $"(Disabled) {aTooltip_txt}");
         } else {
             aButton.BackColor = Current_bg_Active();
             aBoolean = true;
-            common.S.Save();
+            c.S.Save();
             if (aTooltip is object & aTooltip_txt is object)
                 aTooltip.SetToolTip(aButton, $"(Enabled) {aTooltip_txt}");
         }

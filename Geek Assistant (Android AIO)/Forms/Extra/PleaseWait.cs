@@ -22,12 +22,12 @@ namespace GeekAssistant.Forms {
         }
 
         private void PleaseWait_MainEnabled(bool b) {
-            common.Home.AutoDetectDeviceInfo_Button.Enabled = b;
-            common.Home.SwitchTheme_Button.Enabled = b;
-            common.Home.Settings_Button.Enabled = b;
-            common.Home.About_Button.Enabled = b;
-            common.Home.Feedback_Button.Enabled = b;
-            common.Home.Donate_Button.Enabled = b;
+            c.Home.AutoDetectDeviceInfo_Button.Enabled = b;
+            c.Home.SwitchTheme_Button.Enabled = b;
+            c.Home.Settings_Button.Enabled = b;
+            c.Home.About_Button.Enabled = b;
+            c.Home.Feedback_Button.Enabled = b;
+            c.Home.Donate_Button.Enabled = b;
         }
 
         public bool UserClosing = true; //lock to true by default
@@ -48,8 +48,8 @@ namespace GeekAssistant.Forms {
             AssignEvents();
             GA_SetTheme.Run(Name);
             //24, 97 
-            var titleHeight = common.Home.RectangleToScreen(common.Home.ClientRectangle).Top - common.Home.Top;
-            SetBounds(common.Home.Location.X + 24, common.Home.Location.Y + 97 + titleHeight, Width, Height);
+            var titleHeight = c.Home.RectangleToScreen(c.Home.ClientRectangle).Top - c.Home.Top;
+            SetBounds(c.Home.Location.X + 24, c.Home.Location.Y + 97 + titleHeight, Width, Height);
 
             PleaseWait_MainEnabled(false);
 

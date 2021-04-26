@@ -10,15 +10,15 @@ internal static partial class GA_Log {
     private static string latestLogPath;
 
     public static void CreateLog() {
-        if (!Directory.Exists(common.GA))
-            Directory.CreateDirectory(common.GA);
-        if (!Directory.Exists($@"{common.GA}\log"))
-            Directory.CreateDirectory($@"{common.GA}\log");
+        if (!Directory.Exists(c.GA))
+            Directory.CreateDirectory(c.GA);
+        if (!Directory.Exists($@"{c.GA}\log"))
+            Directory.CreateDirectory($@"{c.GA}\log");
         latestLogName = $"GA-log_{DateAndTime.Now:(yyy.MM.dd)-hh.mm.ss}.log";
-        latestLogPath = $@"{common.GA}\log\{latestLogName}";
+        latestLogPath = $@"{c.GA}\log\{latestLogName}";
         File.Create(latestLogPath).Dispose();
         StreamWriter swriter = new StreamWriter(latestLogPath);
-        swriter.WriteLine(common.Home.log.Text);
+        swriter.WriteLine(c.Home.log.Text);
         swriter.Close();
     }
 
@@ -29,7 +29,7 @@ internal static partial class GA_Log {
     public static void ResetLog() {
         LogEvent("Log Cleared", 3);
         CreateLog();
-        common.Home.log.Text = GA_Ver.Run("log");
+        c.Home.log.Text = GA_Ver.Run("log");
         LogAppendText($"// Previous log saved //  {latestLogName}  //", 1);
         LogEvent("Continue", 1);
     }
@@ -39,9 +39,9 @@ internal static partial class GA_Log {
 
         for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) {
             // Main.htmlLog.DocumentText &= br
-            common.Home.log.Text += common.n;
+            c.Home.log.Text += c.n;
         }
-        common.Home.log.Text += logText;
+        c.Home.log.Text += logText;
         // For Each item In StringLines
         // Main.htmlLog.DocumentText &= Markdown.ToHtml(StringLines(item))
         // If StringLines.Count - 1 <> item Then Main.htmlLog.DocumentText &= br 'new line if not finished
@@ -51,25 +51,25 @@ internal static partial class GA_Log {
     }
 
     public static void StopNotifyIfLogSeen() {
-        if (common.Home.log.Visible & (common.Home.ShowLog_ErrorBlink_Timer.Enabled | common.Home.ShowLog_InfoBlink_Timer.Enabled)) {
+        if (c.Home.log.Visible & (c.Home.ShowLog_ErrorBlink_Timer.Enabled | c.Home.ShowLog_InfoBlink_Timer.Enabled)) {
             {
-                common.Home.ShowLog_ErrorBlink_Timer.Stop();
-                common.Home.ShowLog_InfoBlink_Timer.Stop();
-                if (common.S.DarkTheme) {
-                    common.Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
+                c.Home.ShowLog_ErrorBlink_Timer.Stop();
+                c.Home.ShowLog_InfoBlink_Timer.Stop();
+                if (c.S.DarkTheme) {
+                    c.Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
                 } else {
-                    common.Home.ShowLog_Button.Icon = prop.x24.Commands_24;
+                    c.Home.ShowLog_Button.Icon = prop.x24.Commands_24;
                 }
                 // .ShowLog_Button.BackColor = Color.White
-                common.Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
+                c.Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
             }
         }
     }
 
     public static void ClearIf30days() {
-        if (!Directory.Exists(common.GA_logs))
+        if (!Directory.Exists(c.GA_logs))
             return; // Exit if doesn't exist
-        foreach (FileInfo file in new DirectoryInfo(common.GA_logs).GetFiles("*.txt")) {
+        foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles("*.txt")) {
             if ((DateAndTime.Now - file.CreationTime).Days > 30)
                 file.Delete();
         }

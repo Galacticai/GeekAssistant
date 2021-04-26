@@ -19,23 +19,23 @@ internal static partial class GA_Msg {
         if (level == 1 | level == 10) // —1—Error  '—10—FatalError 10
         {
             msgIcon = " ❌  ";
-            common.S.info_MsgLevel = 1;
-            common.Home.ShowLog_InfoBlink_Timer.Enabled = false;
-            common.Home.ShowLog_ErrorBlink_Timer.Enabled = true;
-            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Red;
+            c.S.info_MsgLevel = 1;
+            c.Home.ShowLog_InfoBlink_Timer.Enabled = false;
+            c.Home.ShowLog_ErrorBlink_Timer.Enabled = true;
+            c.Home.bar.Style = MetroFramework.MetroColorStyle.Red;
         } else if (level == 2) // —2—Ask  
           {
-            common.S.info_MsgLevel = 2;
-            common.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
-            common.Home.ShowLog_InfoBlink_Timer.Enabled = true;
-            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Blue;
+            c.S.info_MsgLevel = 2;
+            c.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
+            c.Home.ShowLog_InfoBlink_Timer.Enabled = true;
+            c.Home.bar.Style = MetroFramework.MetroColorStyle.Blue;
             msgIcon = " ❔  ";
         } else // level = 0 '—0—Info  
           {
-            common.S.info_MsgLevel = 0;
-            common.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
-            common.Home.ShowLog_InfoBlink_Timer.Enabled = true;
-            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
+            c.S.info_MsgLevel = 0;
+            c.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
+            c.Home.ShowLog_InfoBlink_Timer.Enabled = true;
+            c.Home.bar.Style = MetroFramework.MetroColorStyle.Orange;
             msgIcon = " ⚠  ";
         }
 
@@ -44,25 +44,25 @@ internal static partial class GA_Msg {
         GA_SetProgressText.Run(msgIcon + msgTitle, level);
         if (level == 10)
             msg += $"\n{prop.strings.ContactDevFix}";
-        if (common.S.VerboseLogging & !string.IsNullOrEmpty(FullError)) {
+        if (c.S.VerboseLogging & !string.IsNullOrEmpty(FullError)) {
             msg += $"\n\n" +
                 $"————— #Verbose Logging# Full Error:\n" +
-                $" ❰{common.ErrorInfo.code}❱" +
+                $" ❰{c.ErrorInfo.code}❱" +
                 $"\n{FullError}\n" +
-                $" ❰/{common.ErrorInfo.code}❱\n" +
+                $" ❰/{c.ErrorInfo.code}❱\n" +
                 $"————— #Verbose Logging# End —————";
         } else if (level == 10)
             msg += $"\n > {prop.strings.EnableVerboseLogging}";
-        GA_Log.LogAppendText($"{msgIcon} ❰{common.ErrorInfo.code}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
-        if (common.S.PopupMessages) {
-            common.S.info_Msg = txt.CutFirstLine(msg);
-            common.S.info_MsgTitle = msgTitle;
-            common.S.info_MsgLevel = level;
-            common.S.Save(); 
+        GA_Log.LogAppendText($"{msgIcon} ❰{c.ErrorInfo.code}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
+        if (c.S.PopupMessages) {
+            c.S.info_Msg = txt.CutFirstLine(msg);
+            c.S.info_MsgTitle = msgTitle;
+            c.S.info_MsgLevel = level;
+            c.S.Save(); 
             if (Application.OpenForms.OfType<Info>().Any())
                 return;
             try {
-                common.Info.ShowDialog();
+                c.Info().ShowDialog();
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString(), "Error while loading the error... Yup it happens...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

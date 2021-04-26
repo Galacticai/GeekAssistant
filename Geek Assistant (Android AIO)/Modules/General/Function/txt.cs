@@ -100,8 +100,8 @@ internal static partial class txt {
 
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
     public static string GA_GetErrorInitials() {
-        if (string.IsNullOrEmpty(common.ErrorInfo.code)) return ""; // failsafe
-        if (common.ErrorInfo.code.IndexOf("-") < 1) return ""; // failsafe
-        return common.ErrorInfo.code.Substring(0, common.ErrorInfo.code.IndexOf("-"));
+        if (string.IsNullOrEmpty(c.ErrorInfo.code)) return ""; // failsafe
+        if (c.ErrorInfo.code.IndexOf("-") < 1) return ""; // failsafe
+        return c.ErrorInfo.code.Substring(0, c.ErrorInfo.code.IndexOf("-"));
     }
 }

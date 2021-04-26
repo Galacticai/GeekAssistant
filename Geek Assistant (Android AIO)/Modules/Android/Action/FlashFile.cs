@@ -11,24 +11,24 @@ internal static partial class FastbootFlash {
     // 4 system 
     // 5 vendor   
     public static void Run(string img, int type) {
-        if (common.Working) {
+        if (c.Working) {
             GA_Msg.DoMsg(1, "We need to wait the other process to finish first...", 2);
             return;
         }
 
-        common.Working = true;
-        common.ErrorInfo.code = "FF-00";
+        c.Working = true;
+        c.ErrorInfo.code = "FF-00";
         GA_Log.LogEvent("Fastboot Flash", 2);
         GA_PleaseWait.Run(true);
         try {
-            common.ErrorInfo.code = "FF-F0";
+            c.ErrorInfo.code = "FF-F0";
             if (string.IsNullOrEmpty(img)) // check zip string 
             {
                 // ErrorInfo = (10, "File name is not set!")
                 throw new Exception();
             }
 
-            common.ErrorInfo.code = "FF-T0";
+            c.ErrorInfo.code = "FF-T0";
             if (type < 0 | type > 5) {
                 // ErrorInfo = (10, "File type is out of range!")
                 throw new Exception();
@@ -41,27 +41,27 @@ internal static partial class FastbootFlash {
 
 
             // ' detected but not in fastboot
-            if (common.S.DeviceState == "Connected (ADB)") {
+            if (c.S.DeviceState == "Connected (ADB)") {
                 if (GA_infoAsk.Run("Rebooting your device!", $"Now we need to reboot your device into fastboot mode to proceed with the installation.\n\n" + $"Please save your work then confirm the reboot.", "Reboot into fastboot", "Cancel")) {
                     dev.Reboot("bootloader");
                     GA_SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
                     fbCMD.fbDo("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
-                    common.ErrorInfo.code = "FF-uX";
+                    c.ErrorInfo.code = "FF-uX";
                     // ErrorInfo = (0, "You have cancelled the process.")
                     GA_Log.LogEvent("Fastboot Flash Cancelled", 1);
                     throw new Exception();
                 }
-            } else if (!(common.S.DeviceState == "Fastboot mode")) {
-                if (common.S.DeviceState == "Disconnected") // failsafe
+            } else if (!(c.S.DeviceState == "Fastboot mode")) {
+                if (c.S.DeviceState == "Disconnected") // failsafe
                 {
-                    common.ErrorInfo.code = "FF-xX";
+                    c.ErrorInfo.code = "FF-xX";
                 }
                 // ErrorInfo = (1, $"We lost contact with your device!\n" & My.R.TroubleshootConnection)
                 else // not adb and not fastboot and not disconnected
                 {
-                    common.ErrorInfo.code = "FF-rX";
+                    c.ErrorInfo.code = "FF-rX";
                     // ErrorInfo = (0, $"We cannot reboot into fastboot while your device is in {S.DeviceState}.\n" & My.R.TroubleshootConnection)
                 }
 
@@ -74,9 +74,9 @@ internal static partial class FastbootFlash {
 
             DeviceInFastboot:
             ;
-            if (!common.S.DeviceBootloaderUnlockSupported) {
+            if (!c.S.DeviceBootloaderUnlockSupported) {
                 // ' cancel if not unlockable
-                common.ErrorInfo.code = "FF-BLX";
+                c.ErrorInfo.code = "FF-BLX";
                 // ErrorInfo = (1, "Bootloader unlock is not supported.") 'you can enable with checkbox
                 throw new Exception();
             }
@@ -91,16 +91,16 @@ internal static partial class FastbootFlash {
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
             fbCMD.fbDo("oem device-info");
             if (!fbCMD.fbOutput.Contains("Device unlocked: true")) {
-                common.ErrorInfo.code = "FF-BLuX";
+                c.ErrorInfo.code = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
                 throw new Exception();
             }
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
-            common.ErrorInfo.code = "FF-F";
+            c.ErrorInfo.code = "FF-F";
             fbCMD.fbDo($"flash {TypeToString(type)} \"{img}\"");
             if (fbCMD.fbOutput.Contains("error")) {
-                common.ErrorInfo.code = "FF-BLuX";
+                c.ErrorInfo.code = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first.")
                 throw new Exception();
             }
@@ -108,14 +108,14 @@ internal static partial class FastbootFlash {
             GA_Log.LogAppendText(fbCMD.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
-            common.ErrorInfo.code = "FF-rX";
+            c.ErrorInfo.code = "FF-rX";
         } catch (Exception ex) {
             GA_PleaseWait.Run(false); // Close before error dialog 
-            GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 2, ex.ToString());
+            GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 2, ex.ToString());
         }
 
         GA_PleaseWait.Run(false); // Close if Try was successful
-        common.Working = false;
+        c.Working = false;
     }
 
     // 0 boot 
@@ -126,7 +126,7 @@ internal static partial class FastbootFlash {
     // 5 vendor  
     private static string TypeToString(int type) {
         if (type < 0 | type > 5) {
-            common.ErrorInfo.code=$"{txt.GA_GetErrorInitials()}-FtX" ;
+            c.ErrorInfo.code=$"{txt.GA_GetErrorInitials()}-FtX" ;
             // ErrorInfo = (10, $"File type not set.")
             throw new Exception();
         }

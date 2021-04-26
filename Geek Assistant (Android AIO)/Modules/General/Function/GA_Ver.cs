@@ -19,8 +19,8 @@ internal static partial class GA_Ver {
     /// </returns>
     public static string Run(string level = null) {
         string cDateByNHKomaiha = "©2021 By NHKomaiha";
-        string result = $"v{common.V.Major}.{common.V.Minor}";
-        switch (common.V.Revision) { 
+        string result = $"v{c.V.Major}.{c.V.Minor}";
+        switch (c.V.Revision) { 
         case 1: {
             result += " #Beta";
             break; }
@@ -43,7 +43,7 @@ internal static partial class GA_Ver {
             result = $"Geek Assistant — {result}";
             break; } 
         case "ToU": { 
-            result = $"{common.C}. {result}";
+            result = $"{c.C}. {result}";
             break; } 
         }
 

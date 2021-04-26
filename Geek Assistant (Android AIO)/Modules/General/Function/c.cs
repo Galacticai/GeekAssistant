@@ -1,8 +1,9 @@
 ﻿using GeekAssistant;
 using GeekAssistant.Forms;
 using System;
-//namespace GeekAssistant.common {
-internal static partial class common {
+using System.Windows.Forms;
+
+internal static partial class c {
 
     #region GA Directories
     /// <summary>
@@ -22,25 +23,32 @@ internal static partial class common {
 
 
     #region GA Forms  
- 
-    public static readonly PleaseWait PleaseWait = new PleaseWait();
-        public static readonly Preparing Preparing = new Preparing();
-        public static readonly AppMode AppMode = new AppMode();
-        public static readonly Donate Donate = new Donate();
-        public static readonly Home Home = new Home();
-        public static readonly Info Info = new Info();
-        public static readonly Settings Settings = new Settings();
-        public static readonly ToU ToU = new ToU();
-    
+
+    public static Form[] AllForms = { 
+            Preparing,
+            AppMode,
+            Donate(),
+            Home,
+            Info(),
+            Settings(),
+            ToU()
+        };
+     
+    public static PleaseWait PleaseWait() => new PleaseWait();
+    public static Preparing Preparing = new Preparing();
+    public static AppMode AppMode = new AppMode();
+    public static Donate Donate() => new Donate();
+    public static Home Home = new Home();
+    public static Info Info() => new Info();
+    public static Settings Settings() => new Settings();
+    public static ToU ToU() => new ToU();
+
     #endregion
 
 
     #region prop 
-     
-    /// <summary>
-    /// prop.S
-    /// </summary>
-    public static readonly prop.S S = new prop.S(); 
+
+    public static prop.S S = new prop.S(); 
 
     public static readonly prop.GA RGA = new prop.GA();
     public static readonly prop.strings Pstrings = new prop.strings();
@@ -55,7 +63,7 @@ internal static partial class common {
 
 
     #region Public Abbreviations
-
+     
 
     /// <summary>
     /// Get current copyright string
@@ -115,6 +123,4 @@ internal static partial class common {
     /// </summary>
     public static (string code, int lvl, string msg) ErrorInfo;
     #endregion
-}
-
-//}
+} 

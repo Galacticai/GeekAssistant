@@ -7,14 +7,14 @@ internal static partial class GA_adb_Functions {
 
     /* TODO ERROR: Skipped RegionDirectiveTrivia */
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
-        if (DeviceSerial != null) common.S.DeviceSerial = DeviceSerial;
-        if (DeviceState != null) common.S.DeviceState = DeviceState;
-        if (DeviceManufacturer != null) common.S.DeviceManufacturer = DeviceManufacturer;
-        if (DeviceAPILevel > 0) common.S.DeviceAPILevel = DeviceAPILevel;
-        if (DeviceUnlockedBootloader != default) common.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
-        if (DeviceUnlockedBootloader != default) common.S.DeviceCustomRecovery = DeviceCustomRecovery;
-        if (DeviceUnlockedBootloader != default) common.S.DeviceCustomROM = DeviceCustomRom;
-        common.S.Save();
+        if (DeviceSerial != null) c.S.DeviceSerial = DeviceSerial;
+        if (DeviceState != null) c.S.DeviceState = DeviceState;
+        if (DeviceManufacturer != null) c.S.DeviceManufacturer = DeviceManufacturer;
+        if (DeviceAPILevel > 0) c.S.DeviceAPILevel = DeviceAPILevel;
+        if (DeviceUnlockedBootloader != default) c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
+        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomRecovery = DeviceCustomRecovery;
+        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomROM = DeviceCustomRom;
+        c.S.Save();
     }
 
     /// <summary>
@@ -228,25 +228,25 @@ internal static partial class GA_adb_Functions {
 
     public static void ResetDeviceInfo() {
         {
-            common.S.DeviceAPILevel = 0;
-            common.S.DeviceBatteryLevel = 0;
-            common.S.DeviceBootloaderUnlockSupported = false;
-            common.S.DeviceCount = 0;
-            common.S.DeviceCustomRecovery = false;
-            common.S.DeviceCustomROM = false;
-            common.S.DeviceManufacturer = "";
-            common.S.DeviceRooted = false;
-            common.S.DeviceSerial = "";
-            common.S.DeviceState = "";
+            c.S.DeviceAPILevel = 0;
+            c.S.DeviceBatteryLevel = 0;
+            c.S.DeviceBootloaderUnlockSupported = false;
+            c.S.DeviceCount = 0;
+            c.S.DeviceCustomRecovery = false;
+            c.S.DeviceCustomROM = false;
+            c.S.DeviceManufacturer = "";
+            c.S.DeviceRooted = false;
+            c.S.DeviceSerial = "";
+            c.S.DeviceState = "";
         }
 
         {
-            common.Home.Manufacturer_ComboBox.SelectedIndex = -1;
-            common.Home.AndroidVersion_ComboBox.SelectedIndex = -1;
-            common.Home.BootloaderUnlockable_CheckBox.Checked = false;
-            common.Home.Rooted_Checkbox.Checked = false;
-            common.Home.CustomROM_CheckBox.Checked = false;
-            common.Home.CustomRecovery_CheckBox.Checked = false;
+            c.Home.Manufacturer_ComboBox.SelectedIndex = -1;
+            c.Home.AndroidVersion_ComboBox.SelectedIndex = -1;
+            c.Home.BootloaderUnlockable_CheckBox.Checked = false;
+            c.Home.Rooted_Checkbox.Checked = false;
+            c.Home.CustomROM_CheckBox.Checked = false;
+            c.Home.CustomRecovery_CheckBox.Checked = false;
         }
     }
 
@@ -254,7 +254,7 @@ internal static partial class GA_adb_Functions {
         var scr = new Managed.Adb.CommandResultReceiver();
         var dev = madb.GetListOfDevice()[0];
         if (!madb.madb_IsRooted(ErrorCode_init)) {
-            GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 1);
+            GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 1);
             return "";
         }
 

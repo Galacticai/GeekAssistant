@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System; 
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing; 
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
@@ -46,13 +40,13 @@ namespace GeekAssistant.Forms {
 
         }
         private void Donate_FormClosing(object sender, EventArgs e) {
-            common.Home.BringToFront();
+            c.Home.BringToFront();
         }
         private void Donate_Load(object sender, EventArgs e) {
             AssignEvents();
 
             GA_SetTheme.Run(Name, true);
-            SetBounds((common.Home.Width / 2) - (Width / 2) + common.Home.Location.X, common.Home.Top, Width, Height);
+            SetBounds((c.Home.Width / 2) - (Width / 2) + c.Home.Location.X, c.Home.Top, Width, Height);
         }
 
         private void Close_Button_Click(object sender, EventArgs e) {
