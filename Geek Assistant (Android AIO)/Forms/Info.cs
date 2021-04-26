@@ -14,21 +14,21 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            Yes_Button.MouseDown += Yes_Button_Mousedown;
-            Yes_Button.MouseUp += Yes_Button_MouseUp;
-            Yes_Button.Click += Yes_Button_Click;
+            Yes_Button.MouseDown += new( Yes_Button_Mousedown);
+            Yes_Button.MouseUp += new( Yes_Button_MouseUp);
+            Yes_Button.Click += new( Yes_Button_Click);
 
-            No_Button.Click += No_Button_Click;
+            No_Button.Click += new( No_Button_Click);
 
-            Copy_Button.MouseDown += Copy_Button_MouseDown;
-            Copy_Button.MouseUp += Copy_Button_MouseUp;
-            Copy_Button.Click += Copy_Button_Click;
+            Copy_Button.MouseDown += new( Copy_Button_MouseDown);
+            Copy_Button.MouseUp += new( Copy_Button_MouseUp);
+            Copy_Button.Click += new( Copy_Button_Click);
 
-            CopyToClipboard_Timer.Tick += CopyToClipboard_Timer_Tick;
+            CopyToClipboard_Timer.Tick += new( CopyToClipboard_Timer_Tick);
 
-            title_Label.TextChanged += title_Label_TextChanged;
-            title_Label.Click += title_Label_Click;
-            title_Label_Click_Timer.Tick += title_Label_Click_Timer_Tick;
+            title_Label.TextChanged += new( title_Label_TextChanged);
+            title_Label.Click += new( title_Label_Click);
+            title_Label_Click_Timer.Tick += new( title_Label_Click_Timer_Tick);
         }
 
         public Image info_IconLight;

@@ -108,7 +108,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -120,7 +120,7 @@ namespace GeekAssistant.Forms {
             // 
             // BitcoinAddressQR
             // 
-            this.BitcoinAddressQR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.BitcoinAddressQR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.BitcoinAddressQR.BackColor = System.Drawing.Color.Transparent;
             this.BitcoinAddressQR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -286,6 +286,7 @@ namespace GeekAssistant.Forms {
             this.MinimumSize = new System.Drawing.Size(427, 522);
             this.Name = "Donate";
             this.Text = "Support The Developer — Geek Assistant";
+            this.Load += new System.EventHandler(this.Donate_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BitcoinAddressQR)).EndInit();

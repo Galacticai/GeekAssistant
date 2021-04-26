@@ -62,7 +62,7 @@ internal static partial class madb {
     /// <returns>(Integer): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
     public static int GetDeviceState() {
         madbBridge(); // Failsafe
-        return GetListOfDevice()[0].State;
+        return (int)GetListOfDevice()[0].State;
     }
     /// <summary>
     /// Converts madb_GetDeviceState() to the corresponding string
@@ -110,7 +110,7 @@ internal static partial class madb {
     /// <returns>True if Device is can SU</returns>
     public static bool madb_IsRooted(string ErrorCode_init) {
         var dev = GetListOfDevice()[0];
-        if (!dev.CanSU) {
+        if (!dev.CanSU()) {
             common.ErrorInfo = ($"{ErrorCode_init}-Xsu", 1, $"Your device is not rooted.\n > Process aborted."); // X su (Device cannot run su)
             return false;
         }

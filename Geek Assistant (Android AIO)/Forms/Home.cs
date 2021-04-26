@@ -13,23 +13,23 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            EventWatcher.EventArrived += EventWatcher_EventArrived;
+            EventWatcher.EventArrived += new (EventWatcher_EventArrived);
 
-            Delayed_DeviceChanged_Timer.Tick += Delayed_DeviceChanged_Timer_Tick;
+            Delayed_DeviceChanged_Timer.Tick += new (Delayed_DeviceChanged_Timer_Tick);
 
-            FormClosing += Home_FormClosing;
-            Move += Home_Move;
-            HelpButtonClicked += Home_Help;
-            MouseMove += Main_MouseMove;
+            FormClosing += new (Home_FormClosing);
+            Move += new (Home_Move);
+            //HelpButtonClicked += new (Home_Help);
+            MouseMove += new (Main_MouseMove);
 
-            HomeLoad_Delay_Timer.Tick += HomeLoad_Delay_Timer_Tick;
+            HomeLoad_Delay_Timer.Tick += new (HomeLoad_Delay_Timer_Tick);
 
-            AutoDetectDeviceInfo_Button.MouseEnter += AutoDetectDeviceInfo_Button_MouseEnter;
-            AutoDetectDeviceInfo_Button.MouseDown += AutoDetectDeviceInfo_Button_MouseDown; AutoDetectDeviceInfo_Button.KeyDown += AutoDetectDeviceInfo_Button_MouseDown;
-            AutoDetectDeviceInfo_Button.MouseUp += AutoDetectDeviceInfo_Button_MouseUp; AutoDetectDeviceInfo_Button.KeyUp += AutoDetectDeviceInfo_Button_MouseUp;
-            AutoDetectDeviceInfo_Button.Click += AutoDetectDeviceInfo_Button_Click;
+            AutoDetectDeviceInfo_Button.MouseEnter += new (AutoDetectDeviceInfo_Button_MouseEnter);
+            AutoDetectDeviceInfo_Button.MouseDown += new (AutoDetectDeviceInfo_Button_MouseDown); AutoDetectDeviceInfo_Button.KeyDown += new (AutoDetectDeviceInfo_Button_MouseDown);
+            AutoDetectDeviceInfo_Button.MouseUp += new (AutoDetectDeviceInfo_Button_MouseUp); AutoDetectDeviceInfo_Button.KeyUp += new (AutoDetectDeviceInfo_Button_MouseUp);
+            AutoDetectDeviceInfo_Button.Click += new (AutoDetectDeviceInfo_Button_Click);
 
-            ShowPleaseWaitThenAutoDetect_Timer.Tick += ShowPleaseWaitThenAutoDetect_Timer_Tick;
+            ShowPleaseWaitThenAutoDetect_Timer.Tick += new(ShowPleaseWaitThenAutoDetect_Timer_Tick);
 
             EventHandler Ev__logMouseEnter = new(ShowLog_MouseEnter);
             ShowLog_Button.MouseEnter += Ev__logMouseEnter; log.MouseEnter += Ev__logMouseEnter; ShowLog_Button.MouseEnter += Ev__logMouseEnter;
@@ -37,108 +37,107 @@ namespace GeekAssistant.Forms {
             EventHandler Ev__log = new(ShowLog_Button_Click);
             ShowLog_Button.Click += Ev__log;
 
-            ShowLog_ErrorBlink_Timer.Tick += ShowLog_ErrorBlink_Timer_Tick;
-            ShowLog_InfoBlink_Timer.Tick += ShowLog_InfoBlink_Timer_Tick;
+            ShowLog_ErrorBlink_Timer.Tick += new (ShowLog_ErrorBlink_Timer_Tick);
+            ShowLog_InfoBlink_Timer.Tick += new(ShowLog_InfoBlink_Timer_Tick);
 
-            SettingsSave_Timer.Tick += SettingsSave_Timer_Tick;
+            SettingsSave_Timer.Tick += new(SettingsSave_Timer_Tick);
 
-            FlashZip_ChooseFile_Button.Click += FlashZip_ChooseFile_Button_Click;
-            FlashZip_Button.Click += FlashZip_Button_Click;
-            FlashZip_ChooseFile_TextBox.DoubleClick += FlashZip_ChooseFile_TextBox_DoubleClick;
+            FlashZip_ChooseFile_Button.Click += new(FlashZip_ChooseFile_Button_Click);
+            FlashZip_Button.Click += new(FlashZip_Button_Click);
+      X     FlashZip_ChooseFile_TextBox.DoubleClick += new(FlashZip_ChooseFile_TextBox_DoubleClick); 
 
-            log.TextChanged += log_TextChanged;
+            log.TextChanged += new(log_TextChanged);
 
-            bar.MouseEnter += bar_MouseEnter;
-            ProgressBarLabel.MouseEnter += ProgressBarLabel_MouseEnter;
+            bar.MouseEnter += new(bar_MouseEnter);
+            ProgressBarLabel.MouseEnter += new(ProgressBarLabel_MouseEnter);
             ProgressBarLabel.Click += Ev__log; bar.Click += Ev__log;
 
-            Manufacturer_ComboBox.MouseEnter += Manufacturer_ComboBox_MouseEnter;
+            Manufacturer_ComboBox.MouseEnter += new(Manufacturer_ComboBox_MouseEnter);
 
-            AndroidVersion_ComboBox.MouseEnter += AndroidVersion_ComboBox_MouseEnter;
+            AndroidVersion_ComboBox.MouseEnter += new(AndroidVersion_ComboBox_MouseEnter);
 
 
-            UnlockBL_Button.Click += UnlockBL_Button_Click;
-            MagiskRoot_Button.Click += MagiskRoot_Button_Click;
-            InstallBusybox_Button.Click += InstallBusybox_Button_Click;
-            GA_About_Label.Click += GA_About_Label_Click; GeekAssistant.Click += GA_About_Label_Click; GeekAssistant_Icon.Click += GA_About_Label_Click;
+            UnlockBL_Button.Click += new(UnlockBL_Button_Click);
+            MagiskRoot_Button.Click += new(MagiskRoot_Button_Click);
+            InstallBusybox_Button.Click += new(InstallBusybox_Button_Click);
+            GA_About_Label.Click += new(GA_About_Label_Click); GeekAssistant.Click += new(GA_About_Label_Click); GeekAssistant_Icon.Click += new(GA_About_Label_Click);
 
-            GA_About_Label_Click_Timer.Tick += GA_About_Label_Click_Timer_Tick;
+            GA_About_Label_Click_Timer.Tick += new(GA_About_Label_Click_Timer_Tick);
 
 
             #region #Debug#
-
-
-            MetroButton1.Click += MetroButton1_Click;
-            MetroButton11.Click += MetroButton11_Click;
-            MetroButton2.Click += MetroButton2_Click;
-            MetroButton3.Click += MetroButton3_Click;
-            MetroButton4.Click += MetroButton4_Click;
-            MetroButton6.Click += MetroButton6_Click;
-            MetroButton7.Click += MetroButton7_Click;
-            MetroButton8.Click += MetroButton8_Click;
+             
+            MetroButton1.Click += new(MetroButton1_Click);
+            MetroButton11.Click += new(MetroButton11_Click);
+            MetroButton2.Click += new(MetroButton2_Click);
+            MetroButton3.Click += new(MetroButton3_Click);
+            MetroButton4.Click += new(MetroButton4_Click);
+            MetroButton6.Click += new(MetroButton6_Click);
+            MetroButton7.Click += new(MetroButton7_Click);
+            MetroButton8.Click += new(MetroButton8_Click);
 
             #endregion 
 
 
             #region Left area
 
-            DeviceState_Label.TextChanged += DeviceState_Label_TextChanged;
+            DeviceState_Label.TextChanged += new(DeviceState_Label_TextChanged);
 
-            Manufacturer_ComboBox.SelectedIndexChanged += Manufacturer_ComboBox_SelectedIndexChanged;
-            AndroidVersion_ComboBox.SelectedIndexChanged += AndroidVersion_ComboBox_SelectedIndexChanged;
+            Manufacturer_ComboBox.SelectedIndexChanged += new(Manufacturer_ComboBox_SelectedIndexChanged);
+            AndroidVersion_ComboBox.SelectedIndexChanged += new(AndroidVersion_ComboBox_SelectedIndexChanged);
 
-            BootloaderUnlockable_CheckBox.CheckedChanged += BootloaderUnlockable_CheckBox_CheckedChanged;
+            BootloaderUnlockable_CheckBox.CheckedChanged += new(BootloaderUnlockable_CheckBox_CheckedChanged);
 
-            Rooted_Checkbox.CheckedChanged += Rooted_Checkbox_CheckedChanged;
+            Rooted_Checkbox.CheckedChanged += new(Rooted_Checkbox_CheckedChanged);
 
-            CustomROM_CheckBox.CheckedChanged += CustomROM_CheckBox_CheckedChanged;
+            CustomROM_CheckBox.CheckedChanged += new(CustomROM_CheckBox_CheckedChanged);
 
-            CustomRecovery_CheckBox.CheckedChanged += CustomRecovery_CheckBox_CheckedChanged;
+            CustomRecovery_CheckBox.CheckedChanged += new(CustomRecovery_CheckBox_CheckedChanged);
 
             #endregion
 
 
             #region Upper right buttons
 
-            Settings_Button.MouseEnter += Settings_Button_MouseEnter;
-            Settings_Button.Click += Settings_Button_Click;
+            Settings_Button.MouseEnter += new(Settings_Button_MouseEnter);
+            Settings_Button.Click += new(Settings_Button_Click);
 
-            About_Button.MouseEnter += About_Button_MouseEnter;
-            About_Button.Click += About_Button_Click;
+            About_Button.MouseEnter += new(About_Button_MouseEnter);
+            About_Button.Click += new(About_Button_Click);
 
-            Donate_Button.Click += Donate_Button_Click;
-            Donate_Button.MouseEnter += Donate_Button_MouseEnter;
+            Donate_Button.Click += new(Donate_Button_Click);
+            Donate_Button.MouseEnter += new(Donate_Button_MouseEnter);
 
-            Feedback_Button.MouseEnter += Feedback_Button_MouseEnter;
-            Feedback_Button.Click += Feedback_Button_Click;
+            Feedback_Button.MouseEnter += new(Feedback_Button_MouseEnter);
+            Feedback_Button.Click += new(Feedback_Button_Click);
 
-            SwitchTheme_Button.Click += SwitchTheme_Button_Click;
-            SwitchTheme_Button.MouseEnter += SwitchTheme_Button_MouseEnter;
+            SwitchTheme_Button.Click += new(SwitchTheme_Button_Click);
+            SwitchTheme_Button.MouseEnter += new(SwitchTheme_Button_MouseEnter);
 
             #endregion
 
 
             #region "log area"
 
-            CopyLogToClipboard.MouseEnter += CopyLogToClipboard_MouseEnter;
-            CopyLogToClipboard.MouseDown += CopyLogToClipboard_MouseDown;
+            CopyLogToClipboard.MouseEnter += new(CopyLogToClipboard_MouseEnter);
+            CopyLogToClipboard.MouseDown += new(CopyLogToClipboard_MouseDown);
 
-            CopyLogToClipboard.MouseUp += CopyLogToClipboard_MouseUp;
-            CopyLogToClipboard.Click += CopyLogToClipboard_Click;
+            CopyLogToClipboard.MouseUp += new(CopyLogToClipboard_MouseUp);
+            CopyLogToClipboard.Click += new(CopyLogToClipboard_Click);
 
-            ClearLog_Button.MouseEnter += ClearLog_Button_MouseEnter;
-            ClearLog_Button.MouseDown += ClearLog_Button_MouseDown; ClearLog_Button.KeyDown += ClearLog_Button_MouseDown;
-            ClearLog_Button.MouseUp += ClearLog_Button_MouseUp; ClearLog_Button.KeyUp += ClearLog_Button_MouseUp;
-            ClearLog_Button.Click += ClearLog_Button_Click;
+            ClearLog_Button.MouseEnter += new(ClearLog_Button_MouseEnter);
+            ClearLog_Button.MouseDown += new(ClearLog_Button_MouseDown); ClearLog_Button.KeyDown += new(ClearLog_Button_MouseDown);
+            ClearLog_Button.MouseUp += new(ClearLog_Button_MouseUp); ClearLog_Button.KeyUp += new(ClearLog_Button_MouseUp);
+            ClearLog_Button.Click += new(ClearLog_Button_Click);
 
-            OpenLogFolder.MouseEnter += OpenLogFolder_MouseEnter;
-            OpenLogFolder.MouseDown += OpenLogFolder_MouseDown; OpenLogFolder.KeyDown += OpenLogFolder_MouseDown;
-            OpenLogFolder.MouseUp += OpenLogFolder_MouseUp; OpenLogFolder.KeyUp += OpenLogFolder_MouseUp;
-            OpenLogFolder.Click += OpenLogFolder_Click;
+            OpenLogFolder.MouseEnter += new(OpenLogFolder_MouseEnter);
+            OpenLogFolder.MouseDown += new(OpenLogFolder_MouseDown); OpenLogFolder.KeyDown += new(OpenLogFolder_MouseDown);
+            OpenLogFolder.MouseUp += new(OpenLogFolder_MouseUp); OpenLogFolder.KeyUp += new(OpenLogFolder_MouseUp);
+            OpenLogFolder.Click += new(OpenLogFolder_Click);
 
-            //manualCMD_TextBox.MouseEnter += manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.MouseLeave += manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.TextChanged += manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged;
-            //manualCMD_TextBox.KeyDown += manualCMD_TextBox_KeyDown;
-            //manualCMD_TextBox.KeyUp += manualCMD_TextBox_KeyUp;
+            //manualCMD_TextBox.MouseEnter += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.MouseLeave += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.TextChanged += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged;
+            //manualCMD_TextBox.KeyDown += new(manualCMD_TextBox_KeyDown;
+            //manualCMD_TextBox.KeyUp += new(manualCMD_TextBox_KeyUp;
 
             #endregion
         }
@@ -148,6 +147,7 @@ namespace GeekAssistant.Forms {
         private int saved_devCount = -1; //not 0 or 1 to initialize
         private Timer Delayed_DeviceChanged_Timer = new() { Interval = 200 }; //delay to avoid repeating the code when the event is firing too many times 
         private void EventWatcher_EventArrived(object sender, EventArrivedEventArgs ev) {
+            if (!finishedLoading) return; //Cancel while loading Home
             Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Enabled = true; }));
         }
         private void Delayed_DeviceChanged_Timer_Tick(object sender, EventArgs e) {
@@ -168,7 +168,7 @@ namespace GeekAssistant.Forms {
                 System.Media.SystemSounds.Beep.Play();
                 return;
             }
-            if (GA_HideAllForms.HiddenFormsList.Count > 0) return; //Stop if hiding all forms
+            if (GA_HideAllForms.HiddenForms.Count > 0) return; //Stop if hiding all forms
             EventWatcher.Stop();
 
             GA_Log.LogEvent("End", 3);
@@ -182,12 +182,16 @@ namespace GeekAssistant.Forms {
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
             common.PleaseWait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, common.PleaseWait.Width, common.PleaseWait.Height);
         }
-        private void Home_Help(object sender, EventArgs e) {
+        /*private void Home_Help(object sender, EventArgs e) {
             common.ToU.ShowDialog();
-        }
-
+        }*/
+        private bool finishedLoading = false;
         private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
         private void Home_Load(object sender, EventArgs e) {
+            EventQuery = new WqlEventQuery("Select * from Win32_DeviceChangeEvent"); //("SELECT * FROM __InstanceCreationEvent  WITHIN 2 WHERE TargetInstance ISA //Win32_PnPEntity//") //("Select * from Win32_DeviceChangeEvent") 
+            EventWatcher = new ManagementEventWatcher(EventQuery);
+            EventWatcher.Start();
+
             AssignEvents();
             Opacity = 0;
 
@@ -228,7 +232,7 @@ namespace GeekAssistant.Forms {
             if (common.V.Revision == 3) debuggingBox.Visible = true;
             //###################################################
             Opacity = 100;
-
+            finishedLoading = true;
         }
 
         private void Main_HelpButtonClicked() {
@@ -645,6 +649,10 @@ namespace GeekAssistant.Forms {
 
         private void manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged(object sender, EventArgs e) {
             DoNeutral();
+        }
+
+        private void Main_ToolTip_Popup(object sender, PopupEventArgs e) {
+
         }
 
         /*private string cmd_Previous, cmd_Current;

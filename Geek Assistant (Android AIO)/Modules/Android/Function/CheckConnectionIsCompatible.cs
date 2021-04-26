@@ -8,7 +8,7 @@ internal static partial class CheckConnectionIsCompatible {
         GA_SetProgressText.Run("Checking adb state...", -1);
         if (!adbIsCompatible(ErrorCode_init))
             return false; // connected
-        if (madb.GetListOfDevice()[0].State != 3)
+        if ((int)madb.GetListOfDevice()[0].State != 3)
             return false; // online
         return true;
     }
@@ -29,7 +29,7 @@ internal static partial class CheckConnectionIsCompatible {
         GA_SetProgressText.Run("Checking fastboot state...", -1);
         if (!fbIsCompatible(ErrorCode_init))
             return false;
-        if (!(madb.GetListOfDevice()[0].State == 1))
+        if ((int)madb.GetListOfDevice()[0].State != 1)
             return false; // bootloader
         return true;
     }
@@ -56,7 +56,7 @@ internal static partial class CheckConnectionIsCompatible {
         if (common.S.DeviceState == "" | common.S.DeviceState == "Disconnected") {
             AutoDetect.Run(true);
             if (common.S.DeviceState == "" | common.S.DeviceState == "Disconnected") {
-                common.ErrorInfo = ($"{ErrorCode_init}-D0", 0, $"We haven't found any device.\n{My.Res.strings.TroubleshootConnection}"); // Unlock Bootloader - Device 0 (No device is connected)
+                common.ErrorInfo = ($"{ErrorCode_init}-D0", 0, $"We haven't found any device.\n{prop.strings.TroubleshootConnection}"); // Unlock Bootloader - Device 0 (No device is connected)
                 return false;
             }
         }

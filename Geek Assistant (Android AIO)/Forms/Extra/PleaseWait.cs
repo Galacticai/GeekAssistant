@@ -16,9 +16,9 @@ namespace GeekAssistant.Forms {
         }
 
         private void AssignEvents() {
-            FormClosing += PleaseWait_FormClosing;
-            Closed += PleaseWait_Closed;
-            StopProcess_Button.Click += StopProcess_Button_Click;
+            FormClosing += new(PleaseWait_FormClosing);
+            Closed += new(PleaseWait_Closed);
+            StopProcess_Button.Click += new(StopProcess_Button_Click);
         }
 
         private void PleaseWait_MainEnabled(bool b) {

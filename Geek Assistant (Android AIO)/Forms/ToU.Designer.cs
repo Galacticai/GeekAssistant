@@ -34,7 +34,7 @@ namespace GeekAssistant {
             this.Copyright_Label = new System.Windows.Forms.Label();
             this.ButtonsBG_UI = new System.Windows.Forms.PictureBox();
             this.ToU_Reject = new System.Windows.Forms.Button();
-            this.ToU_Accept = new System.Windows.Forms.Button();
+            this.ToU_Accept = new System.Windows.Forms.Button(); 
             this.GeekAssistant_PictureBox = new System.Windows.Forms.PictureBox();
             this.AcceptCheck_ToU = new System.Windows.Forms.CheckBox();
             this.DontShow_ToU = new System.Windows.Forms.CheckBox();
@@ -239,8 +239,7 @@ namespace GeekAssistant {
         public Button ToU_Accept;
         public PictureBox GeekAssistant_PictureBox;
         public CheckBox AcceptCheck_ToU;
-        public CheckBox DontShow_ToU;
-        public Timer ToURead_Timer;
+        public CheckBox DontShow_ToU; 
 
         #endregion
     }

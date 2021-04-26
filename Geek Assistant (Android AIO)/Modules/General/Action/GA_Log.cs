@@ -4,6 +4,7 @@ using System.IO;
 using Markdig;
 using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
 
+
 internal static partial class GA_Log {
     private static string latestLogName;
     private static string latestLogPath;
@@ -17,7 +18,7 @@ internal static partial class GA_Log {
         latestLogPath = $@"{common.GA}\log\{latestLogName}";
         File.Create(latestLogPath).Dispose();
         StreamWriter swriter = new StreamWriter(latestLogPath);
-        swriter.WriteLine(Home.log.Text);
+        swriter.WriteLine(common.Home.log.Text);
         swriter.Close();
     }
 
@@ -28,7 +29,7 @@ internal static partial class GA_Log {
     public static void ResetLog() {
         LogEvent("Log Cleared", 3);
         CreateLog();
-        Home.log.Text = GA_Ver.Run("log");
+        common.Home.log.Text = GA_Ver.Run("log");
         LogAppendText($"// Previous log saved //  {latestLogName}  //", 1);
         LogEvent("Continue", 1);
     }
@@ -38,9 +39,9 @@ internal static partial class GA_Log {
 
         for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) {
             // Main.htmlLog.DocumentText &= br
-            Home.log.Text += common.n;
+            common.Home.log.Text += common.n;
         }
-        Home.log.Text += logText;
+        common.Home.log.Text += logText;
         // For Each item In StringLines
         // Main.htmlLog.DocumentText &= Markdown.ToHtml(StringLines(item))
         // If StringLines.Count - 1 <> item Then Main.htmlLog.DocumentText &= br 'new line if not finished
@@ -50,17 +51,17 @@ internal static partial class GA_Log {
     }
 
     public static void StopNotifyIfLogSeen() {
-        if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
+        if (common.Home.log.Visible & (common.Home.ShowLog_ErrorBlink_Timer.Enabled | common.Home.ShowLog_InfoBlink_Timer.Enabled)) {
             {
-                Home.ShowLog_ErrorBlink_Timer.Stop();
-                Home.ShowLog_InfoBlink_Timer.Stop();
+                common.Home.ShowLog_ErrorBlink_Timer.Stop();
+                common.Home.ShowLog_InfoBlink_Timer.Stop();
                 if (common.S.DarkTheme) {
-                    Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
+                    common.Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
                 } else {
-                    Home.ShowLog_Button.Icon = prop.x24.Commands_24;
+                    common.Home.ShowLog_Button.Icon = prop.x24.Commands_24;
                 }
                 // .ShowLog_Button.BackColor = Color.White
-                Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
+                common.Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
             }
         }
     }

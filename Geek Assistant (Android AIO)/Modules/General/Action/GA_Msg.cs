@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using GeekAssistant.Forms; 
 
 internal static partial class GA_Msg {
 
@@ -19,22 +20,22 @@ internal static partial class GA_Msg {
         {
             msgIcon = " ❌  ";
             common.S.info_MsgLevel = 1;
-            Home.ShowLog_InfoBlink_Timer.Enabled = false;
-            Home.ShowLog_ErrorBlink_Timer.Enabled = true;
-            Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Red;
+            common.Home.ShowLog_InfoBlink_Timer.Enabled = false;
+            common.Home.ShowLog_ErrorBlink_Timer.Enabled = true;
+            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Red;
         } else if (level == 2) // —2—Ask  
           {
             common.S.info_MsgLevel = 2;
-            Home.ShowLog_ErrorBlink_Timer.Enabled = false;
-            Home.ShowLog_InfoBlink_Timer.Enabled = true;
-            Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Blue;
+            common.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
+            common.Home.ShowLog_InfoBlink_Timer.Enabled = true;
+            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Blue;
             msgIcon = " ❔  ";
         } else // level = 0 '—0—Info  
           {
             common.S.info_MsgLevel = 0;
-            Home.ShowLog_ErrorBlink_Timer.Enabled = false;
-            Home.ShowLog_InfoBlink_Timer.Enabled = true;
-            Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
+            common.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
+            common.Home.ShowLog_InfoBlink_Timer.Enabled = true;
+            common.Home.ProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
             msgIcon = " ⚠  ";
         }
 
@@ -57,11 +58,11 @@ internal static partial class GA_Msg {
             common.S.info_Msg = txt.CutFirstLine(msg);
             common.S.info_MsgTitle = msgTitle;
             common.S.info_MsgLevel = level;
-            common.S.Save();
-            if (Application.OpenForms.OfType<info>.Any)
+            common.S.Save(); 
+            if (Application.OpenForms.OfType<Info>().Any())
                 return;
             try {
-                info.ShowDialog();
+                common.Info.ShowDialog();
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString(), "Error while loading the error... Yup it happens...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

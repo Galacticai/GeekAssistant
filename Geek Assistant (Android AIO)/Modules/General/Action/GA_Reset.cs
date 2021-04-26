@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeekAssistant.Forms;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,12 +7,14 @@ internal static partial class GA_Reset {
     public static void Run(bool Data, bool logs) {
         common.ErrorInfo.code = "GAr-00";
         GA_Log.LogEvent("Reset Geek Assistant", 2);
-        if (!GA_infoAsk.Run("Reset Geek Assistant", $"Are you sure you want to {GA_Settings.willClear}?", "Continue", "Cancel")) {
+        if (!GA_infoAsk.Run("Reset Geek Assistant", 
+                              $"Are you sure you want to {Settings.willClear}?", 
+                            "Continue", "Cancel")) {
             GA_Log.LogAppendText("Reset Geek Assistant Cancelled.", 1);
             return;
         }
 
-        GA_Log.LogAppendText($"Resetting Geek Assistant... \n({GA_Settings.willClear})", 1);
+        GA_Log.LogAppendText($"Resetting Geek Assistant... \n({Settings.willClear})", 1);
         try {
             string notify = "Process Complete. ";
             if (Data) {
@@ -24,13 +27,13 @@ internal static partial class GA_Reset {
             if (logs) {
                 common.ErrorInfo.code = "GAr-L"; // GA reset - Logs
                 if (Directory.Exists(common.GA_logs)) {
-                    foreach (string foundName in My.Computer.FileSystem.GetFiles(common.GA_logs, Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, "*.*")) {
+                    foreach (string foundName in Microsoft.VisualBasic.FileIO.FileSystem.GetFiles(common.GA_logs, Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, "*.*")) {
                         if (File.Exists($@"{foundName}\*.*")) {
-                            My.Computer.FileSystem.DeleteFile(foundName, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.DeletePermanently);
+                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(foundName, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.DeletePermanently);
                         }
                     }
 
-                    My.Computer.FileSystem.DeleteDirectory(common.GA_logs, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.DeletePermanently);
+                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(common.GA_logs, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.DeletePermanently);
                 }
             }
 
@@ -44,11 +47,9 @@ internal static partial class GA_Reset {
                     common.S.VerboseLoggingPrompt = true; // enable again (true is default)
                     Application.Exit();
                 }
-            } else {
-                MessageBox.Show(notify, "Reset Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        } catch (Exception e) {
-            GA_Msg.DoMsg(10, "Error while resetting.", 3, e.ToString());
-        }
+            } else MessageBox.Show(notify, "Reset Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        } catch (Exception e) { GA_Msg.DoMsg(10, "Error while resetting.", 3, e.ToString()); }
+         
     }
 }

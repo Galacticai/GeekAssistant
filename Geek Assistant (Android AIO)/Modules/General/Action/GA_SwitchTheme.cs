@@ -55,7 +55,7 @@ internal static partial class GA_SetTheme {
 
     #region Donate
     private static void Donate_Theme() {
-        SetControlsArrTheme(  new object[] { common.Donate, common.Donate.BitcoinAddress, common.Donate.BitcoinNote } );
+        SetControlsArrTheme(  new Control[] { common.Donate, common.Donate.BitcoinAddress, common.Donate.BitcoinNote } );
         var dnt =common.Donate;
         {
             if (common.S.DarkTheme) {
@@ -82,7 +82,7 @@ internal static partial class GA_SetTheme {
 
     #region Info
     private static void Info_Theme() {
-        SetControlsArrTheme(new object[] { common.Info, common.Info.info_PictureBox, common.Info.msg_Textbox, common.Info.No_Button });
+        SetControlsArrTheme(new Control[] { common.Info, common.Info.info_PictureBox, common.Info.msg_Textbox, common.Info.No_Button });
         var inf = common.Info;
         {
             if (common.S.DarkTheme) {
@@ -104,8 +104,7 @@ internal static partial class GA_SetTheme {
     }
 #endregion
 
-    #region Home
-
+    #region Home 
     private static bool initiatingbool = false; 
     private static void HomeTheme_delayTimer_Tick(object sender, EventArgs e) {
         Control[] Controls_array = new Control[] { 
@@ -212,7 +211,7 @@ internal static partial class GA_SetTheme {
 
     #region PleaseWait
     private static void PleaseWait_Theme() {
-    SetControlsArrTheme(new object[] { common.PleaseWait, common.PleaseWait.PleaseWait_ProgressText });
+    SetControlsArrTheme(new Control[] { common.PleaseWait, common.PleaseWait.PleaseWait_ProgressText });
         if (common.S.DarkTheme) {
             common.PleaseWait.PleaseWait_text.ForeColor = Color.FromArgb(0, 200, 0);
             
@@ -248,7 +247,7 @@ internal static partial class GA_SetTheme {
 
     #region Settings
     private static void Settings_Theme() {
-        SetControlsArrTheme(new object[] { common.Settings, common.Settings.ResetGA_GroupBox, common.Settings.Close_Button });
+        SetControlsArrTheme(new Control[] { common.Settings, common.Settings.ResetGA_GroupBox, common.Settings.Close_Button });
         if (common.S.DarkTheme) {
             
                 var stg = common.Settings;
@@ -302,7 +301,7 @@ internal static partial class GA_SetTheme {
 
     #region ToU
     private static void ToU_Theme() {
-        SetControlsArrTheme(new object[] {common.ToU,common.ToU.TermsOfUse_Box,common.ToU.ToU_Reject,common.ToU.ToU_Accept });
+        SetControlsArrTheme(new Control[] {common.ToU,common.ToU.TermsOfUse_Box,common.ToU.ToU_Reject,common.ToU.ToU_Accept });
 
         // Do this hell
         if (common.S.DarkTheme) {
@@ -325,26 +324,22 @@ internal static partial class GA_SetTheme {
     }
 #endregion
 
+
     #region Theming Mechanism
-    private static void SetControlsArrTheme(object[] ControlsObj) {
-        foreach (object controlObj in ControlsObj) SetControlTheme(controlObj);
+    private static void SetControlsArrTheme(Control[] ControlsObj) {
+        foreach (var controlObj in ControlsObj) SetControlTheme(controlObj);
     }
 
-    private static void SetControlsArrTheme_Metro(object[] ControlsObj) {
-        foreach (object c in ControlsObj) SetControlTheme_Metro(c);
+    private static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
+        foreach (var c in ControlsObj) SetControlTheme_Metro(c);
     }
 
-    private static void SetControlTheme(object ControlObj) {
-        if (common.S.PerformAnimations) { 
-            Animate.Run(ControlObj, "ForeColor", Current_fgColor());
-            Animate.Run(ControlObj, "BackColor", Current_bgColor());
-        } else { 
-            ControlObj.ForeColor = Current_fgColor();
-            ControlObj.BackColor = Current_bgColor();
-        }
+    private static void SetControlTheme(Control ControlObj) { 
+        Animate.Run(ControlObj, "ForeColor", Current_fgColor());
+        Animate.Run(ControlObj, "BackColor", Current_bgColor()); 
     }
 
-    private static void SetControlTheme_Metro(object ControlObj) {
+    private static void SetControlTheme_Metro(MetroFramework.Interfaces.IMetroControl ControlObj) {
         ControlObj.Theme = Current_Theme_Metro();
         // Cannot animate "Theme" 'Transition.run(ControlObj, "Theme", Current_Theme_Metro(), New TransitionType_CriticalDamping(500))
     }

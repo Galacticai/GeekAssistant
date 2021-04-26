@@ -126,7 +126,7 @@ internal static partial class FastbootFlash {
     // 5 vendor  
     private static string TypeToString(int type) {
         if (type < 0 | type > 5) {
-            ErrorCodeTrack($"{txt.GA_GetErrorInitials()}-FtX");
+            common.ErrorInfo.code=$"{txt.GA_GetErrorInitials()}-FtX" ;
             // ErrorInfo = (10, $"File type not set.")
             throw new Exception();
         }

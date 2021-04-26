@@ -2,19 +2,19 @@
 
 internal static partial class GA_PrepareAppdata {
     public static void Run() {
-        if (!Directory.Exists(GA))
-            Directory.CreateDirectory(GA);
-        if (!Directory.Exists(GA_tools))
-            Directory.CreateDirectory(GA_tools);
-        if (!File.Exists($@"{GA_tools}\adb.exe"))
-            File.WriteAllBytes($@"{GA_tools}\adb.exe", My.Res.tools.adb);
-        if (!File.Exists($@"{GA_tools}\AdbWinApi.dll"))
-            File.WriteAllBytes($@"{GA_tools}\AdbWinApi.dll", My.Res.tools.AdbWinApi);
-        if (!File.Exists($@"{GA_tools}\AdbWinUsbApi.dll"))
-            File.WriteAllBytes($@"{GA_tools}\AdbWinUsbApi.dll", My.Res.tools.AdbWinUsbApi);
-        if (!File.Exists($@"{GA_tools}\fastboot.exe"))
-            File.WriteAllBytes($@"{GA_tools}\fastboot.exe", My.Res.tools.fastboot);
-        if (!File.Exists($@"{GA_tools}\busybox"))
-            File.WriteAllBytes($@"{GA_tools}\busybox", My.Res.tools.busybox);
+        if (!Directory.Exists(common.GA))
+            Directory.CreateDirectory(common.GA);
+        if (!Directory.Exists(common.GA_tools))
+            Directory.CreateDirectory(common.GA_tools);
+        if (!File.Exists($@"{common.GA_tools}\adb.exe"))
+            File.WriteAllBytes($@"{common.GA_tools}\adb.exe", prop.tools.adb);
+        if (!File.Exists($@"{common.GA_tools}\AdbWinApi.dll"))
+            File.WriteAllBytes($@"{common.GA_tools}\AdbWinApi.dll", prop.tools.AdbWinApi);
+        if (!File.Exists($@"{common.GA_tools}\AdbWinUsbApi.dll"))
+            File.WriteAllBytes($@"{common.GA_tools}\AdbWinUsbApi.dll", prop.tools.AdbWinUsbApi);
+        if (!File.Exists($@"{common.GA_tools}\fastboot.exe"))
+            File.WriteAllBytes($@"{common.GA_tools}\fastboot.exe", prop.tools.fastboot);
+        if (!File.Exists($@"{common.GA_tools}\busybox"))
+            File.WriteAllBytes($@"{common.GA_tools}\busybox", prop.tools.busybox);
     }
 }

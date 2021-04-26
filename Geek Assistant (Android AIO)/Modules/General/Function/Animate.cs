@@ -1,4 +1,5 @@
-﻿using Transitions;
+﻿ 
+using Transitions;
 
 internal static partial class Animate {
     /// <summary>
@@ -8,15 +9,12 @@ internal static partial class Animate {
     /// <param name="prop">Property of object to animate</param>
     /// <param name="destination">Final value of prop</param>
     /// <param name="AnimationTime">Optional animation time (ms) (Default: 500ms)</param>
-    public static void Run(object target, string prop, object destination, int AnimationTime = 500) {
-        if (common.S.PerformAnimations) 
-            Transition.run(target, prop, destination, new TransitionType_CriticalDamping(AnimationTime));
+    public static void Run(object target, string propName, object destination, int AnimationTime = 500) {
+        if (common.S.PerformAnimations)    
+            Transition.run(target, propName, destination, new TransitionType_CriticalDamping(AnimationTime));
         else {
-            target.GetProperty(prop)   = destination; 
-            return;
-        }
-        
-        //TODO: 
-        
-    }
+            var propInfo = target.GetType().GetProperty(propName); 
+            propInfo.SetValue(propName, destination);  
+        } 
+    } 
 }

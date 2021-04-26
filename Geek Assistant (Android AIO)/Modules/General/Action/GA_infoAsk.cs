@@ -1,5 +1,6 @@
 ﻿
 using GeekAssistant.Forms;
+using System;
 using System.Drawing;
 
 internal static partial class GA_infoAsk {
@@ -16,31 +17,36 @@ internal static partial class GA_infoAsk {
     public static bool Run(string Title,
                            string body,
                            string YesButton, string NoButton,
-                           Image IconLight = default,
-                           Image IconDark = default,
-                           object TextColorLight = null,
-                           object TextColorDark = null) {
-        // #Region "failsafe"
-        // If String.IsNullOrEmpty(NoButton) Then Return False
-        // If String.IsNullOrEmpty(YesButton) Then Return False
-        // If String.IsNullOrEmpty(body) Then Return False
-        // If String.IsNullOrEmpty(Title) Then Return False
-        // If IconDark IsNot Nothing Then
-        Info.info_IconDark = IconDark;
-        // If IconLight IsNot Nothing Then
-        Info.info_IconLight = IconLight;
-        // If TextColorLight IsNot Nothing Then
-        Info.info_TextColorLight = TextColorLight;
-        // If TextColorDark IsNot Nothing Then
-        Info.info_TextColorDark = TextColorDark;
-        // #End Region
+                           Image IconLight= null,
+                           Image IconDark = null,
+                           Color ? TextColorLight = null,
+                           Color ? TextColorDark = null) {
+        common.ErrorInfo.code = $"{txt.GA_GetErrorInitials()}-null-"; 
+        try {
+            if (string.IsNullOrEmpty(Title))
+                common.ErrorInfo.code += "t"; 
+            if (string.IsNullOrEmpty(body))
+                common.ErrorInfo.code += "b"; 
+            if (string.IsNullOrEmpty(YesButton))
+                common.ErrorInfo.code += "y"; 
+            if (string.IsNullOrEmpty(NoButton))
+                common.ErrorInfo.code += "n";
+            if (common.ErrorInfo.code != $"{txt.GA_GetErrorInitials()}-null-") throw new ArgumentException();
+        } catch (ArgumentException ex) {
+            GA_Msg.DoMsg(10, "Something went wrong\nWe encountered a problem while trying to ask you something...",2,ex.ToString());
+        } 
+        if (IconDark != null) common.Info.info_IconDark = IconDark;
+        if (IconLight != null) common.Info.info_IconLight = IconLight;
+        if (TextColorLight != Color.Empty) common.Info.info_TextColorLight = TextColorLight ?? Color.Empty;
+        if (TextColorDark != Color.Empty) common.Info.info_TextColorDark = TextColorDark ?? Color.Empty;
+
 
         infoAnswer = false;
         infoButtonText = (YesButton, NoButton);
         common.S.info_MsgLevel = 2; // Question
         common.S.info_MsgTitle = Title;
         common.S.info_Msg = body;
-        Info.ShowDialog();
+        common.Info.ShowDialog();
         return infoAnswer;
-    }
+    } 
 }

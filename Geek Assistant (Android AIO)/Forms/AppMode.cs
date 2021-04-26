@@ -15,34 +15,32 @@ namespace GeekAssistant.Forms {
         }
 
         private void AssignEvents() {
-            this.FormClosed += AppMode_Closed;
-            this.GotFocus += AppMode_GotFocus;
-            this.GotFocus += AppMode_GotFocus;
-            this.LostFocus += AppMode_GotFocus;
-            this.MouseEnter += AppMode_GotFocus;
-            this.MouseLeave += AppMode_GotFocus;
+             FormClosed += new(AppMode_Closed);
+             GotFocus += new(AppMode_GotFocus);
+             GotFocus += new(AppMode_GotFocus);
+            LostFocus += new(AppMode_GotFocus);
+             MouseEnter += new(AppMode_GotFocus);
+             MouseLeave += new(AppMode_GotFocus);
 
-            startup_dontShow.MouseEnter += startup_dontShow_MouseEnter;
-            startup_dontShow.MouseLeave += startup_dontShow_MouseLeave;
-            startup_dontShow.MouseDown += startup_dontShow_MouseDown; startup_dontShow.KeyDown += startup_dontShow_MouseDown;
-            startup_dontShow.MouseUp += startup_dontShow_Mouseup; startup_dontShow.KeyUp += startup_dontShow_Mouseup;
-            startup_dontShow.Click += startup_dontShow_Click;
+            startup_dontShow.MouseEnter += new(startup_dontShow_MouseEnter);
+            startup_dontShow.MouseLeave += new(startup_dontShow_MouseLeave);
+            startup_dontShow.MouseDown += new(startup_dontShow_MouseDown); startup_dontShow.KeyDown += new(startup_dontShow_MouseDown);
+            startup_dontShow.MouseUp += new(startup_dontShow_Mouseup); startup_dontShow.KeyUp += new(startup_dontShow_Mouseup);
+            startup_dontShow.Click += new(startup_dontShow_Click);
 
-            start_newbie.Click += start_newbie_Click;
-            start_newbie.MouseEnter += start_newbie_MouseEnter_MouseUp; start_newbie.MouseUp += start_newbie_MouseEnter_MouseUp; start_newbie.KeyUp += start_newbie_MouseEnter_MouseUp;
-            start_newbie.MouseDown += start_newbie_MouseDown; start_newbie.KeyDown += start_newbie_MouseDown;
-            start_newbie.MouseLeave += start_newbie_MouseLeave;
+            start_newbie.Click += new(start_newbie_Click);
+            start_newbie.MouseEnter += new(start_newbie_MouseEnter_MouseUp); start_newbie.MouseUp += new(start_newbie_MouseEnter_MouseUp); start_newbie.KeyUp += new(start_newbie_MouseEnter_MouseUp);
+            start_newbie.MouseDown += new(start_newbie_MouseDown); start_newbie.KeyDown += new(start_newbie_MouseDown);
+            start_newbie.MouseLeave += new(start_newbie_MouseLeave);
 
-            start_default.Click += start_default_Click;
-            start_default.MouseEnter += start_default_MouseEnter_MouseUp; start_default.MouseUp += start_default_MouseEnter_MouseUp; start_default.KeyUp += start_default_MouseEnter_MouseUp;
-            start_default.MouseDown += start_default_MouseUp_KeyDown; start_default.KeyDown += start_default_MouseUp_KeyDown;
-            start_default.MouseLeave += start_default_MouseLeave;
+            start_default.Click += new(start_default_Click);
+            start_default.MouseEnter += new(start_default_MouseEnter_MouseUp); start_default.MouseUp += new(start_default_MouseEnter_MouseUp); start_default.KeyUp += new(start_default_MouseEnter_MouseUp);
+            start_default.MouseDown += new(start_default_MouseUp_KeyDown); start_default.KeyDown += new(start_default_MouseUp_KeyDown);
+            start_default.MouseLeave += new(start_default_MouseLeave);
 
-            start_expert.MouseEnter += start_expert_MouseEnter_MouseUp; start_expert.MouseUp += start_expert_MouseEnter_MouseUp; start_expert.KeyUp += start_expert_MouseEnter_MouseUp;
-            start_expert.MouseDown += start_expert_MouseDown_KeyDown; start_expert.KeyDown += start_expert_MouseDown_KeyDown;
-            start_expert.MouseLeave += start_expert_MouseLeave;
-
-
+            start_expert.MouseEnter += new(start_expert_MouseEnter_MouseUp); start_expert.MouseUp += new(start_expert_MouseEnter_MouseUp); start_expert.KeyUp += new(start_expert_MouseEnter_MouseUp);
+            start_expert.MouseDown += new(start_expert_MouseDown_KeyDown); start_expert.KeyDown += new(start_expert_MouseDown_KeyDown);
+            start_expert.MouseLeave += new(start_expert_MouseLeave);
         }
         private void AppMode_Closed(object sender, EventArgs e) {
             common.S.Save();

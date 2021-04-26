@@ -57,7 +57,7 @@ internal static partial class AutoDetect {
                 {
                 common.Home.DeviceState_Label.Text = "Unknown";
                 DeviceState_String += $"in an unknown state...\n{prop.strings.TroubleshootConnection}";
-                ErrorInfo = ("AD-DU", -1, DeviceState_String); // Auto Detect - Device 0 (No devices connected) 
+                common.ErrorInfo = ("AD-DU", -1, DeviceState_String); // Auto Detect - Device 0 (No devices connected) 
                 throw new Exception();
             }
 

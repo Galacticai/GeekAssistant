@@ -6,26 +6,31 @@ using System.Windows.Forms;
 
 namespace GeekAssistant {
     public partial class ToU : Form {
-
+        //private void Main(object sender, EventArgs e) { Show(); }
         public ToU() {
             InitializeComponent();
         }
         private void AssignEvents() {
-            ToU_Reject.MouseEnter += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.MouseDown += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.KeyDown += ToU_Reject_MouseEnter_MouseDown_KeyDown;
-            ToU_Reject.MouseLeave += ToU_Reject_MouseLeave_KeyUp;
-            ToU_Reject.KeyUp += ToU_Reject_MouseLeave_KeyUp;
-            ToU_Reject.Click += ToU_Reject_Click;
-            ToU_Accept.MouseEnter += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.MouseDown += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.KeyDown += ToU_Accept_MouseEnter_MouseDown_KeyDown;
-            ToU_Accept.MouseLeave += ToU_Accept_MouseLeave_KeyUp;
-            ToU_Accept.KeyUp += ToU_Accept_MouseLeave_KeyUp;
-            ToU_Accept.Click += ToU_Accept_Click;
-            AcceptCheck_ToU.CheckedChanged += AcceptCheck_ToU_CheckedChanged;
-            ToURead_Timer.Tick += ToURead_Timer_Tick;
+            ToU_Reject.MouseEnter += new(ToU_Reject_MouseEnter_MouseDown_KeyDown);
+            ToU_Reject.MouseDown += new(ToU_Reject_MouseEnter_MouseDown_KeyDown);
+            ToU_Reject.KeyDown += new(ToU_Reject_MouseEnter_MouseDown_KeyDown);
+            ToU_Reject.MouseLeave += new(ToU_Reject_MouseLeave_KeyUp);
+            ToU_Reject.KeyUp += new(ToU_Reject_MouseLeave_KeyUp);
+            ToU_Reject.Click += new(ToU_Reject_Click);
+
+            ToU_Accept.MouseEnter += new(ToU_Accept_MouseEnter_MouseDown_KeyDown);
+            ToU_Accept.MouseDown += new(ToU_Accept_MouseEnter_MouseDown_KeyDown);
+            ToU_Accept.KeyDown += new(ToU_Accept_MouseEnter_MouseDown_KeyDown);
+            ToU_Accept.MouseLeave += new(ToU_Accept_MouseLeave_KeyUp);
+            ToU_Accept.KeyUp += new(ToU_Accept_MouseLeave_KeyUp);
+            ToU_Accept.Click += new(ToU_Accept_Click);
+
+            AcceptCheck_ToU.CheckedChanged += new(AcceptCheck_ToU_CheckedChanged);
+
+            ToURead_Timer.Tick += new(ToURead_Timer_Tick);
         }
+
+        private Timer ToURead_Timer = new() { Interval = 1000 };
 
         public bool RunningAlready = false;
         protected override void OnFormClosing(FormClosingEventArgs e) {
@@ -35,7 +40,7 @@ namespace GeekAssistant {
             if (ToURead_Timer.Enabled) ToURead_Timer.Stop();
         }
 
-        public int ToURead_TimeAmount = 0;
+        public int ToURead_TimeAmount = 6;
         private void ToU_Load(object sender, EventArgs e) {
             AssignEvents();
 
@@ -62,14 +67,14 @@ namespace GeekAssistant {
                 ToU_Accept.Enabled = true;
                 //.BackColor = BackColor
                 ToU_Accept.Text = "✔";
-                ToU_Accept.Font = new Font("Segoe UI", 13);
+                ToU_Accept.Font = new Font("Segoe UI", 13f);
 
                 ToU_Accept.Select();
                 return;
             }
 
             if (common.V.Revision < 3) {
-                ToURead_Timer.Start();
+                ToURead_Timer.Enabled=true;
             } else { ////Skip the 6sec timer for #Dev version 
                 ToU_Accept.BackColor = BackColor;
                 ToURead_TimeAmount = 6;
@@ -94,15 +99,15 @@ namespace GeekAssistant {
             TermsOfUse_Box.SelectionLength = 0; //deselect everything
         }
 
-        private void ToU_Reject_MouseEnter_MouseDown_KeyDown(Object sender, EventArgs e) {
+        private void ToU_Reject_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
             ToU_Reject.ForeColor = GA_SetTheme.Current_bgColor();
         }
 
-        private void ToU_Reject_MouseLeave_KeyUp(Object sender, EventArgs e) {
+        private void ToU_Reject_MouseLeave_KeyUp(object sender, EventArgs e) {
             ToU_Reject.ForeColor = GA_SetTheme.Current_fgColor();
         }
 
-        private void ToU_Reject_Click(Object sender, EventArgs e) {
+        private void ToU_Reject_Click(object sender, EventArgs e) {
             common.ErrorInfo.code = "ToU-R-H"; // ToU Rejected Hide
             GA_HideAllForms.Run(true);
             if (GA_infoAsk.Run("Rejected the terms of use",
@@ -115,28 +120,26 @@ namespace GeekAssistant {
             }
         }
 
-        private void ToU_Accept_MouseEnter_MouseDown_KeyDown(Object sender, EventArgs e) {
+        private void ToU_Accept_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
             ToU_Accept.ForeColor = GA_SetTheme.Current_bgColor();
         }
-        private void ToU_Accept_MouseLeave_KeyUp(Object sender, EventArgs e) {
+        private void ToU_Accept_MouseLeave_KeyUp(object sender, EventArgs e) {
             ToU_Accept.ForeColor = GA_SetTheme.Current_fgColor();
         }
-        private void ToU_Accept_Click(Object sender, EventArgs e) {
-            if (DontShow_ToU.Checked) {
-                common.S.ToU_dontShow = true;
-                if (RunningAlready) {
-                    Close();
-                    return;
-                }
-                if (common.S.AppMode_dontshow) { common.Home.Show(); } else {
+        private void ToU_Accept_Click(object sender, EventArgs e) {
+            if (DontShow_ToU.Checked) common.S.ToU_dontShow = true;
+
+                if (RunningAlready) { Close(); return; }
+
+                if (common.S.AppMode_dontshow) { common.Home.Show(); } 
+                else {
                     common.AppMode.Show();
                     Close();
                 }
-            }
+             
         }
-        private void AcceptCheck_ToU_CheckedChanged(Object sender, EventArgs e) {
-            if (AcceptCheck_ToU.Checked & ToURead_TimeAmount == 6) {
-
+        private void AcceptCheck_ToU_CheckedChanged(object sender, EventArgs e) {
+            if (AcceptCheck_ToU.Checked & ToURead_TimeAmount == 6) { 
                 ToU_Accept.Enabled = true;
                 ToU_Accept.BackColor = BackColor;
             } else {
@@ -145,11 +148,18 @@ namespace GeekAssistant {
             }
         }
 
-        private void ToURead_Timer_Tick(Object sender, EventArgs e) {
+        private void ToURead_Timer_Tick(object sender, EventArgs e) {
 
             ToU_Accept.BackColor = ButtonsBG_UI.BackColor;
+
+            //ToURead_TimeAmount += 1;
+            //if (ToURead_TimeAmount == 5) {
+            //    ToURead_Timer.Enabled = false;
+
+            //}
+
             if (ToURead_TimeAmount == 5) {
-                ToURead_Timer.Stop();
+                ToURead_Timer.Enabled = false;
                 ToURead_TimeAmount += 1;
                 ToU_Accept.Text = $"&ACCEPT ({(6 - ToURead_TimeAmount)})";
                 if (ToURead_TimeAmount == 6) {

@@ -2,10 +2,10 @@
 internal static partial class GA_PleaseWait {
     public static void Run(bool Enable) {
         if (Enable) {
-            PleaseWait.Show();
+            common.PleaseWait.Show();
         } else {
-            PleaseWait.UserClosing = false;
-            PleaseWait.Close();
+            common.PleaseWait.UserClosing = false;
+            common.PleaseWait.Close();
         }
     }
 }

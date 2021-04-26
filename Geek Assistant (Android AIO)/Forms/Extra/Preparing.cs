@@ -9,7 +9,7 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            CheckADBProcess_Timer.Tick += CheckADBProcess_Timer_Tick;
+            CheckADBProcess_Timer.Tick += new(CheckADBProcess_Timer_Tick);
         }
         private Timer CheckADBProcess_Timer = new() { Interval = 100 };
         private void Preparing_Load(object sender, EventArgs e) {

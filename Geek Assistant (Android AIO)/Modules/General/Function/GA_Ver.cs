@@ -1,4 +1,8 @@
 ﻿
+using System.Diagnostics;
+using System.Reflection;
+using System.Windows.Forms;
+
 internal static partial class GA_Ver {
     /// <summary>
     /// Create a customized version string accordingly or vX.x if not specified
@@ -13,48 +17,34 @@ internal static partial class GA_Ver {
     /// <item>(Other) = vX.x</item>
     /// </list>
     /// </returns>
-    public static string Run(string level = "") {
+    public static string Run(string level = null) {
         string cDateByNHKomaiha = "©2021 By NHKomaiha";
-        string result = $"v{V.Major}.{V.Minor}";
-        switch (V.Revision) {
-        // Case 0
-        // GAver &= Nothing '(Normal)
+        string result = $"v{common.V.Major}.{common.V.Minor}";
+        switch (common.V.Revision) { 
         case 1: {
             result += " #Beta";
-            break;
-        }
-
+            break; }
         case 2: {
             result += " #Test";
-            break;
-        }
-
+            break; }
         case 3: {
             result += " #Dev";
-            break;
-        }
+            break; }
         }
 
-        switch (level ?? "") {
+        switch (level) {
         case "log": {
             result = $"Geek Assistant {result} {cDateByNHKomaiha}.";
-            break;
-        }
-
+            break; } 
         case "Main": {
             result += $" {cDateByNHKomaiha}.";
-            break;
-        }
-
+            break; } 
         case "MainTitle": {
             result = $"Geek Assistant — {result}";
-            break;
-        }
-
-        case "ToU": {
-            result = $"{My.Application.Info.Copyright}. {result}";
-            break;
-        }
+            break; } 
+        case "ToU": { 
+            result = $"{common.C}. {result}";
+            break; } 
         }
 
         return result;

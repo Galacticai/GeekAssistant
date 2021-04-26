@@ -40,11 +40,9 @@ internal static partial class InitializeBusybox {
         GA_Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c './data/busybox --install'");
         GA_Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
-        if (dev.BusyBox.Available) {
-            MessageBox.Show("busybox available");
-        } else {
-            MessageBox.Show("busybox not installed");
-        }
+        if (dev.BusyBox.Available) MessageBox.Show("busybox available");
+        else MessageBox.Show("busybox not installed");
+         
         // adb shell mkdir /data/busybox
         // adb push busybox /data/busybox
         // adb shell
@@ -65,8 +63,7 @@ internal static partial class InitializeBusybox {
         // ErrorInfo = (0, "Busybox is set and ready for use.")
         Finish_madb_InstallBusyboxReady:
         ;
-        if (!silent)
-            DoMsg(ErrorInfo.lvl, ErrorInfo.msg, 1);
-        Working = false;
+        if (!silent) GA_Msg.DoMsg(common.ErrorInfo.lvl, common.ErrorInfo.msg, 1);
+        common.Working = false;
     }
 }
