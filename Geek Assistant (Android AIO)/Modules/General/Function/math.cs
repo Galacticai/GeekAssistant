@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
 using Microsoft.VisualBasic.CompilerServices; // Install-Package Microsoft.VisualBasic
@@ -135,5 +137,22 @@ internal static partial class math {
     public static object sinSmoothStart(double x, double scale) {
         ForceInRange(x, 0d, scale); // force x between 0一一一s
         return scale * Math.Sin(x * (Math.PI / (2d * scale)) + Math.PI / 2d);
+    }
+     
+
+    /// <returns>True if both inputs are equal (Brightness matrix hash)</returns>
+    public static bool CompareImagesBritghtnessMatrix(Image input1, Image input2) =>
+        GetImageHash(input1) == GetImageHash(input2) ? true : false; 
+    private static List<bool> GetImageHash(Image input) {
+        List<bool> lResult = new();
+        //create new image with 16x16 pixel
+        Bitmap bmpMin = new(input, new Size(16, 16));
+        for (int j = 0; j < bmpMin.Height; j++) {
+            for (int i = 0; i < bmpMin.Width; i++) {
+                //reduce colors to true / false                
+                lResult.Add(bmpMin.GetPixel(i, j).GetBrightness() < 0.5f);
+            }
+        }
+        return lResult;
     }
 }

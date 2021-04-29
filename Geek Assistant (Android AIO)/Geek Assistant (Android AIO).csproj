@@ -27,22 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Res\Images\x24\Info-Blue-24.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Res\Images\x24\Info-Blue-dark-24.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Res\Images\x64\Info-Blue-64.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Res\Images\x64\Info-Blue-dark-64.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
     <PackageReference Include="dot-net-transitions" Version="1.2.1" />
     <PackageReference Include="FluentTransitions" Version="2.0.1" />
@@ -114,11 +98,66 @@
     <Compile Update="Forms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_FeatureUnavailable.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_GetCurrentFormInstance.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_HideAllForms.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_Log.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_PleaseWait.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_PrepareAppdata.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_Reset.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_SetProgressText.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_SetTooltipInfo.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\GA_SwitchTheme.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\inf.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\General\CustomObjects\SwitchButton.cs">
       <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\CustomObjects\TransparentTextBox.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\Animate.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Function\c.cs">
-      <CustomToolNamespace></CustomToolNamespace>
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\GA_SwitchButton_Style.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\GA_Ver.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\math.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\txt.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="prop\RunGeekAssistant.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>

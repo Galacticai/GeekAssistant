@@ -153,9 +153,9 @@ namespace prop {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Question_Blue_Dark_64 {
+        internal static System.Drawing.Bitmap Question_Blue_dark_64 {
             get {
-                object obj = ResourceManager.GetObject("Question_Blue_Dark_64", resourceCulture);
+                object obj = ResourceManager.GetObject("Question_Blue_dark_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

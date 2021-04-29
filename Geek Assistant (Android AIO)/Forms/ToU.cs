@@ -45,7 +45,7 @@ namespace GeekAssistant.Forms {
         private void ToU_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            GA_SetTheme.Run(Name);
+            GA_SetTheme.Run(this);
 
             Copyright_Label.Text = GA_Ver.Run("ToU()");
 
@@ -58,7 +58,7 @@ namespace GeekAssistant.Forms {
             //Accept || xy // Size xy: 337, 405 // 173, 46
             //Reject || xy // Size xy: 204, 405 // 133, 46
             if (RunningAlready) {
-                SetBounds((Home.Width / 2) - (Width / 2) + Home.Location.X, Home.Top, Width, Height);
+                GA_CenterToHomeBounds.Run(this);
                 AcceptCheck_ToU.Visible = false;
                 DontShow_ToU.Visible = false;
                 ToU_Reject.Text = "✖";

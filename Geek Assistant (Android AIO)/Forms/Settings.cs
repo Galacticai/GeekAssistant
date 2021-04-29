@@ -96,9 +96,10 @@ namespace GeekAssistant.Forms {
         private void Settings_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            Home Home = new Home();
-            GA_SetTheme.Run(Name);
-            SetBounds((Home.Width / 2) - (Width / 2) + Home.Location.X, Home.Top, Width, Height);
+            GA_CenterToHomeBounds.Run(this);
+
+
+            GA_SetTheme.Run(this);
 
             ResetGA_Settings_CheckBox.Checked = false;
             ResetGA_LogsOnly_CheckBox.Checked = false;

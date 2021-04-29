@@ -56,7 +56,7 @@ namespace GeekAssistant.Forms {
                 else if (c.S.AppMode_moderate) AppMode_Do(1);
                 Close();
             }
-            GA_SetTheme.Run(Name);
+            GA_SetTheme.Run(this);
         }
 
         private void AppMode_Do(int StartupLevel) {
@@ -77,11 +77,11 @@ namespace GeekAssistant.Forms {
             case 2:
                 System.Media.SystemSounds.Beep.Play();
                 inf.Run(inf.lvls.Information, "Expert Mode",
-                          "Come on.. Experts don't need assitance.", 
-                        (null, "OK"));
+                          "Come on.. Experts don't need assitance.",
+                         ("OK", null));
                 inf.Run(inf.lvls.Information, "Expert Mode",
                          "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.", 
-                       (null, "Continue"));
+                       ("Continue", null ));
                 start_default.PerformClick();
                 break;
             }

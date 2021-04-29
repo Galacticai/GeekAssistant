@@ -22,7 +22,7 @@ internal static partial class inf { //inform
     /// </summary>
     public static (string YesButton, string NoButton) ButtonText;
     /// <summary>
-    /// Use index 1 as dark color and 0 as light color
+    /// Use index [0] as light color and [1] as dark color
     /// </summary>
     public static (Image[] icon, Color[] color) theme;
     public enum lvls { Information = -1, Warn = 0, Error = 1, FatalError = 10, Question = 2 }
@@ -74,8 +74,8 @@ internal static partial class inf { //inform
                            string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default,
                            Image[] icon = null,
-                           Color[] color = null)
-            => Do(lvl, title, msg, YesNoButtons, null, icon, color);
+                           Color[] color = null) 
+             => Do(lvl, title, msg, YesNoButtons, null, icon, color);
      
     private static bool Do(lvls lvl,
                            string title, string msg, 
@@ -116,13 +116,21 @@ internal static partial class inf { //inform
              lvls.Question => infIconRes.Question, // 2
              _ => infIconRes.Information  // -1
          }; 
-    public static Color infColor (Image icon) { 
-        if (icon == infIconRes.Warn) return c.colors.warnYellow;// 0
-        else if (icon == infIconRes.Error) return c.colors.errRed; // 1 | 10
-        else if (icon == infIconRes.Question) return c.colors.questBlue;//2
-        /*if (icon == infIcon.Information)*/
-        else return c.colors.infBlue; //-1
-    }
+    public static Color infColor (lvls lvl) =>
+         lvl switch {
+             //lvls.Information => infIcon.Information, // -1
+             lvls.Warn => c.colors.warnYellow, // 0
+             lvls.Error | lvls.FatalError => c.colors.errRed, // 1 | 10
+             lvls.Question => c.colors.questBlue, // 2
+             _ => c.colors.infBlue  // -1
+         }; 
+
+        //if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Warn)) return c.colors.warnYellow;// 0
+        //else if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Error)) return c.colors.errRed; // 1 | 10
+        //else if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Question)) return c.colors.questBlue;//2
+        ///*if (icon == infIcon.Information)*/
+        //else return c.colors.infBlue; //-1
+    
     public struct infIconRes { 
         public static Image Information { get => c.S.DarkTheme ? prop.x64.Info_Blue_dark_64 : prop.x64.Info_Blue_64; } 
         public static Image Warn { get => c.S.DarkTheme ? prop.x64.Info_Yellow_dark_64 : prop.x64.Info_Yellow_64; }

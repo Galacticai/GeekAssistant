@@ -1,9 +1,17 @@
-﻿
+﻿using GeekAssistant.Forms;
+using System.Windows.Forms;
+
 internal static partial class GA_PleaseWait {
+    private static PleaseWait PleaseWait = new PleaseWait();
     public static void Run(bool Enable) {
-        GeekAssistant.Forms.PleaseWait PleaseWait = new GeekAssistant.Forms.PleaseWait();
-        if (Enable) PleaseWait.Show();
-        else {
+        if (Enable) {
+            if (!PleaseWait.IsDisposed) PleaseWait.Dispose();
+            PleaseWait = new PleaseWait();
+            PleaseWait.Show(); 
+        } else {
+            foreach (Form pw in Application.OpenForms)
+                if (pw.GetType() == typeof(PleaseWait))
+                    PleaseWait = (PleaseWait)pw;
             PleaseWait.UserClosing = false;
             PleaseWait.Close();
         }

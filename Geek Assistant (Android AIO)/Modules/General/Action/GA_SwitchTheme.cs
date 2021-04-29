@@ -5,24 +5,48 @@ using GeekAssistant.Forms;
 
 internal static partial class GA_SetTheme {
     private static Timer HomeTheme_delayTimer = new() { Interval = 100 };
-    public static void Run(string FormName, bool initiating = false) {
-        Preparing Preparing = new();
-        AppMode AppMode = new();
-        Home Home = new();
 
+    private static PleaseWait pw = null;
+    private static Preparing p = null;
+    private static AppMode am = null;
+    private static Donate d = null;
+    private static Info i = null;
+    private static Home h = null;
+    private static Settings s = null;
+    private static ToU t = null;
+    public static void Run(Form f, bool initiating = false) {
+        //Form Preparing = Application.OpenForms[0];
+        //Form AppMode = new();
+        //Form Home = new();
+        //var form = f;
         //FormName = FormName[..(FormName.Length-2)]; //remove the () at the end which exists in C# form.Name
         initiatingbool = initiating;
-        if (FormName == new PleaseWait().Name) PleaseWait_Theme();
-        else if (FormName == new Preparing().Name) {
-            Preparing.Preparing_Label.ForeColor = c.colors.fg;
-            Preparing.BackColor = c.colors.bg;
-        } else if (FormName == new AppMode().Name) {
-            Control am = AppMode;
-            SetControlTheme(ref am);
-            AppMode.startup_dontShow.ForeColor = c.colors.fg;
-        } else if (FormName == new Donate().Name) Donate_Theme();
-        else if (FormName == new Info().Name) Info_Theme();
-        else if (FormName == new Home().Name) {
+        switch (f) { 
+        case PleaseWait:
+            pw = (PleaseWait)f;
+            PleaseWait_Theme(); 
+            break;
+        case Preparing:
+            p = (Preparing)f;
+            p.Preparing_Label.ForeColor = c.colors.fg;
+            p.BackColor = c.colors.bg;
+            break;
+        case AppMode:
+            am = (AppMode)f;
+            //Control am = AppMode;
+            SetControlTheme(am);
+            am.startup_dontShow.ForeColor = c.colors.fg;
+            break;
+        case Donate:
+            d = (Donate)f;
+            Donate_Theme();
+            break;
+        case Info:
+            i = (Info)f;
+            Info_Theme();
+            break;
+        case Home:
+            h = (Home)f;
             HomeTheme_delayTimer.Tick += new(HomeTheme_delayTimer_Tick);
             if (c.S.VerboseLogging) {
                 string ThemeString = "dark theme";
@@ -32,23 +56,31 @@ internal static partial class GA_SetTheme {
             }
             if (!initiating & c.S.PerformAnimations) {
                 if (c.S.DarkTheme) {
-                    Home.SwitchTheme_Back_UI.Top = -Home.SwitchTheme_Back_UI.Height;
-                    Animate.Run(  Home.SwitchTheme_Back_UI, "Top", Home.Height, 1000);
+                    h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
+                    Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
                 } else {
-                    Home.SwitchTheme_Back_UI.Top = Home.Height;
-                    Animate.Run(  Home.SwitchTheme_Back_UI, "Top", -Home.SwitchTheme_Back_UI.Height, 1000);
+                    h.SwitchTheme_Back_UI.Top = new Home().Height;
+                    Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
                 }
             }
             HomeTheme_delayTimer.Start();
-        } else if (FormName == new Settings().Name) Settings_Theme();
-        else if (FormName == new ToU().Name) ToU_Theme();
+            break;
+        case Settings:
+            s = (Settings)f;
+            Settings_Theme();
+            break;
+        case ToU:
+            t = (ToU)f;
+            ToU_Theme();
+            break;
+        }
 
     }
 
 
     #region Donate
     private static void Donate_Theme() {
-        Donate d = new();
+        //Donate d = new();
         SetControlsArrTheme(new Control[] { d, d.BitcoinAddress, d.BitcoinNote });
         {
             if (c.S.DarkTheme) {
@@ -74,7 +106,7 @@ internal static partial class GA_SetTheme {
 
     #region Info
     private static void Info_Theme() {
-        Info i = new();
+        //Info i = new();
         SetControlsArrTheme(new Control[] { i, i.info_PictureBox, i.msg_Textbox, i.No_Button });
         {
             if (c.S.DarkTheme) {
@@ -99,7 +131,7 @@ internal static partial class GA_SetTheme {
     #region Home 
     private static bool initiatingbool = false;
     private static void HomeTheme_delayTimer_Tick(object sender, EventArgs e) {
-        Home h = new();
+        //Home h = new();
         Control[] Controls_array = new Control[] {
             h,
             h.log,
@@ -197,13 +229,13 @@ internal static partial class GA_SetTheme {
 
     #region PleaseWait
     private static void PleaseWait_Theme() {
-        PleaseWait p = new();
-        SetControlsArrTheme(new Control[] { p, p.PleaseWait_ProgressText });
+        //PleaseWait p = new();
+        SetControlsArrTheme(new Control[] { pw,  pw.PleaseWait_ProgressText });
 
-        var p_spb = p.StopProcess_Button;
+        var p_spb = pw.StopProcess_Button;
         var p_spb_fa = p_spb.FlatAppearance;
         if (c.S.DarkTheme) {
-            p.PleaseWait_text.ForeColor = Color.FromArgb(0, 200, 0);
+            //p.PleaseWait_text.ForeColor = Color.FromArgb(0, 200, 0);
             {
                 p_spb.ForeColor = Color.FromArgb(230, 255, 230);
                 p_spb.BackColor = Color.FromArgb(55, 28, 25);
@@ -213,8 +245,8 @@ internal static partial class GA_SetTheme {
                 }
             }
         } else {
-            p.PleaseWait_text.ForeColor = Color.FromArgb(0, 100, 0);
-            p.StopProcess_Button.BackColor = Color.FromArgb(255, 228, 225);
+            pw.PleaseWait_text.ForeColor = Color.FromArgb(0, 100, 0);
+            pw.StopProcess_Button.BackColor = Color.FromArgb(255, 228, 225);
             {
                 p_spb.BackColor = Color.FromArgb(255, 228, 225);
                 p_spb.ForeColor = Color.DarkRed;
@@ -229,7 +261,7 @@ internal static partial class GA_SetTheme {
 
     #region Settings
     private static void Settings_Theme() {
-        Settings s = new();
+        //Settings s = new();
         SetControlsArrTheme(new Control[] { s, s.ResetGA_GroupBox, s.Close_Button });
 
         var s_rsa = s.ResetGA_SelectAll;
@@ -275,7 +307,7 @@ internal static partial class GA_SetTheme {
 
     #region ToU
     private static void ToU_Theme() {
-        ToU t = new();
+        //ToU t = new();
         SetControlsArrTheme(new Control[] { t, t.TermsOfUse_Box, t.ToU_Reject, t.ToU_Accept });
 
         // Do this hell
@@ -304,20 +336,18 @@ internal static partial class GA_SetTheme {
 
     private static void SetControlsArrTheme(Control[] ControlsObj) {
         for (int i = 0; i < ControlsObj.Length; i++)
-             SetControlTheme(ref ControlsObj[i]); 
-    }
-
-    private static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) { 
-        for (int i =0;i<ControlsObj.Length;i++)  
-              SetControlTheme_Metro(ref ControlsObj[i]); 
-    }
-
-    private static void SetControlTheme(ref Control ControlObj) {
+             SetControlTheme(  ControlsObj[i]); 
+    } 
+    private static void SetControlTheme(  Control ControlObj) {
         Animate.Run(  ControlObj, "ForeColor", c.colors.fg);
         Animate.Run(  ControlObj, "BackColor", c.colors.bg);
     }
 
-    private static void SetControlTheme_Metro(ref MetroFramework.Interfaces.IMetroControl ControlObj) {
+    private static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
+        for (int i = 0; i < ControlsObj.Length; i++)
+            SetControlTheme_Metro(  ControlsObj[i]);
+    }
+    private static void SetControlTheme_Metro(  MetroFramework.Interfaces.IMetroControl ControlObj) {
         ControlObj.Theme = c.colors.Metro;
         // Cannot animate "Theme" 'Transition.run(ControlObj, "Theme", Current_Theme_Metro(), New TransitionType_CriticalDamping(500))
     }

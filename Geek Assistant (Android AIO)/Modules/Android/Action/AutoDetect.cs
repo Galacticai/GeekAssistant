@@ -1,11 +1,7 @@
 ﻿using System;
+using System.Windows.Forms; 
 using GeekAssistant.Forms;
 using Managed.Adb;
-
-internal static partial class AutoDetect {
-    // Private ErrorInfo As (lvl As Integer, msg As String)
-    public static void Run(bool Silent = false) {
-        // madbStart(True).Start()
 
         // (ROOT) 
         // Remove screen lock: "adb shell su -c rm /data/system/*.key" && "adb shell su -c rm /data/system/locksettings*"
@@ -13,7 +9,15 @@ internal static partial class AutoDetect {
         // Clear dulvik cache: "adb shell su -c rm -R /data/dalvik-cache"
         // Factory Reset: "adb shell su -c recovery --wipe_data"
 
-        Home Home = new Home();
+internal static partial class AutoDetect {
+
+    private static Home Home = null;
+    public static void Run(bool Silent = false) {
+        //Get current Home instance 
+        foreach (Form h in Application.OpenForms)
+            if (h.GetType() == typeof(Home))
+                Home = (Home)h;
+         
 
         inf.currentTitle = "Auto Detect";
         c.Working = true;
@@ -22,18 +26,17 @@ internal static partial class AutoDetect {
             GA_Log.LogEvent("Auto Detect", 2);
         Home.bar.Value = 0;
         try {
-            if (!Silent)
-                GA_SetProgressText.Run("Clearing previous device information.", -1);
+            if (!Silent) GA_SetProgressText.Run("Clearing previous device information.", -1);
             inf.detail = ("AD-CD", inf.lvls.FatalError, inf.currentTitle, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
             GA_adb_Functions.ResetDeviceInfo();
+
             Home.bar.Value = 2;
-            if (!Silent)
-                GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
+            if (!Silent) GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
             inf.detail = ("AD-PE", inf.lvls.FatalError, inf.currentTitle, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
             madb.madbBridge();
+
             Home.bar.Value = 5;
-            if (!Silent)
-                GA_SetProgressText.Run("Counting the connected devices...", -1);
+            if (!Silent) GA_SetProgressText.Run("Counting the connected devices...", -1);
             inf.detail = ("AD-Dc", inf.lvls.FatalError, inf.currentTitle, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
             switch (madb.GetDeviceCount()) {
             case 0: {
@@ -158,8 +161,7 @@ internal static partial class AutoDetect {
                 if (!Silent) GA_SetProgressText.Run("Fetching busybox availability...", -1);
                 c.S.DeviceBusyBoxReady = dev.BusyBox.Available;
                 c.S.Save();
-                if (!Silent)
-                    GA_Log.LogAppendText($" | Busybox available: {txt.ConvertBoolToYesNo(c.S.DeviceBusyBoxReady)}", 1);
+                if (!Silent) GA_Log.LogAppendText($" | Busybox available: {txt.ConvertBoolToYesNo(c.S.DeviceBusyBoxReady)}", 1);
                 Home.bar.Value = 25;
 
                 inf.detail = ("AD-D-blu", inf.lvls.Error, inf.currentTitle, "Failed to check your device bootloader unlock support.", null); // Auto Detect - Device - bootloader unlock 
@@ -171,8 +173,7 @@ internal static partial class AutoDetect {
                 c.S.Save();
                 Home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
                 Home.bar.Value = 27;
-                if (!Silent)
-                    GA_Log.LogAppendText($" | Bootloader unlock allowed: {txt.ConvertBoolToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                if (!Silent) GA_Log.LogAppendText($" | Bootloader unlock allowed: {txt.ConvertBoolToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
                 Home.bar.Value = 30;
 
                 inf.detail = ("AD-D-al", inf.lvls.Error, inf.currentTitle, "Failed to check your device API level.", null);// Auto Detect - Device - API level  
@@ -185,11 +186,9 @@ internal static partial class AutoDetect {
                 c.S.Save();
                 inf.detail = ("AD-D-atv", inf.lvls.Error, inf.currentTitle, "Failed to convert the API level to Android version.", null);// Auto Detect - Device - API level version
                 Home.AndroidVersion_ComboBox.Text = GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1];
-                if (!Silent)
-                    GA_SetProgressText.Run("Converting API level to Android name...", -1);
+                if (!Silent) GA_SetProgressText.Run("Converting API level to Android name...", -1);
                 Home.bar.Value = 33;
-                if (!Silent)
-                    GA_Log.LogAppendText($" | Android version: {GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
+                if (!Silent) GA_Log.LogAppendText($" | Android version: {GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
                 Home.bar.Value = 35;
 
                 inf.detail = ("AD-D-b", inf.lvls.Error, inf.currentTitle, "Failed to check your device battery level.", null); // Auto Detect - Device - battery 

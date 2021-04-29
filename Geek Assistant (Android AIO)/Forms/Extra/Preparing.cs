@@ -14,7 +14,7 @@ namespace GeekAssistant.Forms {
         private Timer CheckADBProcess_Timer = new() { Interval = 100 };
         private void Preparing_Load(object sender, EventArgs e) {
             AssignEvents();
-            GA_SetTheme.Run(Name, true);
+            GA_SetTheme.Run(this, true);
             Preparing_Label.Text = txt.RandomWorkText();
             CheckADBProcess_Timer.Enabled = true;
         }

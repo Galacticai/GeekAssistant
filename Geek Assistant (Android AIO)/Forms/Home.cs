@@ -214,11 +214,13 @@ namespace GeekAssistant.Forms {
             Preparing.BringToFront();
             HomeLoad_Delay_Timer.Enabled = true;
         }
+        private bool OneTimebool_HomeLoad_Delay_Timer_Tick=true;
         private void HomeLoad_Delay_Timer_Tick(object sender, EventArgs e) {
+            
+            GA_SetTheme.Run(this, true); //Set width to avoid using the width selected while developing
+            if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
 
             HomeLoad_Delay_Timer.Enabled = false;
-            GA_SetTheme.Run(Name, true); //Set width to avoid using the width selected while developing
-
             Text = GA_Ver.Run("MainTitle");
             GA_About_Label.Text = GA_Ver.Run("Main");
             log.Text = GA_Ver.Run("log");
@@ -593,15 +595,16 @@ namespace GeekAssistant.Forms {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, Feedback_Button, "Send Feedback", $"Reach out to the developer.");
         }
         private void Feedback_Button_Click(object sender, EventArgs e) {
-            if (inf.Run(inf.lvls.Question, "Send Feedback",
+            if (inf.Run(inf.lvls.Question, 
+                        "Send Feedback",
                           $"Redirecting you to Geek Assistant issues section on github...\n\nDo you want To Continue?",
-                        ("Continue", "Close"),
-                        new Image[2] { prop.x64.Smile_dark_64, prop.x64.Smile_64 },
-                        new Color[2] { Color.FromArgb(191, 255, 191), Color.FromArgb(0, 102, 71) }))
+                        ("Continue", "Close"), 
+                        new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
+                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) }))
                 Process.Start(new ProcessStartInfo("https://github.com/NHKomaiha/Geek-Assistant/issues") { UseShellExecute = true, Verb = "open" });
         }
         private void SwitchTheme_Button_Click(object sender, EventArgs e) {
-            GA_SetTheme.Run(Name);
+            GA_SetTheme.Run(this);
             c.S.DarkTheme = !c.S.DarkTheme;
         }
         private void SwitchTheme_Button_MouseEnter(object sender, EventArgs e) {

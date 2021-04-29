@@ -55,20 +55,32 @@ namespace GeekAssistant.Forms {
             }
             if (!string.IsNullOrEmpty(inf.ButtonText.NoButton))
                 No_Button.Text = inf.ButtonText.NoButton;
-            else No_Button.Text = "Close";
+            else {
+                if (string.IsNullOrEmpty(inf.ButtonText.YesButton)) {
+                    Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
+                    Yes_Button.Anchor = No_Button.Anchor;
+                    No_Button.Visible = false;
+                    Yes_Button.Visible = true;
+                    Yes_Button.Text = "Close";
+                }
+            }
 
 
-            if (inf.theme.color != null) //failsafe (Don't merge failsafe layers)
-                if (inf.theme.color.Length == 2) //2nd failsafe 
-                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) //3rd failsafe
-                         title_Label.ForeColor = inf.theme.color[txt.ConvertBoolToInt(c.S.DarkTheme)];
+            info_PictureBox.Image = inf.infIcon(inf.detail.lvl);
+            title_Label.ForeColor = inf.infColor(inf.detail.lvl);
+             
+            //set theme.icon
             if (inf.theme.icon != null) //failsafe (Don't merge failsafe layers)
                 if (inf.theme.icon.Length == 2) //2nd failsafe 
                     if (inf.theme.icon[0] != null & inf.theme.icon[1] != null) //3rd failsafe
                          info_PictureBox.Image = inf.theme.icon[txt.ConvertBoolToInt(c.S.DarkTheme)];
 
-            info_PictureBox.Image = inf.infIcon(inf.detail.lvl);
-            title_Label.ForeColor = inf.infColor(info_PictureBox.Image);
+            //set theme.color
+            if (inf.theme.color != null) //failsafe (Don't merge failsafe layers)
+                if (inf.theme.color.Length == 2) //2nd failsafe 
+                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) //3rd failsafe
+                         title_Label.ForeColor = inf.theme.color[txt.ConvertBoolToInt(c.S.DarkTheme)];
+
             Text = inf.WindowTitle;
             title_Label.Text = inf.detail.title;
             msg_Textbox.Text = inf.detail.msg; 
@@ -93,10 +105,8 @@ namespace GeekAssistant.Forms {
                 Height += 75;
                 break;
             }
-            Home Home = new Home();
-            SetBounds((Home.Width / 2) - (Width / 2) + Home.Location.X, Home.Top, Width, Height);
-             
-            GA_SetTheme.Run(Name);
+            GA_CenterToHomeBounds.Run(this); 
+            GA_SetTheme.Run(this);
         }
 
         private void Yes_Button_Mousedown(object sender, EventArgs e) {
