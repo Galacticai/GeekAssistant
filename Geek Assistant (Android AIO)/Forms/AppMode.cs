@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
@@ -15,12 +9,12 @@ namespace GeekAssistant.Forms {
         }
 
         private void AssignEvents() {
-             FormClosed += new(AppMode_Closed);
-             GotFocus += new(AppMode_GotFocus);
-             GotFocus += new(AppMode_GotFocus);
+            FormClosed += new(AppMode_Closed);
+            GotFocus += new(AppMode_GotFocus);
+            GotFocus += new(AppMode_GotFocus);
             LostFocus += new(AppMode_GotFocus);
-             MouseEnter += new(AppMode_GotFocus);
-             MouseLeave += new(AppMode_GotFocus);
+            MouseEnter += new(AppMode_GotFocus);
+            MouseLeave += new(AppMode_GotFocus);
 
             startup_dontShow.MouseEnter += new(startup_dontShow_MouseEnter);
             startup_dontShow.MouseLeave += new(startup_dontShow_MouseLeave);
@@ -52,14 +46,14 @@ namespace GeekAssistant.Forms {
             start_default.ForeColor = SystemColors.Highlight;
             start_expert.ForeColor = Color.Firebrick;
 
-        } 
+        }
 
         private void AppMode_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            if (c.S.AppMode_dontshow) { 
+            if (c.S.AppMode_dontshow) {
                 if (c.S.AppMode_newbie) AppMode_Do(0);
-                else if (c.S.AppMode_moderate) AppMode_Do(1); 
+                else if (c.S.AppMode_moderate) AppMode_Do(1);
                 Close();
             }
             GA_SetTheme.Run(Name);
@@ -70,19 +64,24 @@ namespace GeekAssistant.Forms {
             case 0:
                 //common.S.startup_newbie = true
                 //common.S.startup_moderate = false
-                c.ErrorInfo.code = "NM-00";
+                inf.detail.code = "NM-00";
                 GA_FeatureUnavailable.Run("Newbie Mode");
                 break;
             case 1:
                 c.S.AppMode_newbie = false;
                 c.S.AppMode_moderate = true;
-                c.Home.Show();
+                Home Home = new Home();
+                Home.Show();
                 Close();
                 break;
             case 2:
                 System.Media.SystemSounds.Beep.Play();
-                MessageBox.Show("Come on.. Experts don't need assitance.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                MessageBox.Show("Okay... There's no \"Expert Mode\". You will be redirected to the default mode.", "Expert Mode - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                inf.Run(inf.lvls.Information, "Expert Mode",
+                          "Come on.. Experts don't need assitance.", 
+                        (null, "OK"));
+                inf.Run(inf.lvls.Information, "Expert Mode",
+                         "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.", 
+                       (null, "Continue"));
                 start_default.PerformClick();
                 break;
             }
@@ -106,14 +105,14 @@ namespace GeekAssistant.Forms {
                 startup_dontShow.ForeColor = Color.White;
             } else {
                 startup_dontShow.BackColor = Color.Transparent;
-                startup_dontShow.ForeColor = GA_SetTheme.Current_fgColor();
+                startup_dontShow.ForeColor = c.colors.fg;
             }
         }
         private void startup_dontShow_MouseDown(object sender, EventArgs e) {
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseDown_KeyDown(ref startup_dontShow);
+            GA_SwitchButton_Style.MouseDown(startup_dontShow);
         }
         private void startup_dontShow_Mouseup(object sender, EventArgs e) {
-            GA_SwitchButton_Style.SettingsButtonSwitch_Style_MouseUp_KeyUp(ref startup_dontShow);
+            GA_SwitchButton_Style.MouseUp(startup_dontShow);
         }
         private void startup_dontShow_Click(object sender, EventArgs e) {
             if (c.S.AppMode_dontshow) {

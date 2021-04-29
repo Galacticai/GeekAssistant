@@ -13,13 +13,13 @@ internal static partial class fbCMD {
     public static string fbDo(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
-            c.ErrorInfo.code = $"{c.ErrorInfo.code}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
-            GA_Msg.DoMsg(10, "Unable to run the fastboot command.", 2);
+            inf.detail.code = $"{inf.detail.code}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
+            inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the fastboot command.");
         }
 
         if (!CheckConnectionIsCompatible.fbIsReady(txt.GA_GetErrorInitials())) {
-            c.ErrorInfo.code = $"{c.ErrorInfo.code}-fbD0"; // error code (last process) - adb device 0 (no device)
-            GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 2);
+            inf.detail.code = $"{inf.detail.code}-fbD0"; // error code (last process) - adb device 0 (no device)
+            inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
         }
 
         // kill all fastboot instances before starting a new one
@@ -30,15 +30,15 @@ internal static partial class fbCMD {
         }
 
         // <Failsafe
+        var fb_p = fb_process.StartInfo;
         {
-            var withBlock = fb_process.StartInfo;
-            withBlock.FileName = $@"{c.GA_tools}\fastboot.exe";
-            withBlock.Arguments = arguments;
-            withBlock.UseShellExecute = false;
-            withBlock.CreateNoWindow = true;
-            withBlock.RedirectStandardOutput = true;
-            withBlock.RedirectStandardInput = true;
-            withBlock.RedirectStandardError = true;
+            fb_p.FileName = $@"{c.GA_tools}\fastboot.exe";
+            fb_p.Arguments = arguments;
+            fb_p.UseShellExecute = false;
+            fb_p.CreateNoWindow = true;
+            fb_p.RedirectStandardOutput = true;
+            fb_p.RedirectStandardInput = true;
+            fb_p.RedirectStandardError = true;
         }
         // Start
         fb_process.Start();

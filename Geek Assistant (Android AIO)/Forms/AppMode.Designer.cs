@@ -161,7 +161,7 @@ namespace GeekAssistant.Forms {
             this.startup_dontShow.Text = "&Remember && Don\'t Ask Again";
             this.startup_dontShow.UseVisualStyleBackColor = false;
             // 
-            // AppMode
+            // AppMode()
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,7 +181,7 @@ namespace GeekAssistant.Forms {
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "AppMode";
+            this.Name = "AppMode()";
             this.Padding = new System.Windows.Forms.Padding(23);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application Mode — Geek Assistant";

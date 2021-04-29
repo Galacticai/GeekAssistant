@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
@@ -22,12 +16,13 @@ namespace GeekAssistant.Forms {
         }
 
         private void PleaseWait_MainEnabled(bool b) {
-            c.Home.AutoDetectDeviceInfo_Button.Enabled = b;
-            c.Home.SwitchTheme_Button.Enabled = b;
-            c.Home.Settings_Button.Enabled = b;
-            c.Home.About_Button.Enabled = b;
-            c.Home.Feedback_Button.Enabled = b;
-            c.Home.Donate_Button.Enabled = b;
+            Home Home = new Home();
+            Home.AutoDetectDeviceInfo_Button.Enabled = b;
+            Home.SwitchTheme_Button.Enabled = b;
+            Home.Settings_Button.Enabled = b;
+            Home.About_Button.Enabled = b;
+            Home.Feedback_Button.Enabled = b;
+            Home.Donate_Button.Enabled = b;
         }
 
         public bool UserClosing = true; //lock to true by default
@@ -37,19 +32,20 @@ namespace GeekAssistant.Forms {
                 return;
             } else {
                 UserClosing = true; //reset for next use
-                Close();
+                PleaseWait_MainEnabled(true);
+                Hide();
             }
         }
         private void PleaseWait_Closed(object sender, EventArgs e) {
             PleaseWait_MainEnabled(true);
         }
-
         private void PleaseWait_Load(object sender, EventArgs e) {
             AssignEvents();
             GA_SetTheme.Run(Name);
+            Home Home = new Home();
             //24, 97 
-            var titleHeight = c.Home.RectangleToScreen(c.Home.ClientRectangle).Top - c.Home.Top;
-            SetBounds(c.Home.Location.X + 24, c.Home.Location.Y + 97 + titleHeight, Width, Height);
+            var titleHeight = Home.RectangleToScreen(Home.ClientRectangle).Top - Home.Top;
+            SetBounds(Home.Location.X + 24, Home.Location.Y + 97 + titleHeight, Width, Height);
 
             PleaseWait_MainEnabled(false);
 
@@ -58,11 +54,11 @@ namespace GeekAssistant.Forms {
 
         private void StopProcess_Button_Click(object sender, EventArgs e) {
 
-            if (GA_infoAsk.Run("Stop current process",
-                              $"Be careful! This leads to unexpected results.\n" +
-                                $"Are you sure you want to stop the running process?\n\n\n" +
-                                $"This will also stop all adb and fastboot processes that are currently running!",
-                              "Stop Now!", "Return")) {
+            if (inf.Run(inf.lvls.Question, "Stop current process",
+                          $"Be careful! This leads to unexpected results.\n" +
+                          $"Are you sure you want to stop the running process?\n\n\n" +
+                          $"This will also stop all adb and fastboot processes that are currently running!",
+                        ("Stop Now!", "Return"))) {
 
                 Managed.Adb.AndroidDebugBridge.Terminate();
                 var p_adb_arr = Process.GetProcessesByName("adb");

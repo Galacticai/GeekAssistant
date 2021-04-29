@@ -15,8 +15,8 @@ internal static partial class adbCMD {
     public static string adbDo(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
-            c.ErrorInfo.code = $"{c.ErrorInfo.code}-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
-            GA_Msg.DoMsg(10, "Unable to run the adb command.", 2);
+            inf.detail.code = $"{inf.detail.code}-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
+            inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the adb command.");
         }
 
         // If Not adbIsReady(txt.GA_GetErrorInitials) Then

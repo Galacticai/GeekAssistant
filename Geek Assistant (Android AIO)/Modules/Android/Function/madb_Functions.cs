@@ -111,7 +111,7 @@ internal static partial class madb {
     public static bool madb_IsRooted(string ErrorCode_init) {
         var dev = GetListOfDevice()[0];
         if (!dev.CanSU()) {
-            c.ErrorInfo = ($"{ErrorCode_init}-Xsu", 1, $"Your device is not rooted.\n > Process aborted."); // X su (Device cannot run su)
+            inf.detail = ($"{ErrorCode_init}-Xsu", inf.lvls.Error, inf.currentTitle, $"Your device is not rooted.\n > Process aborted.", null); // X su (Device cannot run su)
             return false;
         }
 

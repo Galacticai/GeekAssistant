@@ -1,7 +1,7 @@
 ﻿
 using System.Windows.Forms;
 
-namespace GeekAssistant {
+namespace GeekAssistant.Forms {
     partial class ToU : Form {
         /// <summary>
         ///  Required designer variable.
@@ -34,7 +34,7 @@ namespace GeekAssistant {
             this.Copyright_Label = new System.Windows.Forms.Label();
             this.ButtonsBG_UI = new System.Windows.Forms.PictureBox();
             this.ToU_Reject = new System.Windows.Forms.Button();
-            this.ToU_Accept = new System.Windows.Forms.Button(); 
+            this.ToU_Accept = new System.Windows.Forms.Button();
             this.GeekAssistant_PictureBox = new System.Windows.Forms.PictureBox();
             this.AcceptCheck_ToU = new System.Windows.Forms.CheckBox();
             this.DontShow_ToU = new System.Windows.Forms.CheckBox();
@@ -56,7 +56,7 @@ namespace GeekAssistant {
             // 
             // ToUTitle_Label
             // 
-            this.ToUTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ToUTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ToUTitle_Label.BackColor = System.Drawing.Color.Transparent;
             this.ToUTitle_Label.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -70,7 +70,7 @@ namespace GeekAssistant {
             // 
             // ToUTitle_Description_Label
             // 
-            this.ToUTitle_Description_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ToUTitle_Description_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ToUTitle_Description_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ToUTitle_Description_Label.Location = new System.Drawing.Point(109, 51);
@@ -82,8 +82,8 @@ namespace GeekAssistant {
             // 
             // TermsOfUse_Box
             // 
-            this.TermsOfUse_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.TermsOfUse_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TermsOfUse_Box.BackColor = System.Drawing.Color.White;
             this.TermsOfUse_Box.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -113,7 +113,7 @@ namespace GeekAssistant {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -215,11 +215,13 @@ namespace GeekAssistant {
             this.Controls.Add(this.ToUTitle_Label);
             this.Controls.Add(this.Icon_PictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(552, 720);
+            this.MinimumSize = new System.Drawing.Size(552, 400);
             this.Name = "ToU";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terms of Use — Geek Assistance";
             this.Load += new System.EventHandler(this.ToU_Load);
-
-
             ((System.ComponentModel.ISupportInitialize)(this.Icon_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_PictureBox)).EndInit();
@@ -239,7 +241,7 @@ namespace GeekAssistant {
         public Button ToU_Accept;
         public PictureBox GeekAssistant_PictureBox;
         public CheckBox AcceptCheck_ToU;
-        public CheckBox DontShow_ToU; 
+        public CheckBox DontShow_ToU;
 
         #endregion
     }

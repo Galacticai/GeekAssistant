@@ -40,7 +40,7 @@ internal static partial class CheckConnectionIsCompatible {
         if (!IsConnected(ErrorCode_init))
             return false;
         if (c.S.DeviceManufacturer == "Samsung") {
-            c.ErrorInfo = ($"{ErrorCode_init}-DS", 1, $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted."); // Unlock Bootloader - Device Samsung (Samsung is not supported)
+            inf.detail = ($"{ErrorCode_init}-DS", inf.lvls.Error, inf.currentTitle, $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted.", null); // Unlock Bootloader - Device Samsung (Samsung is not supported)
             return false;
         }
 
@@ -56,13 +56,13 @@ internal static partial class CheckConnectionIsCompatible {
         if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
             AutoDetect.Run(true);
             if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
-                c.ErrorInfo = ($"{ErrorCode_init}-D0", 0, $"We haven't found any device.\n{prop.strings.TroubleshootConnection}"); // Unlock Bootloader - Device 0 (No device is connected)
+                inf.detail = ($"{ErrorCode_init}-D0", inf.lvls.Warn, $"We haven't found any device.", "{prop.strings.TroubleshootConnection}", null); // Unlock Bootloader - Device 0 (No device is connected)
                 return false;
             }
         }
 
         if (c.S.DeviceState == "Multiple") {
-            c.ErrorInfo = ($"{ErrorCode_init}-D2", 0, $"There are several devices connected.\nWould you mind keeping 1 and disconnecting the rest please?\n > Process Aborted."); // Unlock Bootloader - Device 2 or more (Multiple devices connected)
+            inf.detail = ($"{ErrorCode_init}-D2", inf.lvls.Warn, $"There are several devices connected.", "Would you mind keeping 1 and disconnecting the rest please?\n > Process Aborted.", null); // Unlock Bootloader - Device 2 or more (Multiple devices connected)
             return false;
         }
 

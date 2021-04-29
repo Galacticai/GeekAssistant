@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
 
 internal static partial class txt {
@@ -59,9 +60,11 @@ internal static partial class txt {
 
     /// <param name="input">Input</param>
     /// <returns>"Yes" if True, "No" if False</returns>
-    public static string ConvertBoolYesNo(bool input) {
-        return input ? "Yes" : "No";
-    }
+    public static string ConvertBoolToYesNo(bool input) => input ? "Yes" : "No";
+    /// <param name="input">Input</param>
+    /// <returns>true if 1, else false</returns>
+    public static bool ConvertIntToBool(object input) => input == (object)1 ? true : false;
+    public static int ConvertBoolToInt(bool input) => input ? 1 : 0;
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomWorkText() {
@@ -100,8 +103,23 @@ internal static partial class txt {
 
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
     public static string GA_GetErrorInitials() {
-        if (string.IsNullOrEmpty(c.ErrorInfo.code)) return ""; // failsafe
-        if (c.ErrorInfo.code.IndexOf("-") < 1) return ""; // failsafe
-        return c.ErrorInfo.code.Substring(0, c.ErrorInfo.code.IndexOf("-"));
+        if (string.IsNullOrEmpty(inf.detail.code)) return ""; // failsafe
+        if (inf.detail.code.IndexOf("-") < 1) return ""; // failsafe
+        return inf.detail.code.Substring(0, inf.detail.code.IndexOf("-"));
+    }
+    /// <summary>
+    /// Return tooltip of SwitchButton without the state ((Enabled) | (Disabled))
+    /// </summary>
+    /// <param name="aButton">Button to process</param>
+    /// <param name="tooltip"></param>
+    /// <returns>tooltip text without "(Disabled)" or "(Enabled)"</returns>
+    public static string WithoutState_SwitchButton_tooltipTxt(Control aButton, ToolTip tooltip = null) {
+        if (tooltip is null) tooltip = GA_SwitchButton_Style.tooltip; //set if null
+        string txt = tooltip.GetToolTip(aButton); //abreviation + Get 1 time for performance
+        if (string.IsNullOrEmpty(tooltip.GetToolTip(aButton))) return "";
+        int indexFrom = 0;
+        if (txt[..10] == "(Disabled)") indexFrom = 11;
+        else if (txt[..9] == "(Enabled)") indexFrom = 10;
+        return txt[indexFrom..];
     }
 }

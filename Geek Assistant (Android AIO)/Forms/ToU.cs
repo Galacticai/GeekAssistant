@@ -1,10 +1,11 @@
 ﻿
+using GeekAssistant.Forms;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace GeekAssistant {
+namespace GeekAssistant.Forms {
     public partial class ToU : Form {
         //private void Main(object sender, EventArgs e) { Show(); }
         public ToU() {
@@ -46,16 +47,18 @@ namespace GeekAssistant {
 
             GA_SetTheme.Run(Name);
 
-            Copyright_Label.Text = GA_Ver.Run("ToU");
+            Copyright_Label.Text = GA_Ver.Run("ToU()");
 
             Load_ToU_rtf();
 
             ToU_Reject.Select();
 
+            Home Home = new Home();
+
             //Accept || xy // Size xy: 337, 405 // 173, 46
             //Reject || xy // Size xy: 204, 405 // 133, 46
             if (RunningAlready) {
-                SetBounds((c.Home.Width / 2) - (Width / 2) + c.Home.Location.X, c.Home.Top, Width, Height);
+                SetBounds((Home.Width / 2) - (Width / 2) + Home.Location.X, Home.Top, Width, Height);
                 AcceptCheck_ToU.Visible = false;
                 DontShow_ToU.Visible = false;
                 ToU_Reject.Text = "✖";
@@ -74,15 +77,15 @@ namespace GeekAssistant {
             }
 
             if (c.V.Revision < 3) {
-                ToURead_Timer.Enabled=true;
+                ToURead_Timer.Enabled = true;
             } else { ////Skip the 6sec timer for #Dev version 
                 ToU_Accept.BackColor = BackColor;
                 ToURead_TimeAmount = 6;
                 AcceptCheck_ToU.Checked = true;
             }
 
-            if (c.S.ToU_dontShow) {  //ToU:[ Dont show ToU >> Show Startup:[ Don//t show AppMode >> Start newbie / moderate ] ]
-                if (c.S.AppMode_dontshow) c.Home.Show(); else c.AppMode.Show();
+            if (c.S.ToU_dontShow) {  //ToU():[ Dont show ToU() >> Show Startup:[ Don//t show AppMode() >> Start newbie / moderate ] ]
+                if (c.S.AppMode_dontshow) Home.Show(); else new AppMode().Show();
                 Close();
             }
         }
@@ -104,46 +107,42 @@ namespace GeekAssistant {
         }
 
         private void ToU_Reject_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
-            ToU_Reject.ForeColor = GA_SetTheme.Current_bgColor();
+            ToU_Reject.ForeColor = c.colors.bg;
         }
 
         private void ToU_Reject_MouseLeave_KeyUp(object sender, EventArgs e) {
-            ToU_Reject.ForeColor = GA_SetTheme.Current_fgColor();
+            ToU_Reject.ForeColor = c.colors.fg;
         }
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
-            c.ErrorInfo.code = "ToU-R-H"; // ToU Rejected Hide
+            inf.detail.code = "ToU()-R-H"; // ToU() Rejected Hide
             GA_HideAllForms.Run(true);
-            if (GA_infoAsk.Run("Rejected the terms of use",
+            if (inf.Run(inf.lvls.Question, "Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
-                               "Exit", "Back")) {
+                               ("Exit", "Back"))) {
                 Application.Exit();
             } else {
-                c.ErrorInfo.code = "ToU-R-S";
+                inf.detail.code = "ToU()-R-S";
                 GA_HideAllForms.Run(false);
             }
         }
 
         private void ToU_Accept_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
-            ToU_Accept.ForeColor = GA_SetTheme.Current_bgColor();
+            ToU_Accept.ForeColor = c.colors.bg;
         }
         private void ToU_Accept_MouseLeave_KeyUp(object sender, EventArgs e) {
-            ToU_Accept.ForeColor = GA_SetTheme.Current_fgColor();
+            ToU_Accept.ForeColor = c.colors.fg;
         }
         private void ToU_Accept_Click(object sender, EventArgs e) {
-            if (DontShow_ToU.Checked) c.S.ToU_dontShow = true;
+            c.S.ToU_dontShow = DontShow_ToU.Checked;
 
-                if (RunningAlready) { Close(); return; }
+            if (RunningAlready) { Close(); return; }
 
-                if (c.S.AppMode_dontshow) { c.Home.Show(); } 
-                else {
-                 c.AppMode.Show();
-                    Close();
-                }
-             
+            if (c.S.AppMode_dontshow) { new Home().Show(); Close(); } else { new AppMode().Show(); Close(); }
+
         }
         private void AcceptCheck_ToU_CheckedChanged(object sender, EventArgs e) {
-            if (AcceptCheck_ToU.Checked & ToURead_TimeAmount == 6) { 
+            if (AcceptCheck_ToU.Checked & ToURead_TimeAmount == 6) {
                 ToU_Accept.Enabled = true;
                 ToU_Accept.BackColor = BackColor;
             } else {

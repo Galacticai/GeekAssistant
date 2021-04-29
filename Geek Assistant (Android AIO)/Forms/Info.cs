@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
@@ -14,101 +8,77 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            Yes_Button.MouseDown += new( Yes_Button_Mousedown);
-            Yes_Button.MouseUp += new( Yes_Button_MouseUp);
-            Yes_Button.Click += new( Yes_Button_Click);
+            Yes_Button.MouseDown += new(Yes_Button_Mousedown);
+            Yes_Button.MouseUp += new(Yes_Button_MouseUp);
+            Yes_Button.Click += new(Yes_Button_Click);
 
-            No_Button.Click += new( No_Button_Click);
+            No_Button.Click += new(No_Button_Click);
 
-            Copy_Button.MouseDown += new( Copy_Button_MouseDown);
-            Copy_Button.MouseUp += new( Copy_Button_MouseUp);
-            Copy_Button.Click += new( Copy_Button_Click);
+            Copy_Button.MouseDown += new(Copy_Button_MouseDown);
+            Copy_Button.MouseUp += new(Copy_Button_MouseUp);
+            Copy_Button.Click += new(Copy_Button_Click);
 
-            CopyToClipboard_Timer.Tick += new( CopyToClipboard_Timer_Tick);
+            CopyToClipboard_Timer.Tick += new(CopyToClipboard_Timer_Tick);
 
-            title_Label.TextChanged += new( title_Label_TextChanged);
-            title_Label.Click += new( title_Label_Click);
-            title_Label_Click_Timer.Tick += new( title_Label_Click_Timer_Tick);
+            title_Label.TextChanged += new(title_Label_TextChanged);
+            title_Label.Click += new(title_Label_Click);
+            title_Label_Click_Timer.Tick += new(title_Label_Click_Timer_Tick);
         }
-
-        public Image info_IconLight;
-        public Image info_IconDark;
-        public Color info_TextColorLight;
-        public Color info_TextColorDark;
-
+         
         private void Info_Load(object sender, EventArgs e) {
             AssignEvents();
 
             //Reset info answer
-            GA_infoAsk.infoAnswer = false;
+            inf.infoAnswer = false;
             No_Button.Select();
+            //reset Yes_Button props
+            Yes_Button.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Yes_Button.SetBounds(260, 276, 155, 30);
 
-            if (c.S.info_MsgTitle == null || c.S.info_Msg == null || c.S.info_MsgLevel < -1) {
+            if (string.IsNullOrEmpty(inf.detail.title) | !Enum.IsDefined(typeof(inf.lvls), inf.detail.lvl)) {
+                Close();
                 Dispose(); //dispose before starting again
-                GA_Msg.DoMsg(10, $"Where//s the error message??\n" +
-                          "if ( you see this please contact the developer to fix this bug.\nPlease provide the log when reporting.", 2);
+                inf.Run(inf.lvls.FatalError, $"Where//s the error message??",
+                         "if ( you see this please contact the developer to fix this bug.\nPlease provide the log when reporting.",
+                        (null, "Close"));
             }
 
             //Reset to default
-            No_Button.Text = "Close";
-            Yes_Button.Text = "Yes";
-            //GeekAssistant_PictureBox.Visible = false;
-            Yes_Button.Visible = false;
-            Copy_Button.Visible = true;
-
-            string msglevelText = "Warning";
-            if (c.S.info_MsgLevel == 1 | c.S.info_MsgLevel == 10) {
-                msglevelText = "Error";
-                if (c.S.DarkTheme) {
-                    info_PictureBox.Image = prop.x64.Warning_Red_dark_64;
-                    title_Label.ForeColor = Color.FromArgb(255, 191, 191);
-                } else {
-                    info_PictureBox.Image = prop.x64.Warning_Red_64;
-                    title_Label.ForeColor = Color.FromArgb(154, 0, 0);
-                }
-            } else if (c.S.info_MsgLevel == 2) {
-                //msglevelText = "Question"
-                No_Button.Text = GA_infoAsk.infoButtonText.RightButton;
-                Yes_Button.Text = GA_infoAsk.infoButtonText.LeftButton;
+            if (!string.IsNullOrEmpty(inf.ButtonText.YesButton)) {
+                Yes_Button.Text = inf.ButtonText.YesButton;
                 Yes_Button.Visible = true;
-                Text = $"{c.S.info_MsgTitle} — Geek Assistant";
-                title_Label.Text = c.S.info_MsgTitle;
-                //GeekAssistant_PictureBox.Visible = true;
-                Copy_Button.Visible = false;
-                if (c.S.DarkTheme) {
-                    info_PictureBox.Image = prop.x64.Question_Blue_Dark_64;
-                    title_Label.ForeColor = Color.FromArgb(186, 221, 253);
-                } else {
-                    info_PictureBox.Image = prop.x64.Question_Blue_64;
-                    title_Label.ForeColor = Color.FromArgb(64, 109, 128);
-                }
-            } else {
-                if (c.S.DarkTheme) {
-                    info_PictureBox.Image = prop.x64.Info_Yellow_dark_64;
-                    title_Label.ForeColor = Color.FromArgb(255, 238, 191);
-                } else {
-                    info_PictureBox.Image = prop.x64.Info_Yellow_64;
-                    title_Label.ForeColor = Color.FromArgb(115, 84, 0);
+                if (string.IsNullOrEmpty(inf.ButtonText.NoButton)) {
+                    Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
+                    Yes_Button.Anchor = No_Button.Anchor;
+                    No_Button.Visible = false;
                 }
             }
+            if (!string.IsNullOrEmpty(inf.ButtonText.NoButton))
+                No_Button.Text = inf.ButtonText.NoButton;
+            else No_Button.Text = "Close";
 
 
-            if (c.S.info_MsgLevel != 2) {   //Avoid when it is a question
-                Text = $"{GA_Msg.msgIcon}{msglevelText}: ❰{c.ErrorInfo.code}❱ — Geek Assistant";
-                title_Label.Text = $"❰{c.ErrorInfo.code}❱ {c.S.info_MsgTitle}";
-            }
-            msg_Textbox.Text = c.S.info_Msg;
+            if (inf.theme.color != null) //failsafe (Don't merge failsafe layers)
+                if (inf.theme.color.Length == 2) //2nd failsafe 
+                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) //3rd failsafe
+                         title_Label.ForeColor = inf.theme.color[txt.ConvertBoolToInt(c.S.DarkTheme)];
+            if (inf.theme.icon != null) //failsafe (Don't merge failsafe layers)
+                if (inf.theme.icon.Length == 2) //2nd failsafe 
+                    if (inf.theme.icon[0] != null & inf.theme.icon[1] != null) //3rd failsafe
+                         info_PictureBox.Image = inf.theme.icon[txt.ConvertBoolToInt(c.S.DarkTheme)];
+
+            info_PictureBox.Image = inf.infIcon(inf.detail.lvl);
+            title_Label.ForeColor = inf.infColor(info_PictureBox.Image);
+            Text = inf.WindowTitle;
+            title_Label.Text = inf.detail.title;
+            msg_Textbox.Text = inf.detail.msg; 
+            Yes_Button.ForeColor = title_Label.ForeColor;
+            Yes_Button.FlatAppearance.MouseDownBackColor = title_Label.ForeColor;
+             
 
             ////////Special Cases
-            if (title_Label.Text == "Send Feedback") {
-                if (c.S.DarkTheme) {
-                    info_PictureBox.Image = prop.x64.Smile_dark_64;
-                    title_Label.ForeColor = Color.FromArgb(191, 255, 191);
-                } else {
-                    info_PictureBox.Image = prop.x64.Smile_64;
-                    title_Label.ForeColor = Color.FromArgb(0, 102, 71);
-                }
-            }
+            //if (title_Label.Text == "Send Feedback") if (c.S.DarkTheme) info_PictureBox.Image = prop.x64.Smile_dark_64; else info_PictureBox.Image = prop.x64.Smile_64;
+
 
             //// Set size
             Width = 566;
@@ -123,9 +93,9 @@ namespace GeekAssistant.Forms {
                 Height += 75;
                 break;
             }
-            SetBounds((c.Home.Width / 2) - (Width / 2) + c.Home.Location.X, c.Home.Top, Width, Height);
-
-
+            Home Home = new Home();
+            SetBounds((Home.Width / 2) - (Width / 2) + Home.Location.X, Home.Top, Width, Height);
+             
             GA_SetTheme.Run(Name);
         }
 
@@ -139,10 +109,10 @@ namespace GeekAssistant.Forms {
             Yes_Button.ForeColor = title_Label.ForeColor;
         }
         private void Yes_Button_Click(object sender, EventArgs e) {
-            if (c.S.info_MsgLevel == 2) {
-                GA_infoAsk.infoAnswer = true;
-                Close();
-            }
+            if (inf.detail.lvl == inf.lvls.Question) inf.infoAnswer = true;
+            Close();
+            Home Home = new Home();
+            Home.BringToFront();
         }
 
         //private void Close_Button_MouseDown(object sender, EventArgs e) { Close_Button.MouseDown
@@ -152,20 +122,21 @@ namespace GeekAssistant.Forms {
         //    Close_Button.ForeColor = SystemColors.ControlText
         //}
         private void No_Button_Click(object sender, EventArgs e) {
-            if (!c.S.VerboseLogging && c.S.VerboseLoggingPrompt
-            && c.S.info_MsgLevel != 2) { //&& ! title_Label.Text = "Enable Verbose Logging?" && ! title_Label.Text = "Send Feedback" ) {
-                                              //Close();
+            if (!c.S.VerboseLogging & c.S.VerboseLoggingPrompt
+            & inf.detail.lvl != inf.lvls.Question) { //&& ! title_Label.Text = "Enable Verbose Logging?" && ! title_Label.Text = "Send Feedback" ) {
+                                                     //Close();
                 Dispose();
-                if (GA_infoAsk.Run("Enable Verbose Logging?",
-                                   $"For better troubleshooting, enable verbose logging in Settings and try again.",
-                                  "Enable", "Close"))
-                    c.Settings().ShowDialog();
+                if (inf.Run(inf.lvls.Question,
+                            "Enable Verbose Logging?",
+                              $"For better troubleshooting, enable verbose logging in Settings() and try again.", 
+                            ("Enable", "Close"))) { Settings Settings = new Settings(); Settings.ShowDialog(); }
 
                 c.S.VerboseLoggingPrompt = false;
             }
-            if (c.S.info_MsgLevel == 2) GA_infoAsk.infoAnswer = false;
+            if (inf.detail.lvl == inf.lvls.Question) inf.infoAnswer = false;
             Close();
-            c.Home.BringToFront();
+            Home Home = new Home();
+            Home.BringToFront();
             //Dispose();
         }
 
@@ -175,10 +146,7 @@ namespace GeekAssistant.Forms {
         }
         private void Copy_Button_MouseUp(object sender, EventArgs e) {
             Copy_Button.Image = prop.x24.Copy_B_24;
-            if (CopyToClipboard_Timer.Enabled)
-                Copy_Button.ForeColor = Color.DarkGreen;
-            else Copy_Button.ForeColor = SystemColors.ControlText;
-
+            Copy_Button.ForeColor = c.colors.Green;
         }
         private void Copy_Button_Click(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
@@ -191,13 +159,13 @@ namespace GeekAssistant.Forms {
         private void CopyToClipboard_Timer_Tick(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
             Copy_Button.Text = "Copy  ";
-            Copy_Button.ForeColor = SystemColors.ControlText;
+            Copy_Button.ForeColor = c.colors.fg;
         }
 
         private void title_Label_TextChanged(object sender, EventArgs e) {
             if (title_Label.Text.Length < 25)
-                title_Label.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            else title_Label.Font = new Font("Segoe UI", 12.0F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                title_Label.Font = new Font("Segoe UI", 15.75f);
+            else title_Label.Font = new Font("Segoe UI", 12.0f);
 
         }
 
@@ -206,7 +174,7 @@ namespace GeekAssistant.Forms {
         private string CopiedText = "Copied information...";
         private void title_Label_Click(object sender, EventArgs e) {
             if (title_Label.Text == CopiedText) return;
-            if (c.S.info_MsgLevel != 2) {
+            if (inf.detail.lvl != inf.lvls.Question) {
                 savedTitle = title_Label.Text;
                 title_Label.Text = CopiedText;
                 Clipboard.SetText(savedTitle);
@@ -216,7 +184,6 @@ namespace GeekAssistant.Forms {
         private void title_Label_Click_Timer_Tick(object sender, EventArgs e) {
             title_Label.Text = savedTitle;
             title_Label_Click_Timer.Stop();
-        }
-
+        } 
     }
 }

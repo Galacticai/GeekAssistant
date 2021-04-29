@@ -96,7 +96,7 @@ namespace GeekAssistant.Forms {
             this.StopProcess_Button.UseWaitCursor = true;
             this.StopProcess_Button.Visible = false;
             // 
-            // PleaseWait
+            // PleaseWait()
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,9 +109,9 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.PleaseWait_text);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PleaseWait";
+            this.Name = "PleaseWait()";
             this.ShowInTaskbar = false;
-            this.Text = "PleaseWait";
+            this.Text = "PleaseWait()";
             this.TopMost = true;
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.PleaseWait_Load);

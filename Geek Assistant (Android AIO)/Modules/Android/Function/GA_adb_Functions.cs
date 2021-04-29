@@ -139,7 +139,7 @@ internal static partial class GA_adb_Functions {
     public static string[] ConvertAPILevelToAVer(int APIint, bool silent = false) {
         if (APIint <= 0) {
             if (!silent)
-                GA_Msg.DoMsg(10, "Error while processing your device API level!", 2);
+                inf.Run(inf.lvls.FatalError, inf.currentTitle, "Error while processing your device API level!");
             return new[] { "❌", "❌" };
         }
 
@@ -240,13 +240,14 @@ internal static partial class GA_adb_Functions {
             c.S.DeviceState = "";
         }
 
+        GeekAssistant.Forms.Home Home = new GeekAssistant.Forms.Home();
         {
-            c.Home.Manufacturer_ComboBox.SelectedIndex = -1;
-            c.Home.AndroidVersion_ComboBox.SelectedIndex = -1;
-            c.Home.BootloaderUnlockable_CheckBox.Checked = false;
-            c.Home.Rooted_Checkbox.Checked = false;
-            c.Home.CustomROM_CheckBox.Checked = false;
-            c.Home.CustomRecovery_CheckBox.Checked = false;
+            Home.Manufacturer_ComboBox.SelectedIndex = -1;
+            Home.AndroidVersion_ComboBox.SelectedIndex = -1;
+            Home.BootloaderUnlockable_CheckBox.Checked = false;
+            Home.Rooted_Checkbox.Checked = false;
+            Home.CustomROM_CheckBox.Checked = false;
+            Home.CustomRecovery_CheckBox.Checked = false;
         }
     }
 
@@ -254,7 +255,7 @@ internal static partial class GA_adb_Functions {
         var scr = new Managed.Adb.CommandResultReceiver();
         var dev = madb.GetListOfDevice()[0];
         if (!madb.madb_IsRooted(ErrorCode_init)) {
-            GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 1);
+            inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg);
             return "";
         }
 

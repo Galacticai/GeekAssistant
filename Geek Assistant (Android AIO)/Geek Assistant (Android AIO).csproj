@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>GeekAssistant</RootNamespace>
-    <StartupObject>GeekAssistant.Program</StartupObject>
+    <StartupObject>GeekAssistant.RunGeekAssistant</StartupObject>
     <UseWindowsForms>true</UseWindowsForms> 
     <ApplicationIcon>Res\Images\GeekAssistant\Icon\G.ico</ApplicationIcon>
     <AppDesignerFolder>prop</AppDesignerFolder> 
@@ -27,8 +27,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Res\Terms\TermsOfUse-Dark.rtf" />
-    <None Include="Res\Terms\TermsOfUse.rtf" />
+    <None Include="Res\Images\x24\Info-Blue-24.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Res\Images\x24\Info-Blue-dark-24.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Res\Images\x64\Info-Blue-64.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Res\Images\x64\Info-Blue-dark-64.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,10 +69,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\AppMode().cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
     <Compile Update="Forms\AppMode.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Forms\Donate().cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
     <Compile Update="Forms\Donate.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Extra\PleaseWait().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\Extra\PleaseWait.cs">
@@ -70,22 +90,37 @@
     <Compile Update="Forms\Extra\Preparing.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Forms\Home().cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
     <Compile Update="Forms\Home.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\Info().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\Info.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Forms\Settings().cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
     <Compile Update="Forms\Settings.cs">
+      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Forms\ToU().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\General\CustomObjects\SwitchButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Modules\General\Function\c.cs">
       <CustomToolNamespace></CustomToolNamespace>
     </Compile>
-    <Compile Update="prop\GeekAssistant.Program.cs">
+    <Compile Update="prop\RunGeekAssistant.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="prop\resx\GA.Designer.cs">

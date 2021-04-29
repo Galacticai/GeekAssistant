@@ -13,38 +13,45 @@ internal static partial class GA_Ver {
     /// <item>log = Geek Assistant vX.x #Phase ©20XX By NHKomaiha.</item>
     /// <item>Main = vX.x #Phase ©20XX By NHKomaiha.</item>
     /// <item>MainTitle = Geek Assistant — vX.x #Phase</item>
-    /// <item>ToU = ©2021 Geek Assistant By NHKomaiha. vX.x #Phase"</item>
+    /// <item>ToU() = ©2021 Geek Assistant By NHKomaiha. vX.x #Phase"</item>
     /// <item>(Other) = vX.x</item>
     /// </list>
     /// </returns>
     public static string Run(string level = null) {
         string cDateByNHKomaiha = "©2021 By NHKomaiha";
         string result = $"v{c.V.Major}.{c.V.Minor}";
-        switch (c.V.Revision) { 
+        switch (c.V.Revision) {
         case 1: {
             result += " #Beta";
-            break; }
+            break;
+        }
         case 2: {
             result += " #Test";
-            break; }
+            break;
+        }
         case 3: {
             result += " #Dev";
-            break; }
+            break;
+        }
         }
 
         switch (level) {
         case "log": {
             result = $"Geek Assistant {result} {cDateByNHKomaiha}.";
-            break; } 
+            break;
+        }
         case "Main": {
             result += $" {cDateByNHKomaiha}.";
-            break; } 
+            break;
+        }
         case "MainTitle": {
             result = $"Geek Assistant — {result}";
-            break; } 
-        case "ToU": { 
+            break;
+        }
+        case "ToU()": {
             result = $"{c.C}. {result}";
-            break; } 
+            break;
+        }
         }
 
         return result;

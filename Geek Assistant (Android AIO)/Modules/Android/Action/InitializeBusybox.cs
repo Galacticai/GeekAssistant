@@ -4,16 +4,19 @@ using System.Linq;
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
-        if (c.Working) {
-            GA_Msg.DoMsg(1, "We need to wait the current process to finish first...", 2);
+        if (c.Working) { //dont change inf.currentTitle while working
+            inf.Run(inf.lvls.Error, "Initialize Busybox", "We need to wait the current process to finish first...");
             return;
         }
-
+        inf.currentTitle = "Initialize Busybox";
         c.Working = true;
-        c.ErrorInfo.code = "BI-00";
-        if (!GA_infoAsk.Run("madb_MakeBusyboxReady", "This is not finished. Go?", "Go", "Cancel"))
+        inf.detail.code = "BI-00";
+        if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
+                       "This is not finished. Go?",
+                     ("Go", "Cancel")))
             return;
-        GA_Msg.DoMsg(1, "Disabled", 1);
+        inf.Run(inf.lvls.Error, "(Disabled) " + inf.currentTitle,
+                "This has been disabled by the developer");
         var dev = madb.GetListOfDevice()[0];
         if (dev.BusyBox.Available) {
             // ErrorInfo = (0, "Busybox is set and ready for use.")
@@ -42,7 +45,7 @@ internal static partial class InitializeBusybox {
         GA_Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
         if (dev.BusyBox.Available) MessageBox.Show("busybox available");
         else MessageBox.Show("busybox not installed");
-         
+
         // adb shell mkdir /data/busybox
         // adb push busybox /data/busybox
         // adb shell
@@ -61,9 +64,9 @@ internal static partial class InitializeBusybox {
             goto Finish_madb_InstallBusyboxReady;
         }
         // ErrorInfo = (0, "Busybox is set and ready for use.")
-        Finish_madb_InstallBusyboxReady:
-        ;
-        if (!silent) GA_Msg.DoMsg(c.ErrorInfo.lvl, c.ErrorInfo.msg, 1);
+        Finish_madb_InstallBusyboxReady:;
+
+        //if (!silent) inf.Run(inf.detail.lvl, inf.detail.msg, 1);
         c.Working = false;
     }
 }

@@ -86,6 +86,8 @@ namespace GeekAssistant.Forms {
             // 
             this.Yes_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Yes_Button.Location = new System.Drawing.Point(260, 276);
+            this.Yes_Button.Size = new System.Drawing.Size(155, 30);
             this.Yes_Button.BackColor = System.Drawing.Color.Transparent;
             this.Yes_Button.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.Yes_Button.FlatAppearance.BorderSize = 0;
@@ -93,10 +95,8 @@ namespace GeekAssistant.Forms {
             this.Yes_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Yes_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Yes_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Yes_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(32)))));
-            this.Yes_Button.Location = new System.Drawing.Point(260, 276);
+            this.Yes_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Yes_Button.Name = "Yes_Button";
-            this.Yes_Button.Size = new System.Drawing.Size(155, 30);
             this.Yes_Button.TabIndex = 85565;
             this.Yes_Button.Text = "Yes Button";
             this.Yes_Button.UseVisualStyleBackColor = false;
@@ -153,6 +153,7 @@ namespace GeekAssistant.Forms {
             this.Copy_Button.Text = "Copy  ";
             this.Copy_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Copy_Button.UseVisualStyleBackColor = false;
+            this.Copy_Button.Visible = false;
             // 
             // CopyToClipboard_Timer
             // 
@@ -196,8 +197,6 @@ namespace GeekAssistant.Forms {
             this.Text = "(i) Level: ❰E-Code❱  — Geek Assistant";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Info_Load);
-
-
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.info_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_PictureBox)).EndInit();

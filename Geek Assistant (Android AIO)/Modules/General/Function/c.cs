@@ -1,7 +1,9 @@
 ﻿using GeekAssistant;
 using GeekAssistant.Forms;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
+using MetroFramework;
 
 internal static partial class c {
 
@@ -18,52 +20,55 @@ internal static partial class c {
     /// Geek Assistant logs directory (Saved every session) ( {GA}\log )
     /// </summary>
     public static readonly string GA_logs = $@"{GA}\log";
-
     #endregion
 
 
-    #region GA Forms  
+    #region GA Forms 
 
-    public static Form[] AllForms = { 
-            Preparing,
-            AppMode,
-            Donate(),
-            Home,
-            Info(),
-            Settings(),
-            ToU()
-        };
-     
-    public static PleaseWait PleaseWait() => new PleaseWait();
+    /// <summary>
+    /// A manually set (at code time) list of all forms in this project
+    /// </summary>
+    public static readonly Form[] AllForms = { new PleaseWait(), new AppMode(), new Donate(), new Home(), new Info(), new Settings(), new ToU() };
+    /// <summary>
+    /// Refresh and return a new instance of a form as a function
+    /// </summary>
+    /*public struct f {
+        public static PleaseWait PleaseWait() { return c.PleaseWait = new PleaseWait(); }
+        public static Preparing Preparing() { return c.Preparing = new Preparing(); }
+        public static AppMode AppMode() { return c.AppMode = new AppMode(); }
+        public static Donate Donate() { return c.Donate = new Donate(); }
+        public static Home Home() { return c.Home = new Home(); }
+        public static Info Info() { return c.Info = new Info(); }
+        public static Settings Settings() { return c.Settings = new Settings(); }
+        public static ToU ToU() { return c.ToU = new ToU(); }    
+    }
+    public static PleaseWait PleaseWait = new PleaseWait();
     public static Preparing Preparing = new Preparing();
     public static AppMode AppMode = new AppMode();
-    public static Donate Donate() => new Donate();
+    public static Donate Donate = new Donate();
     public static Home Home = new Home();
-    public static Info Info() => new Info();
-    public static Settings Settings() => new Settings();
-    public static ToU ToU() => new ToU();
-
-    #endregion
-
+    public static Info Info = new Info();
+    public static Settings Settings = new Settings();
+    public static ToU ToU = new ToU();
+    */
+    #endregion 
 
     #region prop 
 
-    public static prop.S S = new prop.S(); 
-
-    public static readonly prop.GA RGA = new prop.GA();
-    public static readonly prop.strings Pstrings = new prop.strings();
-    public static readonly prop.layout Playout = new prop.layout();
-    public static readonly prop.tools Ptools = new prop.tools();
-    public static readonly prop.x64 Px64 = new prop.x64();
-    public static readonly prop.x24 Px24 = new prop.x24();
-    public static readonly prop.x16 Px16 = new prop.x16();
-    public static readonly prop.xXX PxXX = new prop.xXX();
+    public static prop.S S = new prop.S();
+    //public static readonly prop.GA RGA = new prop.GA();
+    //public static readonly prop.strings Pstrings = new prop.strings();
+    //public static readonly prop.layout Playout = new prop.layout();
+    //public static readonly prop.tools Ptools = new prop.tools();
+    //public static readonly prop.x64 Px64 = new prop.x64();
+    //public static readonly prop.x24 Px24 = new prop.x24();
+    //public static readonly prop.x16 Px16 = new prop.x16();
+    //public static readonly prop.xXX PxXX = new prop.xXX();
 
     #endregion
 
 
-    #region Public Abbreviations
-     
+    #region Public Abbreviations 
 
     /// <summary>
     /// Get current copyright string
@@ -92,6 +97,7 @@ internal static partial class c {
     /// </summary>
     public static readonly string tab2 = "　　";
 
+
     #endregion
 
 
@@ -105,22 +111,108 @@ internal static partial class c {
     /// </summary>
     public static bool Working = false;
 
-    /*private static (string code, int lvl, string msg) _ErrorInfo;
-    {
-        get { return _ErrorInfo; }
-        set {
-            if (value.lvl >= - 1 && value.lvl <= 10)
-                throw new Exception(); else _ErrorInfo.lvl = value.lvl; 
-            if (value.code == null) 
-                throw new Exception(); else _ErrorInfo.code = value.code;
-    }*/
-    /// <summary>
-    /// <list>
-    /// <item>Current Error lvl and msg </item>
-    /// <item>Set while a process is running;</item>
-    /// <item>When an Exception is thrown the (info) form will use this ErrorInfo</item>
-    /// </list>
-    /// </summary>
-    public static (string code, int lvl, string msg) ErrorInfo;
     #endregion
-} 
+
+
+    #region GA Colors
+    /// <summary>
+    /// Dynamically selected colors according to global Light/Dark Theme
+    /// </summary>
+    public struct colors {
+
+        public struct SwitchButton {
+            public static Color bg_Active { get => c.S.DarkTheme ? Color.FromArgb(0, 120, 0) : Color.Green; }
+            public static Color bg_Hover { get => c.S.DarkTheme ? Color.FromArgb(32, 72, 32) : Color.Honeydew; }
+            public static Color bg { get => c.S.DarkTheme ? Color.FromArgb(32, 32, 32) : Color.WhiteSmoke; }
+        }
+
+        public static Color bg { get => S.DarkTheme ? constColors.bg_Dark : constColors.bg; }
+        public static Color fg { get => S.DarkTheme ? constColors.fg_Dark : constColors.fg; }
+        public static Color Green { get => S.DarkTheme ? constColors.Green_Dark : constColors.Green; }
+        public static Color infBlue { get => S.DarkTheme ? constColors.infBlue_Dark : constColors.infBlue; }
+        public static Color infYellow { get => S.DarkTheme ? constColors.infYellow_Dark : constColors.infYellow; }
+        public static Color warnYellow { get => S.DarkTheme ? constColors.warnYellow_Dark : constColors.warnYellow; }
+        public static Color errRed { get => S.DarkTheme ? constColors.errRed_Dark : constColors.errRed; }
+        public static Color questBlue { get => S.DarkTheme ? constColors.questBlue_Dark : constColors.questBlue; }
+
+        /// <summary>
+        /// Constant colors not affected by themes or anything
+        /// </summary>
+        public struct constColors {
+            /// <summary>
+            /// Color.White
+            /// </summary>
+            public static Color bg { get => Color.White; }
+            /// <summary>
+            /// Color.FromArgb(17, 17, 17)
+            /// </summary>
+            public static Color bg_Dark { get => Color.FromArgb(17, 17, 17); }
+
+            /// <summary>
+            /// SystemColors.ControlText
+            /// </summary>
+            public static Color fg { get => SystemColors.ControlText; }
+            /// <summary>
+            /// Color.White
+            /// </summary>
+            public static Color fg_Dark { get => Color.White; }
+
+            /// <summary>
+            /// Color.FromArgb(95, 191, 119)
+            /// </summary>
+            public static Color Green_Dark { get => Color.FromArgb(95, 191, 119); }
+            /// <summary>
+            /// Color.FromArgb(0, 128, 32)
+            /// </summary>
+            public static Color Green { get => Color.FromArgb(0, 128, 32); }
+
+            /// <summary>
+            /// Color.FromArgb(191, 236, 255)
+            /// </summary>
+            public static Color infBlue_Dark { get => Color.FromArgb(191, 236, 255); }
+            /// <summary>
+            /// Color.FromArgb(0, 80, 115)
+            /// </summary>
+            public static Color infBlue { get => Color.FromArgb(0, 80, 115); }
+
+            /// <summary>
+            /// Color.FromArgb(255, 238, 191)
+            /// </summary>
+            public static Color infYellow_Dark { get => Color.FromArgb(255, 238, 191); }
+            /// <summary>
+            /// Color.FromArgb(115, 84, 0)
+            /// </summary>
+            public static Color infYellow { get => Color.FromArgb(115, 84, 0); }
+
+            /// <summary>
+            /// Color.FromArgb(255, 238, 191)
+            /// </summary>
+            public static Color warnYellow_Dark { get => Color.FromArgb(255, 238, 191); }
+            /// <summary>
+            /// Color.FromArgb(115, 84, 0)
+            /// </summary>
+            public static Color warnYellow { get => Color.FromArgb(115, 84, 0); }
+
+            /// <summary>
+            /// Color.FromArgb(154, 0, 0)
+            /// </summary>
+            public static Color errRed_Dark { get => Color.FromArgb(154, 0, 0); }
+            /// <summary>
+            /// Color.FromArgb(255, 191, 191)
+            /// </summary>
+            public static Color errRed { get => Color.FromArgb(255, 191, 191); }
+
+            /// <summary>
+            /// Color.FromArgb(64, 109, 128)
+            /// </summary>
+            public static Color questBlue_Dark { get => Color.FromArgb(64, 109, 128); }
+            /// <summary>
+            /// Color.FromArgb(191, 223, 255)
+            /// </summary>
+            public static Color questBlue { get => Color.FromArgb(191, 223, 255); }
+        }
+
+        public static MetroThemeStyle Metro { get => S.DarkTheme ? MetroThemeStyle.Dark : MetroThemeStyle.Light; }
+    }
+    #endregion
+}

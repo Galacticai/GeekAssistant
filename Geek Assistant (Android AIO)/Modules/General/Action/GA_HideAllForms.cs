@@ -10,24 +10,24 @@ internal static partial class GA_HideAllForms {
     /// </summary>
     /// <param name="Hide">Set if it should hide or not (show)</param>
     /// <param name="FormToFront">Bring this form to front when done</param>
-    public static void Run(bool Hide) { 
+    public static void Run(bool Hide) {
         // SET ERROR CODE WHEN CALLING, DO NOT SET HERE //
 
         currentForm = Form.ActiveForm; // Set before hiding to save
         if (Hide) {
             HiddenForms = Application.OpenForms;
             foreach (Form formname in Application.OpenForms) // Save all forms to HiddenFormsList then hide
-               formname.Hide(); 
+                formname.Hide();
         } else {
             if (HiddenForms.Count == 0) { // failsafe
-                c.ErrorInfo.code += "-HF0";
-                GA_Msg.DoMsg(10, "Something went wrong.\nWe failed to revive hidden windows.", 2);
-                if (GA_infoAsk.Run("Refresh Geek Assistant?",
-                                     "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",
-                                   "Refresh","No"))
+                inf.detail.code += "-HF0";
+                inf.Run(inf.lvls.FatalError, "Something went wrong.", "We failed to revive hidden windows.");
+                if (inf.Run(inf.lvls.Question, "Refresh Geek Assistant?",
+                              "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",
+                            ("Refresh", "No")))
                     Application.Restart();
                 return;
-            } 
+            }
             foreach (Form formname in HiddenForms) // Show all forms saved in list
                 formname.Show();
 

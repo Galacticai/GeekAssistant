@@ -57,7 +57,7 @@ namespace GeekAssistant.Forms {
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(343, 80);
+            this.ClientSize = new System.Drawing.Size(339, 76);
             this.ControlBox = false;
             this.Controls.Add(this.Preparing_PictureBox);
             this.Controls.Add(this.Preparing_Label);
@@ -68,7 +68,7 @@ namespace GeekAssistant.Forms {
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Preparing";
-            this.Opacity = 0.93999999761581421D;
+            this.Opacity = 0.92D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

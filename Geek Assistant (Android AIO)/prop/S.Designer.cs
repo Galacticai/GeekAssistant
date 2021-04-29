@@ -230,42 +230,6 @@ namespace prop {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string info_Msg {
-            get {
-                return ((string)(this["info_Msg"]));
-            }
-            set {
-                this["info_Msg"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int info_MsgLevel {
-            get {
-                return ((int)(this["info_MsgLevel"]));
-            }
-            set {
-                this["info_MsgLevel"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string info_MsgTitle {
-            get {
-                return ((string)(this["info_MsgTitle"]));
-            }
-            set {
-                this["info_MsgTitle"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LastProgress {
             get {
                 return ((string)(this["LastProgress"]));

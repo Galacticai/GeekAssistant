@@ -164,7 +164,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -196,10 +196,12 @@ namespace GeekAssistant.Forms {
             "KitKat 4.4 (And Below)"});
             this.AndroidVersion_ComboBox.Location = new System.Drawing.Point(20, 92);
             this.AndroidVersion_ComboBox.Name = "AndroidVersion_ComboBox";
+            this.AndroidVersion_ComboBox.PromptText = "Select Android version";
             this.AndroidVersion_ComboBox.Size = new System.Drawing.Size(199, 29);
             this.AndroidVersion_ComboBox.Style = MetroFramework.MetroColorStyle.Green;
             this.AndroidVersion_ComboBox.TabIndex = 85596;
             this.AndroidVersion_ComboBox.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.AndroidVersion_ComboBox.UseSelectable = true;
             // 
             // Manufacturer_ComboBox
             // 
@@ -216,11 +218,13 @@ namespace GeekAssistant.Forms {
             "LG"});
             this.Manufacturer_ComboBox.Location = new System.Drawing.Point(20, 48);
             this.Manufacturer_ComboBox.Name = "Manufacturer_ComboBox";
+            this.Manufacturer_ComboBox.PromptText = "Select manufacturer";
             this.Manufacturer_ComboBox.Size = new System.Drawing.Size(199, 29);
             this.Manufacturer_ComboBox.Style = MetroFramework.MetroColorStyle.Green;
             this.Manufacturer_ComboBox.TabIndex = 85595;
             this.Manufacturer_ComboBox.Tag = "";
             this.Manufacturer_ComboBox.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Manufacturer_ComboBox.UseSelectable = true;
             // 
             // Rooted_Checkbox
             // 
@@ -275,6 +279,7 @@ namespace GeekAssistant.Forms {
             this.FlashZip_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.FlashZip_Button.TabIndex = 85583;
             this.FlashZip_Button.Text = "Start Flashing";
+            this.FlashZip_Button.UseSelectable = true;
             // 
             // About_Button
             // 
@@ -469,7 +474,7 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log.BackColor = System.Drawing.Color.White;
             this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -541,7 +546,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -563,7 +568,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs
             // 
-            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
@@ -576,6 +581,7 @@ namespace GeekAssistant.Forms {
             this.Main_Tabs.Size = new System.Drawing.Size(377, 401);
             this.Main_Tabs.Style = MetroFramework.MetroColorStyle.Green;
             this.Main_Tabs.TabIndex = 85609;
+            this.Main_Tabs.UseSelectable = true;
             // 
             // PrepareYourDevice_Tab
             // 
@@ -592,15 +598,17 @@ namespace GeekAssistant.Forms {
             this.PrepareYourDevice_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PrepareYourDevice_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.PrepareYourDevice_Tab.HorizontalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab.HorizontalScrollbarHighlightOnWheel = false;
             this.PrepareYourDevice_Tab.HorizontalScrollbarSize = 12;
-            this.PrepareYourDevice_Tab.Location = new System.Drawing.Point(4, 38);
+            this.PrepareYourDevice_Tab.Location = new System.Drawing.Point(4, 41);
             this.PrepareYourDevice_Tab.Name = "PrepareYourDevice_Tab";
             this.PrepareYourDevice_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PrepareYourDevice_Tab.Size = new System.Drawing.Size(369, 359);
+            this.PrepareYourDevice_Tab.Size = new System.Drawing.Size(369, 356);
             this.PrepareYourDevice_Tab.Style = MetroFramework.MetroColorStyle.Green;
             this.PrepareYourDevice_Tab.TabIndex = 0;
             this.PrepareYourDevice_Tab.Text = "Prepare your device";
             this.PrepareYourDevice_Tab.VerticalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab.VerticalScrollbarHighlightOnWheel = false;
             this.PrepareYourDevice_Tab.VerticalScrollbarSize = 12;
             // 
             // UnlockBL_Label
@@ -682,6 +690,7 @@ namespace GeekAssistant.Forms {
             this.MagiskRoot_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.MagiskRoot_Button.TabIndex = 6;
             this.MagiskRoot_Button.Text = "Start Rooting";
+            this.MagiskRoot_Button.UseSelectable = true;
             this.MagiskRoot_Button.UseVisualStyleBackColor = false;
             // 
             // MaterialDivider1
@@ -708,6 +717,7 @@ namespace GeekAssistant.Forms {
             this.UnlockBL_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.UnlockBL_Button.TabIndex = 6;
             this.UnlockBL_Button.Text = "Start Unlocking";
+            this.UnlockBL_Button.UseSelectable = true;
             this.UnlockBL_Button.UseVisualStyleBackColor = false;
             // 
             // FlashImg_Tab
@@ -726,14 +736,16 @@ namespace GeekAssistant.Forms {
             this.FlashImg_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FlashImg_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FlashImg_Tab.HorizontalScrollbarBarColor = true;
+            this.FlashImg_Tab.HorizontalScrollbarHighlightOnWheel = false;
             this.FlashImg_Tab.HorizontalScrollbarSize = 12;
-            this.FlashImg_Tab.Location = new System.Drawing.Point(4, 38);
+            this.FlashImg_Tab.Location = new System.Drawing.Point(4, 41);
             this.FlashImg_Tab.Name = "FlashImg_Tab";
             this.FlashImg_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.FlashImg_Tab.Size = new System.Drawing.Size(369, 359);
+            this.FlashImg_Tab.Size = new System.Drawing.Size(369, 356);
             this.FlashImg_Tab.TabIndex = 1;
             this.FlashImg_Tab.Text = "Flash img files";
             this.FlashImg_Tab.VerticalScrollbarBarColor = true;
+            this.FlashImg_Tab.VerticalScrollbarHighlightOnWheel = false;
             this.FlashImg_Tab.VerticalScrollbarSize = 12;
             // 
             // Button5
@@ -830,18 +842,20 @@ namespace GeekAssistant.Forms {
             this.MoreTools_Tab.Controls.Add(this.HotReboot_Button);
             this.MoreTools_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MoreTools_Tab.HorizontalScrollbarBarColor = true;
+            this.MoreTools_Tab.HorizontalScrollbarHighlightOnWheel = false;
             this.MoreTools_Tab.HorizontalScrollbarSize = 3;
-            this.MoreTools_Tab.Location = new System.Drawing.Point(4, 38);
+            this.MoreTools_Tab.Location = new System.Drawing.Point(4, 41);
             this.MoreTools_Tab.Name = "MoreTools_Tab";
-            this.MoreTools_Tab.Size = new System.Drawing.Size(369, 359);
+            this.MoreTools_Tab.Size = new System.Drawing.Size(369, 356);
             this.MoreTools_Tab.TabIndex = 2;
             this.MoreTools_Tab.Text = "More Tools";
             this.MoreTools_Tab.VerticalScrollbarBarColor = true;
+            this.MoreTools_Tab.VerticalScrollbarHighlightOnWheel = false;
             this.MoreTools_Tab.VerticalScrollbarSize = 3;
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -861,23 +875,25 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
             this.MetroButton4.Size = new System.Drawing.Size(351, 26);
             this.MetroButton4.TabIndex = 9;
             this.MetroButton4.Text = "web log";
+            this.MetroButton4.UseSelectable = true;
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
             this.MetroButton8.Size = new System.Drawing.Size(351, 26);
             this.MetroButton8.TabIndex = 8;
             this.MetroButton8.Text = "Terminate Bridge";
+            this.MetroButton8.UseSelectable = true;
             // 
             // MetroButton7
             // 
@@ -887,16 +903,18 @@ namespace GeekAssistant.Forms {
             this.MetroButton7.Size = new System.Drawing.Size(70, 26);
             this.MetroButton7.TabIndex = 7;
             this.MetroButton7.Text = "false";
+            this.MetroButton7.UseSelectable = true;
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
             this.MetroButton6.Size = new System.Drawing.Size(275, 26);
             this.MetroButton6.TabIndex = 6;
             this.MetroButton6.Text = "CreateBridge start true";
+            this.MetroButton6.UseSelectable = true;
             // 
             // MetroButton11
             // 
@@ -906,36 +924,40 @@ namespace GeekAssistant.Forms {
             this.MetroButton11.Size = new System.Drawing.Size(70, 26);
             this.MetroButton11.TabIndex = 5;
             this.MetroButton11.Text = "false";
+            this.MetroButton11.UseSelectable = true;
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
             this.MetroButton3.Size = new System.Drawing.Size(351, 26);
             this.MetroButton3.TabIndex = 2;
             this.MetroButton3.Text = "State";
+            this.MetroButton3.UseSelectable = true;
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
             this.MetroButton2.Size = new System.Drawing.Size(351, 26);
             this.MetroButton2.TabIndex = 1;
             this.MetroButton2.Text = "Count";
+            this.MetroButton2.UseSelectable = true;
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
             this.MetroButton1.Size = new System.Drawing.Size(275, 26);
             this.MetroButton1.TabIndex = 0;
             this.MetroButton1.Text = "CreateBridge true";
+            this.MetroButton1.UseSelectable = true;
             // 
             // InstallBusybox_Button
             // 
@@ -950,6 +972,7 @@ namespace GeekAssistant.Forms {
             this.InstallBusybox_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.InstallBusybox_Button.TabIndex = 9;
             this.InstallBusybox_Button.Text = "Install Busybox";
+            this.InstallBusybox_Button.UseSelectable = true;
             this.InstallBusybox_Button.UseVisualStyleBackColor = false;
             // 
             // HotReboot_Button
@@ -965,6 +988,7 @@ namespace GeekAssistant.Forms {
             this.HotReboot_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.HotReboot_Button.TabIndex = 8;
             this.HotReboot_Button.Text = "Hot Reboot";
+            this.HotReboot_Button.UseSelectable = true;
             this.HotReboot_Button.UseVisualStyleBackColor = false;
             // 
             // GA_About_Label
@@ -980,7 +1004,7 @@ namespace GeekAssistant.Forms {
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 1);
@@ -1075,20 +1099,20 @@ namespace GeekAssistant.Forms {
             this.Unavalable_Tooltip.StripAmpersands = true;
             this.Unavalable_Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
             // 
-            // Home
+            // Home()
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1174, 599);
+            this.Controls.Add(this.SwitchTheme_Fore_UI);
+            this.Controls.Add(this.SwitchTheme_Mid_UI);
+            this.Controls.Add(this.SwitchTheme_Back_UI);
             this.Controls.Add(this.ShowLog_Button);
             this.Controls.Add(this.ProgressBarLabel);
             this.Controls.Add(this.ProgressFakeBG_UI);
             this.Controls.Add(this.bar);
-            this.Controls.Add(this.SwitchTheme_Fore_UI);
-            this.Controls.Add(this.SwitchTheme_Mid_UI);
-            this.Controls.Add(this.SwitchTheme_Back_UI);
             this.Controls.Add(this.Donate_Button);
             this.Controls.Add(this.DeviceState_Label);
             this.Controls.Add(this.GeekAssistant_Icon);
@@ -1117,7 +1141,7 @@ namespace GeekAssistant.Forms {
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1190, 672);
             this.MinimumSize = new System.Drawing.Size(690, 638);
-            this.Name = "Home";
+            this.Name = "Home()";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Geek Assistant";
             this.TransparencyKey = System.Drawing.Color.Magenta;
@@ -1147,17 +1171,17 @@ namespace GeekAssistant.Forms {
 
         }
         #endregion
-         
-        public Button OpenLogFolder;  
-        public OpenFileDialog FlashZip_OpenFileDialog; 
-        public GroupBox ManualInfo_GroupBox; 
+
+        public Button OpenLogFolder;
+        public OpenFileDialog FlashZip_OpenFileDialog;
+        public GroupBox ManualInfo_GroupBox;
         public Label DeviceStateTitle_Label;
         public MaterialSkin.Controls.MaterialFlatButton About_Button;
         public CheckBox FlashZip_RebootWhenComplete_Checkbox;
         public Button AutoDetectDeviceInfo_Button;
         public Button ClearLog_Button;
         public Label FlashZip_Title;
-        public Button CopyLogToClipboard; 
+        public Button CopyLogToClipboard;
         public PictureBox GeekAssistant;
         public TextBox log;
         public MaterialSkin.Controls.MaterialFlatButton Feedback_Button;

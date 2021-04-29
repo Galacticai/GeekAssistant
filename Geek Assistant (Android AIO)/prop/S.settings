@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GeekAssistant.prop" GeneratedClassName="S">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="prop" GeneratedClassName="S">
   <Profiles />
   <Settings>
     <Setting Name="AppMode_newbie" Type="System.Boolean" Scope="User">
@@ -51,15 +51,6 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DeviceState" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="info_Msg" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="info_MsgLevel" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="info_MsgTitle" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastProgress" Type="System.String" Scope="User">

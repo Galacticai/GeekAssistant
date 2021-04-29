@@ -119,7 +119,7 @@
 '            '//TODO maybe: count Is being set without setting settings.count
 '            Select Case Main.DeviceCount.Value
 '                Case 0
-'                    'PleaseWait.Close()
+'                    'PleaseWait().Close()
 '                    GA_PleaseWait.Run(False)
 '                    Dim TroubleshootConnection As String = vbCrLf & "-Did you install the USB drivers for your device?" & vbCrLf & "-Did you turn on USB Debugging?" & vbCrLf & "-Did you allow this PC to access your device?" & vbCrLf & "-Did you unlock the lockscreen?" & vbCrLf & "-Did you try another USB cable / port?" & vbCrLf & "Make sure to properly connect your device and try again..." & vbCrLf & " >  Process aborted."
 

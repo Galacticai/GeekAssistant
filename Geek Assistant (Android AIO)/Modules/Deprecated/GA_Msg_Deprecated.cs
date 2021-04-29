@@ -1,12 +1,12 @@
-﻿using System;
+﻿/*
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using GeekAssistant.Forms; 
+using GeekAssistant.Forms;
 
-internal static partial class GA_Msg {
+internal static partial class GA_Msg_Deprecated {
 
     // Private ErrorCode As String
-    public static string msgIcon = " ⚠  ";
 
     public static void DoMsg(int level, string msg, int lines = 1, string FullError = "") // , Optional YesProcessStart As String = "")  
     {
@@ -30,7 +30,7 @@ internal static partial class GA_Msg {
             c.Home.ShowLog_InfoBlink_Timer.Enabled = true;
             c.Home.bar.Style = MetroFramework.MetroColorStyle.Blue;
             msgIcon = " ❔  ";
-        } else // level = 0 '—0—Info  
+        } else // level = 0 '—0—Info()  
           {
             c.S.info_MsgLevel = 0;
             c.Home.ShowLog_ErrorBlink_Timer.Enabled = false;
@@ -47,25 +47,26 @@ internal static partial class GA_Msg {
         if (c.S.VerboseLogging & !string.IsNullOrEmpty(FullError)) {
             msg += $"\n\n" +
                 $"————— #Verbose Logging# Full Error:\n" +
-                $" ❰{c.ErrorInfo.code}❱" +
+                $" ❰{inf.detail.code}❱" +
                 $"\n{FullError}\n" +
-                $" ❰/{c.ErrorInfo.code}❱\n" +
+                $" ❰/{inf.detail.code}❱\n" +
                 $"————— #Verbose Logging# End —————";
         } else if (level == 10)
             msg += $"\n > {prop.strings.EnableVerboseLogging}";
-        GA_Log.LogAppendText($"{msgIcon} ❰{c.ErrorInfo.code}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
+        GA_Log.LogAppendText($"{msgIcon} ❰{inf.detail.code}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
         if (c.S.PopupMessages) {
             c.S.info_Msg = txt.CutFirstLine(msg);
             c.S.info_MsgTitle = msgTitle;
             c.S.info_MsgLevel = level;
-            c.S.Save(); 
+            c.S.Save();
             if (Application.OpenForms.OfType<Info>().Any())
                 return;
             try {
-                c.Info().ShowDialog();
+                c.Info.ShowDialog();
             } catch (Exception ex) {
                 MessageBox.Show(ex.ToString(), "Error while loading the error... Yup it happens...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
 }
+*/

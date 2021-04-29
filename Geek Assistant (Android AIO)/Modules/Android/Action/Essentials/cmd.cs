@@ -63,12 +63,12 @@ internal static partial class cmd {
         GA_Log.LogAppendText(invalid_text, 2);
     }
     private static string adbDo_WithTrack(string command) {
-        c.ErrorInfo.code = $"{txt.GA_GetErrorInitials()}-adb-cmd";
+        inf.detail.code = $"{txt.GA_GetErrorInitials()}-adb-cmd";
         return adbCMD.adbDo(command);
     }
 
     private static string fbDo_WithTrack(string command) {
-        c.ErrorInfo.code = $"{txt.GA_GetErrorInitials()}-fb-cmd";
+        inf.detail.code = $"{txt.GA_GetErrorInitials()}-fb-cmd";
         return fbCMD.fbDo(command);
     }
 }
