@@ -21,37 +21,37 @@ internal static partial class GA_Ver {
         string cDateByNHKomaiha = "©2021 By NHKomaiha";
         string result = $"v{c.V.Major}.{c.V.Minor}";
         switch (c.V.Revision) {
-        case 1: {
-            result += " #Beta";
-            break;
-        }
-        case 2: {
-            result += " #Test";
-            break;
-        }
-        case 3: {
-            result += " #Dev";
-            break;
-        }
+            case 1: {
+                result += " #Beta";
+                break;
+            }
+            case 2: {
+                result += " #Test";
+                break;
+            }
+            case 3: {
+                result += " #Dev";
+                break;
+            }
         }
 
         switch (level) {
-        case "log": {
-            result = $"Geek Assistant {result} {cDateByNHKomaiha}.";
-            break;
-        }
-        case "Main": {
-            result += $" {cDateByNHKomaiha}.";
-            break;
-        }
-        case "MainTitle": {
-            result = $"Geek Assistant — {result}";
-            break;
-        }
-        case "ToU()": {
-            result = $"{c.C}. {result}";
-            break;
-        }
+            case "log": {
+                result = $"Geek Assistant {result} {cDateByNHKomaiha}.";
+                break;
+            }
+            case "Main": {
+                result += $" {cDateByNHKomaiha}.";
+                break;
+            }
+            case "MainTitle": {
+                result = $"Geek Assistant — {result}";
+                break;
+            }
+            case "ToU()": {
+                result = $"{c.C}. {result}";
+                break;
+            }
         }
 
         return result;

@@ -17,8 +17,7 @@ internal static partial class CheckConnectionIsCompatible {
     /// <returns>True if the device is compatible with adb mode</returns>
     public static bool adbIsCompatible(string ErrorCode_init) {
         GA_SetProgressText.Run("Checking adb compatibility...", -1);
-        if (!IsConnected(ErrorCode_init))
-            return false;
+        if (!IsConnected(ErrorCode_init)) return false;
         return true;
     }
 
@@ -40,7 +39,8 @@ internal static partial class CheckConnectionIsCompatible {
         if (!IsConnected(ErrorCode_init))
             return false;
         if (c.S.DeviceManufacturer == "Samsung") {
-            inf.detail = ($"{ErrorCode_init}-DS", inf.lvls.Error, inf.currentTitle, $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted.", null); // Unlock Bootloader - Device Samsung (Samsung is not supported)
+            inf.detail = ($"{ErrorCode_init}-DS", inf.lvls.Error, inf.currentTitle,
+                $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted.", null); // Unlock Bootloader - Device Samsung (Samsung is not supported)
             return false;
         }
 
@@ -56,7 +56,7 @@ internal static partial class CheckConnectionIsCompatible {
         if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
             AutoDetect.Run(true);
             if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
-                inf.detail = ($"{ErrorCode_init}-D0", inf.lvls.Warn, $"We haven't found any device.", "{prop.strings.TroubleshootConnection}", null); // Unlock Bootloader - Device 0 (No device is connected)
+                inf.detail = ($"{ErrorCode_init}-D0", inf.lvls.Warn, $"We haven't found any device.", $"{prop.strings.TroubleshootConnection}", null); // Unlock Bootloader - Device 0 (No device is connected)
                 return false;
             }
         }

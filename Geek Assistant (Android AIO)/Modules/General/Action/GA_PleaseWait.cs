@@ -7,7 +7,7 @@ internal static partial class GA_PleaseWait {
         if (Enable) {
             if (!PleaseWait.IsDisposed) PleaseWait.Dispose();
             PleaseWait = new PleaseWait();
-            PleaseWait.Show(); 
+            PleaseWait.Show();
         } else {
             foreach (Form pw in Application.OpenForms)
                 if (pw.GetType() == typeof(PleaseWait))

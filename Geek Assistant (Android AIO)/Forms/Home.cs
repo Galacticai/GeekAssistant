@@ -14,10 +14,10 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            devMon.Server.DeviceChanged += new(madb_devChanged);
-            //EventWatcher.EventArrived += new (EventWatcher_EventArrived);
 
-            Delayed_DeviceChanged_Timer.Tick += new(Delayed_DeviceChanged_Timer_Tick);
+            devMon.Server.DeviceChanged += new(madb_devChanged);
+
+            //Delayed_DeviceChanged_Timer.Tick += new(Delayed_DeviceChanged_Timer_Tick);
 
             FormClosing += new(Home_FormClosing);
             Move += new(Home_Move);
@@ -148,27 +148,28 @@ namespace GeekAssistant.Forms {
         private DeviceMonitor devMon = new(AndroidDebugBridge.Bridge);
         private void madb_devChanged(object sender, EventArgs e) {
             if (!finishedLoading) return; //Cancel while loading Home()
-            Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
+            //Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
+            Invoke(new Action(() => {
+                AutoDetect.Run(true);
+                GA_Log.LogEvent(DeviceState_Label.Text, 1);
+            }));
         }
-        //private ManagementEventWatcher EventWatcher;
-        //private WqlEventQuery EventQuery = new();
-        private int saved_devCount = -1; //not 0 or 1 to initialize
-        private Timer Delayed_DeviceChanged_Timer = new() { Interval = 200 }; //delay to avoid repeating the code when the event is firing too many times 
-        //private void EventWatcher_EventArrived(object sender, EventArrivedEventArgs ev) {
-        //    if (!finishedLoading) return; //Cancel while loading Home()
-        //    Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
-        //}
-        private void Delayed_DeviceChanged_Timer_Tick(object sender, EventArgs e) {
-            var devCount = madb.GetDeviceCount();
-            if (saved_devCount != devCount) {
-                saved_devCount = devCount;
-                Invoke(new Action(() => {
-                    AutoDetect.Run(true);
-                    GA_Log.LogEvent(DeviceState_Label.Text, 1);
-                }));
-            }
-            Delayed_DeviceChanged_Timer.Stop();
-        }
+        /*//private ManagementEventWatcher EventWatcher;
+       //private WqlEventQuery EventQuery = new();
+       private int saved_devCount = -1; //not 0 or 1 to initialize
+       //private Timer Delayed_DeviceChanged_Timer = new() { Interval = 200 }; //delay to avoid repeating the code when the event is firing too many times 
+       //private void EventWatcher_EventArrived(object sender, EventArrivedEventArgs ev) {
+       //    if (!finishedLoading) return; //Cancel while loading Home()
+       //    Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
+       //}
+      private void Delayed_DeviceChanged_Timer_Tick(object sender, DeviceEventArgs e) {
+           //if (e.Device.IsOffline)
+           var devCount = madb.GetDeviceCount();
+           if (saved_devCount != devCount) {
+               saved_devCount = devCount;
+           }
+           Delayed_DeviceChanged_Timer.Stop();
+       }*/
 
         private void Home_FormClosing(object sender, EventArgs e) {
             if (Application.OpenForms.OfType<PleaseWait>().Any()) { //Cancel if a process by GA is currently running
@@ -203,8 +204,10 @@ namespace GeekAssistant.Forms {
             //EventQuery = new WqlEventQuery("Select * from Win32_DeviceChangeEvent"); //("SELECT * FROM __InstanceCreationEvent  WITHIN 2 WHERE TargetInstance ISA //Win32_PnPEntity//") //("Select * from Win32_DeviceChangeEvent") 
             //EventWatcher = new ManagementEventWatcher(EventQuery);
             //EventWatcher.Start();
+            devMon.Start();
 
             AssignEvents();
+
             Enabled = false; //Opacity = 0;
             Width = 690;
 
@@ -214,9 +217,9 @@ namespace GeekAssistant.Forms {
             Preparing.BringToFront();
             HomeLoad_Delay_Timer.Enabled = true;
         }
-        private bool OneTimebool_HomeLoad_Delay_Timer_Tick=true;
+        private bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
         private void HomeLoad_Delay_Timer_Tick(object sender, EventArgs e) {
-            
+
             GA_SetTheme.Run(this, true); //Set width to avoid using the width selected while developing
             if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
 
@@ -418,7 +421,7 @@ namespace GeekAssistant.Forms {
             ShowLog_ErrorBlink_Timer.Enabled = false;
             if (c.S.DarkTheme) ShowLog_Button.Icon = prop.x24.Commands_dark_24;
             else ShowLog_Button.Icon = prop.x24.Commands_24;
-             
+
             bar.Style = MetroFramework.MetroColorStyle.Green;
             bar.Value = 0;
             ProgressBarLabel.Text = "Current process information will be written here. Click for more information >>";
@@ -512,28 +515,28 @@ namespace GeekAssistant.Forms {
 
         private void DeviceState_Label_TextChanged(object sender, EventArgs e) {
             switch (DeviceState_Label.Text) {
-            case "Disconnected":
-            case "Unknown":
-                DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 128);
-                break;
-            case "Offline":
-                DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 0);
-                break;
-            case "Download mode":
-            case "Recovery mode":
-            case "Fastboot mode":
-                DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 0);
-                break;
-            case "Connected (ADB)":
-                if (c.S.DarkTheme) {
-                    DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119);
-                } else {
-                    DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32);
-                }
-                break;
-            case "Multiple":
-                DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 128);
-                break;
+                case "Disconnected":
+                case "Unknown":
+                    DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 128);
+                    break;
+                case "Offline":
+                    DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 0);
+                    break;
+                case "Download mode":
+                case "Recovery mode":
+                case "Fastboot mode":
+                    DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 0);
+                    break;
+                case "Connected (ADB)":
+                    if (c.S.DarkTheme) {
+                        DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119);
+                    } else {
+                        DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32);
+                    }
+                    break;
+                case "Multiple":
+                    DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 128);
+                    break;
             }
         }
 
@@ -595,10 +598,10 @@ namespace GeekAssistant.Forms {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, Feedback_Button, "Send Feedback", $"Reach out to the developer.");
         }
         private void Feedback_Button_Click(object sender, EventArgs e) {
-            if (inf.Run(inf.lvls.Question, 
+            if (inf.Run(inf.lvls.Question,
                         "Send Feedback",
                           $"Redirecting you to Geek Assistant issues section on github...\n\nDo you want To Continue?",
-                        ("Continue", "Close"), 
+                        ("Continue", "Close"),
                         new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
                         new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) }))
                 Process.Start(new ProcessStartInfo("https://github.com/NHKomaiha/Geek-Assistant/issues") { UseShellExecute = true, Verb = "open" });

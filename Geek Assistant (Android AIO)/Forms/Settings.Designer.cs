@@ -83,7 +83,7 @@ namespace GeekAssistant.Forms {
             // 
             // AutoClearLogs_SwitchButton
             // 
-            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.AutoClearLogs_SwitchButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AutoClearLogs_SwitchButton.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AutoClearLogs_SwitchButton.FlatAppearance.BorderSize = 0;
@@ -110,7 +110,7 @@ namespace GeekAssistant.Forms {
             // 
             // ResetGA
             // 
-            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ResetGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ResetGA.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ResetGA.FlatAppearance.BorderSize = 0;
@@ -331,7 +331,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -354,7 +354,7 @@ namespace GeekAssistant.Forms {
             // 
             // SettingsTitle_Label
             // 
-            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SettingsTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsTitle_Label.BackColor = System.Drawing.Color.Transparent;
             this.SettingsTitle_Label.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -380,7 +380,7 @@ namespace GeekAssistant.Forms {
             // 
             // Thanks_Label
             // 
-            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Thanks_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Thanks_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Thanks_Label.Location = new System.Drawing.Point(107, 51);

@@ -40,7 +40,7 @@ internal static partial class GA_Reset {
             GA_Log.LogAppendText(notify, 1);
             if (Data) {
                 c.S.VerboseLoggingPrompt = false; // disable to avoid asking on exit
-                if (inf.Run(inf.lvls.Question, "Reset Geek Assistant", notify, 
+                if (inf.Run(inf.lvls.Question, "Reset Geek Assistant", notify,
                             ("Relaunch", "Exit"))) {
                     c.S.VerboseLoggingPrompt = true; // enable again (true is default)
                     Application.Restart();

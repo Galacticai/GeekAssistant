@@ -44,9 +44,9 @@ internal static partial class fbCMD {
         fb_process.Start();
         fb_process.WaitForExit();
         // Return output
-        // '''Return as global string (Use to avoid repeating command for output)
+        // //Return as global string (Use to avoid repeating command for output)
         fbOutput = fb_process.StandardOutput.ReadToEnd();
-        // '''Return as function (repeat command to return output)
+        // //Return as function (repeat command to return output)
         return fbOutput;
     }
 }

@@ -86,8 +86,6 @@ namespace GeekAssistant.Forms {
             // 
             this.Yes_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Yes_Button.Location = new System.Drawing.Point(260, 276);
-            this.Yes_Button.Size = new System.Drawing.Size(155, 30);
             this.Yes_Button.BackColor = System.Drawing.Color.Transparent;
             this.Yes_Button.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.Yes_Button.FlatAppearance.BorderSize = 0;
@@ -96,7 +94,9 @@ namespace GeekAssistant.Forms {
             this.Yes_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Yes_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Yes_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Yes_Button.Location = new System.Drawing.Point(260, 276);
             this.Yes_Button.Name = "Yes_Button";
+            this.Yes_Button.Size = new System.Drawing.Size(155, 30);
             this.Yes_Button.TabIndex = 85565;
             this.Yes_Button.Text = "Yes Button";
             this.Yes_Button.UseVisualStyleBackColor = false;
@@ -124,16 +124,17 @@ namespace GeekAssistant.Forms {
             this.msg_Textbox.BackColor = System.Drawing.Color.White;
             this.msg_Textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.msg_Textbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.msg_Textbox.Location = new System.Drawing.Point(27, 91);
-            this.msg_Textbox.MaxLength = 9999999;
+            this.msg_Textbox.Location = new System.Drawing.Point(30, 91);
+            this.msg_Textbox.MaxLength = 99999;
             this.msg_Textbox.Multiline = true;
             this.msg_Textbox.Name = "msg_Textbox";
+            this.msg_Textbox.PlaceholderText = "Error details and some potential fixes to the problem will appear here Error details and some potential fixes to the problem will appear here";
             this.msg_Textbox.ReadOnly = true;
             this.msg_Textbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.msg_Textbox.Size = new System.Drawing.Size(511, 168);
+            this.msg_Textbox.Size = new System.Drawing.Size(537, 168);
             this.msg_Textbox.TabIndex = 85567;
             this.msg_Textbox.TabStop = false;
-            this.msg_Textbox.Text = "Error details and some potential fixes to the problem will appear here";
+            this.msg_Textbox.Text = "Error details and some potential fixes to the problem will appear here Error details and some potential fixes to the problem will appear here";
             // 
             // Copy_Button
             // 

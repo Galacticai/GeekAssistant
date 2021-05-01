@@ -21,9 +21,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Res\**" />
-    <EmbeddedResource Remove="Res\**" />
-    <None Remove="Res\**" />
+    <Content Include="Res\Images\GeekAssistant\Icon\G.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Res\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-1.prproj" />
+    <None Include="Res\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-2.prproj" />
+    <None Include="Res\Images\PleaseWait-GeekAssistant\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-1.prproj" />
+    <None Include="Res\Images\PleaseWait-GeekAssistant\PleaseWait-GeekAssistant.prproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,9 +107,6 @@
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_FeatureUnavailable.cs">
-      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
-    </Compile>
-    <Compile Update="Modules\General\Action\GA_GetCurrentFormInstance.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_HideAllForms.cs">

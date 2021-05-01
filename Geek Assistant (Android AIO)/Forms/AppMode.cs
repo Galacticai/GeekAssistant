@@ -61,29 +61,29 @@ namespace GeekAssistant.Forms {
 
         private void AppMode_Do(int StartupLevel) {
             switch (StartupLevel) {
-            case 0:
-                //common.S.startup_newbie = true
-                //common.S.startup_moderate = false
-                inf.detail.code = "NM-00";
-                GA_FeatureUnavailable.Run("Newbie Mode");
-                break;
-            case 1:
-                c.S.AppMode_newbie = false;
-                c.S.AppMode_moderate = true;
-                Home Home = new Home();
-                Home.Show();
-                Close();
-                break;
-            case 2:
-                System.Media.SystemSounds.Beep.Play();
-                inf.Run(inf.lvls.Information, "Expert Mode",
-                          "Come on.. Experts don't need assitance.",
-                         ("OK", null));
-                inf.Run(inf.lvls.Information, "Expert Mode",
-                         "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.", 
-                       ("Continue", null ));
-                start_default.PerformClick();
-                break;
+                case 0:
+                    //common.S.startup_newbie = true
+                    //common.S.startup_moderate = false
+                    inf.detail.code = "NM-00";
+                    GA_FeatureUnavailable.Run("Newbie Mode");
+                    break;
+                case 1:
+                    c.S.AppMode_newbie = false;
+                    c.S.AppMode_moderate = true;
+                    Home Home = new Home();
+                    Home.Show();
+                    Close();
+                    break;
+                case 2:
+                    System.Media.SystemSounds.Beep.Play();
+                    inf.Run(inf.lvls.Error, "Expert Mode",
+                              "Come on.. Experts don't need assitance.",
+                             ("OK", null));
+                    inf.Run(inf.lvls.Information, "Expert Mode",
+                             "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.",
+                           ("Continue", null));
+                    start_default.PerformClick();
+                    break;
             }
         }
 

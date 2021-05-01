@@ -72,35 +72,35 @@ internal static partial class madb {
         string result = "";
         switch (GetDeviceState()) {
 
-        case 0: {
-            result = "recovery";
-            break;
-        }
+            case 0: {
+                result = "recovery";
+                break;
+            }
 
-        case 1: {
-            result = "bootloader";
-            break;
-        }
+            case 1: {
+                result = "bootloader";
+                break;
+            }
 
-        case 2: {
-            result = "offline";
-            break;
-        }
+            case 2: {
+                result = "offline";
+                break;
+            }
 
-        case 3: {
-            result = "online";
-            break;
-        }
+            case 3: {
+                result = "online";
+                break;
+            }
 
-        case 4: {
-            result = "download";
-            break;
-        }
+            case 4: {
+                result = "download";
+                break;
+            }
 
-        case 5: {
-            result = "unknown";
-            break;
-        }
+            case 5: {
+                result = "unknown";
+                break;
+            }
         }
 
         return result;

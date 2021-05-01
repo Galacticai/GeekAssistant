@@ -10,7 +10,6 @@ namespace GeekAssistant.Forms {
         }
         private void AssignEvents() {
             FormClosing += new(Donate_FormClosing);
-            Load += new(Donate_Load);
 
             Close_Button.Click += new(Close_Button_Click);
 
@@ -39,8 +38,17 @@ namespace GeekAssistant.Forms {
             BitcoinTitle.DoubleClick += new(Bitcoin_DoubleClick); Bitcoin_ClickableBG.DoubleClick += new(Bitcoin_DoubleClick);
 
         }
+
+        private static Home Home = null;
+        private static void RefresHome() {
+            foreach (Form h in Application.OpenForms)
+                if (h.GetType() == typeof(Home))
+                    Home = (Home)h;
+        }
+
         private void Donate_FormClosing(object sender, EventArgs e) {
-            new Home().BringToFront();
+            RefresHome();
+            Home.BringToFront();
         }
         private void Donate_Load(object sender, EventArgs e) {
             AssignEvents();
@@ -50,10 +58,10 @@ namespace GeekAssistant.Forms {
         }
 
         private void Close_Button_Click(object sender, EventArgs e) {
-            Dispose();
+            Close();
         }
 
-        private Timer GooglePayClick_Timer = new Timer { Interval = 1500 };
+        private Timer GooglePayClick_Timer = new() { Interval = 1500 };
         private void GooglePay_Click(object sender, EventArgs e) {
             Clipboard.SetText("nhkomaiha@gmail.com");
             GooglePayEmail.Text = "Copied... Double click for help.";
@@ -78,15 +86,6 @@ namespace GeekAssistant.Forms {
             GooglePayLink.Image = current_GooglePayLink_Image;
         }
 
-        //private saved_GooglePayTitle_Forecolor As Color
-        //private void GooglePayTitle_MouseEnter(object sender, EventArgs e) { GooglePayTitle.MouseEnter
-        //    saved_GooglePayTitle_Forecolor = GooglePayTitle.ForeColor
-        //    GooglePayTitle.ForeColor = Current_fgColor()
-        //}
-        //private void GooglePayTitle_MouseLeave(object sender, EventArgs e) { GooglePayTitle.MouseLeave
-        //    GooglePayTitle.ForeColor = saved_GooglePayTitle_Forecolor
-        //}
-
         private Timer BitcoinClick_Timer = new Timer { Interval = 1500 };
         private void Bitcoin_Click(object sender, EventArgs e) {
             Clipboard.SetText(prop.strings.BTCaddress);
@@ -101,10 +100,6 @@ namespace GeekAssistant.Forms {
 
         private void Bitcoin_DoubleClick(object sender, EventArgs e) {
             Process.Start(new ProcessStartInfo("https://bitcoin.org/en/how-it-works") { UseShellExecute = true, Verb = "open" });
-        }
-
-        private void Donate_Load_1(object sender, EventArgs e) {
-
         }
     }
 }

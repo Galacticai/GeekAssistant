@@ -3,13 +3,21 @@ using GeekAssistant.Forms;
 using System.IO;
 using Markdig;
 using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
-
+using System.Windows.Forms;
 
 internal static partial class GA_Log {
     private static string latestLogName;
     private static string latestLogPath;
 
+    private static Home Home = null;
+    private static void RefresHome() {
+        foreach (Form h in Application.OpenForms)
+            if (h.GetType() == typeof(Home))
+                Home = (Home)h;
+    }
     public static void CreateLog() {
+        RefresHome();
+
         if (!Directory.Exists(c.GA))
             Directory.CreateDirectory(c.GA);
         if (!Directory.Exists($@"{c.GA}\log"))
@@ -18,7 +26,7 @@ internal static partial class GA_Log {
         latestLogPath = $@"{c.GA}\log\{latestLogName}";
         File.Create(latestLogPath).Dispose();
         StreamWriter swriter = new StreamWriter(latestLogPath);
-        swriter.WriteLine(new Home().log.Text);
+        swriter.WriteLine(Home.log.Text);
         swriter.Close();
     }
 
@@ -27,16 +35,20 @@ internal static partial class GA_Log {
     }
 
     public static void ResetLog() {
+        RefresHome();
+
         LogEvent("Log Cleared", 3);
         CreateLog();
-        new Home().log.Text = GA_Ver.Run("log");
+        Home.log.Text = GA_Ver.Run("log");
         LogAppendText($"// Previous log saved //  {latestLogName}  //", 1);
         LogEvent("Continue", 1);
     }
 
     public static void LogAppendText(string logText, int lines) {
+        RefresHome();
+
         // Dim StringLines As String() = logText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
-        Home Home = new Home();
+
         for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) {
             // Main.htmlLog.DocumentText &= br
             Home.log.Text += c.n;
@@ -51,7 +63,8 @@ internal static partial class GA_Log {
     }
 
     public static void StopNotifyIfLogSeen() {
-        Home Home = new Home();
+        RefresHome();
+
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
             {
                 Home.ShowLog_ErrorBlink_Timer.Stop();

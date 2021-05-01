@@ -286,7 +286,7 @@ namespace GeekAssistant.Forms {
             this.MinimumSize = new System.Drawing.Size(427, 522);
             this.Name = "Donate()";
             this.Text = "Support The Developer — Geek Assistant";
-            this.Load += new System.EventHandler(this.Donate_Load_1);
+            this.Load += new System.EventHandler(this.Donate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonsBG_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BitcoinAddressQR)).EndInit();

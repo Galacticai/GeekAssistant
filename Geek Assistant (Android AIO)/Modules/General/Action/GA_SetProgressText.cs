@@ -10,27 +10,27 @@ internal static partial class GA_SetProgressText {
         Home Home = new Home();
         c.S.LastProgress = text;
         switch (ErrorLevel) {
-        case -1: {
-            // common.PleaseWait().PleaseWait_ProgressText.ForeColor = SystemColors.ControlText
-            Home.bar.Style = MetroFramework.MetroColorStyle.Green;
-            break;
-        }
+            case -1: {
+                // common.PleaseWait().PleaseWait_ProgressText.ForeColor = SystemColors.ControlText
+                Home.bar.Style = MetroFramework.MetroColorStyle.Green;
+                break;
+            }
 
-        case 0: {
-            // common.PleaseWait().PleaseWait_ProgressText.ForeColor = Color.DarkOrange
-            Home.bar.Style = MetroFramework.MetroColorStyle.Orange;
-            System.Media.SystemSounds.Beep.Play();
-            break;
-        }
+            case 0: {
+                // common.PleaseWait().PleaseWait_ProgressText.ForeColor = Color.DarkOrange
+                Home.bar.Style = MetroFramework.MetroColorStyle.Orange;
+                System.Media.SystemSounds.Beep.Play();
+                break;
+            }
 
-        case 1: {
-            // common.PleaseWait().PleaseWait_ProgressText.ForeColor = Color.Firebrick
-            // common.PleaseWait().PleaseWait_ProgressText.Text = $"({S.ErrorCode}) {text}"
-            Home.bar.Style = MetroFramework.MetroColorStyle.Red;
-            Home.ProgressBarLabel.Text = $"({inf.detail.code}) {text}";
-            System.Media.SystemSounds.Asterisk.Play();
-            return;
-        }
+            case 1: {
+                // common.PleaseWait().PleaseWait_ProgressText.ForeColor = Color.Firebrick
+                // common.PleaseWait().PleaseWait_ProgressText.Text = $"({S.ErrorCode}) {text}"
+                Home.bar.Style = MetroFramework.MetroColorStyle.Red;
+                Home.ProgressBarLabel.Text = $"({inf.detail.code}) {text}";
+                System.Media.SystemSounds.Asterisk.Play();
+                return;
+            }
         }
 
         new PleaseWait().PleaseWait_ProgressText.Text = text;

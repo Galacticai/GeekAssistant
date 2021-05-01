@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using FluentTransitions;
 using GeekAssistant.Forms;
 
 internal static partial class GA_SetTheme {
@@ -15,64 +16,59 @@ internal static partial class GA_SetTheme {
     private static Settings s = null;
     private static ToU t = null;
     public static void Run(Form f, bool initiating = false) {
-        //Form Preparing = Application.OpenForms[0];
-        //Form AppMode = new();
-        //Form Home = new();
-        //var form = f;
-        //FormName = FormName[..(FormName.Length-2)]; //remove the () at the end which exists in C# form.Name
         initiatingbool = initiating;
-        switch (f) { 
-        case PleaseWait:
-            pw = (PleaseWait)f;
-            PleaseWait_Theme(); 
-            break;
-        case Preparing:
-            p = (Preparing)f;
-            p.Preparing_Label.ForeColor = c.colors.fg;
-            p.BackColor = c.colors.bg;
-            break;
-        case AppMode:
-            am = (AppMode)f;
-            //Control am = AppMode;
-            SetControlTheme(am);
-            am.startup_dontShow.ForeColor = c.colors.fg;
-            break;
-        case Donate:
-            d = (Donate)f;
-            Donate_Theme();
-            break;
-        case Info:
-            i = (Info)f;
-            Info_Theme();
-            break;
-        case Home:
-            h = (Home)f;
-            HomeTheme_delayTimer.Tick += new(HomeTheme_delayTimer_Tick);
-            if (c.S.VerboseLogging) {
-                string ThemeString = "dark theme";
-                if (c.S.DarkTheme)
-                    ThemeString = "Light Theme";
-                GA_SetProgressText.Run($"Switched to {ThemeString}.", -1);
-            }
-            if (!initiating & c.S.PerformAnimations) {
-                if (c.S.DarkTheme) {
-                    h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
-                    Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
-                } else {
-                    h.SwitchTheme_Back_UI.Top = new Home().Height;
-                    Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
+        switch (f) {
+            case PleaseWait:
+                pw = (PleaseWait)f;
+                PleaseWait_Theme();
+                break;
+            case Preparing:
+                p = (Preparing)f;
+                p.Preparing_Label.ForeColor = c.colors.fg;
+                p.BackColor = c.colors.bg;
+                break;
+            case AppMode:
+                am = (AppMode)f;
+                //Control am = AppMode;
+                SetControlTheme(am);
+                am.startup_dontShow.ForeColor = c.colors.fg;
+                break;
+            case Donate:
+                d = (Donate)f;
+                Donate_Theme();
+                break;
+            case Info:
+                i = (Info)f;
+                Info_Theme();
+                break;
+            case Home:
+                h = (Home)f;
+                HomeTheme_delayTimer.Tick += new(HomeTheme_delayTimer_Tick);
+                if (c.S.VerboseLogging) {
+                    string ThemeString = "dark theme";
+                    if (c.S.DarkTheme)
+                        ThemeString = "Light Theme";
+                    GA_SetProgressText.Run($"Switched to {ThemeString}.", -1);
                 }
-            }
-            HomeTheme_delayTimer.Start();
-            break;
-        case Settings:
-            s = (Settings)f;
-            Settings_Theme();
-            break;
-        case ToU:
-            t = (ToU)f;
-            ToU_Theme();
-            break;
+                if (!initiating & c.S.PerformAnimations) {
+                    if (c.S.DarkTheme) {
+                        h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
+                        Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
+                    } else {
+                        h.SwitchTheme_Back_UI.Top = new Home().Height;
+                        Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
+                    }
+                }
+                HomeTheme_delayTimer.Start();
+                break;
+            case Settings:
+                s = (Settings)f;
+                Settings_Theme();
+                break;
+            case ToU:
+                t = (ToU)f;
+                ToU_Theme();
+                break;
         }
 
     }
@@ -166,10 +162,10 @@ internal static partial class GA_SetTheme {
 
         if (initiatingbool) {
 
-            for (int i = 0; i < Controls_array.Length; i++){
+            for (int i = 0; i < Controls_array.Length; i++) {
                 Controls_array[i].BackColor = c.colors.bg;
                 Controls_array[i].ForeColor = c.colors.fg;
-            } 
+            }
 
         } else SetControlsArrTheme(Controls_array);
 
@@ -230,7 +226,7 @@ internal static partial class GA_SetTheme {
     #region PleaseWait
     private static void PleaseWait_Theme() {
         //PleaseWait p = new();
-        SetControlsArrTheme(new Control[] { pw,  pw.PleaseWait_ProgressText });
+        SetControlsArrTheme(new Control[] { pw, pw.PleaseWait_ProgressText });
 
         var p_spb = pw.StopProcess_Button;
         var p_spb_fa = p_spb.FlatAppearance;
@@ -336,18 +332,18 @@ internal static partial class GA_SetTheme {
 
     private static void SetControlsArrTheme(Control[] ControlsObj) {
         for (int i = 0; i < ControlsObj.Length; i++)
-             SetControlTheme(  ControlsObj[i]); 
-    } 
-    private static void SetControlTheme(  Control ControlObj) {
-        Animate.Run(  ControlObj, "ForeColor", c.colors.fg);
-        Animate.Run(  ControlObj, "BackColor", c.colors.bg);
+            SetControlTheme(ControlsObj[i]);
+    }
+    private static void SetControlTheme(Control ControlObj) {
+        Animate.Run(ControlObj, "ForeColor", c.colors.fg);
+        Animate.Run(ControlObj, "BackColor", c.colors.bg);
     }
 
     private static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
         for (int i = 0; i < ControlsObj.Length; i++)
-            SetControlTheme_Metro(  ControlsObj[i]);
+            SetControlTheme_Metro(ControlsObj[i]);
     }
-    private static void SetControlTheme_Metro(  MetroFramework.Interfaces.IMetroControl ControlObj) {
+    private static void SetControlTheme_Metro(MetroFramework.Interfaces.IMetroControl ControlObj) {
         ControlObj.Theme = c.colors.Metro;
         // Cannot animate "Theme" 'Transition.run(ControlObj, "Theme", Current_Theme_Metro(), New TransitionType_CriticalDamping(500))
     }

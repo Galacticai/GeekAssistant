@@ -57,15 +57,20 @@ internal static partial class txt {
         // Do
         return input.Substring(input.IndexOf(" ") + index, input.Length);
     }
-
-    /// <param name="input">Input</param>
-    /// <returns>"Yes" if True, "No" if False</returns>
-    public static string ConvertBoolToYesNo(bool input) => input ? "Yes" : "No";
-    /// <param name="input">Input</param>
-    /// <returns>true if 1, else false</returns>
-    public static bool ConvertIntToBool(object input) => input == (object)1 ? true : false;
-    public static int ConvertBoolToInt(bool input) => input ? 1 : 0;
-
+    public struct Convert {
+        /// <param name="value">Input</param>
+        /// <returns>"Yes" if True, "No" if False</returns>
+        public static string BoolToYesNo(bool value) => value ? "Yes" : "No";
+        /// <param name="value">Input</param>
+        /// <returns>true if 1, else false</returns>
+        public static bool IntToBool(int value) => System.Convert.ToBoolean(value);//input == 1 ? true : false;
+        /// <param name="value">Input</param>
+        /// <returns>true if "1" or "yes"(any case), else false</returns>
+        public static bool StringToBool(string value) => bool.Parse(value);//input.ToLower() == "yes" | input == "1" ? true : false;
+        /// <param name="value">Input</param>
+        /// <returns>1 if true, else 0</returns>
+        public static int BoolToInt(bool value) => value ? 1 : 0;
+    }
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomWorkText() {
         return math.RandomObjectFromArr(new[] {

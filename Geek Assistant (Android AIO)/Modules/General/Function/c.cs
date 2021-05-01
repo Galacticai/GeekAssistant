@@ -125,14 +125,16 @@ internal static partial class c {
             public static Color bg_Hover { get => c.S.DarkTheme ? Color.FromArgb(32, 72, 32) : Color.Honeydew; }
             public static Color bg { get => c.S.DarkTheme ? Color.FromArgb(32, 32, 32) : Color.WhiteSmoke; }
         }
-
         public static Color bg { get => S.DarkTheme ? constColors.bg_Dark : constColors.bg; }
         public static Color fg { get => S.DarkTheme ? constColors.fg_Dark : constColors.fg; }
         public static Color Green { get => S.DarkTheme ? constColors.Green_Dark : constColors.Green; }
-        public static Color infBlue { get => S.DarkTheme ? constColors.infBlue_Dark : constColors.infBlue; } 
+
+        #region infColorRes
+        public static Color infBlue { get => S.DarkTheme ? constColors.infBlue_Dark : constColors.infBlue; }
         public static Color warnYellow { get => S.DarkTheme ? constColors.warnYellow_Dark : constColors.warnYellow; }
         public static Color errRed { get => S.DarkTheme ? constColors.errRed_Dark : constColors.errRed; }
         public static Color questBlue { get => S.DarkTheme ? constColors.questBlue_Dark : constColors.questBlue; }
+        #endregion
 
         /// <summary>
         /// Constant colors not affected by themes or anything
@@ -172,7 +174,7 @@ internal static partial class c {
             /// <summary>
             /// Color.FromArgb(0, 80, 115)
             /// </summary>
-            public static Color infBlue { get => Color.FromArgb(0, 80, 115); } 
+            public static Color infBlue { get => Color.FromArgb(0, 80, 115); }
 
             /// <summary>
             /// Color.FromArgb(255, 238, 191)
@@ -184,22 +186,22 @@ internal static partial class c {
             public static Color warnYellow { get => Color.FromArgb(115, 84, 0); }
 
             /// <summary>
-            /// Color.FromArgb(154, 0, 0)
-            /// </summary>
-            public static Color errRed_Dark { get => Color.FromArgb(154, 0, 0); }
-            /// <summary>
             /// Color.FromArgb(255, 191, 191)
             /// </summary>
-            public static Color errRed { get => Color.FromArgb(255, 191, 191); }
-
+            public static Color errRed_Dark { get => Color.FromArgb(255, 191, 191); }
             /// <summary>
-            /// Color.FromArgb(64, 109, 128)
+            /// Color.FromArgb(154, 0, 0)
             /// </summary>
-            public static Color questBlue_Dark { get => Color.FromArgb(64, 109, 128); }
+            public static Color errRed { get => Color.FromArgb(154, 0, 0); }
+
             /// <summary>
             /// Color.FromArgb(191, 223, 255)
             /// </summary>
-            public static Color questBlue { get => Color.FromArgb(191, 223, 255); }
+            public static Color questBlue_Dark { get => Color.FromArgb(191, 223, 255); }
+            /// <summary>
+            /// Color.FromArgb(64, 109, 128)
+            /// </summary>
+            public static Color questBlue { get => Color.FromArgb(64, 109, 128); }
         }
 
         public static MetroThemeStyle Metro { get => S.DarkTheme ? MetroThemeStyle.Dark : MetroThemeStyle.Light; }

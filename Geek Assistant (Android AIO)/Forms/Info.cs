@@ -24,7 +24,7 @@ namespace GeekAssistant.Forms {
             title_Label.Click += new(title_Label_Click);
             title_Label_Click_Timer.Tick += new(title_Label_Click_Timer_Tick);
         }
-         
+
         private void Info_Load(object sender, EventArgs e) {
             AssignEvents();
 
@@ -66,27 +66,35 @@ namespace GeekAssistant.Forms {
             }
 
 
-            info_PictureBox.Image = inf.infIcon(inf.detail.lvl);
-            title_Label.ForeColor = inf.infColor(inf.detail.lvl);
-             
-            //set theme.icon
-            if (inf.theme.icon != null) //failsafe (Don't merge failsafe layers)
-                if (inf.theme.icon.Length == 2) //2nd failsafe 
-                    if (inf.theme.icon[0] != null & inf.theme.icon[1] != null) //3rd failsafe
-                         info_PictureBox.Image = inf.theme.icon[txt.ConvertBoolToInt(c.S.DarkTheme)];
+            info_PictureBox.Image = inf.infIcon;
+            title_Label.ForeColor = inf.infColor;
 
-            //set theme.color
-            if (inf.theme.color != null) //failsafe (Don't merge failsafe layers)
-                if (inf.theme.color.Length == 2) //2nd failsafe 
-                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) //3rd failsafe
-                         title_Label.ForeColor = inf.theme.color[txt.ConvertBoolToInt(c.S.DarkTheme)];
-
+            switch (inf.theme.icon.Length) {
+                case 2:
+                    if (inf.theme.icon[0] != null & inf.theme.icon[1] != null)   // 2nd failsafe
+                        info_PictureBox.Image = inf.theme.icon[Convert.ToInt32(c.S.DarkTheme)];
+                    break;
+                case 1:
+                    if (inf.theme.icon[0] != null)
+                        info_PictureBox.Image = inf.theme.icon[0];   //set first icon if 1 item
+                    break;
+            }
+            switch (inf.theme.color.Length) {
+                case 2:
+                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty)   // 2nd failsafe
+                        title_Label.ForeColor = inf.theme.color[Convert.ToInt32(c.S.DarkTheme)];
+                    break;
+                case 1:
+                    if (inf.theme.color[0] != Color.Empty)
+                        title_Label.ForeColor = inf.theme.color[0];   //set first icon if 1 item
+                    break;
+            }
             Text = inf.WindowTitle;
             title_Label.Text = inf.detail.title;
-            msg_Textbox.Text = inf.detail.msg; 
+            msg_Textbox.Text = inf.detail.msg;
             Yes_Button.ForeColor = title_Label.ForeColor;
             Yes_Button.FlatAppearance.MouseDownBackColor = title_Label.ForeColor;
-             
+
 
             ////////Special Cases
             //if (title_Label.Text == "Send Feedback") if (c.S.DarkTheme) info_PictureBox.Image = prop.x64.Smile_dark_64; else info_PictureBox.Image = prop.x64.Smile_64;
@@ -96,16 +104,16 @@ namespace GeekAssistant.Forms {
             Width = 566;
             Height = 355;
             switch (msg_Textbox.Text.Length) {
-            case < 150:
-                Width = 520;
-                Height -= 50;
-                break;
-            case > 400:
-                Width += 60;
-                Height += 75;
-                break;
+                case < 150:
+                    Width = 520;
+                    Height -= 50;
+                    break;
+                case > 400:
+                    Width += 60;
+                    Height += 75;
+                    break;
             }
-            GA_CenterToHomeBounds.Run(this); 
+            GA_CenterToHomeBounds.Run(this);
             GA_SetTheme.Run(this);
         }
 
@@ -138,7 +146,7 @@ namespace GeekAssistant.Forms {
                 Dispose();
                 if (inf.Run(inf.lvls.Question,
                             "Enable Verbose Logging?",
-                              $"For better troubleshooting, enable verbose logging in Settings() and try again.", 
+                              $"For better troubleshooting, enable verbose logging in Settings() and try again.",
                             ("Enable", "Close"))) { Settings Settings = new Settings(); Settings.ShowDialog(); }
 
                 c.S.VerboseLoggingPrompt = false;
@@ -194,6 +202,6 @@ namespace GeekAssistant.Forms {
         private void title_Label_Click_Timer_Tick(object sender, EventArgs e) {
             title_Label.Text = savedTitle;
             title_Label_Click_Timer.Stop();
-        } 
+        }
     }
 }

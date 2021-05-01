@@ -1,4 +1,5 @@
 ﻿using GeekAssistant.Forms;
+using System;
 using System.Drawing;
 /// <summary>
 /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
@@ -17,6 +18,13 @@ internal static partial class inf { //inform
     /// </list>
     /// </summary>
     public static (string code, lvls lvl, string title, string msg, string fullFatalError) detail;
+    //public struct detail {
+    //    public static string code;
+    //    public static lvls lvl;
+    //    public static string title;
+    //    public static string msg;
+    //    public static string fullFatalError;
+    //}
     /// <summary>
     /// YesButton can be null or empty
     /// </summary>
@@ -29,6 +37,15 @@ internal static partial class inf { //inform
 
     #endregion
 
+    /// <summary>
+    /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
+    /// </summary>
+    /// <param name="infDetail">info details provided by inf.detail</param> 
+    /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
+    /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
+    public static bool Run((string code, lvls lvl, string title, string msg, string fullFatalError) infDetail,
+                           (string YesButton, string NoButton) YesNoButtons = default)
+            => Do(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, infDetail.fullFatalError, null, null);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -74,15 +91,16 @@ internal static partial class inf { //inform
                            string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default,
                            Image[] icon = null,
-                           Color[] color = null) 
+                           Color[] color = null)
              => Do(lvl, title, msg, YesNoButtons, null, icon, color);
-     
+
     private static bool Do(lvls lvl,
-                           string title, string msg, 
+                           string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default,
                            string fullFatalError = null,
                            Image[] icon = null,
                            Color[] color = null) {
+
         //default 
         infoAnswer = false;
         detail = (detail.code, lvls.Information, null, null, null);
@@ -98,41 +116,33 @@ internal static partial class inf { //inform
         Info.ShowDialog();
         return infoAnswer;
     }
-    public static string WindowTitle { get =>
-        detail.lvl switch {
-                //lvls.Information => infIcon.Information, // -1
-                lvls.Warn => $" ⚠  Warn: ❰{detail.code}❱ — Geek Assistant", // 0
-                lvls.Error => $" ❌  Error: ❰{detail.code}❱ — Geek Assistant", // 1 // 10
-                lvls.FatalError => $" ❌  Fatal Error: ❰{detail.code}❱ — Geek Assistant",
-                //lvls.Question => detail.title, // 2
-                _ => detail.title + " — Geek Assistant"  // -1
-            };
-    }
-    public static Image infIcon(lvls lvl) =>
-         lvl switch {
-             //lvls.Information => infIcon.Information, // -1
-             lvls.Warn => infIconRes.Warn, // 0
-             lvls.Error | lvls.FatalError => infIconRes.Error, // 1 | 10
-             lvls.Question => infIconRes.Question, // 2
-             _ => infIconRes.Information  // -1
-         }; 
-    public static Color infColor (lvls lvl) =>
-         lvl switch {
-             //lvls.Information => infIcon.Information, // -1
-             lvls.Warn => c.colors.warnYellow, // 0
-             lvls.Error | lvls.FatalError => c.colors.errRed, // 1 | 10
-             lvls.Question => c.colors.questBlue, // 2
-             _ => c.colors.infBlue  // -1
-         }; 
+    private static string detailcode => string.IsNullOrEmpty(detail.code) ? $"{detail.title}" : $"❰{detail.code}❱";
+    public static string WindowTitle
+        => detail.lvl switch {
+            lvls.Warn => $" ⚠  Warn: {detailcode} — Geek Assistant", // 0
+            lvls.Error => $" ❌  Error: {detailcode} — Geek Assistant", // 1 // 10
+            lvls.FatalError => $" ❌  Fatal Error: {detailcode} — Geek Assistant",
+            _ => $"{detail.title} — Geek Assistant"  // -1 and 2
+        };
+    public static Image infIcon
+        => detail.lvl switch {
+            lvls.Warn => infIconRes.Warn, // 0
+            lvls.Error => infIconRes.Error, // 1 
+            lvls.FatalError => infIconRes.Error, // 10
+            lvls.Question => infIconRes.Question, // 2
+            _ => infIconRes.Information  // -1
+        };
+    public static Color infColor
+        => detail.lvl switch {
+            lvls.Warn => c.colors.warnYellow, // 0
+            lvls.Error => c.colors.errRed, // 1
+            lvls.FatalError => c.colors.errRed, // 10
+            lvls.Question => c.colors.questBlue, // 2
+            _ => c.colors.infBlue  // -1
+        };
 
-        //if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Warn)) return c.colors.warnYellow;// 0
-        //else if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Error)) return c.colors.errRed; // 1 | 10
-        //else if (math.CompareImagesBritghtnessMatrix(icon , infIconRes.Question)) return c.colors.questBlue;//2
-        ///*if (icon == infIcon.Information)*/
-        //else return c.colors.infBlue; //-1
-    
-    public struct infIconRes { 
-        public static Image Information { get => c.S.DarkTheme ? prop.x64.Info_Blue_dark_64 : prop.x64.Info_Blue_64; } 
+    public struct infIconRes {
+        public static Image Information { get => c.S.DarkTheme ? prop.x64.Info_Blue_dark_64 : prop.x64.Info_Blue_64; }
         public static Image Warn { get => c.S.DarkTheme ? prop.x64.Info_Yellow_dark_64 : prop.x64.Info_Yellow_64; }
         public static Image Question { get => c.S.DarkTheme ? prop.x64.Question_Blue_dark_64 : prop.x64.Question_Blue_64; }
         public static Image Error { get => c.S.DarkTheme ? prop.x64.Warning_Red_dark_64 : prop.x64.Warning_Red_64; }

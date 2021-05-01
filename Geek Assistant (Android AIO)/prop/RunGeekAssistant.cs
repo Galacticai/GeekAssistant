@@ -30,6 +30,7 @@ namespace GeekAssistant {
             //forgot why i made this
         }
 
+        [STAThread]
         [System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptions]
         private static void Main() {
             //Single Instance 

@@ -56,7 +56,7 @@ namespace GeekAssistant.Forms {
             // 
             // ToUTitle_Label
             // 
-            this.ToUTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ToUTitle_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ToUTitle_Label.BackColor = System.Drawing.Color.Transparent;
             this.ToUTitle_Label.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -70,7 +70,7 @@ namespace GeekAssistant.Forms {
             // 
             // ToUTitle_Description_Label
             // 
-            this.ToUTitle_Description_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ToUTitle_Description_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ToUTitle_Description_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ToUTitle_Description_Label.Location = new System.Drawing.Point(109, 51);
@@ -82,8 +82,8 @@ namespace GeekAssistant.Forms {
             // 
             // TermsOfUse_Box
             // 
-            this.TermsOfUse_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TermsOfUse_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TermsOfUse_Box.BackColor = System.Drawing.Color.White;
             this.TermsOfUse_Box.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -113,7 +113,7 @@ namespace GeekAssistant.Forms {
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
