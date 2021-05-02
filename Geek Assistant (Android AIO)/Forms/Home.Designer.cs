@@ -571,8 +571,8 @@ namespace GeekAssistant.Forms {
             this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
             this.Main_Tabs.Controls.Add(this.FlashImg_Tab);
+            this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
             this.Main_Tabs.Controls.Add(this.MoreTools_Tab);
             this.Main_Tabs.Location = new System.Drawing.Point(273, 117);
             this.Main_Tabs.Name = "Main_Tabs";
