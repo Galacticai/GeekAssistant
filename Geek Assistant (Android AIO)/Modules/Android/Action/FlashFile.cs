@@ -15,27 +15,25 @@ internal static partial class FastbootFlash {
             inf.Run(inf.lvls.Error, "Fastboot Flash", "We need to wait the other process to finish first...");
             return;
         }
+
         inf.currentTitle = "Fastboot Flash";
         c.Working = true;
         inf.detail.code = "FF-00";
         GA_Log.LogEvent(inf.currentTitle, 2);
         GA_PleaseWait.Run(true);
         try {
-            inf.detail.code = "FF-F0";
-            if (string.IsNullOrEmpty(img)) // check zip string 
-            {
-                // ErrorInfo = (10, "File name is not set!")
+            if (string.IsNullOrEmpty(img)) { // check zip string  
+                inf.detail = ("FF-F0", inf.lvls.FatalError, inf.currentTitle, "File name is not set!", null);
                 throw new Exception();
             }
 
-            inf.detail.code = "FF-T0";
             if (type < 0 | type > 5) {
-                // ErrorInfo = (10, "File type is out of range!")
+                inf.detail = ("FF-T0", inf.lvls.FatalError, inf.currentTitle, "Type is out of range!", null);
                 throw new Exception();
             }
 
             // ' check if fb compatible 
-            if (!CheckConnectionIsCompatible.fbIsCompatible("FF"))
+            if (!CheckConnectionIsCompatible.fbIsCompatible("FF")) //inf.detail is already set inside this
                 throw new Exception();
             Managed.Adb.Device dev = madb.GetListOfDevice()[0];
 
@@ -114,7 +112,8 @@ internal static partial class FastbootFlash {
             inf.detail.code = "FF-rX";
         } catch (Exception ex) {
             GA_PleaseWait.Run(false); // Close before error dialog 
-            inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg, ex.ToString());
+            inf.detail.fullFatalError = ex.ToString();
+            inf.Run(inf.detail);
         }
 
         GA_PleaseWait.Run(false); // Close if Try was successful

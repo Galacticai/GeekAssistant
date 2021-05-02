@@ -5,6 +5,7 @@ using System.Drawing;
 /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
 /// </summary>
 internal static partial class inf { //inform
+
     #region Info
 
     public static bool infoAnswer = false;
@@ -25,13 +26,9 @@ internal static partial class inf { //inform
     //    public static string msg;
     //    public static string fullFatalError;
     //}
-    /// <summary>
-    /// YesButton can be null or empty
-    /// </summary>
-    public static (string YesButton, string NoButton) ButtonText;
-    /// <summary>
-    /// Use index [0] as light color and [1] as dark color
-    /// </summary>
+    /// <summary> YesButton can be null or empty </summary>
+    public static (string YesButton, string NoButton) YesNoButtons;
+    /// <summary> Use index [0] as light color and [1] as dark color </summary>
     public static (Image[] icon, Color[] color) theme;
     public enum lvls { Information = -1, Warn = 0, Error = 1, FatalError = 10, Question = 2 }
 
@@ -45,7 +42,7 @@ internal static partial class inf { //inform
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run((string code, lvls lvl, string title, string msg, string fullFatalError) infDetail,
                            (string YesButton, string NoButton) YesNoButtons = default)
-            => Do(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, infDetail.fullFatalError, null, null);
+            => Do(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, infDetail.fullFatalError, default);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -54,7 +51,7 @@ internal static partial class inf { //inform
     /// <param name="msg">More text to view below the title</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run(lvls lvl, string title, string msg)
-            => Do(lvl, title, msg, default, null, null, null);
+            => Do(lvl, title, msg, default, null, default);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -64,7 +61,7 @@ internal static partial class inf { //inform
     /// <param name="fullFatalError">Fatal error text (full error)</param>  
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run(lvls lvl, string title, string msg, string fullFatalError)
-            => Do(lvl, title, msg, default, fullFatalError, null, null);
+            => Do(lvl, title, msg, default, fullFatalError, default);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -76,7 +73,7 @@ internal static partial class inf { //inform
     public static bool Run(lvls lvl,
                            string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default)
-            => Do(lvl, title, msg, YesNoButtons, null, null, null);
+            => Do(lvl, title, msg, YesNoButtons, null, default);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -90,29 +87,27 @@ internal static partial class inf { //inform
     public static bool Run(lvls lvl,
                            string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default,
-                           Image[] icon = null,
-                           Color[] color = null)
-             => Do(lvl, title, msg, YesNoButtons, null, icon, color);
+                           (Image[] icon, Color[] color) theme = default)
+            => Do(lvl, title, msg, YesNoButtons, null, theme);
 
-    private static bool Do(lvls lvl,
-                           string title, string msg,
-                           (string YesButton, string NoButton) YesNoButtons = default,
-                           string fullFatalError = null,
-                           Image[] icon = null,
-                           Color[] color = null) {
+    private static bool Do(lvls _lvl,
+                           string _title, string _msg,
+                           (string YesButton, string NoButton) _YesNoButtons = default,
+                           string _fullFatalError = null,
+                           (Image[] icon, Color[] color) _theme = default) {
 
         //default 
         infoAnswer = false;
         detail = (detail.code, lvls.Information, null, null, null);
-        ButtonText = (null, null);
+        YesNoButtons = (null, null);
         theme = (null, null);
 
         //set
-        detail = (detail.code, lvl, title, msg, fullFatalError);
-        ButtonText = YesNoButtons;
-        theme = (icon, color);
+        detail = (detail.code, _lvl, _title, _msg, _fullFatalError);
+        YesNoButtons = _YesNoButtons;
+        theme = _theme;
 
-        Info Info = new Info();
+        Info Info = new();
         Info.ShowDialog();
         return infoAnswer;
     }

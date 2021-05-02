@@ -602,8 +602,8 @@ namespace GeekAssistant.Forms {
                         "Send Feedback",
                           $"Redirecting you to Geek Assistant issues section on github...\n\nDo you want To Continue?",
                         ("Continue", "Close"),
-                        new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
-                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) }))
+                        (new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
+                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) })))
                 Process.Start(new ProcessStartInfo("https://github.com/NHKomaiha/Geek-Assistant/issues") { UseShellExecute = true, Verb = "open" });
         }
         private void SwitchTheme_Button_Click(object sender, EventArgs e) {

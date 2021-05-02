@@ -141,8 +141,8 @@ internal static partial class math {
 
 
     /// <returns>True if both inputs are equal (Brightness matrix hash)</returns>
-    public static bool CompareImagesBritghtnessMatrix(Image input1, Image input2) =>
-        GetImageHash(input1) == GetImageHash(input2) ? true : false;
+    public static bool CompareImagesBritghtnessMatrix(Image input1, Image input2)
+            => GetImageHash(input1) == GetImageHash(input2) ? true : false;
     private static List<bool> GetImageHash(Image input) {
         List<bool> lResult = new();
         //create new image with 16x16 pixel

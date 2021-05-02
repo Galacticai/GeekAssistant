@@ -6,8 +6,8 @@ internal static partial class GA_SetTooltipInfo {
         if (c.S.ShowToolTips) {
             if (ToolTipTitle != ToolTipName.ToolTipTitle)
                 ToolTipName.ToolTipTitle = ToolTipTitle;
-            if (ToolTipText != ToolTipName.GetToolTip((Control)control))
-                ToolTipName.SetToolTip((Control)control, ToolTipText);
-        } else ToolTipName.SetToolTip((Control)control, "");
+            if (ToolTipText != ToolTipName.GetToolTip(control))
+                ToolTipName.SetToolTip(control, ToolTipText);
+        } else ToolTipName.SetToolTip(control, "");
     }
 }

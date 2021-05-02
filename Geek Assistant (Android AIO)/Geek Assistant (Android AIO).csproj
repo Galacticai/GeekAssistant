@@ -5,9 +5,9 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>GeekAssistant</RootNamespace>
     <StartupObject>GeekAssistant.RunGeekAssistant</StartupObject>
-    <UseWindowsForms>true</UseWindowsForms> 
+    <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Res\Images\GeekAssistant\Icon\G.ico</ApplicationIcon>
-    <AppDesignerFolder>prop</AppDesignerFolder> 
+    <AppDesignerFolder>prop</AppDesignerFolder>
     <Version>1.0.0.3</Version>
     <AssemblyVersion>1.0.0.3</AssemblyVersion>
     <FileVersion>1.0.0.3</FileVersion>
@@ -17,7 +17,7 @@
     <Description>AIO tool for Android phones.</Description>
     <Copyright>©2021 Geek Assistant By NHKomaiha</Copyright>
     <Platforms>AnyCPU;x86</Platforms>
-    
+
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,14 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Res\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-1.prproj" />
-    <None Include="Res\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-2.prproj" />
-    <None Include="Res\Images\PleaseWait-GeekAssistant\Adobe Premiere Pro Auto-Save\PleaseWait-GeekAssistant-1.prproj" />
-    <None Include="Res\Images\PleaseWait-GeekAssistant\PleaseWait-GeekAssistant.prproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
+    <PackageReference Include="Control.Draggable" Version="1.0.5049.269" />
     <PackageReference Include="dot-net-transitions" Version="1.2.1" />
     <PackageReference Include="FluentTransitions" Version="2.0.1" />
     <PackageReference Include="Managed.Adb" Version="2.0.131.13916" />
@@ -46,6 +40,7 @@
     <PackageReference Include="System.Management" Version="5.0.0" />
     <PackageReference Include="System.Memory" Version="4.5.4" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="Visual.Reactive.WinForms" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,19 +53,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\AppMode().cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
     <Compile Update="Forms\AppMode.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Donate().cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
     <Compile Update="Forms\Donate.cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
-    <Compile Update="Forms\Extra\PleaseWait().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\Extra\PleaseWait.cs">
@@ -79,25 +65,13 @@
     <Compile Update="Forms\Extra\Preparing.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Home().cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
     <Compile Update="Forms\Home.cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
-    <Compile Update="Forms\Info().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\Info.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Settings().cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
     <Compile Update="Forms\Settings.cs">
-      <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
-    </Compile>
-    <Compile Update="Forms\ToU().cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Forms\ToU.cs">

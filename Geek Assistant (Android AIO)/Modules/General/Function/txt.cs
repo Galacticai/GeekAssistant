@@ -27,13 +27,9 @@ internal static partial class txt {
     /// <param name="input">Input</param>
     /// <returns>0---------\n[[---------- ...]]</returns>
     public static string CutFirstLine(string input) {
-        // Foolproof
-        if (string.IsNullOrEmpty(input))
-            return null;
+        if (string.IsNullOrEmpty(input)) return null;// Foolproof
 
-        // Failsafe: return if only 1 line
-        if (input.IndexOf(Environment.NewLine) < 1)
-            return input;
+        if (input.IndexOf(Environment.NewLine) < 1) return input;// Failsafe: return if only 1 line
 
         // Do
         // ' Text Example>>(\n)blabla bla<<
@@ -46,10 +42,9 @@ internal static partial class txt {
     /// <param name="input">Input</param>
     /// <returns>0---- [[--- ------ --- ...]]</returns>
     public static string CutFirstWord(string input) {
-        // Foolproof
-        if (string.IsNullOrEmpty(input)) return null;
-        // Failsafe: return if no spaces (1 word only)
-        if (input.IndexOf(" ") < 1) return input;
+
+        if (string.IsNullOrEmpty(input)) return null; // Foolproof
+        if (input.IndexOf(" ") < 1) return input; // Failsafe: return if no spaces (1 word only)
         // Remove double space if present
         int index = 1;
         if (Strings.GetChar(input, input.IndexOf(" ")) == Strings.GetChar(input, input.IndexOf(" ") + 1))
@@ -62,7 +57,7 @@ internal static partial class txt {
         /// <returns>"Yes" if True, "No" if False</returns>
         public static string BoolToYesNo(bool value) => value ? "Yes" : "No";
         /// <param name="value">Input</param>
-        /// <returns>true if 1, else false</returns>
+        /// <returns>true if 1, else false</returns> 
         public static bool IntToBool(int value) => System.Convert.ToBoolean(value);//input == 1 ? true : false;
         /// <param name="value">Input</param>
         /// <returns>true if "1" or "yes"(any case), else false</returns>

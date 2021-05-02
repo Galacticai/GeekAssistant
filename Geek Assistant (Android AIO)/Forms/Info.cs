@@ -44,19 +44,19 @@ namespace GeekAssistant.Forms {
             }
 
             //Reset to default
-            if (!string.IsNullOrEmpty(inf.ButtonText.YesButton)) {
-                Yes_Button.Text = inf.ButtonText.YesButton;
+            if (!string.IsNullOrEmpty(inf.YesNoButtons.YesButton)) {
+                Yes_Button.Text = inf.YesNoButtons.YesButton;
                 Yes_Button.Visible = true;
-                if (string.IsNullOrEmpty(inf.ButtonText.NoButton)) {
+                if (string.IsNullOrEmpty(inf.YesNoButtons.NoButton)) {
                     Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
                     Yes_Button.Anchor = No_Button.Anchor;
                     No_Button.Visible = false;
                 }
             }
-            if (!string.IsNullOrEmpty(inf.ButtonText.NoButton))
-                No_Button.Text = inf.ButtonText.NoButton;
+            if (!string.IsNullOrEmpty(inf.YesNoButtons.NoButton))
+                No_Button.Text = inf.YesNoButtons.NoButton;
             else {
-                if (string.IsNullOrEmpty(inf.ButtonText.YesButton)) {
+                if (string.IsNullOrEmpty(inf.YesNoButtons.YesButton)) {
                     Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
                     Yes_Button.Anchor = No_Button.Anchor;
                     No_Button.Visible = false;
@@ -68,27 +68,28 @@ namespace GeekAssistant.Forms {
 
             info_PictureBox.Image = inf.infIcon;
             title_Label.ForeColor = inf.infColor;
-
-            switch (inf.theme.icon.Length) {
-                case 2:
-                    if (inf.theme.icon[0] != null & inf.theme.icon[1] != null)   // 2nd failsafe
-                        info_PictureBox.Image = inf.theme.icon[Convert.ToInt32(c.S.DarkTheme)];
-                    break;
-                case 1:
-                    if (inf.theme.icon[0] != null)
-                        info_PictureBox.Image = inf.theme.icon[0];   //set first icon if 1 item
-                    break;
-            }
-            switch (inf.theme.color.Length) {
-                case 2:
-                    if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty)   // 2nd failsafe
-                        title_Label.ForeColor = inf.theme.color[Convert.ToInt32(c.S.DarkTheme)];
-                    break;
-                case 1:
-                    if (inf.theme.color[0] != Color.Empty)
-                        title_Label.ForeColor = inf.theme.color[0];   //set first icon if 1 item
-                    break;
-            }
+            if (inf.theme.icon != null)
+                switch (inf.theme.icon.Length) {
+                    case 2:
+                        if (inf.theme.icon[0] != null & inf.theme.icon[1] != null)   // 2nd failsafe
+                            info_PictureBox.Image = inf.theme.icon[Convert.ToInt32(c.S.DarkTheme)];
+                        break;
+                    case 1:
+                        if (inf.theme.icon[0] != null)
+                            info_PictureBox.Image = inf.theme.icon[0];   //set first icon if 1 item
+                        break;
+                }
+            if (inf.theme.color != null)
+                switch (inf.theme.color.Length) {
+                    case 2:
+                        if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) // 3rd failsafe
+                            title_Label.ForeColor = inf.theme.color[Convert.ToInt32(c.S.DarkTheme)];
+                        break;
+                    case 1:
+                        if (inf.theme.color[0] != Color.Empty)
+                            title_Label.ForeColor = inf.theme.color[0];   //set first icon if 1 item
+                        break;
+                }
             Text = inf.WindowTitle;
             title_Label.Text = inf.detail.title;
             msg_Textbox.Text = inf.detail.msg;
@@ -129,7 +130,7 @@ namespace GeekAssistant.Forms {
         private void Yes_Button_Click(object sender, EventArgs e) {
             if (inf.detail.lvl == inf.lvls.Question) inf.infoAnswer = true;
             Close();
-            Home Home = new Home();
+            Home Home = new();
             Home.BringToFront();
         }
 
@@ -153,9 +154,8 @@ namespace GeekAssistant.Forms {
             }
             if (inf.detail.lvl == inf.lvls.Question) inf.infoAnswer = false;
             Close();
-            Home Home = new Home();
+            Home Home = new();
             Home.BringToFront();
-            //Dispose();
         }
 
         private void Copy_Button_MouseDown(object sender, EventArgs e) {
@@ -187,7 +187,7 @@ namespace GeekAssistant.Forms {
 
         }
 
-        private Timer title_Label_Click_Timer = new Timer { Interval = 1500 };
+        private Timer title_Label_Click_Timer = new() { Interval = 1500 };
         private string savedTitle;
         private string CopiedText = "Copied information...";
         private void title_Label_Click(object sender, EventArgs e) {

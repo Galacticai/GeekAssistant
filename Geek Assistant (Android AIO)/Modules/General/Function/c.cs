@@ -8,50 +8,21 @@ using MetroFramework;
 internal static partial class c {
 
     #region GA Directories
-    /// <summary>
-    /// Geek Assistant home directory ( ...\AppData\Roaming\Geek Assistant (Android AIO) )
-    /// </summary>
+    /// <summary> Geek Assistant home directory ( ...\AppData\Roaming\Geek Assistant (Android AIO) ) </summary>
     public static readonly string GA = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\Geek Assistant (Android AIO)";
-    /// <summary>
-    /// Geek Assistant tools directory (adb, fastboot, and others) ( {GA}\tools )
-    /// </summary>
+    /// <summary> Geek Assistant tools directory (adb, fastboot, and others) ( {GA}\tools ) </summary>
     public static readonly string GA_tools = $@"{GA}\tools";
-    /// <summary>
-    /// Geek Assistant logs directory (Saved every session) ( {GA}\log )
-    /// </summary>
+    /// <summary> Geek Assistant logs directory (Saved every session) ( {GA}\log ) </summary>
     public static readonly string GA_logs = $@"{GA}\log";
     #endregion
 
 
     #region GA Forms 
 
-    /// <summary>
-    /// A manually set (at code time) list of all forms in this project
-    /// </summary>
+    /// <summary> A manually set (at code time) list of all forms in this project </summary>
     public static readonly Form[] AllForms = { new PleaseWait(), new AppMode(), new Donate(), new Home(), new Info(), new Settings(), new ToU() };
-    /// <summary>
-    /// Refresh and return a new instance of a form as a function
-    /// </summary>
-    /*public struct f {
-        public static PleaseWait PleaseWait() { return c.PleaseWait = new PleaseWait(); }
-        public static Preparing Preparing() { return c.Preparing = new Preparing(); }
-        public static AppMode AppMode() { return c.AppMode = new AppMode(); }
-        public static Donate Donate() { return c.Donate = new Donate(); }
-        public static Home Home() { return c.Home = new Home(); }
-        public static Info Info() { return c.Info = new Info(); }
-        public static Settings Settings() { return c.Settings = new Settings(); }
-        public static ToU ToU() { return c.ToU = new ToU(); }    
-    }
-    public static PleaseWait PleaseWait = new PleaseWait();
-    public static Preparing Preparing = new Preparing();
-    public static AppMode AppMode = new AppMode();
-    public static Donate Donate = new Donate();
-    public static Home Home = new Home();
-    public static Info Info = new Info();
-    public static Settings Settings = new Settings();
-    public static ToU ToU = new ToU();
-    */
-    #endregion 
+
+    #endregion
 
     #region prop 
 
@@ -70,31 +41,19 @@ internal static partial class c {
 
     #region Public Abbreviations 
 
-    /// <summary>
-    /// Get current copyright string
-    /// </summary>
+    /// <summary> Get current copyright string </summary>
     public static readonly string C = System.Diagnostics.FileVersionInfo.GetVersionInfo(
                                           System.Reflection.Assembly.GetExecutingAssembly().Location
                                       ).LegalCopyright;
-    /// <summary>
-    /// Get current version field
-    /// </summary>
+    /// <summary> Get current version field </summary>
     public static readonly Version V = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-    /// <summary>
-    /// Simple .NET new line (Environment.NewLine)
-    /// </summary>
+    /// <summary> Simple .NET new line (Environment.NewLine) </summary>
     public static readonly string n = Environment.NewLine;
-    /// <summary>
-    /// Simple html new line (&lt;br/&gt;)
-    /// </summary>
+    /// <summary> Simple html new line (&lt;br/&gt;) </summary>
     public static readonly string br = "<br/>";
-    /// <summary>
-    /// Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space
-    /// </summary>
+    /// <summary> Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space </summary>
     public static readonly string tab = "　";
-    /// <summary>
-    /// Double Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space
-    /// </summary>
+    /// <summary> Double Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space </summary>
     public static readonly string tab2 = "　　";
 
 
@@ -115,15 +74,13 @@ internal static partial class c {
 
 
     #region GA Colors
-    /// <summary>
-    /// Dynamically selected colors according to global Light/Dark Theme
-    /// </summary>
+    /// <summary> Dynamically selected colors according to global Light/Dark Theme  </summary>
     public struct colors {
 
         public struct SwitchButton {
-            public static Color bg_Active { get => c.S.DarkTheme ? Color.FromArgb(0, 120, 0) : Color.Green; }
-            public static Color bg_Hover { get => c.S.DarkTheme ? Color.FromArgb(32, 72, 32) : Color.Honeydew; }
             public static Color bg { get => c.S.DarkTheme ? Color.FromArgb(32, 32, 32) : Color.WhiteSmoke; }
+            public static Color bg_Hover { get => c.S.DarkTheme ? Color.FromArgb(32, 72, 32) : Color.Honeydew; }
+            public static Color bg_Active { get => c.S.DarkTheme ? Color.FromArgb(0, 120, 0) : Color.Green; }
         }
         public static Color bg { get => S.DarkTheme ? constColors.bg_Dark : constColors.bg; }
         public static Color fg { get => S.DarkTheme ? constColors.fg_Dark : constColors.fg; }
@@ -136,71 +93,41 @@ internal static partial class c {
         public static Color questBlue { get => S.DarkTheme ? constColors.questBlue_Dark : constColors.questBlue; }
         #endregion
 
-        /// <summary>
-        /// Constant colors not affected by themes or anything
-        /// </summary>
+        /// <summary> Constant colors not affected by themes or anything </summary>
         public struct constColors {
-            /// <summary>
-            /// Color.White
-            /// </summary>
+            /// <summary> Color.White </summary>
             public static Color bg { get => Color.White; }
-            /// <summary>
-            /// Color.FromArgb(17, 17, 17)
-            /// </summary>
+            /// <summary> Color.FromArgb(17, 17, 17) </summary>
             public static Color bg_Dark { get => Color.FromArgb(17, 17, 17); }
 
-            /// <summary>
-            /// SystemColors.ControlText
-            /// </summary>
+            /// <summary> SystemColors.ControlText </summary>
             public static Color fg { get => SystemColors.ControlText; }
-            /// <summary>
-            /// Color.White
-            /// </summary>
+            /// <summary> Color.White </summary>
             public static Color fg_Dark { get => Color.White; }
 
-            /// <summary>
-            /// Color.FromArgb(95, 191, 119)
-            /// </summary>
+            /// <summary> Color.FromArgb(95, 191, 119) </summary>
             public static Color Green_Dark { get => Color.FromArgb(95, 191, 119); }
-            /// <summary>
-            /// Color.FromArgb(0, 128, 32)
-            /// </summary>
+            /// <summary> Color.FromArgb(0, 128, 32) </summary>
             public static Color Green { get => Color.FromArgb(0, 128, 32); }
 
-            /// <summary>
-            /// Color.FromArgb(191, 236, 255)
-            /// </summary>
+            /// <summary> Color.FromArgb(191, 236, 255) </summary>
             public static Color infBlue_Dark { get => Color.FromArgb(191, 236, 255); }
-            /// <summary>
-            /// Color.FromArgb(0, 80, 115)
-            /// </summary>
+            /// <summary> Color.FromArgb(0, 80, 115) </summary>
             public static Color infBlue { get => Color.FromArgb(0, 80, 115); }
 
-            /// <summary>
-            /// Color.FromArgb(255, 238, 191)
-            /// </summary>
+            /// <summary> Color.FromArgb(255, 238, 191) </summary>
             public static Color warnYellow_Dark { get => Color.FromArgb(255, 238, 191); }
-            /// <summary>
-            /// Color.FromArgb(115, 84, 0)
-            /// </summary>
+            /// <summary> Color.FromArgb(115, 84, 0) </summary>
             public static Color warnYellow { get => Color.FromArgb(115, 84, 0); }
 
-            /// <summary>
-            /// Color.FromArgb(255, 191, 191)
-            /// </summary>
+            /// <summary> Color.FromArgb(255, 191, 191) </summary>
             public static Color errRed_Dark { get => Color.FromArgb(255, 191, 191); }
-            /// <summary>
-            /// Color.FromArgb(154, 0, 0)
-            /// </summary>
+            /// <summary> Color.FromArgb(154, 0, 0) </summary>
             public static Color errRed { get => Color.FromArgb(154, 0, 0); }
 
-            /// <summary>
-            /// Color.FromArgb(191, 223, 255)
-            /// </summary>
+            /// <summary> Color.FromArgb(191, 223, 255) </summary>
             public static Color questBlue_Dark { get => Color.FromArgb(191, 223, 255); }
-            /// <summary>
-            /// Color.FromArgb(64, 109, 128)
-            /// </summary>
+            /// <summary> Color.FromArgb(64, 109, 128) </summary>
             public static Color questBlue { get => Color.FromArgb(64, 109, 128); }
         }
 
