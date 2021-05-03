@@ -51,7 +51,7 @@ internal static partial class inf { //inform
     /// <param name="msg">More text to view below the title</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run(lvls lvl, string title, string msg)
-            => Do(lvl, title, msg, default, null, default);
+            => Do(lvl, title, msg);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -61,7 +61,7 @@ internal static partial class inf { //inform
     /// <param name="fullFatalError">Fatal error text (full error)</param>  
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run(lvls lvl, string title, string msg, string fullFatalError)
-            => Do(lvl, title, msg, default, fullFatalError, default);
+            => Do(lvl, title, msg, default, fullFatalError);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -73,7 +73,7 @@ internal static partial class inf { //inform
     public static bool Run(lvls lvl,
                            string title, string msg,
                            (string YesButton, string NoButton) YesNoButtons = default)
-            => Do(lvl, title, msg, YesNoButtons, null, default);
+            => Do(lvl, title, msg, YesNoButtons);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
