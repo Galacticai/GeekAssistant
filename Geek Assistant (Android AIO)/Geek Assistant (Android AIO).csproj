@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Res\Images\GeekAssistant\Icon\G.ico" />
+    <Content Include="res\Images\GeekAssistant\Icon\G.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,28 +53,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\AppMode.cs">
+    <Compile Update="GUI WinForms\AppMode.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Donate.cs">
+    <Compile Update="GUI WinForms\Donate.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Extra\PleaseWait.cs">
+    <Compile Update="GUI WinForms\Extra\PleaseWait.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Extra\Preparing.cs">
+    <Compile Update="GUI WinForms\Extra\Preparing.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Home.cs">
+    <Compile Update="GUI WinForms\Home.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Info.cs">
+    <Compile Update="GUI WinForms\Info.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\Settings.cs">
+    <Compile Update="GUI WinForms\Settings.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Forms\ToU.cs">
+    <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">

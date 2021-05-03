@@ -27,14 +27,14 @@ internal static partial class c {
     #region prop 
 
     public static prop.S S = new prop.S();
-    //public static readonly prop.GA RGA = new prop.GA();
-    //public static readonly prop.strings Pstrings = new prop.strings();
-    //public static readonly prop.layout Playout = new prop.layout();
-    //public static readonly prop.tools Ptools = new prop.tools();
-    //public static readonly prop.x64 Px64 = new prop.x64();
-    //public static readonly prop.x24 Px24 = new prop.x24();
-    //public static readonly prop.x16 Px16 = new prop.x16();
-    //public static readonly prop.xXX PxXX = new prop.xXX();
+    public static readonly prop.GA RGA = new prop.GA();
+    public static readonly prop.strings Pstrings = new prop.strings();
+    public static readonly prop.layout Playout = new prop.layout();
+    public static readonly prop.tools Ptools = new prop.tools();
+    public static readonly prop.x64 Px64 = new prop.x64();
+    public static readonly prop.x24 Px24 = new prop.x24();
+    public static readonly prop.x16 Px16 = new prop.x16();
+    public static readonly prop.xXX PxXX = new prop.xXX();
 
     #endregion
 
