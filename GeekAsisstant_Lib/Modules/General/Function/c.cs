@@ -52,9 +52,9 @@ internal static partial class c {
     /// <summary> Simple html new line (&lt;br/&gt;) </summary>
     public static readonly string br = "<br/>";
     /// <summary> Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space </summary>
-    public static readonly string tab = @"　";
+    public static readonly string tab = "　";
     /// <summary> Double Tab: (Unicode) U+3000 | (HTML) And#12288; | (Description) Ideographic Space </summary>
-    public static readonly string tab2 = @"　　";
+    public static readonly string tab2 = "　　";
 
     #endregion
 
@@ -73,7 +73,7 @@ internal static partial class c {
 
 
     #region GA Colors
-    /// <summary> Dynamically selected colors according to global Light/Dark Theme </summary>
+    /// <summary> Dynamically selected colors according to global Light/Dark Theme  </summary>
     public struct colors {
 
         public struct SwitchButton {
