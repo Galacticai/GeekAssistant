@@ -1,26 +1,29 @@
 ﻿using GeekAssistant.Forms;
+using System;
 using System.Windows.Forms;
 
 internal static partial class GA_PleaseWait {
-    private static PleaseWait PleaseWait = new PleaseWait();
+    private static PleaseWait PleaseWait = null;
     public static void Run(bool Enable) {
         if (Enable) {
-            if (!PleaseWait.IsDisposed) PleaseWait.Dispose();
-            PleaseWait = new PleaseWait();
+            if (PleaseWait != null) //dispose if exists and is not disposed
+                if (!PleaseWait.IsDisposed) PleaseWait.Dispose();
+            PleaseWait = new(); //! create new ( Always create new() : Don't merge with null check above )
+            Home.PleaseWait = PleaseWait;
             PleaseWait.Show();
         } else {
-            foreach (Form pw in Application.OpenForms)
-                if (pw.GetType() == typeof(PleaseWait))
-                    PleaseWait = (PleaseWait)pw;
+            if (PleaseWait == null) //Check if instance saved
+                if ((PleaseWait)Application.OpenForms["PleaseWait"] == null) //Check if any instance exists
+                    return;
+            /* inf.Run(($"{inf.detail.code}-pw-null", // (current code) - PleaseWait - null
+                      inf.lvls.FatalError,
+                      "We have encountered a problem",
+                        "Error while hiding waiting screen",
+                     $"{typeof(GA_PleaseWait).Name}: NullReferenceException"));
+            */
+
             PleaseWait.UserClosing = false;
             PleaseWait.Close();
         }
-
-        //c.Home.AutoDetectDeviceInfo_Button.Enabled = Enable;
-        //c.Home.SwitchTheme_Button.Enabled = Enable;
-        //c.Home.Settings_Button.Enabled = Enable;
-        //c.Home.About_Button.Enabled = Enable;
-        //c.Home.Feedback_Button.Enabled = Enable;
-        //c.Home.Donate_Button.Enabled = Enable;
     }
 }

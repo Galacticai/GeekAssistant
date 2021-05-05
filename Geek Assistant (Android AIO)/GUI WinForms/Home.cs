@@ -147,29 +147,12 @@ namespace GeekAssistant.Forms {
 
         private DeviceMonitor devMon = new(AndroidDebugBridge.Bridge);
         private void madb_devChanged(object sender, EventArgs e) {
-            if (!finishedLoading) return; //Cancel while loading Home()
-            //Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
+            if (!finishedLoading) return; //Cancel while loading Home
             Invoke(new Action(() => {
                 AutoDetect.Run(true);
                 GA_Log.LogEvent(DeviceState_Label.Text, 1);
             }));
         }
-        /*//private ManagementEventWatcher EventWatcher;
-       //private WqlEventQuery EventQuery = new();
-       private int saved_devCount = -1; //not 0 or 1 to initialize
-       //private Timer Delayed_DeviceChanged_Timer = new() { Interval = 200 }; //delay to avoid repeating the code when the event is firing too many times 
-       //private void EventWatcher_EventArrived(object sender, EventArrivedEventArgs ev) {
-       //    if (!finishedLoading) return; //Cancel while loading Home()
-       //    Invoke(new Action(() => { Delayed_DeviceChanged_Timer.Start(); }));
-       //}
-      private void Delayed_DeviceChanged_Timer_Tick(object sender, DeviceEventArgs e) {
-           //if (e.Device.IsOffline)
-           var devCount = madb.GetDeviceCount();
-           if (saved_devCount != devCount) {
-               saved_devCount = devCount;
-           }
-           Delayed_DeviceChanged_Timer.Stop();
-       }*/
 
         private void Home_FormClosing(object sender, EventArgs e) {
             if (Application.OpenForms.OfType<PleaseWait>().Any()) { //Cancel if a process by GA is currently running
@@ -188,65 +171,66 @@ namespace GeekAssistant.Forms {
         private void Home_GotFocus(object sender, EventArgs e) {
             if (!finishedLoading) new PleaseWait().BringToFront();
         }
+        public static PleaseWait PleaseWait = null; //Set in GA_PleaseWait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
-            //if () ;
-            //24, 97  
-            PleaseWait PleaseWait = new PleaseWait();
+            //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
             PleaseWait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, PleaseWait.Width, PleaseWait.Height);
         }
-        /*private void Home_Help(object sender, EventArgs e) {
-            common.ToU().ShowDialog();
-        }*/
         private bool finishedLoading = false;
         private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
+
+        //private Preparing Preparing = null;
         private void Home_Load(object sender, EventArgs e) {
-            //EventQuery = new WqlEventQuery("Select * from Win32_DeviceChangeEvent"); //("SELECT * FROM __InstanceCreationEvent  WITHIN 2 WHERE TargetInstance ISA //Win32_PnPEntity//") //("Select * from Win32_DeviceChangeEvent") 
-            //EventWatcher = new ManagementEventWatcher(EventQuery);
-            //EventWatcher.Start();
-            devMon.Start();
+            Enabled = false; //Disable before anything to prevent messing things up
+
+            devMon.Start(); //Start before assigning event to avoid null/any issues
 
             AssignEvents();
 
-            Enabled = false; //Opacity = 0;
-            Width = 690;
+            if (Width != 690) Width = 690; //Set width to avoid using the width selected while developing
 
-            Preparing Preparing = new Preparing();
-            Preparing.Show();
-            Preparing.TopMost = true;
-            Preparing.BringToFront();
+            Text = GA_Ver.Run("MainTitle");
+            GA_About_Label.Text = GA_Ver.Run("Main");
+            log.Text = GA_Ver.Run("log");
+            GA_PleaseWait.Run(true);
+            //Preparing = new();
+            //Preparing.Show();
+            //Preparing.BringToFront();
             HomeLoad_Delay_Timer.Enabled = true;
         }
         private bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
         private void HomeLoad_Delay_Timer_Tick(object sender, EventArgs e) {
 
-            GA_SetTheme.Run(this, true); //Set width to avoid using the width selected while developing
+            GA_SetTheme.Run(this, true);
             if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
 
             HomeLoad_Delay_Timer.Enabled = false;
-            Text = GA_Ver.Run("MainTitle");
-            GA_About_Label.Text = GA_Ver.Run("Main");
-            log.Text = GA_Ver.Run("log");
             //htmlLog.DocumentText = Markdig.Markdown.ToHtml($"### {GA_Ver.Run("log")}")
 
             if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
-            GA_Log.LogEvent("Start", 1);
             GA_PrepareAppdata.Run();
-            GA_adb_Functions.PrepareAndroidDictionary();
-            GA_adb_Functions.ResetDeviceInfo();
+            GA_adb.PrepareAndroidDictionary();
+            GA_adb.ResetDeviceInfo();
 
             AutoDetect.Run(true);
             if (DeviceState_Label.Text != "Disconnected")
                 GA_Log.LogEvent(DeviceState_Label.Text, 1);
 
+
             DoNeutral();
             AutoDetectDeviceInfo_Button.Select();
-            BringToFront();
+
             //####### DEBUG #####################################
             if (c.V.Revision == 3) debuggingBox.Visible = true;
             //###################################################
-            Enabled = true; //Opacity = 100;
+
+            GA_Log.LogEvent("Start", 1);
+
             finishedLoading = true;
+            Enabled = true; //Enable when done with everything
+            GA_PleaseWait.Run(false);
+            BringToFront();
         }
 
         private void Main_HelpButtonClicked() {
@@ -443,7 +427,7 @@ namespace GeekAssistant.Forms {
             }
             GA_Log.LogEvent("Hot Reboot", 2);
             GA_SetProgressText.Run("Attempting hot reboot...", -1);
-            var hr = GA_adb_Functions.HotReboot("HR");
+            var hr = GA_adb.HotReboot("HR");
             if (!string.IsNullOrEmpty(hr))
                 GA_Log.LogAppendText(hr, 1);
 
@@ -545,7 +529,7 @@ namespace GeekAssistant.Forms {
             else c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
         }
         private void AndroidVersion_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (c.Working) AndroidVersion_ComboBox.Text = GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
+            if (c.Working) AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
             //TODO: //else common.S.DeviceAPILevel = GA_adb_Functions.ConvertAVerToAPILevel(AndroidVersion_ComboBox.Text);
         }
         private void BootloaderUnlockable_CheckBox_CheckedChanged(object sender, EventArgs e) {

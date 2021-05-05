@@ -3,7 +3,7 @@ using System.IO;
 using Managed;
 using Microsoft.VisualBasic.CompilerServices; // Install-Package Microsoft.VisualBasic
 
-internal static partial class GA_adb_Functions {
+internal static partial class GA_adb {
 
     /* TODO ERROR: Skipped RegionDirectiveTrivia */
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {

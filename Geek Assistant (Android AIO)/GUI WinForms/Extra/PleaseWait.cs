@@ -42,7 +42,7 @@ namespace GeekAssistant.Forms {
         private void PleaseWait_Load(object sender, EventArgs e) {
             AssignEvents();
             GA_SetTheme.Run(this);
-            Home h = (Home)Application.OpenForms[0];
+            Home h = (Home)Application.OpenForms["Home"];
             //24, 97    
             var titleHeight = h.RectangleToScreen(h.ClientRectangle).Top - h.Top;
             SetBounds(h.Location.X + 24, h.Location.Y + 97 + titleHeight, Width, Height);

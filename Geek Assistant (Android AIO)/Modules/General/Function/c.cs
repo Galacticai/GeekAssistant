@@ -1,5 +1,4 @@
-﻿using GeekAssistant;
-using GeekAssistant.Forms;
+﻿using GeekAssistant.Forms;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ using MetroFramework;
 internal static partial class c {
 
     #region GA Directories
-    /// <summary> Geek Assistant home directory ( ...\AppData\Roaming\Geek Assistant (Android AIO) ) </summary>
+    ///<summary> Geek Assistant home directory ( ...\AppData\Roaming\Geek Assistant (Android AIO) ) </summary>
     public static readonly string GA = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\Geek Assistant (Android AIO)";
     /// <summary> Geek Assistant tools directory (adb, fastboot, and others) ( {GA}\tools ) </summary>
     public static readonly string GA_tools = $@"{GA}\tools";
@@ -37,7 +36,6 @@ internal static partial class c {
     //public static readonly prop.xXX PxXX = new prop.xXX();
 
     #endregion
-
 
     #region Public Abbreviations 
 
@@ -84,6 +82,7 @@ internal static partial class c {
         public static Color bg { get => S.DarkTheme ? constColors.bg_Dark : constColors.bg; }
         public static Color fg { get => S.DarkTheme ? constColors.fg_Dark : constColors.fg; }
         public static Color Green { get => S.DarkTheme ? constColors.Green_Dark : constColors.Green; }
+        public static MetroThemeStyle Metro { get => S.DarkTheme ? MetroThemeStyle.Dark : MetroThemeStyle.Light; }
 
         #region infColorRes
         public static Color infBlue { get => S.DarkTheme ? constColors.infBlue_Dark : constColors.infBlue; }
@@ -130,7 +129,6 @@ internal static partial class c {
             public static Color questBlue { get => Color.FromArgb(64, 109, 128); }
         }
 
-        public static MetroThemeStyle Metro { get => S.DarkTheme ? MetroThemeStyle.Dark : MetroThemeStyle.Light; }
     }
     #endregion
 }

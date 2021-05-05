@@ -14,7 +14,7 @@ internal static partial class AutoDetect {
 
     public static void Run(bool Silent = false) {
         //Refresh current Home instance
-        foreach (Form h in Application.OpenForms) if (h.GetType() == typeof(Home)) Home = (Home)h;
+        Home = (Home)Application.OpenForms["Home"];
 
         inf.currentTitle = "Auto Detect";
         c.Working = true;
@@ -25,7 +25,7 @@ internal static partial class AutoDetect {
         try {
             if (!Silent) GA_SetProgressText.Run("Clearing previous device information.", -1);
             inf.detail = ("AD-CD", inf.lvls.FatalError, inf.currentTitle, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
-            GA_adb_Functions.ResetDeviceInfo();
+            GA_adb.ResetDeviceInfo();
 
             Home.bar.Value = 2;
             if (!Silent) GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
@@ -112,7 +112,7 @@ internal static partial class AutoDetect {
 
                     Home.bar.Value = 15;
                     c.S.DeviceManufacturer =
-                        GA_adb_Functions.FixManufacturerString(
+                        GA_adb.FixManufacturerString(
                             cmd.madbShell(dev, "getprop ro.product.manufacturer"));
                     c.S.Save();
                     Home.Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
@@ -160,10 +160,10 @@ internal static partial class AutoDetect {
                     c.S.DeviceAPILevel = Convert.ToInt32(cmd.madbShell(dev, $"getprop {Device.PROP_BUILD_API_LEVEL}"));
                     c.S.Save();
                     inf.detail = ("AD-D-atv", inf.lvls.Error, inf.currentTitle, "Failed to convert the API level to Android version.", null);// Auto Detect - Device - API level version
-                    Home.AndroidVersion_ComboBox.Text = GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1];
+                    Home.AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1];
                     if (!Silent) GA_SetProgressText.Run("Converting API level to Android name...", -1);
                     Home.bar.Value = 33;
-                    if (!Silent) GA_Log.LogAppendText($" | Android version: {GA_adb_Functions.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
+                    if (!Silent) GA_Log.LogAppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
                     Home.bar.Value = 35;
 
                     inf.detail = ("AD-D-b", inf.lvls.Error, inf.currentTitle, "Failed to check your device battery level.", null); // Auto Detect - Device - battery

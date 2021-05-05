@@ -41,17 +41,14 @@ internal static partial class inf { //inform
     /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run((string code, lvls lvl, string title, string msg, string fullFatalError) infDetail,
-                           (string YesButton, string NoButton) YesNoButtons = default)
-            => Do(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, infDetail.fullFatalError, default);
-    /// <summary>
-    /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
-    /// </summary>
-    /// <param name="lvl">info level as System.Windows.Forms.DialogResult lvls</param>
-    /// <param name="title">Title of the question</param>
-    /// <param name="msg">More text to view below the title</param>
-    /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run(lvls lvl, string title, string msg)
-            => Do(lvl, title, msg);
+                           (string YesButton, string NoButton) YesNoButtons = default) {
+
+        if (!string.IsNullOrEmpty(detail.code)) detail.code = infDetail.code;
+        if (!string.IsNullOrEmpty(detail.fullFatalError)) detail.fullFatalError = infDetail.fullFatalError;
+
+        return Run(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, default, infDetail.fullFatalError);
+    }
+
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -60,47 +57,20 @@ internal static partial class inf { //inform
     /// <param name="msg">More text to view below the title</param>
     /// <param name="fullFatalError">Fatal error text (full error)</param>  
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run(lvls lvl, string title, string msg, string fullFatalError)
-            => Do(lvl, title, msg, default, fullFatalError);
-    /// <summary>
-    /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
-    /// </summary>
-    /// <param name="lvl">info level as System.Windows.Forms.DialogResult lvls</param>
-    /// <param name="title">Title of the question</param>
-    /// <param name="msg">More text to view below the title</param>
-    /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
-    /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run(lvls lvl,
-                           string title, string msg,
-                           (string YesButton, string NoButton) YesNoButtons = default)
-            => Do(lvl, title, msg, YesNoButtons);
-    /// <summary>
-    /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
-    /// </summary>
-    /// <param name="lvl">info level as System.Windows.Forms.DialogResult lvls</param>
-    /// <param name="title">Title of the question</param>
-    /// <param name="msg">More text to view below the title</param>
-    /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param> 
-    /// <param name="icon">(Index 0 Dark, 1 Light) Message icon (Color derived from it) - Must be 64x64 for the best appearance</param>
-    /// <param name="color">(Index 0 Dark, 1 Light) Message color (Auto determined unless defined here)</param>
-    /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run(lvls lvl,
-                           string title, string msg,
-                           (string YesButton, string NoButton) YesNoButtons = default,
-                           (Image[] icon, Color[] color) theme = default)
-            => Do(lvl, title, msg, YesNoButtons, null, theme);
+    public static bool Run(lvls _lvl, string _title, string _msg, string _fullFatalError)
+            => Run(_lvl, _title, _msg, default, default, _fullFatalError);
 
-    private static bool Do(lvls _lvl,
+    public static bool Run(lvls _lvl,
                            string _title, string _msg,
                            (string YesButton, string NoButton) _YesNoButtons = default,
-                           string _fullFatalError = null,
-                           (Image[] icon, Color[] color) _theme = default) {
+                           (Image[] icon, Color[] color) _theme = default,
+                           string _fullFatalError = null) {
 
-        //default 
-        infoAnswer = false;
-        detail = (detail.code, lvls.Information, null, null, null);
-        YesNoButtons = (null, null);
-        theme = (null, null);
+        infoAnswer = false; //reset
+        ////default do we even need this at all
+        //detail = (detail.code, lvls.Information, null, null, null);
+        //YesNoButtons = (null, null);
+        //theme = (null, null);
 
         //set
         detail = (detail.code, _lvl, _title, _msg, _fullFatalError);

@@ -7,14 +7,14 @@ internal static partial class cmd {
         if (CheckConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials()))
             inf.Run(inf.detail, ("Close", null));
 
-        madb.madbBridge(); //failsafe
+        madb.madbBridge(); // failsafe
         CommandResultReceiver crr = new();
         if (sudo) dev.ExecuteRootShellCommand(cmd, crr); else dev.ExecuteShellCommand(cmd, crr);
         return crr.Result;
     }
     public static void Run(string command) {
         //return;
-        if (command.IndexOf(" ") != -1) { invalidCMD(command); return; }// If command has no arguments: cancel (invalidCMD)
+        if (command.IndexOf(" ") != -1) { invalidCMD(command); return; } // If command has no arguments: cancel (invalidCMD)
 
 
         var cmdStart = command.Substring(0, command.IndexOf(" ")); // Get the first word of the command 

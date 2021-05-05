@@ -58,6 +58,18 @@ namespace GeekAssistant.Forms {
             this.MainLayout_PictureBox = new System.Windows.Forms.PictureBox();
             this.ProgressFakeBG_UI = new System.Windows.Forms.PictureBox();
             this.Main_Tabs = new MetroFramework.Controls.MetroTabControl();
+            this.FlashImg_Tab = new MetroFramework.Controls.MetroTabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.Button1 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.Button2 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Button3 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Button4 = new System.Windows.Forms.Button();
+            this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
             this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
             this.MagiskRoot_Label = new MetroFramework.Controls.MetroLabel();
@@ -68,13 +80,6 @@ namespace GeekAssistant.Forms {
             this.MagiskRoot_Button = new MetroFramework.Controls.MetroButton();
             this.MaterialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.UnlockBL_Button = new MetroFramework.Controls.MetroButton();
-            this.FlashImg_Tab = new MetroFramework.Controls.MetroTabPage();
-            this.Button5 = new System.Windows.Forms.Button();
-            this.Button4 = new System.Windows.Forms.Button();
-            this.Button3 = new System.Windows.Forms.Button();
-            this.Button2 = new System.Windows.Forms.Button();
-            this.Button1 = new System.Windows.Forms.Button();
-            this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.MoreTools_Tab = new MetroFramework.Controls.MetroTabPage();
             this.debuggingBox = new System.Windows.Forms.GroupBox();
             this.MetroButton4 = new MetroFramework.Controls.MetroButton();
@@ -106,11 +111,12 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).BeginInit();
             this.Main_Tabs.SuspendLayout();
+            this.FlashImg_Tab.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             this.PrepareYourDevice_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).BeginInit();
-            this.FlashImg_Tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             this.MoreTools_Tab.SuspendLayout();
             this.debuggingBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).BeginInit();
@@ -248,25 +254,25 @@ namespace GeekAssistant.Forms {
             // 
             // DeviceState_Label
             // 
-            this.DeviceState_Label.AutoSize = true;
             this.DeviceState_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DeviceState_Label.ForeColor = System.Drawing.Color.Gray;
             this.DeviceState_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DeviceState_Label.Location = new System.Drawing.Point(120, 206);
+            this.DeviceState_Label.Location = new System.Drawing.Point(120, 188);
             this.DeviceState_Label.Name = "DeviceState_Label";
-            this.DeviceState_Label.Size = new System.Drawing.Size(86, 17);
+            this.DeviceState_Label.Size = new System.Drawing.Size(147, 51);
             this.DeviceState_Label.TabIndex = 85597;
             this.DeviceState_Label.Text = "Disconnected";
+            this.DeviceState_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeviceStateTitle_Label
             // 
-            this.DeviceStateTitle_Label.AutoSize = true;
             this.DeviceStateTitle_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DeviceStateTitle_Label.Location = new System.Drawing.Point(41, 206);
+            this.DeviceStateTitle_Label.Location = new System.Drawing.Point(24, 188);
             this.DeviceStateTitle_Label.Name = "DeviceStateTitle_Label";
-            this.DeviceStateTitle_Label.Size = new System.Drawing.Size(82, 17);
+            this.DeviceStateTitle_Label.Size = new System.Drawing.Size(99, 51);
             this.DeviceStateTitle_Label.TabIndex = 85594;
             this.DeviceStateTitle_Label.Text = "Device State:";
+            this.DeviceStateTitle_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FlashZip_Button
             // 
@@ -351,7 +357,7 @@ namespace GeekAssistant.Forms {
             this.FlashZip_RebootWhenComplete_Checkbox.AutoSize = true;
             this.FlashZip_RebootWhenComplete_Checkbox.BackColor = System.Drawing.Color.Transparent;
             this.FlashZip_RebootWhenComplete_Checkbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FlashZip_RebootWhenComplete_Checkbox.Location = new System.Drawing.Point(49, 274);
+            this.FlashZip_RebootWhenComplete_Checkbox.Location = new System.Drawing.Point(25, 276);
             this.FlashZip_RebootWhenComplete_Checkbox.Name = "FlashZip_RebootWhenComplete_Checkbox";
             this.FlashZip_RebootWhenComplete_Checkbox.Size = new System.Drawing.Size(149, 19);
             this.FlashZip_RebootWhenComplete_Checkbox.TabIndex = 85581;
@@ -443,9 +449,9 @@ namespace GeekAssistant.Forms {
             this.FlashZip_ChooseFile_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
             this.FlashZip_ChooseFile_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FlashZip_ChooseFile_Button.Image = global::prop.x24.OpenFile_24_noBG;
-            this.FlashZip_ChooseFile_Button.Location = new System.Drawing.Point(269, 67);
+            this.FlashZip_ChooseFile_Button.Location = new System.Drawing.Point(270, 14);
             this.FlashZip_ChooseFile_Button.Name = "FlashZip_ChooseFile_Button";
-            this.FlashZip_ChooseFile_Button.Size = new System.Drawing.Size(29, 27);
+            this.FlashZip_ChooseFile_Button.Size = new System.Drawing.Size(25, 25);
             this.FlashZip_ChooseFile_Button.TabIndex = 85580;
             this.FlashZip_ChooseFile_Button.UseVisualStyleBackColor = false;
             // 
@@ -488,7 +494,7 @@ namespace GeekAssistant.Forms {
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.log.Size = new System.Drawing.Size(508, 525);
             this.log.TabIndex = 85590;
-            this.log.Text = "Geek Assistant vX.x #Phase ©2021 By NHKomaiha.\n// hh:mm:ss.ff // Start //";
+            this.log.Text = "Geek Assistant vX.x #Phase ©2021 By NHKomaiha.\r\n// hh:mm:ss.ff // Start //";
             // 
             // ProgressBarLabel
             // 
@@ -582,6 +588,164 @@ namespace GeekAssistant.Forms {
             this.Main_Tabs.Style = MetroFramework.MetroColorStyle.Green;
             this.Main_Tabs.TabIndex = 85609;
             this.Main_Tabs.UseSelectable = true;
+            // 
+            // FlashImg_Tab
+            // 
+            this.FlashImg_Tab.BackColor = System.Drawing.Color.White;
+            this.FlashImg_Tab.Controls.Add(this.groupBox1);
+            this.FlashImg_Tab.Controls.Add(this.FlashZip_Title);
+            this.FlashImg_Tab.Controls.Add(this.FlashZip_RebootWhenComplete_Checkbox);
+            this.FlashImg_Tab.Controls.Add(this.FlashZip_Button);
+            this.FlashImg_Tab.Controls.Add(this.PictureBox3);
+            this.FlashImg_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FlashImg_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FlashImg_Tab.HorizontalScrollbarBarColor = true;
+            this.FlashImg_Tab.HorizontalScrollbarHighlightOnWheel = false;
+            this.FlashImg_Tab.HorizontalScrollbarSize = 12;
+            this.FlashImg_Tab.Location = new System.Drawing.Point(4, 41);
+            this.FlashImg_Tab.Name = "FlashImg_Tab";
+            this.FlashImg_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FlashImg_Tab.Size = new System.Drawing.Size(369, 356);
+            this.FlashImg_Tab.TabIndex = 1;
+            this.FlashImg_Tab.Text = "Flash img files";
+            this.FlashImg_Tab.VerticalScrollbarBarColor = true;
+            this.FlashImg_Tab.VerticalScrollbarHighlightOnWheel = false;
+            this.FlashImg_Tab.VerticalScrollbarSize = 12;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.FlashZip_ChooseFile_Button);
+            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.Button1);
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.Button2);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.Button3);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.Button4);
+            this.groupBox1.Location = new System.Drawing.Point(48, 47);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(301, 178);
+            this.groupBox1.TabIndex = 85595;
+            this.groupBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(73, 14);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(198, 25);
+            this.textBox1.TabIndex = 85594;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.Color.White;
+            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox5.Location = new System.Drawing.Point(73, 146);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(198, 25);
+            this.textBox5.TabIndex = 85594;
+            // 
+            // Button1
+            // 
+            this.Button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
+            this.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Button1.FlatAppearance.BorderSize = 0;
+            this.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
+            this.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
+            this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button1.Image = global::prop.x24.OpenFile_24_noBG;
+            this.Button1.Location = new System.Drawing.Point(270, 113);
+            this.Button1.Name = "Button1";
+            this.Button1.Size = new System.Drawing.Size(25, 25);
+            this.Button1.TabIndex = 85585;
+            this.Button1.UseVisualStyleBackColor = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox4.Location = new System.Drawing.Point(73, 113);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(197, 25);
+            this.textBox4.TabIndex = 85594;
+            // 
+            // Button2
+            // 
+            this.Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
+            this.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Button2.FlatAppearance.BorderSize = 0;
+            this.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
+            this.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
+            this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button2.Image = global::prop.x24.OpenFile_24_noBG;
+            this.Button2.Location = new System.Drawing.Point(270, 47);
+            this.Button2.Name = "Button2";
+            this.Button2.Size = new System.Drawing.Size(25, 25);
+            this.Button2.TabIndex = 85587;
+            this.Button2.UseVisualStyleBackColor = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.White;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox3.Location = new System.Drawing.Point(73, 80);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(198, 25);
+            this.textBox3.TabIndex = 85594;
+            // 
+            // Button3
+            // 
+            this.Button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
+            this.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Button3.FlatAppearance.BorderSize = 0;
+            this.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
+            this.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
+            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button3.Image = global::prop.x24.OpenFile_24_noBG;
+            this.Button3.Location = new System.Drawing.Point(270, 80);
+            this.Button3.Name = "Button3";
+            this.Button3.Size = new System.Drawing.Size(25, 25);
+            this.Button3.TabIndex = 85589;
+            this.Button3.UseVisualStyleBackColor = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(73, 47);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(197, 25);
+            this.textBox2.TabIndex = 85594;
+            // 
+            // Button4
+            // 
+            this.Button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
+            this.Button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Button4.FlatAppearance.BorderSize = 0;
+            this.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
+            this.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
+            this.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button4.Image = global::prop.x24.OpenFile_24_noBG;
+            this.Button4.Location = new System.Drawing.Point(270, 146);
+            this.Button4.Name = "Button4";
+            this.Button4.Size = new System.Drawing.Size(25, 25);
+            this.Button4.TabIndex = 85591;
+            this.Button4.UseVisualStyleBackColor = false;
+            // 
+            // PictureBox3
+            // 
+            this.PictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.PictureBox3.Image = global::prop.xXX.FlashZip_gray_alpha;
+            this.PictureBox3.Location = new System.Drawing.Point(241, 228);
+            this.PictureBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.PictureBox3.Name = "PictureBox3";
+            this.PictureBox3.Size = new System.Drawing.Size(128, 128);
+            this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PictureBox3.TabIndex = 5;
+            this.PictureBox3.TabStop = false;
             // 
             // PrepareYourDevice_Tab
             // 
@@ -719,121 +883,6 @@ namespace GeekAssistant.Forms {
             this.UnlockBL_Button.Text = "Start Unlocking";
             this.UnlockBL_Button.UseSelectable = true;
             this.UnlockBL_Button.UseVisualStyleBackColor = false;
-            // 
-            // FlashImg_Tab
-            // 
-            this.FlashImg_Tab.BackColor = System.Drawing.Color.White;
-            this.FlashImg_Tab.Controls.Add(this.Button5);
-            this.FlashImg_Tab.Controls.Add(this.Button4);
-            this.FlashImg_Tab.Controls.Add(this.Button3);
-            this.FlashImg_Tab.Controls.Add(this.Button2);
-            this.FlashImg_Tab.Controls.Add(this.Button1);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_ChooseFile_Button);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_Title);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_RebootWhenComplete_Checkbox);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_Button);
-            this.FlashImg_Tab.Controls.Add(this.PictureBox3);
-            this.FlashImg_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FlashImg_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FlashImg_Tab.HorizontalScrollbarBarColor = true;
-            this.FlashImg_Tab.HorizontalScrollbarHighlightOnWheel = false;
-            this.FlashImg_Tab.HorizontalScrollbarSize = 12;
-            this.FlashImg_Tab.Location = new System.Drawing.Point(4, 41);
-            this.FlashImg_Tab.Name = "FlashImg_Tab";
-            this.FlashImg_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.FlashImg_Tab.Size = new System.Drawing.Size(369, 356);
-            this.FlashImg_Tab.TabIndex = 1;
-            this.FlashImg_Tab.Text = "Flash img files";
-            this.FlashImg_Tab.VerticalScrollbarBarColor = true;
-            this.FlashImg_Tab.VerticalScrollbarHighlightOnWheel = false;
-            this.FlashImg_Tab.VerticalScrollbarSize = 12;
-            // 
-            // Button5
-            // 
-            this.Button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
-            this.Button5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Button5.FlatAppearance.BorderSize = 0;
-            this.Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
-            this.Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
-            this.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button5.Image = global::prop.x24.OpenFile_24_noBG;
-            this.Button5.Location = new System.Drawing.Point(269, 232);
-            this.Button5.Name = "Button5";
-            this.Button5.Size = new System.Drawing.Size(29, 27);
-            this.Button5.TabIndex = 85593;
-            this.Button5.UseVisualStyleBackColor = false;
-            // 
-            // Button4
-            // 
-            this.Button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
-            this.Button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Button4.FlatAppearance.BorderSize = 0;
-            this.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
-            this.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
-            this.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button4.Image = global::prop.x24.OpenFile_24_noBG;
-            this.Button4.Location = new System.Drawing.Point(269, 199);
-            this.Button4.Name = "Button4";
-            this.Button4.Size = new System.Drawing.Size(29, 27);
-            this.Button4.TabIndex = 85591;
-            this.Button4.UseVisualStyleBackColor = false;
-            // 
-            // Button3
-            // 
-            this.Button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
-            this.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Button3.FlatAppearance.BorderSize = 0;
-            this.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
-            this.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
-            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button3.Image = global::prop.x24.OpenFile_24_noBG;
-            this.Button3.Location = new System.Drawing.Point(269, 133);
-            this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(29, 27);
-            this.Button3.TabIndex = 85589;
-            this.Button3.UseVisualStyleBackColor = false;
-            // 
-            // Button2
-            // 
-            this.Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
-            this.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Button2.FlatAppearance.BorderSize = 0;
-            this.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
-            this.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
-            this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button2.Image = global::prop.x24.OpenFile_24_noBG;
-            this.Button2.Location = new System.Drawing.Point(269, 100);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(29, 27);
-            this.Button2.TabIndex = 85587;
-            this.Button2.UseVisualStyleBackColor = false;
-            // 
-            // Button1
-            // 
-            this.Button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(164)))), ((int)(((byte)(50)))));
-            this.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Button1.FlatAppearance.BorderSize = 0;
-            this.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(116)))), ((int)(((byte)(0)))));
-            this.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(80)))));
-            this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button1.Image = global::prop.x24.OpenFile_24_noBG;
-            this.Button1.Location = new System.Drawing.Point(269, 166);
-            this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(29, 27);
-            this.Button1.TabIndex = 85585;
-            this.Button1.UseVisualStyleBackColor = false;
-            // 
-            // PictureBox3
-            // 
-            this.PictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox3.Image = global::prop.xXX.FlashZip_gray_alpha;
-            this.PictureBox3.Location = new System.Drawing.Point(241, 228);
-            this.PictureBox3.Margin = new System.Windows.Forms.Padding(0);
-            this.PictureBox3.Name = "PictureBox3";
-            this.PictureBox3.Size = new System.Drawing.Size(128, 128);
-            this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PictureBox3.TabIndex = 5;
-            this.PictureBox3.TabStop = false;
             // 
             // MoreTools_Tab
             // 
@@ -1152,13 +1201,15 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).EndInit();
             this.Main_Tabs.ResumeLayout(false);
+            this.FlashImg_Tab.ResumeLayout(false);
+            this.FlashImg_Tab.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
             this.PrepareYourDevice_Tab.ResumeLayout(false);
             this.PrepareYourDevice_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).EndInit();
-            this.FlashImg_Tab.ResumeLayout(false);
-            this.FlashImg_Tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
             this.MoreTools_Tab.ResumeLayout(false);
             this.debuggingBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).EndInit();
@@ -1234,7 +1285,6 @@ namespace GeekAssistant.Forms {
         public MetroFramework.Controls.MetroTextBox MetroTextBox2;
         public Button Button1;
         public MetroFramework.Controls.MetroTextBox MetroTextBox1;
-        public Button Button5;
         public MetroFramework.Controls.MetroTextBox MetroTextBox5;
         public GroupBox debuggingBox;
         public MetroFramework.Controls.MetroButton MetroButton3;
@@ -1253,5 +1303,11 @@ namespace GeekAssistant.Forms {
         public Timer PleaseWait_PostDelay_adbDetect;
         public Timer SettingsSave_Timer;
         public ToolTip Unavalable_Tooltip;
+        private TextBox textBox1;
+        private GroupBox groupBox1;
+        private TextBox textBox5;
+        private TextBox textBox4;
+        private TextBox textBox3;
+        private TextBox textBox2;
     }
 }
