@@ -15,6 +15,8 @@ internal static partial class GA_PleaseWait {
             if (PleaseWait == null) //Check if instance saved
                 if ((PleaseWait)Application.OpenForms["PleaseWait"] == null) //Check if any instance exists
                     return;
+                else;
+            else;
             /* inf.Run(($"{inf.detail.code}-pw-null", // (current code) - PleaseWait - null
                       inf.lvls.FatalError,
                       "We have encountered a problem",
@@ -22,7 +24,7 @@ internal static partial class GA_PleaseWait {
                      $"{typeof(GA_PleaseWait).Name}: NullReferenceException"));
             */
 
-            PleaseWait.UserClosing = false;
+            PleaseWait.UserClosing = false; //unflag or it won't close
             PleaseWait.Close();
         }
     }

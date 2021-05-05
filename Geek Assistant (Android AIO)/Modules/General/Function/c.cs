@@ -16,24 +16,24 @@ internal static partial class c {
     #endregion
 
 
-    #region GA Forms 
+    /*#region GA Forms 
 
     /// <summary> A manually set (at code time) list of all forms in this project </summary>
     public static readonly Form[] AllForms = { new PleaseWait(), new AppMode(), new Donate(), new Home(), new Info(), new Settings(), new ToU() };
 
-    #endregion
+    #endregion*/
 
     #region prop 
 
-    public static prop.S S = new prop.S();
-    //public static readonly prop.GA RGA = new prop.GA();
-    //public static readonly prop.strings Pstrings = new prop.strings();
-    //public static readonly prop.layout Playout = new prop.layout();
-    //public static readonly prop.tools Ptools = new prop.tools();
-    //public static readonly prop.x64 Px64 = new prop.x64();
-    //public static readonly prop.x24 Px24 = new prop.x24();
-    //public static readonly prop.x16 Px16 = new prop.x16();
-    //public static readonly prop.xXX PxXX = new prop.xXX();
+    public static prop.S S = new();
+    public static readonly prop.GA RGA = new prop.GA();
+    public static readonly prop.strings Pstrings = new prop.strings();
+    public static readonly prop.layout Playout = new prop.layout();
+    public static readonly prop.tools Ptools = new prop.tools();
+    public static readonly prop.x64 Px64 = new prop.x64();
+    public static readonly prop.x24 Px24 = new prop.x24();
+    public static readonly prop.x16 Px16 = new prop.x16();
+    public static readonly prop.xXX PxXX = new prop.xXX();
 
     #endregion
 
@@ -59,12 +59,10 @@ internal static partial class c {
 
     #region Public variables
 
-    /// <summary>
-    /// <list>
+    /// <summary> <list>
     /// <item>Flagged on when a process is ongoing.</item>
     /// <item>Blocks other processes from starting while another is already ongoing</item>
-    /// </list>
-    /// </summary>
+    /// </list> </summary>
     public static bool Working = false;
 
     #endregion

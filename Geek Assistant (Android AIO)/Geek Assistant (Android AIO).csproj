@@ -132,6 +132,9 @@
     <Compile Update="Modules\General\Function\math.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\General\Function\convert.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\General\Function\txt.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>

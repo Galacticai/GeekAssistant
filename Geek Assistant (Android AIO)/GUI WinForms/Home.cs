@@ -645,10 +645,6 @@ namespace GeekAssistant.Forms {
             DoNeutral();
         }
 
-        private void Main_ToolTip_Popup(object sender, PopupEventArgs e) {
-
-        }
-
         /*private string cmd_Previous, cmd_Current;
         private void manualCMD_TextBox_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter)

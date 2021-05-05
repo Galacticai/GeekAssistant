@@ -133,25 +133,25 @@ internal static partial class AutoDetect {
                     c.S.DeviceRooted = dev.CanSU();
                     c.S.Save();
                     Home.Rooted_Checkbox.Checked = c.S.DeviceRooted;
-                    if (!Silent) GA_Log.LogAppendText($" | Rooted: {txt.Convert.BoolToYesNo(c.S.DeviceRooted)}", 1);
+                    if (!Silent) GA_Log.LogAppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
                     Home.bar.Value = 23;
 
                     inf.detail = ("AD-D-bb", inf.lvls.Error, inf.currentTitle, "Failed to check your device busybox availability.", null);// Auto Detect - Device - busybox
                     if (!Silent) GA_SetProgressText.Run("Fetching busybox availability...", -1);
                     c.S.DeviceBusyBoxReady = dev.BusyBox.Available;
                     c.S.Save();
-                    if (!Silent) GA_Log.LogAppendText($" | Busybox available: {txt.Convert.BoolToYesNo(c.S.DeviceBusyBoxReady)}", 1);
+                    if (!Silent) GA_Log.LogAppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
                     Home.bar.Value = 25;
 
                     inf.detail = ("AD-D-blu", inf.lvls.Error, inf.currentTitle, "Failed to check your device bootloader unlock support.", null); // Auto Detect - Device - bootloader unlock
                     if (!Silent) GA_SetProgressText.Run("Fetching bootloader unlock support state...", -1);
                     Home.bar.Value = 26;
                     c.S.DeviceBootloaderUnlockSupported =
-                        bool.Parse(cmd.madbShell(dev, "getprop ro.oem_unlock_supported"));
+                         convert.String.ToBool(cmd.madbShell(dev, "getprop ro.oem_unlock_supported"));
                     c.S.Save();
                     Home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
                     Home.bar.Value = 27;
-                    if (!Silent) GA_Log.LogAppendText($" | Bootloader unlock allowed: {txt.Convert.BoolToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                    if (!Silent) GA_Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
                     Home.bar.Value = 30;
 
                     inf.detail = ("AD-D-al", inf.lvls.Error, inf.currentTitle, "Failed to check your device API level.", null);// Auto Detect - Device - API level

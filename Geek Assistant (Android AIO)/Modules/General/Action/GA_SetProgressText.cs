@@ -1,4 +1,6 @@
 ﻿using GeekAssistant.Forms;
+using System.Windows.Forms;
+
 internal static partial class GA_SetProgressText {
 
 
@@ -7,7 +9,7 @@ internal static partial class GA_SetProgressText {
 
     // Delegate Sub SetLabelTextInvoker(text As String, level As Integer)
     public static void Run(string text, int ErrorLevel) {
-        Home Home = new Home();
+        Home Home = (Home)Application.OpenForms["Home"];
         c.S.LastProgress = text;
         switch (ErrorLevel) {
             case -1: {
