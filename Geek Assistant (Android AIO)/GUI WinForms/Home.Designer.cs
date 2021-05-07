@@ -69,6 +69,7 @@ namespace GeekAssistant.Forms {
             this.Button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.Button4 = new System.Windows.Forms.Button();
+            this.Toggle_ManualDeviceInformation_Button = new MaterialButton();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
             this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
@@ -103,9 +104,10 @@ namespace GeekAssistant.Forms {
             this.ShowLog_InfoBlink_Timer = new System.Windows.Forms.Timer(this.components);
             this.SettingsSave_Timer = new System.Windows.Forms.Timer(this.components);
             this.AutoDetectFlash_Timer_Deprecated = new System.Windows.Forms.Timer(this.components);
-            this.PleaseWait_PostDelay_adbDetect = new System.Windows.Forms.Timer(this.components);
+            this.Wait_PostDelay_adbDetect = new System.Windows.Forms.Timer(this.components);
             this.Main_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.Unavalable_Tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -124,6 +126,7 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
             // OpenLogFolder
@@ -182,7 +185,7 @@ namespace GeekAssistant.Forms {
             this.ManualInfo_GroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ManualInfo_GroupBox.Location = new System.Drawing.Point(24, 242);
             this.ManualInfo_GroupBox.Name = "ManualInfo_GroupBox";
-            this.ManualInfo_GroupBox.Size = new System.Drawing.Size(243, 270);
+            this.ManualInfo_GroupBox.Size = new System.Drawing.Size(243, 165);
             this.ManualInfo_GroupBox.TabIndex = 85591;
             this.ManualInfo_GroupBox.TabStop = false;
             this.ManualInfo_GroupBox.Text = "Manual Device Information";
@@ -1129,9 +1132,9 @@ namespace GeekAssistant.Forms {
             // 
             this.AutoDetectFlash_Timer_Deprecated.Interval = 650;
             // 
-            // PleaseWait_PostDelay_adbDetect
+            // Wait_PostDelay_adbDetect
             // 
-            this.PleaseWait_PostDelay_adbDetect.Interval = 200;
+            this.Wait_PostDelay_adbDetect.Interval = 200;
             // 
             // Main_ToolTip
             // 
@@ -1146,6 +1149,12 @@ namespace GeekAssistant.Forms {
             this.Unavalable_Tooltip.ReshowDelay = 0;
             this.Unavalable_Tooltip.StripAmpersands = true;
             this.Unavalable_Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
+            // 
+            // metroStyleManager
+            // 
+            this.metroStyleManager.Owner = this;
+            this.metroStyleManager.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroStyleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // Home
             // 
@@ -1216,6 +1225,7 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1299,7 +1309,7 @@ namespace GeekAssistant.Forms {
         public Timer ShowLog_ErrorBlink_Timer;
         public Timer ShowLog_InfoBlink_Timer;
         public Timer AutoDetectFlash_Timer_Deprecated;
-        public Timer PleaseWait_PostDelay_adbDetect;
+        public Timer Wait_PostDelay_adbDetect;
         public Timer SettingsSave_Timer;
         public ToolTip Unavalable_Tooltip;
         private TextBox textBox1;
@@ -1308,5 +1318,7 @@ namespace GeekAssistant.Forms {
         private TextBox textBox4;
         private TextBox textBox3;
         private TextBox textBox2;
+        public MetroFramework.Components.MetroStyleManager metroStyleManager;
+        private MaterialButton Toggle_ManualDeviceInformation_Button;
     }
 }

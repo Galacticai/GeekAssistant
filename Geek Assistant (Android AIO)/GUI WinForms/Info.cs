@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
+
     public partial class Info : Form {
         public Info() {
             InitializeComponent();
@@ -43,26 +44,25 @@ namespace GeekAssistant.Forms {
                         (null, "Close"));
             }
 
-            //Reset to default
-            if (!string.IsNullOrEmpty(inf.YesNoButtons.YesButton)) {
+            bool yButton = !string.IsNullOrEmpty(inf.YesNoButtons.YesButton),
+                 nButton = !string.IsNullOrEmpty(inf.YesNoButtons.NoButton);
+            if (yButton) {
                 Yes_Button.Text = inf.YesNoButtons.YesButton;
                 Yes_Button.Visible = true;
-                if (string.IsNullOrEmpty(inf.YesNoButtons.NoButton)) {
-                    Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
+                if (!nButton) {
+                    Yes_Button.Bounds = No_Button.Bounds;
                     Yes_Button.Anchor = No_Button.Anchor;
                     No_Button.Visible = false;
                 }
             }
-            if (!string.IsNullOrEmpty(inf.YesNoButtons.NoButton))
+            if (nButton) {
                 No_Button.Text = inf.YesNoButtons.NoButton;
-            else {
-                if (string.IsNullOrEmpty(inf.YesNoButtons.YesButton)) {
-                    Yes_Button.SetBounds(No_Button.Bounds.X, No_Button.Bounds.Y, No_Button.Bounds.Width, No_Button.Bounds.Height);
-                    Yes_Button.Anchor = No_Button.Anchor;
-                    No_Button.Visible = false;
-                    Yes_Button.Visible = true;
-                    Yes_Button.Text = "Close";
-                }
+            } else if (!yButton & !nButton) {
+                Yes_Button.Bounds = No_Button.Bounds;
+                Yes_Button.Anchor = No_Button.Anchor;
+                No_Button.Visible = false;
+                Yes_Button.Visible = true;
+                Yes_Button.Text = "Close";
             }
 
 
@@ -97,11 +97,11 @@ namespace GeekAssistant.Forms {
             Yes_Button.FlatAppearance.MouseDownBackColor = title_Label.ForeColor;
 
 
-            ////////Special Cases
+            ////Special Cases
             //if (title_Label.Text == "Send Feedback") if (c.S.DarkTheme) info_PictureBox.Image = prop.x64.Smile_dark_64; else info_PictureBox.Image = prop.x64.Smile_64;
 
 
-            //// Set size
+            // Set size
             Width = 566;
             Height = 355;
             switch (msg_Textbox.Text.Length) {

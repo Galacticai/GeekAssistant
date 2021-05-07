@@ -119,8 +119,8 @@
 '            '//TODO maybe: count Is being set without setting settings.count
 '            Select Case Main.DeviceCount.Value
 '                Case 0
-'                    'PleaseWait().Close()
-'                    GA_PleaseWait.Run(False)
+'                    'Wait().Close()
+'                    GA_Wait.Run(False)
 '                    Dim TroubleshootConnection As String = vbCrLf & "-Did you install the USB drivers for your device?" & vbCrLf & "-Did you turn on USB Debugging?" & vbCrLf & "-Did you allow this PC to access your device?" & vbCrLf & "-Did you unlock the lockscreen?" & vbCrLf & "-Did you try another USB cable / port?" & vbCrLf & "Make sure to properly connect your device and try again..." & vbCrLf & " >  Process aborted."
 
 '                    'MessageBox.Show("Did you install the USB drivers for your device?" & vbCrLf & "You can start the installation of Google universal USB Drivers right now if you wish.")
@@ -146,15 +146,15 @@
 '        If adbItems.Contains("serialno") Or adbItems.Contains("all") Then
 '            Try 'Serial number 
 '                ErrorCodeTrack("Da-L1") 'Device adb - Level 1 0 (Device Serial Number) ''error info: Device count fail, Device is offline
-'                GA_PleaseWait.Run(True)
+'                GA_Wait.Run(True)
 '                GA_SetProgressText.Run("Detecting device serial number.", -1)
 '                adbDo("get-serialno")
 '                DeviceInfoSave(adb_output, -1, "", 0, "", "", "")
 '                LogAppendText("~ Serial #: " & S.DeviceSerial, 1)
-'                GA_PleaseWait.Run(False)
+'                GA_Wait.Run(False)
 
 '            Catch ex As Exception
-'                GA_PleaseWait.Run(False)
+'                GA_Wait.Run(False)
 '                'Main.ShowLog_InfoBlink_Timer.Enabled = True
 '                ErrorCodeTrack("Da-L1") 'Device adb - Level 1 0 (Device Serial Number) ''error info: Device count fail, Device is offline
 '                DoMsg(0, "Please Connect 1 device only." & vbCrLf & "Process aborted.", 2)
@@ -233,7 +233,7 @@
 '        If Main.ShowLog_ErrorBlink_Timer.Enabled = False Then GA_SetProgressText.Run("Device information aquired.", -1)
 
 'EndDetect:
-'        GA_PleaseWait.Run(False)
+'        GA_Wait.Run(False)
 '        adbStopOnError = False
 '    End Sub
 

@@ -7,7 +7,7 @@ using GeekAssistant.Forms;
 internal static partial class GA_SetTheme {
     private static Timer HomeTheme_delayTimer = new() { Interval = 100 };
 
-    private static PleaseWait pw = null;
+    private static Wait pw = null;
     private static Preparing p = null;
     private static AppMode am = null;
     private static Donate d = null;
@@ -18,9 +18,9 @@ internal static partial class GA_SetTheme {
     public static void Run(Form f, bool initiating = false) {
         initiatingbool = initiating;
         switch (f) {
-            case PleaseWait:
-                pw = (PleaseWait)f;
-                PleaseWait_Theme();
+            case Wait:
+                pw = (Wait)f;
+                Wait_Theme();
                 break;
             case Preparing:
                 p = (Preparing)f;
@@ -223,15 +223,15 @@ internal static partial class GA_SetTheme {
     }
     #endregion
 
-    #region PleaseWait
-    private static void PleaseWait_Theme() {
-        //PleaseWait p = new();
-        SetControlsArrTheme(new Control[] { pw, pw.PleaseWait_ProgressText });
+    #region Wait
+    private static void Wait_Theme() {
+        //Wait p = new();
+        SetControlsArrTheme(new Control[] { pw, pw.Wait_ProgressText });
 
         var p_spb = pw.StopProcess_Button;
         var p_spb_fa = p_spb.FlatAppearance;
         if (c.S.DarkTheme) {
-            //p.PleaseWait_text.ForeColor = Color.FromArgb(0, 200, 0);
+            //p.Wait_text.ForeColor = Color.FromArgb(0, 200, 0);
             {
                 p_spb.ForeColor = Color.FromArgb(230, 255, 230);
                 p_spb.BackColor = Color.FromArgb(55, 28, 25);
@@ -241,7 +241,7 @@ internal static partial class GA_SetTheme {
                 }
             }
         } else {
-            pw.PleaseWait_text.ForeColor = Color.FromArgb(0, 100, 0);
+            pw.Wait_text.ForeColor = Color.FromArgb(0, 100, 0);
             pw.StopProcess_Button.BackColor = Color.FromArgb(255, 228, 225);
             {
                 p_spb.BackColor = Color.FromArgb(255, 228, 225);

@@ -9,7 +9,7 @@ namespace GeekAssistant {
             //FormClosed event for all forms
             //FormClosedEventHandler ev_FormClosed = new(ev_FormClosed_Run);
             //EventHandler ev_Load = new(ev_Load_Run);
-            //c.PleaseWait.FormClosed += new(ev_FormClosed_Run);
+            //c.Wait.FormClosed += new(ev_FormClosed_Run);
             //c.Preparing.FormClosed += new(ev_FormClosed_Run);
             //c.AppMode.FormClosed += new(ev_FormClosed_Run);
             //c.Donate.FormClosed += new(ev_FormClosed_Run);

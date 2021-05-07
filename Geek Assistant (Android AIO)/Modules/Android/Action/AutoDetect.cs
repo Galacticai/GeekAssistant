@@ -188,7 +188,7 @@ internal static partial class AutoDetect {
 
             Home.bar.Value = 100;
         } catch (Exception ex) {
-            GA_PleaseWait.Run(false); // Close before error dialog
+            GA_Wait.Run(false); // Close before error dialog
             if (!Silent) {
                 inf.detail.fullFatalError = ex.ToString();
                 inf.Run(inf.detail);
@@ -196,7 +196,7 @@ internal static partial class AutoDetect {
         }
 
         c.S.DeviceState = Home.DeviceState_Label.Text;
-        GA_PleaseWait.Run(false); // Close if Try was successful
+        GA_Wait.Run(false); // Close if Try was successful
         c.Working = false;
     }
 }

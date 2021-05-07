@@ -32,7 +32,7 @@ namespace GeekAssistant.Forms {
             AutoDetectDeviceInfo_Button.MouseUp += new(AutoDetectDeviceInfo_Button_MouseUp); AutoDetectDeviceInfo_Button.KeyUp += new(AutoDetectDeviceInfo_Button_MouseUp);
             AutoDetectDeviceInfo_Button.Click += new(AutoDetectDeviceInfo_Button_Click);
 
-            ShowPleaseWaitThenAutoDetect_Timer.Tick += new(ShowPleaseWaitThenAutoDetect_Timer_Tick);
+            ShowWaitThenAutoDetect_Timer.Tick += new(ShowWaitThenAutoDetect_Timer_Tick);
 
             EventHandler Ev__logMouseEnter = new(ShowLog_MouseEnter);
             ShowLog_Button.MouseEnter += Ev__logMouseEnter; log.MouseEnter += Ev__logMouseEnter; ShowLog_Button.MouseEnter += Ev__logMouseEnter;
@@ -155,7 +155,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void Home_FormClosing(object sender, EventArgs e) {
-            if (Application.OpenForms.OfType<PleaseWait>().Any()) { //Cancel if a process by GA is currently running
+            if (Application.OpenForms.OfType<Wait>().Any()) { //Cancel if a process by GA is currently running
                 System.Media.SystemSounds.Beep.Play();
                 return;
             }
@@ -169,13 +169,13 @@ namespace GeekAssistant.Forms {
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
         }
         private void Home_GotFocus(object sender, EventArgs e) {
-            if (!finishedLoading) new PleaseWait().BringToFront();
+            if (!finishedLoading) new Wait().BringToFront();
         }
-        public static PleaseWait PleaseWait = null; //Set in GA_PleaseWait.cs to retain the current instance
+        public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
-            PleaseWait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, PleaseWait.Width, PleaseWait.Height);
+            Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, Wait.Width, Wait.Height);
         }
         private bool finishedLoading = false;
         private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
@@ -193,7 +193,7 @@ namespace GeekAssistant.Forms {
             Text = GA_Ver.Run("MainTitle");
             GA_About_Label.Text = GA_Ver.Run("Main");
             log.Text = GA_Ver.Run("log");
-            GA_PleaseWait.Run(true);
+            GA_Wait.Run(true);
             //Preparing = new();
             //Preparing.Show();
             //Preparing.BringToFront();
@@ -229,7 +229,7 @@ namespace GeekAssistant.Forms {
 
             finishedLoading = true;
             Enabled = true; //Enable when done with everything
-            GA_PleaseWait.Run(false);
+            GA_Wait.Run(false);
             BringToFront();
         }
 
@@ -263,12 +263,12 @@ namespace GeekAssistant.Forms {
             }
         }
         private void AutoDetectDeviceInfo_Button_Click(object sender, EventArgs e) {
-            GA_PleaseWait.Run(true);
-            ShowPleaseWaitThenAutoDetect_Timer.Start(); //delay to let PleaseWait() completely render before it closes (looks like a glitch without a delay)
+            GA_Wait.Run(true);
+            ShowWaitThenAutoDetect_Timer.Start(); //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
         }
-        private Timer ShowPleaseWaitThenAutoDetect_Timer = new() { Interval = 100 };
-        private void ShowPleaseWaitThenAutoDetect_Timer_Tick(object sender, EventArgs e) {
-            ShowPleaseWaitThenAutoDetect_Timer.Enabled = false;
+        private Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
+        private void ShowWaitThenAutoDetect_Timer_Tick(object sender, EventArgs e) {
+            ShowWaitThenAutoDetect_Timer.Enabled = false;
             AutoDetect.Run();
         }
 
@@ -421,7 +421,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void HotReboot_Button_Click(object sender, EventArgs e) {
-            if (!CheckConnectionIsCompatible.adbIsCompatible("HR")) { // Hot Reboot 
+            if (!ConnectionIsCompatible.adbIsCompatible("HR")) { // Hot Reboot 
                 inf.Run(inf.detail.lvl, inf.detail.title, inf.detail.msg);
                 return;
             }

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public partial class PleaseWait : Form {
-        public PleaseWait() {
+    public partial class Wait : Form {
+        public Wait() {
             InitializeComponent();
         }
 
         private void AssignEvents() {
-            FormClosing += new(PleaseWait_FormClosing);
-            Closed += new(PleaseWait_Closed);
+            FormClosing += new(Wait_FormClosing);
+            Closed += new(Wait_Closed);
             StopProcess_Button.Click += new(StopProcess_Button_Click);
         }
 
-        private void PleaseWait_MainEnabled(bool b) {
+        private void Wait_MainEnabled(bool b) {
             Home Home = new Home();
             Home.AutoDetectDeviceInfo_Button.Enabled = b;
             Home.SwitchTheme_Button.Enabled = b;
@@ -26,20 +26,20 @@ namespace GeekAssistant.Forms {
         }
 
         public bool UserClosing = true; //lock to true by default
-        private void PleaseWait_FormClosing(object sender, FormClosingEventArgs ev) {
+        private void Wait_FormClosing(object sender, FormClosingEventArgs ev) {
             if (UserClosing | ev.CloseReason == CloseReason.WindowsShutDown) { //Prevent shutdown while working //Block user closing the form
                 ev.Cancel = true;
                 return;
             } else {
                 UserClosing = true; //reset for next use
-                PleaseWait_MainEnabled(true);
+                Wait_MainEnabled(true);
                 Hide();
             }
         }
-        private void PleaseWait_Closed(object sender, EventArgs e) {
-            PleaseWait_MainEnabled(true);
+        private void Wait_Closed(object sender, EventArgs e) {
+            Wait_MainEnabled(true);
         }
-        private void PleaseWait_Load(object sender, EventArgs e) {
+        private void Wait_Load(object sender, EventArgs e) {
             AssignEvents();
             GA_SetTheme.Run(this);
             Home h = (Home)Application.OpenForms["Home"];
@@ -47,9 +47,9 @@ namespace GeekAssistant.Forms {
             var titleHeight = h.RectangleToScreen(h.ClientRectangle).Top - h.Top;
             SetBounds(h.Location.X + 24, h.Location.Y + 97 + titleHeight, Width, Height);
 
-            PleaseWait_MainEnabled(false);
+            Wait_MainEnabled(false);
 
-            PleaseWait_text.Text = txt.RandomWorkText();
+            Wait_text.Text = txt.RandomWorkText();
         }
 
         private void StopProcess_Button_Click(object sender, EventArgs e) {

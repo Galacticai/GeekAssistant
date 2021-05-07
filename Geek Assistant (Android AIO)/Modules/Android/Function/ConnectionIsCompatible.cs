@@ -1,5 +1,5 @@
 ﻿
-internal static partial class CheckConnectionIsCompatible {
+internal static partial class ConnectionIsCompatible {
 
 
     /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
@@ -44,7 +44,6 @@ internal static partial class CheckConnectionIsCompatible {
             return false;
         }
 
-        // if passed all then compatible
         return true;
     }
 

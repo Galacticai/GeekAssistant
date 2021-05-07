@@ -19,13 +19,13 @@ internal static partial class UnlockBL {
         c.Working = true;
         inf.detail.code = "UB-00"; // Unlock Bootloader - Start
         GA_Log.LogEvent(inf.currentTitle, 2);
-        GA_PleaseWait.Run(true);
+        GA_Wait.Run(true);
         try {
 
 
             // ' check if fb compatible 
             Home.bar.Value = 10;
-            if (!CheckConnectionIsCompatible.fbIsCompatible("UB")) {
+            if (!ConnectionIsCompatible.fbIsCompatible("UB")) {
                 Cancelled = true;
                 if (inf.detail.code == "UB-DS")
                     inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n" +
@@ -146,7 +146,7 @@ internal static partial class UnlockBL {
             Home.bar.Value = 100;
             fbCMD.fbDo("reboot");
         } catch (Exception ex) {
-            GA_PleaseWait.Run(false); // Close before error dialog 
+            GA_Wait.Run(false); // Close before error dialog 
             inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg, ex.ToString());
             if (!Cancelled) {
                 if (c.S.DeviceState == "Connected (ADB)" | c.S.DeviceState == "Fastboot mode") {
@@ -158,7 +158,7 @@ internal static partial class UnlockBL {
             }
         }
 
-        GA_PleaseWait.Run(false); // Close if Try was successful
+        GA_Wait.Run(false); // Close if Try was successful
         c.Working = false;
     }
 }

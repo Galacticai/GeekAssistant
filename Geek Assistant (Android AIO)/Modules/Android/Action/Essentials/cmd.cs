@@ -4,7 +4,7 @@ using Managed.Adb;
 
 internal static partial class cmd {
     public static string madbShell(Device dev, string cmd, bool sudo = false) {
-        if (CheckConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials()))
+        if (ConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials()))
             inf.Run(inf.detail, ("Close", null));
 
         madb.madbBridge(); // failsafe

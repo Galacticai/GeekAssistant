@@ -59,7 +59,7 @@
     <Compile Update="GUI WinForms\Donate.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="GUI WinForms\Extra\PleaseWait.cs">
+    <Compile Update="GUI WinForms\Extra\Wait.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
     <Compile Update="GUI WinForms\Extra\Preparing.cs">
@@ -77,6 +77,9 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\CustomObjects\MaterialButton\MaterialButton.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
@@ -89,7 +92,7 @@
     <Compile Update="Modules\General\Action\GA_Log.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_PleaseWait.cs">
+    <Compile Update="Modules\General\Action\GA_Wait.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_PrepareAppdata.cs">
@@ -110,11 +113,11 @@
     <Compile Update="Modules\General\Action\inf.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\CustomObjects\SwitchButton.cs">
+    <Compile Update="Modules\CustomObjects\SwitchButton.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\CustomObjects\TransparentTextBox.cs">
+    <Compile Update="Modules\CustomObjects\TransparentTextBox.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Function\Animate.cs">

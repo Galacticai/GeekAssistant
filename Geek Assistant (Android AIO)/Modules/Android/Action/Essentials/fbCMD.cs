@@ -17,7 +17,7 @@ internal static partial class fbCMD {
             inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the fastboot command.");
         }
 
-        if (!CheckConnectionIsCompatible.fbIsReady(txt.GA_GetErrorInitials())) {
+        if (!ConnectionIsCompatible.fbIsReady(txt.GA_GetErrorInitials())) {
             inf.detail.code = $"{inf.detail.code}-fbD0"; // error code (last process) - adb device 0 (no device)
             inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
         }
