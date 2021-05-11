@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using FluentTransitions;
 using GeekAssistant.Forms;
 
-internal static partial class GA_SetTheme {
+internal partial class GA_SetTheme : Theming {
     private static Timer HomeTheme_delayTimer = new() { Interval = 100 };
 
-    private static PleaseWait pw = null;
+    private static Wait pw = null;
     private static Preparing p = null;
     private static AppMode am = null;
     private static Donate d = null;
@@ -18,20 +17,20 @@ internal static partial class GA_SetTheme {
     public static void Run(Form f, bool initiating = false) {
         initiatingbool = initiating;
         switch (f) {
-            case PleaseWait:
-                pw = (PleaseWait)f;
-                PleaseWait_Theme();
+            case Wait:
+                pw = (Wait)f;
+                Wait_Theme();
                 break;
             case Preparing:
                 p = (Preparing)f;
-                p.Preparing_Label.ForeColor = c.colors.fg;
-                p.BackColor = c.colors.bg;
+                p.Preparing_Label.ForeColor = colors.fg;
+                p.BackColor = colors.bg;
                 break;
             case AppMode:
                 am = (AppMode)f;
                 //Control am = AppMode;
                 SetControlTheme(am);
-                am.startup_dontShow.ForeColor = c.colors.fg;
+                am.startup_dontShow.ForeColor = colors.fg;
                 break;
             case Donate:
                 d = (Donate)f;
@@ -83,17 +82,16 @@ internal static partial class GA_SetTheme {
                 d.ButtonsBG_UI.BackColor = Color.FromArgb(32, 32, 32);
                 d.Close_Button.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
                 d.pic.Image = prop.x64.DonateHeart_Dark_64;
-                d.title.ForeColor = Color.FromArgb(255, 191, 217);
                 d.BitcoinAddressQR.Image = prop.xXX.BTCAddressQR_Dark;
                 d.GooglePayLink.Image = prop.x16.linkIcon_dark_16;
             } else {
                 d.ButtonsBG_UI.BackColor = Color.WhiteSmoke;
                 d.Close_Button.FlatAppearance.MouseOverBackColor = Color.Silver;
                 d.pic.Image = prop.x64.DonateHeart_64;
-                d.title.ForeColor = Color.FromArgb(128, 0, 87);
                 d.BitcoinAddressQR.Image = prop.xXX.BTCAddressQR;
                 d.GooglePayLink.Image = prop.x16.linkIcon_16;
             }
+            d.title.ForeColor = colors.Iconcolors.Donate;
             d.GeekAssistant_PictureBox.BackColor = d.ButtonsBG_UI.BackColor;
         }
     }
@@ -161,15 +159,12 @@ internal static partial class GA_SetTheme {
         SetControlsArrTheme_Metro(MetroControls_array);
 
         if (initiatingbool) {
-
-            for (int i = 0; i < Controls_array.Length; i++) {
-                Controls_array[i].BackColor = c.colors.bg;
-                Controls_array[i].ForeColor = c.colors.fg;
-            }
-
+            c.S.PerformAnimations = false;
+            SetControlsArrTheme(Controls_array);
+            c.S.PerformAnimations = true;
         } else SetControlsArrTheme(Controls_array);
 
-        var h_addb = h.AutoDetectDeviceInfo_Button;
+        var h_add_b = h.AutoDetectDeviceInfo_Button;
         if (c.S.DarkTheme) {
             // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(235, 245, 235)
             // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(0, 20, 0), New TransitionType_CriticalDamping(1000))
@@ -177,12 +172,12 @@ internal static partial class GA_SetTheme {
             h.Main_ToolTip.ForeColor = SystemColors.Info;
             {
                 {
-                    h_addb.ForeColor = Color.FromArgb(95, 191, 119);
-                    h_addb.BackColor = Color.FromArgb(64, 64, 64);
-                    h_addb.FlatAppearance.MouseDownBackColor = Color.Honeydew;
-                    h_addb.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
-                    h_addb.Image = prop.x64.AutoDetect_dark_64;
+                    h_add_b.BackColor = Color.FromArgb(64, 64, 64);
+                    h_add_b.FlatAppearance.MouseDownBackColor = Color.Honeydew;
+                    h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
+                    h_add_b.Image = prop.x64.AutoDetect_dark_64;
                 }
+
                 // .DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119)
                 h.Donate_Button.Icon = prop.x24.DonateHeart_Dark_24;
                 h.SwitchTheme_Button.Icon = prop.x24.Theme_Dark_24;
@@ -201,12 +196,12 @@ internal static partial class GA_SetTheme {
             h.Main_ToolTip.ForeColor = SystemColors.InfoText;
             {
                 {
-                    h_addb.ForeColor = Color.FromArgb(0, 128, 32);
-                    h_addb.BackColor = Color.Honeydew;
-                    h_addb.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
-                    h_addb.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 245, 230);
-                    h_addb.Image = prop.x64.AutoDetect_64;
+                    h_add_b.BackColor = Color.Honeydew;
+                    h_add_b.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+                    h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 245, 230);
+                    h_add_b.Image = prop.x64.AutoDetect_64;
                 }
+
                 // .DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32)
                 h.Donate_Button.Icon = prop.x24.DonateHeart_24;
                 h.SwitchTheme_Button.Icon = prop.x24.Theme_Light_24;
@@ -218,20 +213,30 @@ internal static partial class GA_SetTheme {
                 //hom.manualCMD_TextBox.Icon = prop.x16.Commands_16;
             }
         }
-        // Animate.Run(Main.log, "ForeColor", Current_fgColor())
+        h.Donate_Button.ForeColor = colors.Iconcolors.Donate;
+        h.SwitchTheme_Button.ForeColor = colors.Iconcolors.Theme;
+        h.Feedback_Button.ForeColor = colors.Iconcolors.Smile;
+        h.About_Button.ForeColor = colors.Iconcolors.ToU;
+        h.Settings_Button.ForeColor = colors.Iconcolors.Settings;
+        h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands;
+
+        h_add_b.ForeColor = colors.Misc.Green;
+        h.Toggle_ManualDeviceInfo_Button.ForeColor = h_add_b.ForeColor;
+
+        h.DeviceState_Label_TextChanged(h.DeviceState_Label, EventArgs.Empty);
         HomeTheme_delayTimer.Enabled = false;
     }
     #endregion
 
-    #region PleaseWait
-    private static void PleaseWait_Theme() {
-        //PleaseWait p = new();
-        SetControlsArrTheme(new Control[] { pw, pw.PleaseWait_ProgressText });
+    #region Wait
+    private static void Wait_Theme() {
+        //Wait p = new();
+        SetControlsArrTheme(new Control[] { pw, pw.Wait_ProgressText });
 
         var p_spb = pw.StopProcess_Button;
         var p_spb_fa = p_spb.FlatAppearance;
         if (c.S.DarkTheme) {
-            //p.PleaseWait_text.ForeColor = Color.FromArgb(0, 200, 0);
+            //p.Wait_text.ForeColor = Color.FromArgb(0, 200, 0);
             {
                 p_spb.ForeColor = Color.FromArgb(230, 255, 230);
                 p_spb.BackColor = Color.FromArgb(55, 28, 25);
@@ -241,7 +246,7 @@ internal static partial class GA_SetTheme {
                 }
             }
         } else {
-            pw.PleaseWait_text.ForeColor = Color.FromArgb(0, 100, 0);
+            pw.Wait_text.ForeColor = Color.FromArgb(0, 100, 0);
             pw.StopProcess_Button.BackColor = Color.FromArgb(255, 228, 225);
             {
                 p_spb.BackColor = Color.FromArgb(255, 228, 225);
@@ -274,7 +279,6 @@ internal static partial class GA_SetTheme {
             }
 
             s.SettingsIcon_PictureBox.Image = prop.x64.Settings_dark_64;
-            s.SettingsTitle_Label.ForeColor = Color.FromArgb(184, 243, 254);
             s.Close_Button.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
         } else {
             s.ButtonsBG_UI.BackColor = Color.WhiteSmoke;
@@ -288,11 +292,11 @@ internal static partial class GA_SetTheme {
                 s_rsa.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
             }
             s.SettingsIcon_PictureBox.Image = prop.x64.Settings_64;
-            s.SettingsTitle_Label.ForeColor = Color.FromArgb(0, 106, 128);
             s.Close_Button.FlatAppearance.MouseOverBackColor = Color.Silver;
 
         }
         {
+            s.SettingsTitle_Label.ForeColor = colors.Iconcolors.Settings;
             s.ResetGA.BackColor = s.ButtonsBG_UI.BackColor;
             s.ResetGA_SelectAll.BackColor = s.ButtonsBG_UI.BackColor;
             s.GeekAssistant_PictureBox.BackColor = s.ButtonsBG_UI.BackColor;
@@ -310,17 +314,15 @@ internal static partial class GA_SetTheme {
         if (c.S.DarkTheme) {
             t.ButtonsBG_UI.BackColor = Color.FromArgb(32, 32, 32);
             t.Icon_PictureBox.Image = prop.x64.ToU_dark_64;
-            t.ToUTitle_Label.ForeColor = Color.FromArgb(178, 255, 220);
         } else {
             t.ButtonsBG_UI.BackColor = Color.WhiteSmoke;
             t.Icon_PictureBox.Image = prop.x64.ToU_64;
-            t.ToUTitle_Label.ForeColor = Color.FromArgb(0, 102, 71);
         }
-
+        t.ToUTitle_Label.ForeColor = colors.Iconcolors.ToU;
         t.AcceptCheck_ToU.ForeColor = t.ToUTitle_Label.ForeColor;
         t.Copyright_Label.ForeColor = t.ToUTitle_Label.ForeColor;
-        t.AcceptCheck_ToU.ForeColor = c.colors.fg;
-        t.DontShow_ToU.ForeColor = c.colors.fg;
+        t.AcceptCheck_ToU.ForeColor = colors.fg;
+        t.DontShow_ToU.ForeColor = colors.fg;
         t.AcceptCheck_ToU.BackColor = t.ButtonsBG_UI.BackColor;
         t.DontShow_ToU.BackColor = t.ButtonsBG_UI.BackColor;
         t.GeekAssistant_PictureBox.BackColor = t.ButtonsBG_UI.BackColor;
@@ -328,25 +330,4 @@ internal static partial class GA_SetTheme {
     #endregion
 
 
-    #region Theming Mechanism
-
-    private static void SetControlsArrTheme(Control[] ControlsObj) {
-        for (int i = 0; i < ControlsObj.Length; i++)
-            SetControlTheme(ControlsObj[i]);
-    }
-    private static void SetControlTheme(Control ControlObj) {
-        Animate.Run(ControlObj, "ForeColor", c.colors.fg);
-        Animate.Run(ControlObj, "BackColor", c.colors.bg);
-    }
-
-    private static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
-        for (int i = 0; i < ControlsObj.Length; i++)
-            SetControlTheme_Metro(ControlsObj[i]);
-    }
-    private static void SetControlTheme_Metro(MetroFramework.Interfaces.IMetroControl ControlObj) {
-        ControlObj.Theme = c.colors.Metro;
-        // Cannot animate "Theme" 'Transition.run(ControlObj, "Theme", Current_Theme_Metro(), New TransitionType_CriticalDamping(500))
-    }
-
-    #endregion
 }

@@ -54,7 +54,7 @@ internal static partial class txt {
     }
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomWorkText() {
-        return math.RandomObjectFromArr(new[] {
+        return (string)math.Random.RandomObjectFromArr(new[] {
             "Hold on... We're doing magic!",
             "Stuff... Please be patient...",
             "Wait a second... Magic ongoing...",
@@ -75,7 +75,7 @@ internal static partial class txt {
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomFactText() {
-        return math.RandomObjectFromArr(new[] {
+        return (string)math.Random.RandomObjectFromArr(new[] {
             "The first oranges weren’t orange.",
             "Samsung uses a butt-shaped robot to test phone durability.",
             "Peanuts aren’t technically nuts.",

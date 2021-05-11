@@ -139,10 +139,10 @@ namespace GeekAssistant.Forms {
                 GA_SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
         }
         private void ResetGA_MouseDown(object sender, EventArgs e) {
-            ResetGA.ForeColor = c.colors.bg;
+            ResetGA.ForeColor = colors.bg;
         }
         private void ResetGA_MouseUp(object sender, EventArgs e) {
-            ResetGA.ForeColor = c.colors.fg;
+            ResetGA.ForeColor = colors.fg;
         }
 
         //private void Close_Button_MouseDown(object sender, EventArgs e) { Close_Button.MouseDown

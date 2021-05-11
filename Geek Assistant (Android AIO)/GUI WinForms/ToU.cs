@@ -107,11 +107,11 @@ namespace GeekAssistant.Forms {
         }
 
         private void ToU_Reject_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
-            ToU_Reject.ForeColor = c.colors.bg;
+            ToU_Reject.ForeColor = colors.bg;
         }
 
         private void ToU_Reject_MouseLeave_KeyUp(object sender, EventArgs e) {
-            ToU_Reject.ForeColor = c.colors.fg;
+            ToU_Reject.ForeColor = colors.fg;
         }
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
@@ -128,10 +128,10 @@ namespace GeekAssistant.Forms {
         }
 
         private void ToU_Accept_MouseEnter_MouseDown_KeyDown(object sender, EventArgs e) {
-            ToU_Accept.ForeColor = c.colors.bg;
+            ToU_Accept.ForeColor = colors.bg;
         }
         private void ToU_Accept_MouseLeave_KeyUp(object sender, EventArgs e) {
-            ToU_Accept.ForeColor = c.colors.fg;
+            ToU_Accept.ForeColor = colors.fg;
         }
         private void ToU_Accept_Click(object sender, EventArgs e) {
             c.S.ToU_dontShow = DontShow_ToU.Checked;

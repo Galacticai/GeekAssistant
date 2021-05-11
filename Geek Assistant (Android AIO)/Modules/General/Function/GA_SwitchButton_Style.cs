@@ -29,7 +29,7 @@ internal static partial class GA_SwitchButton_Style {
 
     public static void MouseUp(Control aButton) {
         ButtonPressedAlready = false;
-        aButton.ForeColor = c.colors.fg;
+        aButton.ForeColor = colors.fg;
         if (aButton.BackColor == Color.Green | aButton.BackColor == Color.FromArgb(0, 130, 0))
             aButton.ForeColor = Color.White;
 
@@ -42,18 +42,18 @@ internal static partial class GA_SwitchButton_Style {
             aButton.BackColor = Color.FromArgb(0, 130, 0);
             aButton.ForeColor = Color.White;
         } else {
-            aButton.BackColor = c.colors.SwitchButton.bg_Hover;
-            aButton.ForeColor = c.colors.fg;
+            aButton.BackColor = colors.SwitchButton.bg_Hover;
+            aButton.ForeColor = colors.fg;
         }
     }
 
     public static void MouseLeave(Control aButton, bool aBoolean) {
         if (aBoolean) {
-            aButton.BackColor = c.colors.SwitchButton.bg_Active;
+            aButton.BackColor = colors.SwitchButton.bg_Active;
             aButton.ForeColor = Color.White;
         } else {
-            aButton.BackColor = c.colors.SwitchButton.bg;
-            aButton.ForeColor = c.colors.fg;
+            aButton.BackColor = colors.SwitchButton.bg;
+            aButton.ForeColor = colors.fg;
         }
     }
 
@@ -77,8 +77,8 @@ internal static partial class GA_SwitchButton_Style {
     /// <param name="aTooltip_txt">Tooltip text</param>
     /// <returns></returns>
     public static bool MouseClick(Control aButton, bool prop, string aTooltip_txt) {
-        if (prop) aButton.BackColor = c.colors.SwitchButton.bg;
-        else aButton.BackColor = c.colors.SwitchButton.bg_Active;
+        if (prop) aButton.BackColor = colors.SwitchButton.bg;
+        else aButton.BackColor = colors.SwitchButton.bg_Active;
         if (!string.IsNullOrEmpty(aTooltip_txt))
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {aTooltip_txt}");
         return !prop;
@@ -88,10 +88,10 @@ internal static partial class GA_SwitchButton_Style {
     public static void EnableIfTrue(Control aButton, bool prop) {
         if (prop) {
             aButton.ForeColor = Color.White;
-            aButton.BackColor = c.colors.SwitchButton.bg_Active;
+            aButton.BackColor = colors.SwitchButton.bg_Active;
         } else {
-            aButton.ForeColor = c.colors.fg;
-            aButton.BackColor = c.colors.SwitchButton.bg;
+            aButton.ForeColor = colors.fg;
+            aButton.BackColor = colors.SwitchButton.bg;
         }
         if (!string.IsNullOrEmpty(tooltip.GetToolTip(aButton)))
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {txt.WithoutState_SwitchButton_tooltipTxt(aButton)}");

@@ -77,7 +77,7 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\MaterialButton\MaterialButton.cs">
+    <Compile Update="Modules\CustomObjects\MaterialButton.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">
@@ -107,7 +107,10 @@
     <Compile Update="Modules\General\Action\GA_SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_SwitchTheme.cs">
+    <Compile Update="Modules\General\Action\Theme\Theming.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Action\Theme\GA_SetTheme.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\inf.cs">
@@ -117,7 +120,10 @@
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\TransparentTextBox.cs">
+    <Compile Update="Modules\CustomObjects\TestingTextBox.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\General\Function\Animate - Copy.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Function\Animate.cs">

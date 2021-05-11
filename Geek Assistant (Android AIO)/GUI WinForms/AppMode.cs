@@ -105,7 +105,7 @@ namespace GeekAssistant.Forms {
                 startup_dontShow.ForeColor = Color.White;
             } else {
                 startup_dontShow.BackColor = Color.Transparent;
-                startup_dontShow.ForeColor = c.colors.fg;
+                startup_dontShow.ForeColor = colors.fg;
             }
         }
         private void startup_dontShow_MouseDown(object sender, EventArgs e) {

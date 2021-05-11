@@ -97,6 +97,8 @@ namespace GeekAssistant.Forms {
 
             CustomRecovery_CheckBox.CheckedChanged += new(CustomRecovery_CheckBox_CheckedChanged);
 
+            Toggle_ManualDeviceInfo_Button.Click += new(Toggle_ManualDeviceInformation_Button_Click);
+
             #endregion
 
 
@@ -171,11 +173,12 @@ namespace GeekAssistant.Forms {
         private void Home_GotFocus(object sender, EventArgs e) {
             if (!finishedLoading) new Wait().BringToFront();
         }
-        public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
+        //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
-            Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, Wait.Width, Wait.Height);
+            if (GA_Wait.Wait != null)
+                GA_Wait.Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, GA_Wait.Wait.Width, GA_Wait.Wait.Height);
         }
         private bool finishedLoading = false;
         private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
@@ -304,10 +307,9 @@ namespace GeekAssistant.Forms {
             }
         }
 
-
         private void ShowLog_ErrorBlink_Timer_Tick(object sender, EventArgs e) {
 
-            MaterialSkin.Controls.MaterialFlatButton slb = ShowLog_Button;
+            MaterialButton slb = ShowLog_Button;
             {
                 if ((string)slb.Tag == " ") {
                     slb.Tag = "  ";
@@ -325,8 +327,7 @@ namespace GeekAssistant.Forms {
 
         private void ShowLog_InfoBlink_Timer_Tick(object sender, EventArgs e) {
             if (ShowLog_ErrorBlink_Timer.Enabled) {
-                MaterialSkin.Controls.MaterialFlatButton slb = ShowLog_Button;
-                {
+                using (MaterialButton slb = ShowLog_Button) {
                     if ((string)slb.Tag == " ") {
                         slb.Tag = "  ";
                         if (c.S.DarkTheme) slb.Icon = prop.x24.Info_Yellow_dark_24;
@@ -497,29 +498,25 @@ namespace GeekAssistant.Forms {
 
         #region Left area
 
-        private void DeviceState_Label_TextChanged(object sender, EventArgs e) {
+        public void DeviceState_Label_TextChanged(object sender, EventArgs e) {
             switch (DeviceState_Label.Text) {
                 case "Disconnected":
                 case "Unknown":
                     DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 128);
                     break;
                 case "Offline":
-                    DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 0);
+                    DeviceState_Label.ForeColor = colors.infColorRes.errRed;
                     break;
                 case "Download mode":
                 case "Recovery mode":
                 case "Fastboot mode":
-                    DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 0);
+                    DeviceState_Label.ForeColor = colors.infColorRes.warnYellow;
                     break;
                 case "Connected (ADB)":
-                    if (c.S.DarkTheme) {
-                        DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119);
-                    } else {
-                        DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32);
-                    }
+                    DeviceState_Label.ForeColor = colors.Misc.Green;
                     break;
                 case "Multiple":
-                    DeviceState_Label.ForeColor = Color.FromArgb(128, 0, 128);
+                    DeviceState_Label.ForeColor = colors.Misc.Purple;
                     break;
             }
         }
@@ -527,27 +524,48 @@ namespace GeekAssistant.Forms {
         private void Manufacturer_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (c.Working) Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
             else c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
+            Manufacturer_Label.Text = Manufacturer_ComboBox.Text;
         }
         private void AndroidVersion_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             if (c.Working) AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
             //TODO: //else common.S.DeviceAPILevel = GA_adb_Functions.ConvertAVerToAPILevel(AndroidVersion_ComboBox.Text);
+            AndroidVersion_Label.Text = AndroidVersion_ComboBox.Text;
         }
         private void BootloaderUnlockable_CheckBox_CheckedChanged(object sender, EventArgs e) {
             if (c.Working) BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
             else c.S.DeviceBootloaderUnlockSupported = BootloaderUnlockable_CheckBox.Checked;
+            BootloaderUnlockable_Label.Text = convert.Bool.ToYesNo(BootloaderUnlockable_CheckBox.Checked);
         }
         private void Rooted_Checkbox_CheckedChanged(object sender, EventArgs e) {
             if (c.Working) Rooted_Checkbox.Checked = c.S.DeviceRooted;
             else c.S.DeviceRooted = Rooted_Checkbox.Checked;
+            Rooted_Label.Text = convert.Bool.ToYesNo(Rooted_Checkbox.Checked);
         }
         private void CustomROM_CheckBox_CheckedChanged(object sender, EventArgs e) {
             if (c.Working) CustomROM_CheckBox.Checked = c.S.DeviceCustomROM;
             else c.S.DeviceCustomROM = CustomROM_CheckBox.Checked;
+            CustomROM_Label.Text = convert.Bool.ToYesNo(CustomROM_CheckBox.Checked);
         }
         private void CustomRecovery_CheckBox_CheckedChanged(object sender, EventArgs e) {
             if (c.Working) CustomRecovery_CheckBox.Checked = c.S.DeviceCustomRecovery;
             else c.S.DeviceCustomRecovery = CustomRecovery_CheckBox.Checked;
+            CustomRecovery_Label.Text = convert.Bool.ToYesNo(CustomRecovery_CheckBox.Checked);
 
+        }
+        private bool ManualDevInfo = false;
+        private void Toggle_ManualDeviceInformation_Button_Click(object sender, EventArgs e) {
+            //!  shown: y  242    | h  233
+            //! hidden: y  button | h  0
+            if (ManualDevInfo) {
+                Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
+                Animate.Run(ManualInfo_GroupBox, "Top", Toggle_ManualDeviceInfo_Button.Location.Y);
+                Animate.Run(ManualInfo_GroupBox, "Height", 0);
+            } else {
+                Toggle_ManualDeviceInfo_Button.Text = "Hide Manual Selection";
+                Animate.Run(ManualInfo_GroupBox, "Top", 242);
+                Animate.Run(ManualInfo_GroupBox, "Height", 233);
+            }
+            ManualDevInfo = !ManualDevInfo;
         }
 
         #endregion

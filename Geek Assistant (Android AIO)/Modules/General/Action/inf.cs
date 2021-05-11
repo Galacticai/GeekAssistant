@@ -99,11 +99,11 @@ internal static partial class inf { //inform
         };
     public static Color infColor
         => detail.lvl switch {
-            lvls.Warn => c.colors.warnYellow, // 0
-            lvls.Error => c.colors.errRed, // 1
-            lvls.FatalError => c.colors.errRed, // 10
-            lvls.Question => c.colors.questBlue, // 2
-            _ => c.colors.infBlue  // -1
+            lvls.Warn => colors.infColorRes.warnYellow, // 0
+            lvls.Error => colors.infColorRes.errRed, // 1
+            lvls.FatalError => colors.infColorRes.errRed, // 10
+            lvls.Question => colors.infColorRes.questBlue, // 2
+            _ => colors.infColorRes.infBlue  // -1
         };
 
     public struct infIconRes {

@@ -14,7 +14,9 @@ internal static partial class AutoDetect {
 
     public static void Run(bool Silent = false) {
         //Refresh current Home instance
-        Home = (Home)Application.OpenForms["Home"];
+        foreach (Form home in Application.OpenForms)
+            if (home.GetType() == typeof(Home))
+                Home = (Home)home;
 
         inf.currentTitle = "Auto Detect";
         c.Working = true;

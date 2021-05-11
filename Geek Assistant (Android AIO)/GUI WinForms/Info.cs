@@ -164,7 +164,7 @@ namespace GeekAssistant.Forms {
         }
         private void Copy_Button_MouseUp(object sender, EventArgs e) {
             Copy_Button.Image = prop.x24.Copy_B_24;
-            Copy_Button.ForeColor = c.colors.Green;
+            Copy_Button.ForeColor = colors.Misc.Green;
         }
         private void Copy_Button_Click(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
@@ -177,7 +177,7 @@ namespace GeekAssistant.Forms {
         private void CopyToClipboard_Timer_Tick(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
             Copy_Button.Text = "Copy  ";
-            Copy_Button.ForeColor = c.colors.fg;
+            Copy_Button.ForeColor = colors.fg;
         }
 
         private void title_Label_TextChanged(object sender, EventArgs e) {

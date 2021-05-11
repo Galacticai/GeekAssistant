@@ -16,7 +16,14 @@ namespace GeekAssistant.Forms {
         }
 
         private void Wait_MainEnabled(bool b) {
-            Home Home = new Home();
+            Home Home = null;
+            foreach (Form home in Application.OpenForms)
+                if (home.GetType() == typeof(Home))
+                    Home = (Home)home;
+            if (Home == null)
+                inf.Run(($"{inf.detail.code}-W-HX", /* (code) - Wait - Home null*/
+                         inf.lvls.FatalError, "Something went wrong...",
+                         "Couldn't find the required instance to control", $"{nameof(Wait)} : NullReferenceException"));
             Home.AutoDetectDeviceInfo_Button.Enabled = b;
             Home.SwitchTheme_Button.Enabled = b;
             Home.Settings_Button.Enabled = b;
@@ -24,7 +31,7 @@ namespace GeekAssistant.Forms {
             Home.Feedback_Button.Enabled = b;
             Home.Donate_Button.Enabled = b;
         }
-
+        /// <summary> Prevent closing unless unflagged in code </summary>
         public bool UserClosing = true; //lock to true by default
         private void Wait_FormClosing(object sender, FormClosingEventArgs ev) {
             if (UserClosing | ev.CloseReason == CloseReason.WindowsShutDown) { //Prevent shutdown while working //Block user closing the form

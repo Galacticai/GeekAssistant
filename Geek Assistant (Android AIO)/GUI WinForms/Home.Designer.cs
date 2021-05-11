@@ -29,6 +29,7 @@ namespace GeekAssistant.Forms {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.OpenLogFolder = new System.Windows.Forms.Button();
+            this.Toggle_ManualDeviceInfo_Button = new MaterialButton();
             this.FlashZip_OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.CustomRecovery_CheckBox = new System.Windows.Forms.CheckBox();
             this.CustomROM_CheckBox = new System.Windows.Forms.CheckBox();
@@ -40,9 +41,9 @@ namespace GeekAssistant.Forms {
             this.DeviceState_Label = new System.Windows.Forms.Label();
             this.DeviceStateTitle_Label = new System.Windows.Forms.Label();
             this.FlashZip_Button = new MetroFramework.Controls.MetroButton();
-            this.About_Button = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Settings_Button = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Feedback_Button = new MaterialSkin.Controls.MaterialFlatButton();
+            this.About_Button = new MaterialButton();
+            this.Settings_Button = new MaterialButton();
+            this.Feedback_Button = new MaterialButton();
             this.FlashZip_RebootWhenComplete_Checkbox = new System.Windows.Forms.CheckBox();
             this.AutoDetectDeviceInfo_Button = new System.Windows.Forms.Button();
             this.ClearLog_Button = new System.Windows.Forms.Button();
@@ -50,11 +51,11 @@ namespace GeekAssistant.Forms {
             this.CopyLogToClipboard = new System.Windows.Forms.Button();
             this.GeekAssistant = new System.Windows.Forms.PictureBox();
             this.FlashZip_ChooseFile_Button = new System.Windows.Forms.Button();
-            this.ShowLog_Button = new MaterialSkin.Controls.MaterialFlatButton();
+            this.ShowLog_Button = new MaterialButton();
             this.log = new System.Windows.Forms.TextBox();
             this.ProgressBarLabel = new MetroFramework.Controls.MetroLabel();
-            this.SwitchTheme_Button = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Donate_Button = new MaterialSkin.Controls.MaterialFlatButton();
+            this.SwitchTheme_Button = new MaterialButton();
+            this.Donate_Button = new MaterialButton();
             this.MainLayout_PictureBox = new System.Windows.Forms.PictureBox();
             this.ProgressFakeBG_UI = new System.Windows.Forms.PictureBox();
             this.Main_Tabs = new MetroFramework.Controls.MetroTabControl();
@@ -69,7 +70,6 @@ namespace GeekAssistant.Forms {
             this.Button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.Button4 = new System.Windows.Forms.Button();
-            this.Toggle_ManualDeviceInformation_Button = new MaterialButton();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
             this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
@@ -107,7 +107,19 @@ namespace GeekAssistant.Forms {
             this.Wait_PostDelay_adbDetect = new System.Windows.Forms.Timer(this.components);
             this.Main_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.Unavalable_Tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Manufacturer_Title_Label = new System.Windows.Forms.Label();
+            this.Manufacturer_Label = new System.Windows.Forms.Label();
+            this.AndroidVersion_Title_Label = new System.Windows.Forms.Label();
+            this.AndroidVersion_Label = new System.Windows.Forms.Label();
+            this.BootloaderUnlockable_Title_Label = new System.Windows.Forms.Label();
+            this.BootloaderUnlockable_Label = new System.Windows.Forms.Label();
+            this.Rooted_Title_Label = new System.Windows.Forms.Label();
+            this.Rooted_Label = new System.Windows.Forms.Label();
+            this.CustomRecovery_Title_Label = new System.Windows.Forms.Label();
+            this.CustomRecovery_Label = new System.Windows.Forms.Label();
+            this.CustomROM_Title_Label = new System.Windows.Forms.Label();
+            this.CustomROM_Label = new System.Windows.Forms.Label();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -126,7 +138,7 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenLogFolder
@@ -146,6 +158,25 @@ namespace GeekAssistant.Forms {
             this.OpenLogFolder.TabIndex = 85598;
             this.OpenLogFolder.UseVisualStyleBackColor = false;
             // 
+            // Toggle_ManualDeviceInfo_Button
+            // 
+            this.Toggle_ManualDeviceInfo_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Toggle_ManualDeviceInfo_Button.Depth = 0;
+            this.Toggle_ManualDeviceInfo_Button.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Toggle_ManualDeviceInfo_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(32)))));
+            this.Toggle_ManualDeviceInfo_Button.Icon = global::prop.GA.G_noG;
+            this.Toggle_ManualDeviceInfo_Button.Location = new System.Drawing.Point(24, 482);
+            this.Toggle_ManualDeviceInfo_Button.Margin = new System.Windows.Forms.Padding(0);
+            this.Toggle_ManualDeviceInfo_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Toggle_ManualDeviceInfo_Button.Name = "Toggle_ManualDeviceInfo_Button";
+            this.Toggle_ManualDeviceInfo_Button.Primary = true;
+            this.Toggle_ManualDeviceInfo_Button.Radius = 11;
+            this.Toggle_ManualDeviceInfo_Button.Size = new System.Drawing.Size(243, 36);
+            this.Toggle_ManualDeviceInfo_Button.TabIndex = 85352;
+            this.Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
+            this.Toggle_ManualDeviceInfo_Button.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.Toggle_ManualDeviceInfo_Button.UseVisualStyleBackColor = false;
+            // 
             // FlashZip_OpenFileDialog
             // 
             this.FlashZip_OpenFileDialog.DefaultExt = "zip";
@@ -155,7 +186,7 @@ namespace GeekAssistant.Forms {
             // 
             this.CustomRecovery_CheckBox.AutoSize = true;
             this.CustomRecovery_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomRecovery_CheckBox.Location = new System.Drawing.Point(20, 227);
+            this.CustomRecovery_CheckBox.Location = new System.Drawing.Point(20, 201);
             this.CustomRecovery_CheckBox.Name = "CustomRecovery_CheckBox";
             this.CustomRecovery_CheckBox.Size = new System.Drawing.Size(137, 21);
             this.CustomRecovery_CheckBox.TabIndex = 85598;
@@ -165,7 +196,7 @@ namespace GeekAssistant.Forms {
             // 
             this.CustomROM_CheckBox.AutoSize = true;
             this.CustomROM_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomROM_CheckBox.Location = new System.Drawing.Point(20, 200);
+            this.CustomROM_CheckBox.Location = new System.Drawing.Point(20, 174);
             this.CustomROM_CheckBox.Name = "CustomROM_CheckBox";
             this.CustomROM_CheckBox.Size = new System.Drawing.Size(114, 21);
             this.CustomROM_CheckBox.TabIndex = 85599;
@@ -183,9 +214,9 @@ namespace GeekAssistant.Forms {
             this.ManualInfo_GroupBox.Controls.Add(this.CustomRecovery_CheckBox);
             this.ManualInfo_GroupBox.Controls.Add(this.CustomROM_CheckBox);
             this.ManualInfo_GroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ManualInfo_GroupBox.Location = new System.Drawing.Point(24, 242);
+            this.ManualInfo_GroupBox.Location = new System.Drawing.Point(24, 482);
             this.ManualInfo_GroupBox.Name = "ManualInfo_GroupBox";
-            this.ManualInfo_GroupBox.Size = new System.Drawing.Size(243, 165);
+            this.ManualInfo_GroupBox.Size = new System.Drawing.Size(243, 0);
             this.ManualInfo_GroupBox.TabIndex = 85591;
             this.ManualInfo_GroupBox.TabStop = false;
             this.ManualInfo_GroupBox.Text = "Manual Device Information";
@@ -203,7 +234,7 @@ namespace GeekAssistant.Forms {
             "Marshmallow 6.x",
             "Lollipop 5.x",
             "KitKat 4.4 (And Below)"});
-            this.AndroidVersion_ComboBox.Location = new System.Drawing.Point(20, 92);
+            this.AndroidVersion_ComboBox.Location = new System.Drawing.Point(20, 75);
             this.AndroidVersion_ComboBox.Name = "AndroidVersion_ComboBox";
             this.AndroidVersion_ComboBox.PromptText = "Select Android version";
             this.AndroidVersion_ComboBox.Size = new System.Drawing.Size(199, 29);
@@ -225,7 +256,7 @@ namespace GeekAssistant.Forms {
             "Huawei",
             "Nokia",
             "LG"});
-            this.Manufacturer_ComboBox.Location = new System.Drawing.Point(20, 48);
+            this.Manufacturer_ComboBox.Location = new System.Drawing.Point(20, 31);
             this.Manufacturer_ComboBox.Name = "Manufacturer_ComboBox";
             this.Manufacturer_ComboBox.PromptText = "Select manufacturer";
             this.Manufacturer_ComboBox.Size = new System.Drawing.Size(199, 29);
@@ -239,7 +270,7 @@ namespace GeekAssistant.Forms {
             // 
             this.Rooted_Checkbox.AutoSize = true;
             this.Rooted_Checkbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Rooted_Checkbox.Location = new System.Drawing.Point(20, 173);
+            this.Rooted_Checkbox.Location = new System.Drawing.Point(20, 147);
             this.Rooted_Checkbox.Name = "Rooted_Checkbox";
             this.Rooted_Checkbox.Size = new System.Drawing.Size(70, 21);
             this.Rooted_Checkbox.TabIndex = 85597;
@@ -249,7 +280,7 @@ namespace GeekAssistant.Forms {
             // 
             this.BootloaderUnlockable_CheckBox.AutoSize = true;
             this.BootloaderUnlockable_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BootloaderUnlockable_CheckBox.Location = new System.Drawing.Point(20, 146);
+            this.BootloaderUnlockable_CheckBox.Location = new System.Drawing.Point(20, 120);
             this.BootloaderUnlockable_CheckBox.Name = "BootloaderUnlockable_CheckBox";
             this.BootloaderUnlockable_CheckBox.Size = new System.Drawing.Size(158, 21);
             this.BootloaderUnlockable_CheckBox.TabIndex = 85597;
@@ -257,22 +288,24 @@ namespace GeekAssistant.Forms {
             // 
             // DeviceState_Label
             // 
+            this.DeviceState_Label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeviceState_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DeviceState_Label.ForeColor = System.Drawing.Color.Gray;
             this.DeviceState_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DeviceState_Label.Location = new System.Drawing.Point(120, 188);
+            this.DeviceState_Label.Location = new System.Drawing.Point(103, 10);
             this.DeviceState_Label.Name = "DeviceState_Label";
-            this.DeviceState_Label.Size = new System.Drawing.Size(147, 51);
+            this.DeviceState_Label.Size = new System.Drawing.Size(137, 25);
             this.DeviceState_Label.TabIndex = 85597;
             this.DeviceState_Label.Text = "Disconnected";
             this.DeviceState_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DeviceStateTitle_Label
             // 
+            this.DeviceStateTitle_Label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeviceStateTitle_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.DeviceStateTitle_Label.Location = new System.Drawing.Point(24, 188);
+            this.DeviceStateTitle_Label.Location = new System.Drawing.Point(3, 10);
             this.DeviceStateTitle_Label.Name = "DeviceStateTitle_Label";
-            this.DeviceStateTitle_Label.Size = new System.Drawing.Size(99, 51);
+            this.DeviceStateTitle_Label.Size = new System.Drawing.Size(94, 25);
             this.DeviceStateTitle_Label.TabIndex = 85594;
             this.DeviceStateTitle_Label.Text = "Device State:";
             this.DeviceStateTitle_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -301,6 +334,7 @@ namespace GeekAssistant.Forms {
             this.About_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.About_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.About_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.About_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.About_Button.Icon = global::prop.x24.ToU_24;
             this.About_Button.Location = new System.Drawing.Point(518, 30);
             this.About_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -309,6 +343,7 @@ namespace GeekAssistant.Forms {
             this.About_Button.Primary = true;
             this.About_Button.Size = new System.Drawing.Size(44, 36);
             this.About_Button.TabIndex = 85587;
+            this.About_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.About_Button.UseVisualStyleBackColor = false;
             // 
             // Settings_Button
@@ -322,6 +357,7 @@ namespace GeekAssistant.Forms {
             this.Settings_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Settings_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Settings_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Settings_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Settings_Button.Icon = global::prop.x24.Settings_24;
             this.Settings_Button.Location = new System.Drawing.Point(562, 30);
             this.Settings_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -331,6 +367,7 @@ namespace GeekAssistant.Forms {
             this.Settings_Button.Size = new System.Drawing.Size(44, 36);
             this.Settings_Button.TabIndex = 85588;
             this.Settings_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Settings_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.Settings_Button.UseVisualStyleBackColor = false;
             // 
             // Feedback_Button
@@ -344,6 +381,7 @@ namespace GeekAssistant.Forms {
             this.Feedback_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Feedback_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Feedback_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Feedback_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Feedback_Button.Icon = global::prop.x24.Smile_24;
             this.Feedback_Button.Location = new System.Drawing.Point(474, 30);
             this.Feedback_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -353,6 +391,7 @@ namespace GeekAssistant.Forms {
             this.Feedback_Button.Size = new System.Drawing.Size(44, 36);
             this.Feedback_Button.TabIndex = 85589;
             this.Feedback_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Feedback_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.Feedback_Button.UseVisualStyleBackColor = false;
             // 
             // FlashZip_RebootWhenComplete_Checkbox
@@ -463,12 +502,14 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowLog_Button.AutoSize = true;
             this.ShowLog_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ShowLog_Button.BackColor = System.Drawing.Color.Transparent;
             this.ShowLog_Button.Depth = 0;
             this.ShowLog_Button.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ShowLog_Button.FlatAppearance.BorderSize = 0;
             this.ShowLog_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray;
             this.ShowLog_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.ShowLog_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowLog_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ShowLog_Button.Icon = global::prop.x24.Commands_24;
             this.ShowLog_Button.Location = new System.Drawing.Point(600, 544);
             this.ShowLog_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -479,6 +520,7 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.Size = new System.Drawing.Size(44, 36);
             this.ShowLog_Button.TabIndex = 85585;
             this.ShowLog_Button.Tag = " ";
+            this.ShowLog_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.ShowLog_Button.UseVisualStyleBackColor = true;
             // 
             // log
@@ -521,6 +563,7 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.SwitchTheme_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.SwitchTheme_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SwitchTheme_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SwitchTheme_Button.Icon = global::prop.x24.Theme_Light_24;
             this.SwitchTheme_Button.Location = new System.Drawing.Point(430, 30);
             this.SwitchTheme_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -530,6 +573,7 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Button.Size = new System.Drawing.Size(44, 36);
             this.SwitchTheme_Button.TabIndex = 85589;
             this.SwitchTheme_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SwitchTheme_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.SwitchTheme_Button.UseVisualStyleBackColor = false;
             // 
             // Donate_Button
@@ -542,6 +586,7 @@ namespace GeekAssistant.Forms {
             this.Donate_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Donate_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Donate_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Donate_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Donate_Button.Icon = global::prop.x24.DonateHeart_24;
             this.Donate_Button.Location = new System.Drawing.Point(606, 30);
             this.Donate_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -551,6 +596,7 @@ namespace GeekAssistant.Forms {
             this.Donate_Button.Size = new System.Drawing.Size(44, 36);
             this.Donate_Button.TabIndex = 85618;
             this.Donate_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Donate_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.Donate_Button.UseVisualStyleBackColor = false;
             // 
             // MainLayout_PictureBox
@@ -1059,7 +1105,7 @@ namespace GeekAssistant.Forms {
             this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox4.Location = new System.Drawing.Point(0, 1);
+            this.PictureBox4.Location = new System.Drawing.Point(0, 0);
             this.PictureBox4.Name = "PictureBox4";
             this.PictureBox4.Size = new System.Drawing.Size(677, 599);
             this.PictureBox4.TabIndex = 85613;
@@ -1150,11 +1196,174 @@ namespace GeekAssistant.Forms {
             this.Unavalable_Tooltip.StripAmpersands = true;
             this.Unavalable_Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
             // 
-            // metroStyleManager
+            // tableLayoutPanel1
             // 
-            this.metroStyleManager.Owner = this;
-            this.metroStyleManager.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroStyleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.DeviceState_Label, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DeviceStateTitle_Label, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Title_Label, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Label, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Title_Label, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Label, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Title_Label, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Label, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.Rooted_Title_Label, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.Rooted_Label, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Title_Label, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Label, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Title_Label, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Label, 1, 7);
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 191);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(243, 262);
+            this.tableLayoutPanel1.TabIndex = 85619;
+            // 
+            // Manufacturer_Title_Label
+            // 
+            this.Manufacturer_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Manufacturer_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Manufacturer_Title_Label.Location = new System.Drawing.Point(3, 65);
+            this.Manufacturer_Title_Label.Name = "Manufacturer_Title_Label";
+            this.Manufacturer_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.Manufacturer_Title_Label.TabIndex = 85598;
+            this.Manufacturer_Title_Label.Text = "Manufacturer";
+            this.Manufacturer_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Manufacturer_Label
+            // 
+            this.Manufacturer_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Manufacturer_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Manufacturer_Label.Location = new System.Drawing.Point(103, 65);
+            this.Manufacturer_Label.Name = "Manufacturer_Label";
+            this.Manufacturer_Label.Size = new System.Drawing.Size(137, 32);
+            this.Manufacturer_Label.TabIndex = 85599;
+            this.Manufacturer_Label.Text = "Company";
+            this.Manufacturer_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // AndroidVersion_Title_Label
+            // 
+            this.AndroidVersion_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AndroidVersion_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AndroidVersion_Title_Label.Location = new System.Drawing.Point(3, 97);
+            this.AndroidVersion_Title_Label.Name = "AndroidVersion_Title_Label";
+            this.AndroidVersion_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.AndroidVersion_Title_Label.TabIndex = 85600;
+            this.AndroidVersion_Title_Label.Text = "Android Version";
+            this.AndroidVersion_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // AndroidVersion_Label
+            // 
+            this.AndroidVersion_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AndroidVersion_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AndroidVersion_Label.Location = new System.Drawing.Point(103, 97);
+            this.AndroidVersion_Label.Name = "AndroidVersion_Label";
+            this.AndroidVersion_Label.Size = new System.Drawing.Size(137, 32);
+            this.AndroidVersion_Label.TabIndex = 85601;
+            this.AndroidVersion_Label.Text = "Android x.x X";
+            this.AndroidVersion_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BootloaderUnlockable_Title_Label
+            // 
+            this.BootloaderUnlockable_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BootloaderUnlockable_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BootloaderUnlockable_Title_Label.Location = new System.Drawing.Point(3, 129);
+            this.BootloaderUnlockable_Title_Label.Name = "BootloaderUnlockable_Title_Label";
+            this.BootloaderUnlockable_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.BootloaderUnlockable_Title_Label.TabIndex = 85602;
+            this.BootloaderUnlockable_Title_Label.Text = "Bootloader Unlockable";
+            this.BootloaderUnlockable_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BootloaderUnlockable_Label
+            // 
+            this.BootloaderUnlockable_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BootloaderUnlockable_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BootloaderUnlockable_Label.Location = new System.Drawing.Point(103, 129);
+            this.BootloaderUnlockable_Label.Name = "BootloaderUnlockable_Label";
+            this.BootloaderUnlockable_Label.Size = new System.Drawing.Size(137, 32);
+            this.BootloaderUnlockable_Label.TabIndex = 85603;
+            this.BootloaderUnlockable_Label.Text = "Yes";
+            this.BootloaderUnlockable_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Rooted_Title_Label
+            // 
+            this.Rooted_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rooted_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Rooted_Title_Label.Location = new System.Drawing.Point(3, 161);
+            this.Rooted_Title_Label.Name = "Rooted_Title_Label";
+            this.Rooted_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.Rooted_Title_Label.TabIndex = 85604;
+            this.Rooted_Title_Label.Text = "Rooted";
+            this.Rooted_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Rooted_Label
+            // 
+            this.Rooted_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rooted_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Rooted_Label.Location = new System.Drawing.Point(103, 161);
+            this.Rooted_Label.Name = "Rooted_Label";
+            this.Rooted_Label.Size = new System.Drawing.Size(137, 32);
+            this.Rooted_Label.TabIndex = 85605;
+            this.Rooted_Label.Text = "Yes";
+            this.Rooted_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CustomRecovery_Title_Label
+            // 
+            this.CustomRecovery_Title_Label.AutoSize = true;
+            this.CustomRecovery_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomRecovery_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomRecovery_Title_Label.Location = new System.Drawing.Point(3, 225);
+            this.CustomRecovery_Title_Label.Name = "CustomRecovery_Title_Label";
+            this.CustomRecovery_Title_Label.Size = new System.Drawing.Size(94, 37);
+            this.CustomRecovery_Title_Label.TabIndex = 85606;
+            this.CustomRecovery_Title_Label.Text = "Custom Recovery";
+            this.CustomRecovery_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CustomRecovery_Label
+            // 
+            this.CustomRecovery_Label.AutoSize = true;
+            this.CustomRecovery_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomRecovery_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomRecovery_Label.Location = new System.Drawing.Point(103, 225);
+            this.CustomRecovery_Label.Name = "CustomRecovery_Label";
+            this.CustomRecovery_Label.Size = new System.Drawing.Size(137, 37);
+            this.CustomRecovery_Label.TabIndex = 85607;
+            this.CustomRecovery_Label.Text = "No";
+            this.CustomRecovery_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CustomROM_Title_Label
+            // 
+            this.CustomROM_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomROM_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomROM_Title_Label.Location = new System.Drawing.Point(3, 193);
+            this.CustomROM_Title_Label.Name = "CustomROM_Title_Label";
+            this.CustomROM_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.CustomROM_Title_Label.TabIndex = 85608;
+            this.CustomROM_Title_Label.Text = "Custom System";
+            this.CustomROM_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CustomROM_Label
+            // 
+            this.CustomROM_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomROM_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomROM_Label.Location = new System.Drawing.Point(103, 193);
+            this.CustomROM_Label.Name = "CustomROM_Label";
+            this.CustomROM_Label.Size = new System.Drawing.Size(137, 32);
+            this.CustomROM_Label.TabIndex = 85609;
+            this.CustomROM_Label.Text = "No";
+            this.CustomROM_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Home
             // 
@@ -1166,21 +1375,21 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.SwitchTheme_Fore_UI);
             this.Controls.Add(this.SwitchTheme_Mid_UI);
             this.Controls.Add(this.SwitchTheme_Back_UI);
+            this.Controls.Add(this.Toggle_ManualDeviceInfo_Button);
+            this.Controls.Add(this.ManualInfo_GroupBox);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.ShowLog_Button);
             this.Controls.Add(this.ProgressBarLabel);
             this.Controls.Add(this.ProgressFakeBG_UI);
             this.Controls.Add(this.bar);
             this.Controls.Add(this.Donate_Button);
-            this.Controls.Add(this.DeviceState_Label);
             this.Controls.Add(this.GeekAssistant_Icon);
-            this.Controls.Add(this.DeviceStateTitle_Label);
             this.Controls.Add(this.GA_About_Label);
             this.Controls.Add(this.Main_Tabs);
             this.Controls.Add(this.About_Button);
             this.Controls.Add(this.SwitchTheme_Button);
             this.Controls.Add(this.Feedback_Button);
             this.Controls.Add(this.Settings_Button);
-            this.Controls.Add(this.ManualInfo_GroupBox);
             this.Controls.Add(this.AutoDetectDeviceInfo_Button);
             this.Controls.Add(this.GeekAssistant);
             this.Controls.Add(this.MainLayout_PictureBox);
@@ -1225,18 +1434,20 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
         #endregion
 
+        public MaterialButton Toggle_ManualDeviceInfo_Button;
         public Button OpenLogFolder;
         public OpenFileDialog FlashZip_OpenFileDialog;
         public GroupBox ManualInfo_GroupBox;
         public Label DeviceStateTitle_Label;
-        public MaterialSkin.Controls.MaterialFlatButton About_Button;
+        public MaterialButton About_Button;
         public CheckBox FlashZip_RebootWhenComplete_Checkbox;
         public Button AutoDetectDeviceInfo_Button;
         public Button ClearLog_Button;
@@ -1244,12 +1455,12 @@ namespace GeekAssistant.Forms {
         public Button CopyLogToClipboard;
         public PictureBox GeekAssistant;
         public TextBox log;
-        public MaterialSkin.Controls.MaterialFlatButton Feedback_Button;
+        public MaterialButton Feedback_Button;
         public Button Settings;
         public PictureBox MainLayout_PictureBox;
-        public MaterialSkin.Controls.MaterialFlatButton Settings_Button;
+        public MaterialButton Settings_Button;
         public MetroFramework.Controls.MetroButton FlashZip_Button;
-        public MaterialSkin.Controls.MaterialFlatButton ShowLog_Button;
+        public MaterialButton ShowLog_Button;
         public PictureBox ProgressFakeBG_UI;
         public MetroFramework.Controls.MetroTabControl Main_Tabs;
         public MetroFramework.Controls.MetroTabPage PrepareYourDevice_Tab;
@@ -1276,14 +1487,14 @@ namespace GeekAssistant.Forms {
         public MetroFramework.Controls.MetroProgressBar ProgressBar;
         public PictureBox PictureBox4;
         public PictureBox SwitchTheme_Back_UI;
-        public MaterialSkin.Controls.MaterialFlatButton SwitchTheme_Button;
+        public MaterialButton SwitchTheme_Button;
         public Button FlashZip_ChooseFile_Button;
         public Label DeviceState_Label;
         public PictureBox GeekAssistant_Icon;
         public PictureBox SwitchTheme_Mid_UI;
         public PictureBox SwitchTheme_Fore_UI;
         public CheckBox Rooted_Checkbox;
-        public MaterialSkin.Controls.MaterialFlatButton Donate_Button;
+        public MaterialButton Donate_Button;
         public MetroFramework.Controls.MetroButton HotReboot_Button;
         public MetroFramework.Controls.MetroButton InstallBusybox_Button;
         public Button Button4;
@@ -1304,7 +1515,7 @@ namespace GeekAssistant.Forms {
         public MetroFramework.Controls.MetroButton MetroButton6;
         public MetroFramework.Controls.MetroButton MetroButton8;
         public MetroFramework.Controls.MetroButton MetroButton4;
-
+        public MetroFramework.Controls.MetroTextBox manualCMD_TextBox;
         public MetroFramework.Controls.MetroProgressBar bar;
         public Timer ShowLog_ErrorBlink_Timer;
         public Timer ShowLog_InfoBlink_Timer;
@@ -1318,7 +1529,18 @@ namespace GeekAssistant.Forms {
         private TextBox textBox4;
         private TextBox textBox3;
         private TextBox textBox2;
-        public MetroFramework.Components.MetroStyleManager metroStyleManager;
-        private MaterialButton Toggle_ManualDeviceInformation_Button;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label Manufacturer_Title_Label;
+        private Label Manufacturer_Label;
+        private Label AndroidVersion_Title_Label;
+        private Label AndroidVersion_Label;
+        private Label BootloaderUnlockable_Title_Label;
+        private Label BootloaderUnlockable_Label;
+        private Label Rooted_Title_Label;
+        private Label Rooted_Label;
+        private Label CustomRecovery_Label;
+        private Label CustomROM_Title_Label;
+        private Label CustomROM_Label;
+        private Label CustomRecovery_Title_Label;
     }
 }
