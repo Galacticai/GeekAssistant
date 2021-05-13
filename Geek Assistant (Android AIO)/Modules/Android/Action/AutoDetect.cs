@@ -74,8 +74,8 @@ internal static partial class AutoDetect {
                     inf.detail = ("AD-DD", inf.lvls.Warn, inf.currentTitle, DeviceState_String, null); // Auto Detect - Device Download
                     throw new Exception();
 
-                // ^^   All the above will jump to > Catch e As Exception   ^^
-                // vv            All the below will continue code           vv
+                // ^^   All the above will jump to >> catch (Exception ex) { >>  ^^
+                // vv              All the below will continue code              vv
 
                 case 1: // bootloader 
                     DeviceState_String += $"in fastboot mode.";

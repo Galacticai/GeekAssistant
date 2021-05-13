@@ -1,4 +1,5 @@
 ﻿using MaterialSkin;
+using MaterialSkin.Controls;
 using MaterialSkin.Animations;
 using System;
 using System.Collections.Generic;
@@ -6,17 +7,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public class MaterialButton : Button, IMaterialControl {
-    [Browsable(false)]
-    public int Depth { get; set; }
-    [Browsable(false)]
-    public MaterialSkinManager SkinManager => MaterialSkinManager.Instance;
-    [Browsable(false)]
-    public MouseState MouseState { get; set; }
-    public bool Primary { get; set; }
+public class MaterialButton : MaterialFlatButton, IMaterialControl {
 
     private readonly AnimationManager _animationManager;
     private readonly AnimationManager _hoverAnimationManager;
@@ -26,60 +19,12 @@ public class MaterialButton : Button, IMaterialControl {
     [DefaultValue(0)]
     public int Radius {
         get => _Radius;
-        set {
-            _Radius = (int)math.ForceInRange(value, 0, Height / 2);
-            //(
-            //(int)math.ForceInRange(value.topLeft, 0, Height / 2),
-            //(int)math.ForceInRange(value.topRight, 0, Height / 2),
-            //(int)math.ForceInRange(value.bottomLeft, 0, Height / 2),
-            //(int)math.ForceInRange(value.bottomRight, 0, Height / 2)
-            //);
-        }
+        set => _Radius = (int)math.Arithmatics.ForceInRange(value, 0, base.Height / 2);
     }
 
-    public GraphicsPath RoundedRect(Rectangle bounds, int radius) {
-
-        int diameter/*_topLeft*/ = radius/*.topLeft */ * 2;
-        //int diameter_topRight = radius.topRight * 2;
-        //int diameter_bottomLeft = radius.bottomLeft * 2;
-        //int diameter_bottomRight = radius.bottomRight * 2;
-        Rectangle arc/*_topLeft*/ = new(bounds.Location, new Size(diameter/*_topLeft*/, diameter/*_topLeft*/));
-        //Rectangle arc_topRight = new(bounds.Location, new Size(diameter_topRight, diameter_topRight));
-        //Rectangle arc_bottomLeft = new(bounds.Location, new Size(diameter_bottomLeft, diameter_bottomLeft));
-        //Rectangle arc_bottomRight = new(bounds.Location, new Size(diameter_bottomRight, diameter_bottomRight));
-        GraphicsPath path = new();
-
-        if (radius == 0) {
-            path.AddRectangle(bounds);
-            return path;
-        }
-        // top left arc  
-        path.AddArc(arc, 180, 90);
-        // top right arc  
-        arc.X = bounds.Right - diameter;
-        path.AddArc(arc, 270, 90);
-        // bottom right arc  
-        arc.Y = bounds.Bottom - diameter;
-        path.AddArc(arc, 0, 90);
-        // bottom left arc 
-        arc.X = bounds.Left;
-        path.AddArc(arc, 90, 90);
-
-        path.CloseFigure();
-        return path;
-    }
 
     #endregion
 
-    private Image _icon;
-    public Image Icon {
-        get => _icon;
-        set {
-            _icon = value;
-            if (AutoSize) Size = GetPreferredSize();
-            Invalidate();
-        }
-    }
     private StringAlignment _TextAlignment;
     [DefaultValue(StringAlignment.Center)]
     public StringAlignment TextAlignment {
@@ -89,33 +34,34 @@ public class MaterialButton : Button, IMaterialControl {
             Invalidate();
         }
     }
-    //private StringAlignment _Text_Allignment_Vertical;
-    //[DefaultValue(StringAlignment.Center)]
-    //public StringAlignment Text_Allignment_Vertical {
-    //    get => _Text_Allignment_Vertical;
-    //    set {
-    //        _Text_Allignment_Vertical = value;
-    //        Invalidate();
-    //    }
-    //}
-
-    public override Color ForeColor {
-        get => base.ForeColor;
+    private Color _BackColor;
+    public override Color BackColor {
+        get => _BackColor;
         set {
-            base.ForeColor = value;
-            //if (saved_ForeColor == Color.Empty) saved_ForeColor = value;
+            _BackColor = value;
             Invalidate();
         }
     }
-    //private Color _realBackColor = Color.Transparent;
-    //public Color realBackColor {
-    //    get => _realBackColor;
-    //    set {
-    //        base.BackColor = Color.Transparent;
-    //        _realBackColor = value;
-    //        Invalidate();
-    //    }
-    //}
+    private Color ForeColorA60 => Color.FromArgb(50, ForeColor);
+    private Color saved_ForeColor = Color.Empty;
+    private Color _ForeColor;
+    public override Color ForeColor {
+        get => _ForeColor;
+        set {
+            _ForeColor = value;
+            Invalidate();
+        }
+    }
+    private bool _ThemeChanged;
+    private bool ThemeChanged {
+        get {
+            if (c.S.DarkTheme != _ThemeChanged)
+                _ThemeChanged = true;
+            else _ThemeChanged = false;
+            return _ThemeChanged;
+        }
+    }
+
     private SizeF _textSize;
     public override string Text {
         get => base.Text;
@@ -133,7 +79,7 @@ public class MaterialButton : Button, IMaterialControl {
             Invalidate();
         }
     }
-    //private bool Idle = true;
+    //private bool Idle = true; 
     public MaterialButton() {
         Primary = false;
 
@@ -150,133 +96,155 @@ public class MaterialButton : Button, IMaterialControl {
         _animationManager.OnAnimationProgress += sender => Invalidate();
 
         base.ForeColor = ForeColor;
-        //saved_ForeColor = base.ForeColor;
+        base.BackColor = BackColor;
     }
 
+    private Rectangle iconRect;
     protected override void OnPaint(PaintEventArgs pevent) {
         var g = pevent.Graphics;
-        g.SmoothingMode = SmoothingMode.HighQuality;
+        if (Radius != 0
+           | string.IsNullOrEmpty(Text)
+           | _animationManager.IsAnimating()
+           )
+            g.SmoothingMode = SmoothingMode.HighQuality;
+        else
+            g.SmoothingMode = SmoothingMode.Default;
         g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 
         g.Clear(Parent.BackColor);
 
-        Rectangle fxRect = new(ClientRectangle.X - 1, ClientRectangle.Y - 1, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+        Rectangle fxRect = new(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+        GraphicsPath fxRoundedRect = math.Geometry.RoundedRect(fxRect, Radius);
         //using (Brush b = new SolidBrush(
         //            Enabled ?
         //            Color.FromArgb(Math.Abs((int)(_hoverAnimationManager.GetProgress() * realBackColor.A) - 255), realBackColor.RemoveAlpha())
         //            : Color.Transparent))
         //    if (Idle) g.FillPath(b, RoundedRect(fxRect, Radius));
+
         //Hover 
-        Color HoverColor = Color.FromArgb(60, saved_ForeColor);//SkinManager.GetFlatButtonHoverBackgroundColor(); 
-        using (Brush b =
-                    new SolidBrush(
-                        Color.FromArgb(
-                            (int)(_hoverAnimationManager.GetProgress() * HoverColor.A),
-                            HoverColor.RemoveAlpha()
-                            )))
-            g.FillPath(b, RoundedRect(fxRect, Radius)); //g.FillRectangle(b, ClientRectangle);
+        //SkinManager.GetFlatButtonHoverBackgroundColor(); 
+        using (Brush b = new SolidBrush(
+                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * 60 /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha())))
+            if (string.IsNullOrEmpty(Text) & Icon != null) {
+
+                math.Geometry.FillCircle(g, b,
+                            ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 2);//-2 offset left-right top-bottom
+            } else {
+                g.FillPath(b, fxRoundedRect);
+            }
 
         //Ripple 
         if (_animationManager.IsAnimating()) {
             Color RippleColor = Color.FromArgb(60, saved_ForeColor);
+            Rectangle rippleRect; //GraphicsPath rippleRoundedRect;
             for (var i = 0; i < _animationManager.GetAnimationCount(); i++) {
                 double animationValue = _animationManager.GetProgress(i);
                 Point animationSource = _animationManager.GetSource(i);
 
-                using (Brush rippleBrush = new SolidBrush(Color.FromArgb((int)(101 - (animationValue * 100)), RippleColor))) {
+                using (Brush rippleBrush = new SolidBrush(Color.FromArgb((int)((101 - (animationValue * 100)) * 2), RippleColor))) {
                     int rippleSize = (int)(animationValue * Width * 2);
-                    Rectangle rippleRect = new(animationSource.X + 1 - rippleSize / 2, animationSource.Y + 1 - rippleSize / 2, rippleSize - 1, rippleSize - 1);
+                    rippleRect = new(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize);
 
-                    if (Radius == 0) g.FillEllipse(rippleBrush, rippleRect); //fill using an ellipse if no radius
-                    else g.FillPath(rippleBrush, RoundedRect(rippleRect, Radius)); //fill according to path
+                    if (string.IsNullOrEmpty(Text) & Icon != null) {
+                        math.Geometry.FillCircle(g, rippleBrush, animationSource.X, animationSource.Y, rippleSize);
+                        continue;
+                    }
+                    if (Radius == 0)
+                        g.FillEllipse(rippleBrush, rippleRect); //fill using an ellipse if no radius
+                    else {
+
+                        if (rippleRect.Width > ClientRectangle.Width * 0.8)
+                            g.FillEllipse(rippleBrush, rippleRect); //fill ellipse before reaching 80%
+                        else g.FillPath(rippleBrush, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
+                    }
                 }
             }
         }
 
-        var iconRect = new Rectangle(8, 6, 24, 24);  //Icon
+        Rectangle textRect = ClientRectangle;//Text
+        if (Icon != null) {
+            iconRect = new( //Center horizontally and vertically
+              ClientRectangle.X + ((ClientRectangle.Width - Icon.Width) / 2),
+              ClientRectangle.Y + ((ClientRectangle.Height - Icon.Height) / 2),
+              ClientRectangle.Height - 12,
+              ClientRectangle.Height - 12
+              ); // Center Icon
 
-        if (string.IsNullOrEmpty(Text))
-            iconRect.X += 2; // Center Icon
+            if (!string.IsNullOrEmpty(Text)) // Text exists:
+                iconRect.X = iconRect.Y; // Allign right horizontally
 
-        if (Icon != null)
             g.DrawImage(Icon, iconRect);
 
-        var textRect = ClientRectangle;//Text
-
-        if (Icon != null) {
             //! Resize and move Text container
             //
-            // First 8: left padding
-            // 24: icon width
+            // First iconRect.X: left padding
+            // iconRect.Width: icon width
             // Second 4: space between Icon and Text
             // Third 8: right padding
-            textRect.Width -= 8 + 24 + 4 + 8;
+            textRect.Width -= iconRect.X + iconRect.Width + 4 + 8;
             //
-            // First 8: left padding
-            // 24: icon width
+            // First iconRect.X: left padding
+            // iconRect.Width: icon width
             // Second 4: space between Icon and Text
-            textRect.X += 8 + 24 + 4;
+            textRect.X += iconRect.X + iconRect.Width + 4;
         }
         //override the default bad (blurry) text hinting
         g.DrawString(Text, Font, //SkinManager.ROBOTO_MEDIUM_10,
-            Enabled ? new SolidBrush(ForeColor) : new SolidBrush(Color.Gray), //Enabled ? (Primary ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetPrimaryTextBrush()) : SkinManager.GetFlatButtonDisabledTextBrush(),
-            textRect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
-            );
+                     Enabled ? new SolidBrush(ForeColor) : new SolidBrush(Color.Gray), //Enabled ? (Primary ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetPrimaryTextBrush()) : SkinManager.GetFlatButtonDisabledTextBrush(),
+                     textRect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
+                     );
     }
 
-    private Size GetPreferredSize()
-        => AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
-
-
+    public override bool AutoSize {
+        get => base.AutoSize;
+        set {
+            base.AutoSize = value;
+            GetPreferredSize();
+            Invalidate();
+        }
+    }
+    private Size GetPreferredSize() => AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
     public override Size GetPreferredSize(Size proposedSize) {
-        // Provides extra space for proper padding for content
-        var extra = 16;
-
+        Size result = new((int)Math.Ceiling(_textSize.Width) + 16, base.Height);
         if (Icon != null)
-            // 24 is for icon size
-            // 4 is for the space between icon & text
-            extra += 24 + 4;
-
-        return new Size((int)Math.Ceiling(_textSize.Width) + extra, Height);
+            if (string.IsNullOrEmpty(Text)) result = new(36, 36);
+            else result = new((int)Math.Ceiling(_textSize.Width) + 16 + iconRect.Width + 4, base.Height);
+        return result;
     }
-
-    private Color saved_ForeColor { get; set; }
-    private async void delayed_Revert_saved_ForeColor() {
-        await Task.Delay(500);
-        /*_*/
-        saved_ForeColor = Color.Transparent;
-    }
+    private bool animating = false;
+    private Timer animTimer = new() { Interval = 501 };
     protected override void OnCreateControl() {
         base.OnCreateControl();
         if (DesignMode) return;
-
-
 
         MouseState = MouseState.OUT;
         MouseEnter += (sender, ev) => {
             MouseState = MouseState.HOVER;
             _hoverAnimationManager.StartNewAnimation(AnimationDirection.In);
 
-            //Idle = false;
-            saved_ForeColor = ForeColor;
-
-            Animate.Run(this, "ForeColor",
-                        math.BlendColors(base.ForeColor, /*realBackColor == Color.Transparent ? */ colors.bg /*: realBackColor*/, 60).GetBrightness() > 0.5f
-                        ? colors.constColors.fg : colors.constColors.bg); //flip to current anti-bg color on hover  
+            if (!animating) {
+                if (ThemeChanged | saved_ForeColor == Color.Empty)
+                    saved_ForeColor = ForeColor;
+                Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA60, colors.bg).GetBrightness() > 0.5f
+                                                     ? colors.constColors.fg : colors.constColors.bg); //flip to current anti-bg color on hover  
+            }
             Invalidate();
         };
         MouseLeave += (sender, ev) => {
             MouseState = MouseState.OUT;
-            //Idle = true;
 
             _hoverAnimationManager.StartNewAnimation(AnimationDirection.Out);
-            Animate.Run(this, nameof(ForeColor), saved_ForeColor); //return to original ForeColor on Leave  
-            delayed_Revert_saved_ForeColor();
-            var t = FluentTransitions.Transition
-                        .With(this, nameof(ForeColor), saved_ForeColor)
-                        .With(saved_ForeColor,value, Color.Transparent)
-                        .Build(new FluentTransitions.Methods.CriticalDamping(TimeSpan.FromMilliseconds(500)));
 
+            //if (animating) ForeColor = saved_ForeColor;
+            //else {
+            animTimer.Start();
+            animating = true;
+            Animate.Run(this, nameof(ForeColor), saved_ForeColor);
+            animTimer.Tick += (sender, ev) => {
+                animating = false;
+                animTimer.Stop();
+            };
+            //}
             Invalidate();
         };
         MouseDown += (sender, ev) => {
@@ -294,7 +262,18 @@ public class MaterialButton : Button, IMaterialControl {
         };
     }
 }
+//class MaterialTheme : MaterialButton {
+//    public Color fg { get; set; }
+//    public Color bg { get; set; }
+//    public Color fx { get; set; }
+//    private enum bgStatus { Disabled, Enabled }
+//    public static MaterialTheme style(Color f, Color b, Color x)
+//         => new MaterialTheme { fg = f, bg = b, fx = x };
+//    /// <summary> Green</summary>
+//    public MaterialTheme Default { get => style(colors.fg, Color.Transparent, Color.FromArgb(60, colors.Misc.Green)); }
+//    public MaterialTheme Default_Colored { get => style(colors.fg, Color.FromArgb(128, colors.Misc.Green), Color.FromArgb(60, colors.Misc.Green)); }
 
+//}
 
 namespace MaterialSkin.Animations {
     enum AnimationType {

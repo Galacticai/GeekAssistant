@@ -15,7 +15,6 @@ namespace GeekAssistant.Forms {
         }
         private void AssignEvents() {
 
-            devMon.Server.DeviceChanged += new(madb_devChanged);
 
             //Delayed_DeviceChanged_Timer.Tick += new(Delayed_DeviceChanged_Timer_Tick);
 
@@ -25,7 +24,8 @@ namespace GeekAssistant.Forms {
             //HelpButtonClicked += new (Home_Help);
             MouseMove += new(Main_MouseMove);
 
-            HomeLoad_Delay_Timer.Tick += new(HomeLoad_Delay_Timer_Tick);
+
+            devMon.Server.DeviceChanged += new(madb_devChanged);
 
             AutoDetectDeviceInfo_Button.MouseEnter += new(AutoDetectDeviceInfo_Button_MouseEnter);
             AutoDetectDeviceInfo_Button.MouseDown += new(AutoDetectDeviceInfo_Button_MouseDown); AutoDetectDeviceInfo_Button.KeyDown += new(AutoDetectDeviceInfo_Button_MouseDown);
@@ -197,43 +197,40 @@ namespace GeekAssistant.Forms {
             GA_About_Label.Text = GA_Ver.Run("Main");
             log.Text = GA_Ver.Run("log");
             GA_Wait.Run(true);
-            //Preparing = new();
-            //Preparing.Show();
-            //Preparing.BringToFront();
-            HomeLoad_Delay_Timer.Enabled = true;
-        }
-        private bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
-        private void HomeLoad_Delay_Timer_Tick(object sender, EventArgs e) {
 
-            GA_SetTheme.Run(this, true);
-            if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
+            HomeLoad_Delay_Timer.Start();
+            bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
+            HomeLoad_Delay_Timer.Tick += (sender, ev) => {
+                GA_SetTheme.Run(this, true);
+                if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
 
-            HomeLoad_Delay_Timer.Enabled = false;
-            //htmlLog.DocumentText = Markdig.Markdown.ToHtml($"### {GA_Ver.Run("log")}")
-
-            if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
-            GA_PrepareAppdata.Run();
-            GA_adb.PrepareAndroidDictionary();
-            GA_adb.ResetDeviceInfo();
-
-            AutoDetect.Run(true);
-            if (DeviceState_Label.Text != "Disconnected")
-                GA_Log.LogEvent(DeviceState_Label.Text, 1);
+                HomeLoad_Delay_Timer.Stop();
 
 
-            DoNeutral();
-            AutoDetectDeviceInfo_Button.Select();
+                if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
+                GA_PrepareAppdata.Run();
+                GA_adb.PrepareAndroidDictionary();
+                GA_adb.ResetDeviceInfo();
 
-            //####### DEBUG #####################################
-            if (c.V.Revision == 3) debuggingBox.Visible = true;
-            //###################################################
+                AutoDetect.Run(true);
+                if (DeviceState_Label.Text != "Disconnected")
+                    GA_Log.LogEvent(DeviceState_Label.Text, 1);
 
-            GA_Log.LogEvent("Start", 1);
 
-            finishedLoading = true;
-            Enabled = true; //Enable when done with everything
-            GA_Wait.Run(false);
-            BringToFront();
+                DoNeutral();
+                AutoDetectDeviceInfo_Button.Select();
+
+                //####### DEBUG #####################################
+                if (c.V.Revision == 3) debuggingBox.Visible = true;
+                //###################################################
+
+                GA_Log.LogEvent("Start", 1);
+
+                finishedLoading = true;
+                Enabled = true; //Enable when done with everything
+                GA_Wait.Run(false);
+                BringToFront();
+            };
         }
 
         private void Main_HelpButtonClicked() {
@@ -294,17 +291,8 @@ namespace GeekAssistant.Forms {
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_InfoBlink_Timer.Stop();
-            if (Width == HomeWidth[1]) {
-                if (!c.S.PerformAnimations) {
-                    Width = HomeWidth[0];
-                    return;
-                }
-                Transition.run(this, "Width", HomeWidth[0], new TransitionType_CriticalDamping(500));
-            } else if (Width == HomeWidth[0]) {
-                if (c.S.PerformAnimations)
-                    Transition.run(this, "Width", HomeWidth[1], new TransitionType_CriticalDamping(500));
-                else Width = HomeWidth[1];
-            }
+            Animate.Run(this, nameof(Width), HomeWidth[Width == HomeWidth[0] ? 1 : 0]);
+
         }
 
         private void ShowLog_ErrorBlink_Timer_Tick(object sender, EventArgs e) {
@@ -423,14 +411,13 @@ namespace GeekAssistant.Forms {
 
         private void HotReboot_Button_Click(object sender, EventArgs e) {
             if (!ConnectionIsCompatible.adbIsCompatible("HR")) { // Hot Reboot 
-                inf.Run(inf.detail.lvl, inf.detail.title, inf.detail.msg);
+                inf.Run();
                 return;
             }
             GA_Log.LogEvent("Hot Reboot", 2);
             GA_SetProgressText.Run("Attempting hot reboot...", -1);
             var hr = GA_adb.HotReboot("HR");
-            if (!string.IsNullOrEmpty(hr))
-                GA_Log.LogAppendText(hr, 1);
+            if (!string.IsNullOrEmpty(hr)) GA_Log.LogAppendText(hr, 1);
 
         }
 
@@ -494,7 +481,7 @@ namespace GeekAssistant.Forms {
         //    htmlLog.DocumentText = Markdig.Markdown.ToHtml(TextBox1.Text)
         //}
 
-        #endregion 
+        #endregion
 
         #region Left area
 
@@ -582,15 +569,15 @@ namespace GeekAssistant.Forms {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, About_Button, "About Geek Assistant", "View some information about this program");
         }
         private void About_Button_Click(object sender, EventArgs e) {
-            ToU ToU = new ToU();
+            ToU ToU = new();
             ToU.RunningAlready = true;
             ToU.ShowDialog();
         }
         private void Donate_Button_Click(object sender, EventArgs e) {
-            Donate Donate = new Donate();
-            if (Application.OpenForms.OfType<Donate>().Any())
-                Donate.Close();
-            Donate.Show();
+            foreach (Form d in Application.OpenForms)
+                if (d.GetType() == typeof(Donate))
+                    d.Close();
+            new Donate().Show();
         }
         private void Donate_Button_MouseEnter(object sender, EventArgs e) {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, Donate_Button, "Send love", "Support the Developer.");
@@ -662,7 +649,8 @@ namespace GeekAssistant.Forms {
         private void manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged(object sender, EventArgs e) {
             DoNeutral();
         }
-
+        //TODO: DO NOT DELETE THIS REGION
+        #region manual cmd
         /*private string cmd_Previous, cmd_Current;
         private void manualCMD_TextBox_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter)
@@ -702,7 +690,6 @@ namespace GeekAssistant.Forms {
                 break;
             }
         }*/
-
         //} else if ( e.KeyCode = Keys.Control Or e.KeyCode = Keys.Back ) {
         //    SendKeys.SendWait("^+{LEFT}{BACKSPACE}") //Wait for LCtrl+Back combination
         //    //Dim spaceCount As int = 0
@@ -717,6 +704,7 @@ namespace GeekAssistant.Forms {
         //    if ( pos != -1 ) { manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, pos)
         //    //manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, manualCMD_TextBox.Text.LastIndexOf(" "))
         //}
+        #endregion
     }
 
     #endregion

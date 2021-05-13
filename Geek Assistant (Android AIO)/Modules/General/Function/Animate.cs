@@ -20,4 +20,9 @@ internal static partial class Animate {
             propInfo.SetValue(target, destination);
         }
     }
+    public static void KillAnimation(Transition transition) {
+        return;
+    }
+
+
 }

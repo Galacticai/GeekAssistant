@@ -77,6 +77,10 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\CustomObjects\MaterialTextBox.cs">
+      <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\CustomObjects\MaterialButton.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
@@ -123,7 +127,7 @@
     <Compile Update="Modules\CustomObjects\TestingTextBox.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\Animate - Copy.cs">
+    <Compile Update="Modules\General\Function\Scheduler.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Function\Animate.cs">

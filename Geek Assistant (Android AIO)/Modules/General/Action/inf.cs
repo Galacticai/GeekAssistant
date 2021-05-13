@@ -36,6 +36,13 @@ internal static partial class inf { //inform
 
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
+    /// </summary> 
+    /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
+    /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
+    public static bool Run((string YesButton, string NoButton) YesNoButtons = default)
+        => Run(detail);
+    /// <summary>
+    /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
     /// <param name="infDetail">info details provided by inf.detail</param> 
     /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>

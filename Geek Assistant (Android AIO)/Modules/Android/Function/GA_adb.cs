@@ -5,7 +5,7 @@ using Microsoft.VisualBasic.CompilerServices; // Install-Package Microsoft.Visua
 
 internal static partial class GA_adb {
 
-    /* TODO ERROR: Skipped RegionDirectiveTrivia */
+
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
         if (DeviceSerial != null) c.S.DeviceSerial = DeviceSerial;
         if (DeviceState != null) c.S.DeviceState = DeviceState;
@@ -142,9 +142,7 @@ internal static partial class GA_adb {
                 inf.Run(inf.lvls.FatalError, inf.currentTitle, "Error while processing your device API level!");
             return new[] { "❌", "❌" };
         }
-
-        var disposableDictionary = new[] { "", "" };
-        ApiToVer.TryGetValue(APIint, out disposableDictionary);
+        ApiToVer.TryGetValue(APIint, out string[] disposableDictionary);
         return disposableDictionary;
     }
 
@@ -264,5 +262,4 @@ internal static partial class GA_adb {
         dev.ExecuteRootShellCommand($"busybox killall system_server", scr);
         return scr.Result;
     }
-    /* TODO ERROR: Skipped EndRegionDirectiveTrivia */
 }

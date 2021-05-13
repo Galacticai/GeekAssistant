@@ -26,7 +26,6 @@ internal static partial class FastbootFlash {
                 inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.currentTitle, "File name is not set!", null);
                 throw new Exception();
             }
-
             if (type < 0 | type > 5) {
                 inf.detail = ("fbF-T0", inf.lvls.FatalError, inf.currentTitle, "Type is out of range!", null);
                 throw new Exception();
@@ -35,8 +34,8 @@ internal static partial class FastbootFlash {
             // ' check if fb compatible 
             if (!ConnectionIsCompatible.fbIsCompatible("FF")) //inf.detail is already set inside this
                 throw new Exception();
-            Managed.Adb.Device dev = madb.GetListOfDevice()[0];
 
+            Managed.Adb.Device dev = madb.GetListOfDevice()[0];
 
             // ' detected but not in fastboot
             if (c.S.DeviceState == "Connected (ADB)") {
@@ -113,7 +112,7 @@ internal static partial class FastbootFlash {
         } catch (Exception ex) {
             GA_Wait.Run(false); // Close before error dialog 
             inf.detail.fullFatalError = ex.ToString();
-            inf.Run(inf.detail);
+            inf.Run();
         }
 
         GA_Wait.Run(false); // Close if Try was successful
@@ -127,7 +126,7 @@ internal static partial class FastbootFlash {
     // 4 system 
     // 5 vendor  
     private static string TypeToString(int type) {
-        if (type < 0 | type > 5) {
+        if (!math.IsInRange(type, 0, 5)) {
             inf.detail.code = $"{txt.GA_GetErrorInitials()}-FtX";
             // ErrorInfo = (10, $"File type not set.")
             throw new Exception();

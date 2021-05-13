@@ -137,6 +137,9 @@ internal partial class GA_SetTheme : Theming {
             h.MoreTools_Tab,
             h.BootloaderUnlockable_CheckBox,
             h.CustomROM_CheckBox,
+            h.UnlockBL_Button,
+            h.MagiskRoot_Button,
+            h.FlashZip_Button,
             h.CustomRecovery_CheckBox
         };
         MetroFramework.Interfaces.IMetroControl[] MetroControls_array = new MetroFramework.Interfaces.IMetroControl[] {
@@ -150,9 +153,6 @@ internal partial class GA_SetTheme : Theming {
             h.Manufacturer_ComboBox,
             h.AndroidVersion_ComboBox,
             h.bar,
-            h.UnlockBL_Button,
-            h.MagiskRoot_Button,
-            h.FlashZip_Button,
             h.ProgressBarLabel
         };//, c.Home.FlashZip_ChooseFile_TextBox, common.Home.manualCMD_TextBox };
 

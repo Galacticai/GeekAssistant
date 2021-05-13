@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using FluentTransitions;
-using GeekAssistant.Forms;
+﻿using System.Windows.Forms;
 
+//namespace GeekAssistant.Theme {
 internal partial class Theming {
 
     public static void SetControlsArrTheme(Control[] ControlsObj) {
@@ -13,8 +8,8 @@ internal partial class Theming {
             SetControlTheme(ctrl);
     }
     public static void SetControlTheme(Control ControlObj) {
-        Animate.Run(ControlObj, "ForeColor", colors.fg);
-        Animate.Run(ControlObj, "BackColor", colors.bg);
+        Animate.Run(ControlObj, nameof(ControlObj.ForeColor), colors.fg);
+        Animate.Run(ControlObj, nameof(ControlObj.BackColor), colors.bg);
     }
 
     public static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
@@ -26,3 +21,4 @@ internal partial class Theming {
     }
 
 }
+//}

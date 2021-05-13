@@ -40,7 +40,7 @@ namespace GeekAssistant.Forms {
             this.BootloaderUnlockable_CheckBox = new System.Windows.Forms.CheckBox();
             this.DeviceState_Label = new System.Windows.Forms.Label();
             this.DeviceStateTitle_Label = new System.Windows.Forms.Label();
-            this.FlashZip_Button = new MetroFramework.Controls.MetroButton();
+            this.FlashZip_Button = new MaterialButton();
             this.About_Button = new MaterialButton();
             this.Settings_Button = new MaterialButton();
             this.Feedback_Button = new MaterialButton();
@@ -59,6 +59,16 @@ namespace GeekAssistant.Forms {
             this.MainLayout_PictureBox = new System.Windows.Forms.PictureBox();
             this.ProgressFakeBG_UI = new System.Windows.Forms.PictureBox();
             this.Main_Tabs = new MetroFramework.Controls.MetroTabControl();
+            this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
+            this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
+            this.MagiskRoot_Label = new MetroFramework.Controls.MetroLabel();
+            this.MagiskRoot_PictureBox = new System.Windows.Forms.PictureBox();
+            this.UnlockBL_PictureBox = new System.Windows.Forms.PictureBox();
+            this.MagiskRoot_Title = new System.Windows.Forms.Label();
+            this.UnlockBL_Title = new System.Windows.Forms.Label();
+            this.MagiskRoot_Button = new MaterialButton();
+            this.MaterialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.UnlockBL_Button = new MaterialButton();
             this.FlashImg_Tab = new MetroFramework.Controls.MetroTabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -71,16 +81,6 @@ namespace GeekAssistant.Forms {
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.Button4 = new System.Windows.Forms.Button();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
-            this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
-            this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
-            this.MagiskRoot_Label = new MetroFramework.Controls.MetroLabel();
-            this.MagiskRoot_PictureBox = new System.Windows.Forms.PictureBox();
-            this.UnlockBL_PictureBox = new System.Windows.Forms.PictureBox();
-            this.MagiskRoot_Title = new System.Windows.Forms.Label();
-            this.UnlockBL_Title = new System.Windows.Forms.Label();
-            this.MagiskRoot_Button = new MetroFramework.Controls.MetroButton();
-            this.MaterialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.UnlockBL_Button = new MetroFramework.Controls.MetroButton();
             this.MoreTools_Tab = new MetroFramework.Controls.MetroTabPage();
             this.debuggingBox = new System.Windows.Forms.GroupBox();
             this.MetroButton4 = new MetroFramework.Controls.MetroButton();
@@ -125,12 +125,12 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).BeginInit();
             this.Main_Tabs.SuspendLayout();
-            this.FlashImg_Tab.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             this.PrepareYourDevice_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).BeginInit();
+            this.FlashImg_Tab.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             this.MoreTools_Tab.SuspendLayout();
             this.debuggingBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).BeginInit();
@@ -163,14 +163,12 @@ namespace GeekAssistant.Forms {
             this.Toggle_ManualDeviceInfo_Button.BackColor = System.Drawing.Color.Transparent;
             this.Toggle_ManualDeviceInfo_Button.Depth = 0;
             this.Toggle_ManualDeviceInfo_Button.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Toggle_ManualDeviceInfo_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(32)))));
-            this.Toggle_ManualDeviceInfo_Button.Icon = global::prop.GA.G_noG;
+            this.Toggle_ManualDeviceInfo_Button.Icon = null;
             this.Toggle_ManualDeviceInfo_Button.Location = new System.Drawing.Point(24, 482);
             this.Toggle_ManualDeviceInfo_Button.Margin = new System.Windows.Forms.Padding(0);
             this.Toggle_ManualDeviceInfo_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Toggle_ManualDeviceInfo_Button.Name = "Toggle_ManualDeviceInfo_Button";
             this.Toggle_ManualDeviceInfo_Button.Primary = true;
-            this.Toggle_ManualDeviceInfo_Button.Radius = 11;
             this.Toggle_ManualDeviceInfo_Button.Size = new System.Drawing.Size(243, 36);
             this.Toggle_ManualDeviceInfo_Button.TabIndex = 85352;
             this.Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
@@ -313,15 +311,17 @@ namespace GeekAssistant.Forms {
             // FlashZip_Button
             // 
             this.FlashZip_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.FlashZip_Button.Highlight = true;
+            this.FlashZip_Button.Depth = 0;
+            this.FlashZip_Button.Icon = null;
             this.FlashZip_Button.Location = new System.Drawing.Point(19, 303);
             this.FlashZip_Button.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.FlashZip_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.FlashZip_Button.Name = "FlashZip_Button";
+            this.FlashZip_Button.Primary = false;
             this.FlashZip_Button.Size = new System.Drawing.Size(160, 36);
-            this.FlashZip_Button.Style = MetroFramework.MetroColorStyle.Green;
             this.FlashZip_Button.TabIndex = 85583;
             this.FlashZip_Button.Text = "Start Flashing";
-            this.FlashZip_Button.UseSelectable = true;
+            this.FlashZip_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // About_Button
             // 
@@ -334,7 +334,6 @@ namespace GeekAssistant.Forms {
             this.About_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.About_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.About_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.About_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.About_Button.Icon = global::prop.x24.ToU_24;
             this.About_Button.Location = new System.Drawing.Point(518, 30);
             this.About_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -357,7 +356,6 @@ namespace GeekAssistant.Forms {
             this.Settings_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Settings_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Settings_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Settings_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Settings_Button.Icon = global::prop.x24.Settings_24;
             this.Settings_Button.Location = new System.Drawing.Point(562, 30);
             this.Settings_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -373,7 +371,6 @@ namespace GeekAssistant.Forms {
             // Feedback_Button
             // 
             this.Feedback_Button.AutoSize = true;
-            this.Feedback_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Feedback_Button.BackColor = System.Drawing.Color.Transparent;
             this.Feedback_Button.Depth = 0;
             this.Feedback_Button.FlatAppearance.BorderSize = 0;
@@ -381,7 +378,6 @@ namespace GeekAssistant.Forms {
             this.Feedback_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Feedback_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Feedback_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Feedback_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Feedback_Button.Icon = global::prop.x24.Smile_24;
             this.Feedback_Button.Location = new System.Drawing.Point(474, 30);
             this.Feedback_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -509,7 +505,6 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray;
             this.ShowLog_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.ShowLog_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ShowLog_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ShowLog_Button.Icon = global::prop.x24.Commands_24;
             this.ShowLog_Button.Location = new System.Drawing.Point(600, 544);
             this.ShowLog_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -563,7 +558,6 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.SwitchTheme_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.SwitchTheme_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SwitchTheme_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SwitchTheme_Button.Icon = global::prop.x24.Theme_Light_24;
             this.SwitchTheme_Button.Location = new System.Drawing.Point(430, 30);
             this.SwitchTheme_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -586,7 +580,6 @@ namespace GeekAssistant.Forms {
             this.Donate_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Donate_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Donate_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Donate_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Donate_Button.Icon = global::prop.x24.DonateHeart_24;
             this.Donate_Button.Location = new System.Drawing.Point(606, 30);
             this.Donate_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -626,8 +619,8 @@ namespace GeekAssistant.Forms {
             this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.Main_Tabs.Controls.Add(this.FlashImg_Tab);
             this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
+            this.Main_Tabs.Controls.Add(this.FlashImg_Tab);
             this.Main_Tabs.Controls.Add(this.MoreTools_Tab);
             this.Main_Tabs.Location = new System.Drawing.Point(273, 117);
             this.Main_Tabs.Name = "Main_Tabs";
@@ -637,6 +630,146 @@ namespace GeekAssistant.Forms {
             this.Main_Tabs.Style = MetroFramework.MetroColorStyle.Green;
             this.Main_Tabs.TabIndex = 85609;
             this.Main_Tabs.UseSelectable = true;
+            // 
+            // PrepareYourDevice_Tab
+            // 
+            this.PrepareYourDevice_Tab.BackColor = System.Drawing.Color.White;
+            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Label);
+            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Label);
+            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_PictureBox);
+            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_PictureBox);
+            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Title);
+            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Title);
+            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Button);
+            this.PrepareYourDevice_Tab.Controls.Add(this.MaterialDivider1);
+            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Button);
+            this.PrepareYourDevice_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PrepareYourDevice_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.PrepareYourDevice_Tab.HorizontalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab.HorizontalScrollbarHighlightOnWheel = false;
+            this.PrepareYourDevice_Tab.HorizontalScrollbarSize = 12;
+            this.PrepareYourDevice_Tab.Location = new System.Drawing.Point(4, 41);
+            this.PrepareYourDevice_Tab.Name = "PrepareYourDevice_Tab";
+            this.PrepareYourDevice_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.PrepareYourDevice_Tab.Size = new System.Drawing.Size(369, 356);
+            this.PrepareYourDevice_Tab.Style = MetroFramework.MetroColorStyle.Green;
+            this.PrepareYourDevice_Tab.TabIndex = 0;
+            this.PrepareYourDevice_Tab.Text = "Prepare your device";
+            this.PrepareYourDevice_Tab.VerticalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab.VerticalScrollbarHighlightOnWheel = false;
+            this.PrepareYourDevice_Tab.VerticalScrollbarSize = 12;
+            // 
+            // UnlockBL_Label
+            // 
+            this.UnlockBL_Label.AutoSize = true;
+            this.UnlockBL_Label.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_Label.Location = new System.Drawing.Point(10, 50);
+            this.UnlockBL_Label.Margin = new System.Windows.Forms.Padding(0);
+            this.UnlockBL_Label.Name = "UnlockBL_Label";
+            this.UnlockBL_Label.Size = new System.Drawing.Size(268, 38);
+            this.UnlockBL_Label.Style = MetroFramework.MetroColorStyle.Green;
+            this.UnlockBL_Label.TabIndex = 7;
+            this.UnlockBL_Label.Text = "Check fastboot status then attempt to unlock\nyour device bootloader";
+            // 
+            // MagiskRoot_Label
+            // 
+            this.MagiskRoot_Label.AutoSize = true;
+            this.MagiskRoot_Label.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_Label.Location = new System.Drawing.Point(10, 225);
+            this.MagiskRoot_Label.Name = "MagiskRoot_Label";
+            this.MagiskRoot_Label.Size = new System.Drawing.Size(248, 38);
+            this.MagiskRoot_Label.Style = MetroFramework.MetroColorStyle.Green;
+            this.MagiskRoot_Label.TabIndex = 7;
+            this.MagiskRoot_Label.Text = "Download the latest Magisk zip & apk then\nattempt to install them";
+            // 
+            // MagiskRoot_PictureBox
+            // 
+            this.MagiskRoot_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_PictureBox.Image = global::prop.xXX.Magisk_gray_alpha;
+            this.MagiskRoot_PictureBox.Location = new System.Drawing.Point(239, 226);
+            this.MagiskRoot_PictureBox.Name = "MagiskRoot_PictureBox";
+            this.MagiskRoot_PictureBox.Size = new System.Drawing.Size(128, 128);
+            this.MagiskRoot_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MagiskRoot_PictureBox.TabIndex = 5;
+            this.MagiskRoot_PictureBox.TabStop = false;
+            // 
+            // UnlockBL_PictureBox
+            // 
+            this.UnlockBL_PictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_PictureBox.Image = global::prop.xXX.UnlockBL_gray_alpha;
+            this.UnlockBL_PictureBox.Location = new System.Drawing.Point(239, 43);
+            this.UnlockBL_PictureBox.Name = "UnlockBL_PictureBox";
+            this.UnlockBL_PictureBox.Size = new System.Drawing.Size(128, 128);
+            this.UnlockBL_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.UnlockBL_PictureBox.TabIndex = 5;
+            this.UnlockBL_PictureBox.TabStop = false;
+            // 
+            // MagiskRoot_Title
+            // 
+            this.MagiskRoot_Title.AutoSize = true;
+            this.MagiskRoot_Title.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.MagiskRoot_Title.Location = new System.Drawing.Point(10, 191);
+            this.MagiskRoot_Title.Name = "MagiskRoot_Title";
+            this.MagiskRoot_Title.Size = new System.Drawing.Size(131, 21);
+            this.MagiskRoot_Title.TabIndex = 2;
+            this.MagiskRoot_Title.Text = "Root with Magisk";
+            // 
+            // UnlockBL_Title
+            // 
+            this.UnlockBL_Title.AutoSize = true;
+            this.UnlockBL_Title.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UnlockBL_Title.Location = new System.Drawing.Point(10, 19);
+            this.UnlockBL_Title.Name = "UnlockBL_Title";
+            this.UnlockBL_Title.Size = new System.Drawing.Size(138, 21);
+            this.UnlockBL_Title.TabIndex = 2;
+            this.UnlockBL_Title.Text = "Unlock Bootloader";
+            // 
+            // MagiskRoot_Button
+            // 
+            this.MagiskRoot_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.MagiskRoot_Button.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_Button.Depth = 0;
+            this.MagiskRoot_Button.Icon = null;
+            this.MagiskRoot_Button.Location = new System.Drawing.Point(10, 301);
+            this.MagiskRoot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.MagiskRoot_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MagiskRoot_Button.Name = "MagiskRoot_Button";
+            this.MagiskRoot_Button.Primary = false;
+            this.MagiskRoot_Button.Size = new System.Drawing.Size(172, 36);
+            this.MagiskRoot_Button.TabIndex = 6;
+            this.MagiskRoot_Button.Text = "Start Rooting";
+            this.MagiskRoot_Button.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.MagiskRoot_Button.UseVisualStyleBackColor = false;
+            // 
+            // MaterialDivider1
+            // 
+            this.MaterialDivider1.BackColor = System.Drawing.Color.Gainsboro;
+            this.MaterialDivider1.Depth = 0;
+            this.MaterialDivider1.Location = new System.Drawing.Point(3, 177);
+            this.MaterialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MaterialDivider1.Name = "MaterialDivider1";
+            this.MaterialDivider1.Size = new System.Drawing.Size(363, 1);
+            this.MaterialDivider1.TabIndex = 3;
+            this.MaterialDivider1.Text = "MaterialDivider1";
+            // 
+            // UnlockBL_Button
+            // 
+            this.UnlockBL_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.UnlockBL_Button.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_Button.Depth = 0;
+            this.UnlockBL_Button.Icon = null;
+            this.UnlockBL_Button.Location = new System.Drawing.Point(10, 118);
+            this.UnlockBL_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.UnlockBL_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.UnlockBL_Button.Name = "UnlockBL_Button";
+            this.UnlockBL_Button.Primary = false;
+            this.UnlockBL_Button.Size = new System.Drawing.Size(172, 36);
+            this.UnlockBL_Button.TabIndex = 6;
+            this.UnlockBL_Button.Text = "Start Unlocking";
+            this.UnlockBL_Button.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.UnlockBL_Button.UseVisualStyleBackColor = false;
             // 
             // FlashImg_Tab
             // 
@@ -796,143 +929,6 @@ namespace GeekAssistant.Forms {
             this.PictureBox3.TabIndex = 5;
             this.PictureBox3.TabStop = false;
             // 
-            // PrepareYourDevice_Tab
-            // 
-            this.PrepareYourDevice_Tab.BackColor = System.Drawing.Color.White;
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Label);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Label);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_PictureBox);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_PictureBox);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Title);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Title);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Button);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MaterialDivider1);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Button);
-            this.PrepareYourDevice_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PrepareYourDevice_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarBarColor = true;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarHighlightOnWheel = false;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarSize = 12;
-            this.PrepareYourDevice_Tab.Location = new System.Drawing.Point(4, 41);
-            this.PrepareYourDevice_Tab.Name = "PrepareYourDevice_Tab";
-            this.PrepareYourDevice_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PrepareYourDevice_Tab.Size = new System.Drawing.Size(369, 356);
-            this.PrepareYourDevice_Tab.Style = MetroFramework.MetroColorStyle.Green;
-            this.PrepareYourDevice_Tab.TabIndex = 0;
-            this.PrepareYourDevice_Tab.Text = "Prepare your device";
-            this.PrepareYourDevice_Tab.VerticalScrollbarBarColor = true;
-            this.PrepareYourDevice_Tab.VerticalScrollbarHighlightOnWheel = false;
-            this.PrepareYourDevice_Tab.VerticalScrollbarSize = 12;
-            // 
-            // UnlockBL_Label
-            // 
-            this.UnlockBL_Label.AutoSize = true;
-            this.UnlockBL_Label.BackColor = System.Drawing.Color.Transparent;
-            this.UnlockBL_Label.Location = new System.Drawing.Point(10, 50);
-            this.UnlockBL_Label.Margin = new System.Windows.Forms.Padding(0);
-            this.UnlockBL_Label.Name = "UnlockBL_Label";
-            this.UnlockBL_Label.Size = new System.Drawing.Size(268, 38);
-            this.UnlockBL_Label.Style = MetroFramework.MetroColorStyle.Green;
-            this.UnlockBL_Label.TabIndex = 7;
-            this.UnlockBL_Label.Text = "Check fastboot status then attempt to unlock\nyour device bootloader";
-            // 
-            // MagiskRoot_Label
-            // 
-            this.MagiskRoot_Label.AutoSize = true;
-            this.MagiskRoot_Label.BackColor = System.Drawing.Color.Transparent;
-            this.MagiskRoot_Label.Location = new System.Drawing.Point(10, 225);
-            this.MagiskRoot_Label.Name = "MagiskRoot_Label";
-            this.MagiskRoot_Label.Size = new System.Drawing.Size(248, 38);
-            this.MagiskRoot_Label.Style = MetroFramework.MetroColorStyle.Green;
-            this.MagiskRoot_Label.TabIndex = 7;
-            this.MagiskRoot_Label.Text = "Download the latest Magisk zip & apk then\nattempt to install them";
-            // 
-            // MagiskRoot_PictureBox
-            // 
-            this.MagiskRoot_PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.MagiskRoot_PictureBox.Image = global::prop.xXX.Magisk_gray_alpha;
-            this.MagiskRoot_PictureBox.Location = new System.Drawing.Point(239, 226);
-            this.MagiskRoot_PictureBox.Name = "MagiskRoot_PictureBox";
-            this.MagiskRoot_PictureBox.Size = new System.Drawing.Size(128, 128);
-            this.MagiskRoot_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.MagiskRoot_PictureBox.TabIndex = 5;
-            this.MagiskRoot_PictureBox.TabStop = false;
-            // 
-            // UnlockBL_PictureBox
-            // 
-            this.UnlockBL_PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.UnlockBL_PictureBox.Image = global::prop.xXX.UnlockBL_gray_alpha;
-            this.UnlockBL_PictureBox.Location = new System.Drawing.Point(239, 43);
-            this.UnlockBL_PictureBox.Name = "UnlockBL_PictureBox";
-            this.UnlockBL_PictureBox.Size = new System.Drawing.Size(128, 128);
-            this.UnlockBL_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.UnlockBL_PictureBox.TabIndex = 5;
-            this.UnlockBL_PictureBox.TabStop = false;
-            // 
-            // MagiskRoot_Title
-            // 
-            this.MagiskRoot_Title.AutoSize = true;
-            this.MagiskRoot_Title.BackColor = System.Drawing.Color.Transparent;
-            this.MagiskRoot_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MagiskRoot_Title.Location = new System.Drawing.Point(10, 191);
-            this.MagiskRoot_Title.Name = "MagiskRoot_Title";
-            this.MagiskRoot_Title.Size = new System.Drawing.Size(131, 21);
-            this.MagiskRoot_Title.TabIndex = 2;
-            this.MagiskRoot_Title.Text = "Root with Magisk";
-            // 
-            // UnlockBL_Title
-            // 
-            this.UnlockBL_Title.AutoSize = true;
-            this.UnlockBL_Title.BackColor = System.Drawing.Color.Transparent;
-            this.UnlockBL_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UnlockBL_Title.Location = new System.Drawing.Point(10, 19);
-            this.UnlockBL_Title.Name = "UnlockBL_Title";
-            this.UnlockBL_Title.Size = new System.Drawing.Size(138, 21);
-            this.UnlockBL_Title.TabIndex = 2;
-            this.UnlockBL_Title.Text = "Unlock Bootloader";
-            // 
-            // MagiskRoot_Button
-            // 
-            this.MagiskRoot_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.MagiskRoot_Button.BackColor = System.Drawing.Color.Transparent;
-            this.MagiskRoot_Button.Highlight = true;
-            this.MagiskRoot_Button.Location = new System.Drawing.Point(10, 301);
-            this.MagiskRoot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.MagiskRoot_Button.Name = "MagiskRoot_Button";
-            this.MagiskRoot_Button.Size = new System.Drawing.Size(172, 36);
-            this.MagiskRoot_Button.Style = MetroFramework.MetroColorStyle.Green;
-            this.MagiskRoot_Button.TabIndex = 6;
-            this.MagiskRoot_Button.Text = "Start Rooting";
-            this.MagiskRoot_Button.UseSelectable = true;
-            this.MagiskRoot_Button.UseVisualStyleBackColor = false;
-            // 
-            // MaterialDivider1
-            // 
-            this.MaterialDivider1.BackColor = System.Drawing.Color.Gainsboro;
-            this.MaterialDivider1.Depth = 0;
-            this.MaterialDivider1.Location = new System.Drawing.Point(3, 177);
-            this.MaterialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.MaterialDivider1.Name = "MaterialDivider1";
-            this.MaterialDivider1.Size = new System.Drawing.Size(363, 1);
-            this.MaterialDivider1.TabIndex = 3;
-            this.MaterialDivider1.Text = "MaterialDivider1";
-            // 
-            // UnlockBL_Button
-            // 
-            this.UnlockBL_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.UnlockBL_Button.BackColor = System.Drawing.Color.Transparent;
-            this.UnlockBL_Button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.UnlockBL_Button.Highlight = true;
-            this.UnlockBL_Button.Location = new System.Drawing.Point(10, 118);
-            this.UnlockBL_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.UnlockBL_Button.Name = "UnlockBL_Button";
-            this.UnlockBL_Button.Size = new System.Drawing.Size(172, 36);
-            this.UnlockBL_Button.Style = MetroFramework.MetroColorStyle.Green;
-            this.UnlockBL_Button.TabIndex = 6;
-            this.UnlockBL_Button.Text = "Start Unlocking";
-            this.UnlockBL_Button.UseSelectable = true;
-            this.UnlockBL_Button.UseVisualStyleBackColor = false;
-            // 
             // MoreTools_Tab
             // 
             this.MoreTools_Tab.Controls.Add(this.debuggingBox);
@@ -1079,7 +1075,7 @@ namespace GeekAssistant.Forms {
             this.HotReboot_Button.BackColor = System.Drawing.Color.Transparent;
             this.HotReboot_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.HotReboot_Button.Highlight = true;
-            this.HotReboot_Button.Location = new System.Drawing.Point(39, 63);
+            this.HotReboot_Button.Location = new System.Drawing.Point(39, 182);
             this.HotReboot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.HotReboot_Button.Name = "HotReboot_Button";
             this.HotReboot_Button.Size = new System.Drawing.Size(172, 36);
@@ -1418,15 +1414,15 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).EndInit();
             this.Main_Tabs.ResumeLayout(false);
+            this.PrepareYourDevice_Tab.ResumeLayout(false);
+            this.PrepareYourDevice_Tab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).EndInit();
             this.FlashImg_Tab.ResumeLayout(false);
             this.FlashImg_Tab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
-            this.PrepareYourDevice_Tab.ResumeLayout(false);
-            this.PrepareYourDevice_Tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).EndInit();
             this.MoreTools_Tab.ResumeLayout(false);
             this.debuggingBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).EndInit();
@@ -1459,7 +1455,7 @@ namespace GeekAssistant.Forms {
         public Button Settings;
         public PictureBox MainLayout_PictureBox;
         public MaterialButton Settings_Button;
-        public MetroFramework.Controls.MetroButton FlashZip_Button;
+        public MaterialButton FlashZip_Button;
         public MaterialButton ShowLog_Button;
         public PictureBox ProgressFakeBG_UI;
         public MetroFramework.Controls.MetroTabControl Main_Tabs;
@@ -1479,8 +1475,8 @@ namespace GeekAssistant.Forms {
         public PictureBox MagiskRoot_PictureBox;
         public PictureBox UnlockBL_PictureBox;
         public ToolTip Main_ToolTip;
-        public MetroFramework.Controls.MetroButton UnlockBL_Button;
-        public MetroFramework.Controls.MetroButton MagiskRoot_Button;
+        public MaterialButton UnlockBL_Button;
+        public MaterialButton MagiskRoot_Button;
         public MetroFramework.Controls.MetroLabel UnlockBL_Label;
         public MetroFramework.Controls.MetroLabel MagiskRoot_Label;
         public PictureBox PictureBox3;
@@ -1515,7 +1511,6 @@ namespace GeekAssistant.Forms {
         public MetroFramework.Controls.MetroButton MetroButton6;
         public MetroFramework.Controls.MetroButton MetroButton8;
         public MetroFramework.Controls.MetroButton MetroButton4;
-        public MetroFramework.Controls.MetroTextBox manualCMD_TextBox;
         public MetroFramework.Controls.MetroProgressBar bar;
         public Timer ShowLog_ErrorBlink_Timer;
         public Timer ShowLog_InfoBlink_Timer;
@@ -1542,5 +1537,6 @@ namespace GeekAssistant.Forms {
         private Label CustomROM_Title_Label;
         private Label CustomROM_Label;
         private Label CustomRecovery_Title_Label;
+        private MaterialTextBox manualCMD_TextBox;
     }
 }

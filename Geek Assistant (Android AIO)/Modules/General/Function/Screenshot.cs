@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 
-internal static partial class Screenshot {
+class Screenshot {
     public static Image Run(Rectangle rect) {
         Bitmap bmp = new(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
         Graphics.FromImage(bmp).
