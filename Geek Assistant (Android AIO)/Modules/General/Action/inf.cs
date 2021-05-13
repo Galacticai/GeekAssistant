@@ -1,5 +1,4 @@
 ﻿using GeekAssistant.Forms;
-using System;
 using System.Drawing;
 /// <summary>
 /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
@@ -50,8 +49,13 @@ internal static partial class inf { //inform
     public static bool Run((string code, lvls lvl, string title, string msg, string fullFatalError) infDetail,
                            (string YesButton, string NoButton) YesNoButtons = default) {
 
-        if (!string.IsNullOrEmpty(detail.code)) detail.code = infDetail.code;
-        if (!string.IsNullOrEmpty(detail.fullFatalError)) detail.fullFatalError = infDetail.fullFatalError;
+        if (!string.IsNullOrEmpty(detail.code)) {
+            detail.code = infDetail.code;
+        }
+
+        if (!string.IsNullOrEmpty(detail.fullFatalError)) {
+            detail.fullFatalError = infDetail.fullFatalError;
+        }
 
         return Run(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, default, infDetail.fullFatalError);
     }

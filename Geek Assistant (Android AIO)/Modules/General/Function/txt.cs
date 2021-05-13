@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
+using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
 
 internal static partial class txt {
     /// <summary>
@@ -10,12 +10,14 @@ internal static partial class txt {
     /// <returns>[[0-----------]]\n</returns>
     public static string GetFirstLine(string input) {
         // Foolproof
-        if (string.IsNullOrEmpty(input))
+        if (string.IsNullOrEmpty(input)) {
             return null;
+        }
 
         // Failsafe: return if only 1 line
-        if (input.IndexOf(Environment.NewLine) < 1)
+        if (input.IndexOf(Environment.NewLine) < 1) {
             return input;
+        }
 
         // Do
         return input.Substring(0, input.IndexOf(Environment.NewLine));
@@ -27,9 +29,13 @@ internal static partial class txt {
     /// <param name="input">Input</param>
     /// <returns>0---------\n[[---------- ...]]</returns>
     public static string CutFirstLine(string input) {
-        if (string.IsNullOrEmpty(input)) return null;// Foolproof
+        if (string.IsNullOrEmpty(input)) {
+            return null;// Foolproof
+        }
 
-        if (input.IndexOf(Environment.NewLine) < 1) return input;// Failsafe: return if only 1 line
+        if (input.IndexOf(Environment.NewLine) < 1) {
+            return input;// Failsafe: return if only 1 line
+        }
 
         // Do
         // ' Text Example>>(\n)blabla bla<<
@@ -43,18 +49,24 @@ internal static partial class txt {
     /// <returns>0---- [[--- ------ --- ...]]</returns>
     public static string CutFirstWord(string input) {
 
-        if (string.IsNullOrEmpty(input)) return null; // Foolproof
-        if (input.IndexOf(" ") < 1) return input; // Failsafe: return if no spaces (1 word only)
+        if (string.IsNullOrEmpty(input)) {
+            return null; // Foolproof
+        }
+
+        if (input.IndexOf(" ") < 1) {
+            return input; // Failsafe: return if no spaces (1 word only)
+        }
         // Remove double space if present
         int index = 1;
-        if (Strings.GetChar(input, input.IndexOf(" ")) == Strings.GetChar(input, input.IndexOf(" ") + 1))
+        if (Strings.GetChar(input, input.IndexOf(" ")) == Strings.GetChar(input, input.IndexOf(" ") + 1)) {
             index += 1;
+        }
         // Do
         return input.Substring(input.IndexOf(" ") + index, input.Length);
     }
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomWorkText() {
-        return (string)math.Random.RandomObjectFromArr(new[] {
+        return (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
             "Hold on... We're doing magic!",
             "Stuff... Please be patient...",
             "Wait a second... Magic ongoing...",
@@ -75,7 +87,7 @@ internal static partial class txt {
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
     public static string RandomFactText() {
-        return (string)math.Random.RandomObjectFromArr(new[] {
+        return (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
             "The first oranges weren’t orange.",
             "Samsung uses a butt-shaped robot to test phone durability.",
             "Peanuts aren’t technically nuts.",
@@ -89,8 +101,14 @@ internal static partial class txt {
 
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
     public static string GA_GetErrorInitials() {
-        if (string.IsNullOrEmpty(inf.detail.code)) return ""; // failsafe
-        if (inf.detail.code.IndexOf("-") < 1) return ""; // failsafe
+        if (string.IsNullOrEmpty(inf.detail.code)) {
+            return ""; // failsafe
+        }
+
+        if (inf.detail.code.IndexOf("-") < 1) {
+            return ""; // failsafe
+        }
+
         return inf.detail.code.Substring(0, inf.detail.code.IndexOf("-"));
     }
     /// <summary>
@@ -100,12 +118,22 @@ internal static partial class txt {
     /// <param name="tooltip"></param>
     /// <returns>tooltip text without "(Disabled)" or "(Enabled)"</returns>
     public static string WithoutState_SwitchButton_tooltipTxt(Control aButton, ToolTip tooltip = null) {
-        if (tooltip is null) tooltip = GA_SwitchButton_Style.tooltip; //set if null
+        if (tooltip is null) {
+            tooltip = GA_SwitchButton_Style.tooltip; //set if null
+        }
+
         string txt = tooltip.GetToolTip(aButton); //abreviation + Get 1 time for performance
-        if (string.IsNullOrEmpty(tooltip.GetToolTip(aButton))) return "";
+        if (string.IsNullOrEmpty(tooltip.GetToolTip(aButton))) {
+            return "";
+        }
+
         int indexFrom = 0;
-        if (txt[..10] == "(Disabled)") indexFrom = 11;
-        else if (txt[..9] == "(Enabled)") indexFrom = 10;
+        if (txt[..10] == "(Disabled)") {
+            indexFrom = 11;
+        } else if (txt[..9] == "(Enabled)") {
+            indexFrom = 10;
+        }
+
         return txt[indexFrom..];
     }
 }

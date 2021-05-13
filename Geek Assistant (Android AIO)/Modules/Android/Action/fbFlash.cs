@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using GeekAssistant.Forms;
-using Managed;
 
 internal static partial class FastbootFlash {
     // 0 boot 
@@ -33,7 +30,9 @@ internal static partial class FastbootFlash {
 
             // ' check if fb compatible 
             if (!ConnectionIsCompatible.fbIsCompatible("FF")) //inf.detail is already set inside this
+{
                 throw new Exception();
+            }
 
             Managed.Adb.Device dev = madb.GetListOfDevice()[0];
 
@@ -119,14 +118,16 @@ internal static partial class FastbootFlash {
         c.Working = false;
     }
 
-    // 0 boot 
-    // 1 bootloader 
-    // 2 radio 
-    // 3 recovery
-    // 4 system 
-    // 5 vendor  
+    /// <returns><list type="bullet">
+    /// <item><paramref name="type"/> 0 = boot </item>
+    /// <item><paramref name="type"/> 1 = bootloader </item>
+    /// <item><paramref name="type"/> 2 = radio </item>
+    /// <item><paramref name="type"/> 3 = recovery</item>
+    /// <item><paramref name="type"/> 4 = system </item>
+    /// <item><paramref name="type"/> 5 = vendor </item>
+    /// </list></returns>
     private static string TypeToString(int type) {
-        if (!math.IsInRange(type, 0, 5)) {
+        if (!math.Arithmatics.IsInRange(type, 0, 5)) {
             inf.detail.code = $"{txt.GA_GetErrorInitials()}-FtX";
             // ErrorInfo = (10, $"File type not set.")
             throw new Exception();

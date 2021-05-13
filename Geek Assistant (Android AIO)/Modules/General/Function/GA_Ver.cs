@@ -1,9 +1,4 @@
-﻿
-using System.Diagnostics;
-using System.Reflection;
-using System.Windows.Forms;
-
-internal static partial class GA_Ver {
+﻿internal static partial class GA_Ver {
     /// <summary>
     /// Create a customized version string accordingly or vX.x if not specified
     /// </summary>

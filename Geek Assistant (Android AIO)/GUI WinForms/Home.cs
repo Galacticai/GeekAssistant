@@ -1,12 +1,9 @@
 ﻿using Managed.Adb;
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Management;
 using System.Windows.Forms;
-using Transitions;
 
 namespace GeekAssistant.Forms {
     public partial class Home : Form {
@@ -149,7 +146,10 @@ namespace GeekAssistant.Forms {
 
         private DeviceMonitor devMon = new(AndroidDebugBridge.Bridge);
         private void madb_devChanged(object sender, EventArgs e) {
-            if (!finishedLoading) return; //Cancel while loading Home
+            if (!finishedLoading) {
+                return; //Cancel while loading Home
+            }
+
             Invoke(new Action(() => {
                 AutoDetect.Run(true);
                 GA_Log.LogEvent(DeviceState_Label.Text, 1);
@@ -161,7 +161,9 @@ namespace GeekAssistant.Forms {
                 System.Media.SystemSounds.Beep.Play();
                 return;
             }
-            if (GA_HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
+            if (GA_HideAllForms.HiddenForms != null) {
+                return; //Stop if hiding all forms
+            }
             //EventWatcher.Stop();
 
             GA_Log.LogEvent("End", 3);
@@ -171,14 +173,17 @@ namespace GeekAssistant.Forms {
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
         }
         private void Home_GotFocus(object sender, EventArgs e) {
-            if (!finishedLoading) new Wait().BringToFront();
+            if (!finishedLoading) {
+                new Wait().BringToFront();
+            }
         }
         //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
-            if (GA_Wait.Wait != null)
+            if (GA_Wait.Wait != null) {
                 GA_Wait.Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, GA_Wait.Wait.Width, GA_Wait.Wait.Height);
+            }
         }
         private bool finishedLoading = false;
         private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
@@ -191,7 +196,9 @@ namespace GeekAssistant.Forms {
 
             AssignEvents();
 
-            if (Width != 690) Width = 690; //Set width to avoid using the width selected while developing
+            if (Width != 690) {
+                Width = 690; //Set width to avoid using the width selected while developing
+            }
 
             Text = GA_Ver.Run("MainTitle");
             GA_About_Label.Text = GA_Ver.Run("Main");
@@ -207,21 +214,26 @@ namespace GeekAssistant.Forms {
                 HomeLoad_Delay_Timer.Stop();
 
 
-                if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
+                if (c.S.AutoClearLogs) {
+                    GA_Log.ClearIf30days();
+                }
+
                 GA_PrepareAppdata.Run();
                 GA_adb.PrepareAndroidDictionary();
                 GA_adb.ResetDeviceInfo();
 
                 AutoDetect.Run(true);
-                if (DeviceState_Label.Text != "Disconnected")
+                if (DeviceState_Label.Text != "Disconnected") {
                     GA_Log.LogEvent(DeviceState_Label.Text, 1);
-
+                }
 
                 DoNeutral();
                 AutoDetectDeviceInfo_Button.Select();
 
                 //####### DEBUG #####################################
-                if (c.V.Revision == 3) debuggingBox.Visible = true;
+                if (c.V.Revision == 3) {
+                    debuggingBox.Visible = true;
+                }
                 //###################################################
 
                 GA_Log.LogEvent("Start", 1);
@@ -301,14 +313,18 @@ namespace GeekAssistant.Forms {
             {
                 if ((string)slb.Tag == " ") {
                     slb.Tag = "  ";
-                    if (c.S.DarkTheme) slb.Icon = prop.x24.Warning_Red_dark_24;
-                    else slb.Icon = prop.x24.Warning_Red_24;
-
+                    if (c.S.DarkTheme) {
+                        slb.Icon = prop.x24.Warning_Red_dark_24;
+                    } else {
+                        slb.Icon = prop.x24.Warning_Red_24;
+                    }
                 } else {
                     slb.Tag = " ";
-                    if (c.S.DarkTheme) slb.Icon = prop.x24.Warning_Red_24;
-                    else slb.Icon = prop.x24.Warning_Red_dark_24;
-
+                    if (c.S.DarkTheme) {
+                        slb.Icon = prop.x24.Warning_Red_24;
+                    } else {
+                        slb.Icon = prop.x24.Warning_Red_dark_24;
+                    }
                 }
             }
         }
@@ -318,13 +334,18 @@ namespace GeekAssistant.Forms {
                 using (MaterialButton slb = ShowLog_Button) {
                     if ((string)slb.Tag == " ") {
                         slb.Tag = "  ";
-                        if (c.S.DarkTheme) slb.Icon = prop.x24.Info_Yellow_dark_24;
-                        else slb.Icon = prop.x24.Info_Yellow_24;
+                        if (c.S.DarkTheme) {
+                            slb.Icon = prop.x24.Info_Yellow_dark_24;
+                        } else {
+                            slb.Icon = prop.x24.Info_Yellow_24;
+                        }
                     } else {
                         slb.Tag = " ";
-                        if (c.S.DarkTheme) slb.Icon = prop.x24.Info_Yellow_24;
-                        else slb.Icon = prop.x24.Info_Yellow_dark_24;
-
+                        if (c.S.DarkTheme) {
+                            slb.Icon = prop.x24.Info_Yellow_24;
+                        } else {
+                            slb.Icon = prop.x24.Info_Yellow_dark_24;
+                        }
                     }
                 }
             }
@@ -342,10 +363,13 @@ namespace GeekAssistant.Forms {
         }
 
         private void FlashZip_Button_Click(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName))
+            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName)) {
                 FlashZip_ChooseFile_Button.PerformClick();
-            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName))
+            }
+
+            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName)) {
                 return;
+            }
 
             //FlashFiles.Run(FlashZip_OpenFileDialog.FileName)
         }
@@ -354,9 +378,13 @@ namespace GeekAssistant.Forms {
         }
 
         private void log_TextChanged(object sender, EventArgs e) {
-            if (log.Visible) return;
-            if (ShowLog_ErrorBlink_Timer.Enabled == false) ShowLog_InfoBlink_Timer.Enabled = true;
+            if (log.Visible) {
+                return;
+            }
 
+            if (ShowLog_ErrorBlink_Timer.Enabled == false) {
+                ShowLog_InfoBlink_Timer.Enabled = true;
+            }
         }
         //Already Done above 
         //private void log_MouseEnter(object sender, EventArgs e) { log.MouseEnter
@@ -392,8 +420,11 @@ namespace GeekAssistant.Forms {
         public void DoNeutral() {
             ShowLog_InfoBlink_Timer.Enabled = false;
             ShowLog_ErrorBlink_Timer.Enabled = false;
-            if (c.S.DarkTheme) ShowLog_Button.Icon = prop.x24.Commands_dark_24;
-            else ShowLog_Button.Icon = prop.x24.Commands_24;
+            if (c.S.DarkTheme) {
+                ShowLog_Button.Icon = prop.x24.Commands_dark_24;
+            } else {
+                ShowLog_Button.Icon = prop.x24.Commands_24;
+            }
 
             bar.Style = MetroFramework.MetroColorStyle.Green;
             bar.Value = 0;
@@ -417,8 +448,9 @@ namespace GeekAssistant.Forms {
             GA_Log.LogEvent("Hot Reboot", 2);
             GA_SetProgressText.Run("Attempting hot reboot...", -1);
             var hr = GA_adb.HotReboot("HR");
-            if (!string.IsNullOrEmpty(hr)) GA_Log.LogAppendText(hr, 1);
-
+            if (!string.IsNullOrEmpty(hr)) {
+                GA_Log.LogAppendText(hr, 1);
+            }
         }
 
         private void InstallBusybox_Button_Click(object sender, EventArgs e) {
@@ -509,33 +541,55 @@ namespace GeekAssistant.Forms {
         }
 
         private void Manufacturer_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (c.Working) Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
-            else c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
+            if (c.Working) {
+                Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
+            } else {
+                c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
+            }
+
             Manufacturer_Label.Text = Manufacturer_ComboBox.Text;
         }
         private void AndroidVersion_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (c.Working) AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
+            if (c.Working) {
+                AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
+            }
             //TODO: //else common.S.DeviceAPILevel = GA_adb_Functions.ConvertAVerToAPILevel(AndroidVersion_ComboBox.Text);
             AndroidVersion_Label.Text = AndroidVersion_ComboBox.Text;
         }
         private void BootloaderUnlockable_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
-            else c.S.DeviceBootloaderUnlockSupported = BootloaderUnlockable_CheckBox.Checked;
+            if (c.Working) {
+                BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
+            } else {
+                c.S.DeviceBootloaderUnlockSupported = BootloaderUnlockable_CheckBox.Checked;
+            }
+
             BootloaderUnlockable_Label.Text = convert.Bool.ToYesNo(BootloaderUnlockable_CheckBox.Checked);
         }
         private void Rooted_Checkbox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) Rooted_Checkbox.Checked = c.S.DeviceRooted;
-            else c.S.DeviceRooted = Rooted_Checkbox.Checked;
+            if (c.Working) {
+                Rooted_Checkbox.Checked = c.S.DeviceRooted;
+            } else {
+                c.S.DeviceRooted = Rooted_Checkbox.Checked;
+            }
+
             Rooted_Label.Text = convert.Bool.ToYesNo(Rooted_Checkbox.Checked);
         }
         private void CustomROM_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) CustomROM_CheckBox.Checked = c.S.DeviceCustomROM;
-            else c.S.DeviceCustomROM = CustomROM_CheckBox.Checked;
+            if (c.Working) {
+                CustomROM_CheckBox.Checked = c.S.DeviceCustomROM;
+            } else {
+                c.S.DeviceCustomROM = CustomROM_CheckBox.Checked;
+            }
+
             CustomROM_Label.Text = convert.Bool.ToYesNo(CustomROM_CheckBox.Checked);
         }
         private void CustomRecovery_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) CustomRecovery_CheckBox.Checked = c.S.DeviceCustomRecovery;
-            else c.S.DeviceCustomRecovery = CustomRecovery_CheckBox.Checked;
+            if (c.Working) {
+                CustomRecovery_CheckBox.Checked = c.S.DeviceCustomRecovery;
+            } else {
+                c.S.DeviceCustomRecovery = CustomRecovery_CheckBox.Checked;
+            }
+
             CustomRecovery_Label.Text = convert.Bool.ToYesNo(CustomRecovery_CheckBox.Checked);
 
         }
@@ -574,9 +628,12 @@ namespace GeekAssistant.Forms {
             ToU.ShowDialog();
         }
         private void Donate_Button_Click(object sender, EventArgs e) {
-            foreach (Form d in Application.OpenForms)
-                if (d.GetType() == typeof(Donate))
+            foreach (Form d in Application.OpenForms) {
+                if (d.GetType() == typeof(Donate)) {
                     d.Close();
+                }
+            }
+
             new Donate().Show();
         }
         private void Donate_Button_MouseEnter(object sender, EventArgs e) {
@@ -592,8 +649,9 @@ namespace GeekAssistant.Forms {
                           $"Redirecting you to Geek Assistant issues section on github...\n\nDo you want To Continue?",
                         ("Continue", "Close"),
                         (new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
-                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) })))
+                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) }))) {
                 Process.Start(new ProcessStartInfo("https://github.com/NHKomaiha/Geek-Assistant/issues") { UseShellExecute = true, Verb = "open" });
+            }
         }
         private void SwitchTheme_Button_Click(object sender, EventArgs e) {
             GA_SetTheme.Run(this);

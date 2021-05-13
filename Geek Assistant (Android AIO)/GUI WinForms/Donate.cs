@@ -41,9 +41,11 @@ namespace GeekAssistant.Forms {
 
         private static Home Home = null;
         private static void RefresHome() {
-            foreach (Form h in Application.OpenForms)
-                if (h.GetType() == typeof(Home))
+            foreach (Form h in Application.OpenForms) {
+                if (h.GetType() == typeof(Home)) {
                     Home = (Home)h;
+                }
+            }
         }
 
         private void Donate_FormClosing(object sender, EventArgs e) {

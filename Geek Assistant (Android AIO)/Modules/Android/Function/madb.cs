@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Managed;
 
 internal static partial class madb {
 
@@ -49,8 +48,9 @@ internal static partial class madb {
         madbBridge(); // Failsafe
         List<Managed.Adb.Device> devices = Managed.Adb.AdbHelper.Instance.GetDevices(Managed.Adb.AndroidDebugBridge.SocketAddress);
         foreach (Managed.Adb.Device dev in devices) {
-            if (dev.SerialNumber == serial)
+            if (dev.SerialNumber == serial) {
                 return dev;
+            }
         }
 
         return default;

@@ -37,7 +37,8 @@ internal static partial class GA_SetProgressText {
         }
 
         Home.ProgressBarLabel.Text = text;
-        if (c.S.VerboseLogging & ErrorLevel == -1)
+        if (c.S.VerboseLogging & ErrorLevel == -1) {
             GA_Log.LogAppendText(Home.ProgressBarLabel.Text, 1);
+        }
     }
 }

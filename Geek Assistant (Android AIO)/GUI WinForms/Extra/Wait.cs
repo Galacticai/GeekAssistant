@@ -17,13 +17,18 @@ namespace GeekAssistant.Forms {
 
         private void Wait_MainEnabled(bool b) {
             Home Home = null;
-            foreach (Form home in Application.OpenForms)
-                if (home.GetType() == typeof(Home))
+            foreach (Form home in Application.OpenForms) {
+                if (home.GetType() == typeof(Home)) {
                     Home = (Home)home;
-            if (Home == null)
+                }
+            }
+
+            if (Home == null) {
                 inf.Run(($"{inf.detail.code}-W-HX", /* (code) - Wait - Home null*/
                          inf.lvls.FatalError, "Something went wrong...",
                          "Couldn't find the required instance to control", $"{nameof(Wait)} : NullReferenceException"));
+            }
+
             Home.AutoDetectDeviceInfo_Button.Enabled = b;
             Home.SwitchTheme_Button.Enabled = b;
             Home.Settings_Button.Enabled = b;
@@ -70,14 +75,16 @@ namespace GeekAssistant.Forms {
                 Managed.Adb.AndroidDebugBridge.Terminate();
                 var p_adb_arr = Process.GetProcessesByName("adb");
                 if (p_adb_arr.Count() > 0) {
-                    foreach (Process p_adb in p_adb_arr)
+                    foreach (Process p_adb in p_adb_arr) {
                         p_adb.Kill();
+                    }
                 }
 
                 var p_fb_arr = Process.GetProcessesByName("fastboot");
                 if (p_fb_arr.Count() > 0) {
-                    foreach (Process p_fb in p_fb_arr)
+                    foreach (Process p_fb in p_fb_arr) {
                         p_fb.Kill();
+                    }
                 }
             }
             Close();

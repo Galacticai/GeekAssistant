@@ -1,6 +1,6 @@
 ﻿using MaterialSkin;
-using MaterialSkin.Controls;
 using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
     [DefaultValue(0)]
     public int Radius {
         get => _Radius;
-        set => _Radius = (int)math.Arithmatics.ForceInRange(value, 0, base.Height / 2);
+        set => _Radius = (int)math.Arithmatics.ForcedInRange(value, 0, ClientRectangle.Height / 2);
     }
 
 
@@ -55,9 +55,12 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
     private bool _ThemeChanged;
     private bool ThemeChanged {
         get {
-            if (c.S.DarkTheme != _ThemeChanged)
+            if (c.S.DarkTheme != _ThemeChanged) {
                 _ThemeChanged = true;
-            else _ThemeChanged = false;
+            } else {
+                _ThemeChanged = false;
+            }
+
             return _ThemeChanged;
         }
     }
@@ -68,7 +71,10 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         set {
             base.Text = value;
             _textSize = CreateGraphics().MeasureString(value, Font);
-            if (AutoSize) Size = GetPreferredSize();
+            if (AutoSize) {
+                Size = GetPreferredSize();
+            }
+
             Invalidate();
         }
     }
@@ -105,14 +111,16 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         if (Radius != 0
            | string.IsNullOrEmpty(Text)
            | _animationManager.IsAnimating()
-           )
+           ) {
             g.SmoothingMode = SmoothingMode.HighQuality;
-        else
+        } else {
             g.SmoothingMode = SmoothingMode.Default;
+        }
+
         g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 
-        g.Clear(Parent.BackColor);
 
+        g.Clear(Parent.BackColor);
         Rectangle fxRect = new(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
         GraphicsPath fxRoundedRect = math.Geometry.RoundedRect(fxRect, Radius);
         //using (Brush b = new SolidBrush(
@@ -124,14 +132,16 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         //Hover 
         //SkinManager.GetFlatButtonHoverBackgroundColor(); 
         using (Brush b = new SolidBrush(
-                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * 60 /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha())))
+                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * 60 /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha()))) {
             if (string.IsNullOrEmpty(Text) & Icon != null) {
-
+                GraphicsPath hoverCirclePath =
+                    math.Geometry.Circle(ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 1);
                 math.Geometry.FillCircle(g, b,
-                            ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 2);//-2 offset left-right top-bottom
+                            ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 1);//-1 offset left-right top-bottom
             } else {
                 g.FillPath(b, fxRoundedRect);
             }
+        }
 
         //Ripple 
         if (_animationManager.IsAnimating()) {
@@ -149,13 +159,15 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
                         math.Geometry.FillCircle(g, rippleBrush, animationSource.X, animationSource.Y, rippleSize);
                         continue;
                     }
-                    if (Radius == 0)
+                    if (Radius == 0) {
                         g.FillEllipse(rippleBrush, rippleRect); //fill using an ellipse if no radius
-                    else {
+                    } else {
 
-                        if (rippleRect.Width > ClientRectangle.Width * 0.8)
+                        if (rippleRect.Width > ClientRectangle.Width * 0.8) {
                             g.FillEllipse(rippleBrush, rippleRect); //fill ellipse before reaching 80%
-                        else g.FillPath(rippleBrush, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
+                        } else {
+                            g.FillPath(rippleBrush, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
+                        }
                     }
                 }
             }
@@ -171,7 +183,9 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
               ); // Center Icon
 
             if (!string.IsNullOrEmpty(Text)) // Text exists:
+{
                 iconRect.X = iconRect.Y; // Allign right horizontally
+            }
 
             g.DrawImage(Icon, iconRect);
 
@@ -206,16 +220,23 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
     private Size GetPreferredSize() => AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
     public override Size GetPreferredSize(Size proposedSize) {
         Size result = new((int)Math.Ceiling(_textSize.Width) + 16, base.Height);
-        if (Icon != null)
-            if (string.IsNullOrEmpty(Text)) result = new(36, 36);
-            else result = new((int)Math.Ceiling(_textSize.Width) + 16 + iconRect.Width + 4, base.Height);
+        if (Icon != null) {
+            if (string.IsNullOrEmpty(Text)) {
+                result = new(36, 36);
+            } else {
+                result = new((int)Math.Ceiling(_textSize.Width) + 16 + iconRect.Width + 4, base.Height);
+            }
+        }
+
         return result;
     }
     private bool animating = false;
     private Timer animTimer = new() { Interval = 501 };
     protected override void OnCreateControl() {
         base.OnCreateControl();
-        if (DesignMode) return;
+        if (DesignMode) {
+            return;
+        }
 
         MouseState = MouseState.OUT;
         MouseEnter += (sender, ev) => {
@@ -223,8 +244,10 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
             _hoverAnimationManager.StartNewAnimation(AnimationDirection.In);
 
             if (!animating) {
-                if (ThemeChanged | saved_ForeColor == Color.Empty)
+                if (ThemeChanged | saved_ForeColor == Color.Empty) {
                     saved_ForeColor = ForeColor;
+                }
+
                 Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA60, colors.bg).GetBrightness() > 0.5f
                                                      ? colors.constColors.fg : colors.constColors.bg); //flip to current anti-bg color on hover  
             }
@@ -274,6 +297,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
 //    public MaterialTheme Default_Colored { get => style(colors.fg, Color.FromArgb(128, colors.Misc.Green), Color.FromArgb(60, colors.Misc.Green)); }
 
 //}
+#region Dependancies
 
 namespace MaterialSkin.Animations {
     enum AnimationType {
@@ -471,11 +495,25 @@ namespace MaterialSkin.Animations {
                 _animationProgresses[index] = MAX_VALUE;
 
                 for (int i = 0; i < GetAnimationCount(); i++) {
-                    if (_animationDirections[i] == AnimationDirection.InOutIn) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MAX_VALUE) return;
-                    if (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] != MAX_VALUE) return;
+                    if (_animationDirections[i] == AnimationDirection.InOutIn) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MAX_VALUE) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] != MAX_VALUE) {
+                        return;
+                    }
                 }
 
                 _animationTimer.Stop();
@@ -489,11 +527,25 @@ namespace MaterialSkin.Animations {
                 _animationProgresses[index] = MIN_VALUE;
 
                 for (var i = 0; i < GetAnimationCount(); i++) {
-                    if (_animationDirections[i] == AnimationDirection.InOutIn) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MIN_VALUE) return;
-                    if (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] != MIN_VALUE) return;
+                    if (_animationDirections[i] == AnimationDirection.InOutIn) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MIN_VALUE) {
+                        return;
+                    }
+
+                    if (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] != MIN_VALUE) {
+                        return;
+                    }
                 }
 
                 _animationTimer.Stop();
@@ -502,18 +554,21 @@ namespace MaterialSkin.Animations {
         }
 
         public double GetProgress() {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationProgresses.Count == 0)
+            if (_animationProgresses.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             return GetProgress(0);
         }
 
         public double GetProgress(int index) {
-            if (!(index < GetAnimationCount()))
+            if (!(index < GetAnimationCount())) {
                 throw new IndexOutOfRangeException("Invalid animation index");
+            }
 
             return AnimationType switch {
                 AnimationType.Linear =>
@@ -530,52 +585,61 @@ namespace MaterialSkin.Animations {
         }
 
         public Point GetSource(int index) {
-            if (!(index < GetAnimationCount()))
+            if (!(index < GetAnimationCount())) {
                 throw new IndexOutOfRangeException("Invalid animation index");
+            }
 
             return _animationSources[index];
         }
 
         public Point GetSource() {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationSources.Count == 0)
+            if (_animationSources.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             return _animationSources[0];
         }
 
         public AnimationDirection GetDirection() {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationDirections.Count == 0)
+            if (_animationDirections.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             return _animationDirections[0];
         }
 
         public AnimationDirection GetDirection(int index) {
-            if (!(index < _animationDirections.Count))
+            if (!(index < _animationDirections.Count)) {
                 throw new IndexOutOfRangeException("Invalid animation index");
+            }
 
             return _animationDirections[index];
         }
 
         public object[] GetData() {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationDatas.Count == 0)
+            if (_animationDatas.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             return _animationDatas[0];
         }
 
         public object[] GetData(int index) {
-            if (!(index < _animationDatas.Count))
+            if (!(index < _animationDatas.Count)) {
                 throw new IndexOutOfRangeException("Invalid animation index");
+            }
 
             return _animationDatas[index];
         }
@@ -585,31 +649,37 @@ namespace MaterialSkin.Animations {
         }
 
         public void SetProgress(double progress) {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationProgresses.Count == 0)
+            if (_animationProgresses.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             _animationProgresses[0] = progress;
         }
 
         public void SetDirection(AnimationDirection direction) {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationProgresses.Count == 0)
+            if (_animationProgresses.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             _animationDirections[0] = direction;
         }
 
         public void SetData(object[] data) {
-            if (!Singular)
+            if (!Singular) {
                 throw new Exception("Animation is not set to Singular.");
+            }
 
-            if (_animationDatas.Count == 0)
+            if (_animationDatas.Count == 0) {
                 throw new Exception("Invalid animation");
+            }
 
             _animationDatas[0] = data;
         }
@@ -627,3 +697,5 @@ namespace MaterialSkin.Animations {
         InOutRepeatingOut // Same as Out, but changes to InOutRepeatingIn if finished.
     }
 }
+
+#endregion

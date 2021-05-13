@@ -48,8 +48,9 @@ internal static partial class GA_Reset {
                     c.S.VerboseLoggingPrompt = true; // enable again (true is default)
                     Application.Exit();
                 }
-            } else MessageBox.Show(notify, "Reset Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            } else {
+                MessageBox.Show(notify, "Reset Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         } catch (Exception e) { inf.Run(inf.lvls.FatalError, "Reset Geek Assistant", "Error while resetting.", e.ToString()); }
 
     }

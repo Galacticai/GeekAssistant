@@ -25,8 +25,9 @@ internal static partial class fbCMD {
         // kill all fastboot instances before starting a new one
         var processes = Process.GetProcessesByName("fastboot");
         if (processes.Count() > 0) {
-            foreach (Process p in processes)
+            foreach (Process p in processes) {
                 p.Kill();
+            }
         }
 
         // <Failsafe

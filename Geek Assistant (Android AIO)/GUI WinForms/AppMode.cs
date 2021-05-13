@@ -52,8 +52,12 @@ namespace GeekAssistant.Forms {
             AssignEvents();
 
             if (c.S.AppMode_dontshow) {
-                if (c.S.AppMode_newbie) AppMode_Do(0);
-                else if (c.S.AppMode_moderate) AppMode_Do(1);
+                if (c.S.AppMode_newbie) {
+                    AppMode_Do(0);
+                } else if (c.S.AppMode_moderate) {
+                    AppMode_Do(1);
+                }
+
                 Close();
             }
             GA_SetTheme.Run(this);
@@ -92,9 +96,11 @@ namespace GeekAssistant.Forms {
                 startup_dontShow.BackColor = Color.FromArgb(0, 130, 0);
                 startup_dontShow.ForeColor = Color.White;
             } else {
-                if (c.S.DarkTheme)
+                if (c.S.DarkTheme) {
                     startup_dontShow.BackColor = Color.FromArgb(0, 120, 0);
-                else startup_dontShow.BackColor = Color.Honeydew;
+                } else {
+                    startup_dontShow.BackColor = Color.Honeydew;
+                }
 
                 startup_dontShow.ForeColor = SystemColors.ControlText;
             }

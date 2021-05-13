@@ -1,5 +1,5 @@
-﻿using System;
-using GeekAssistant.Forms;
+﻿using GeekAssistant.Forms;
+using System;
 
 internal static partial class UnlockBL {
 
@@ -27,7 +27,7 @@ internal static partial class UnlockBL {
             Home.bar.Value = 10;
             if (!ConnectionIsCompatible.fbIsCompatible("UB")) {
                 Cancelled = true;
-                if (inf.detail.code == "UB-DS")
+                if (inf.detail.code == "UB-DS") {
                     inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n" +
                         $"You can unlock Samsung devices using this method:\n" +
                           $" - Unhide \"Developer options\":\n" +
@@ -36,6 +36,8 @@ internal static partial class UnlockBL {
                             $" ⚠ Warning: Some devices will factory reset when unlocking for security reasons.\n" +
                             $" ⚠ Notice: If you don't see \"OEM Unlock\" then your device is either unlocked by default, " +
                                "or your manufacturer has hidden the option to unlock (Certain tricks needed to make it visible)";
+                }
+
                 throw new Exception();
             }
 
@@ -152,8 +154,9 @@ internal static partial class UnlockBL {
                 if (c.S.DeviceState == "Connected (ADB)" | c.S.DeviceState == "Fastboot mode") {
                     if (inf.Run(inf.lvls.Question, inf.currentTitle,
                                   "We are sorry... Seems like we failed.\nDo you want to reboot your device?",
-                                ("Reboot", "Do Nothing")))
+                                ("Reboot", "Do Nothing"))) {
                         fbCMD.fbDo("reboot");
+                    }
                 }
             }
         }

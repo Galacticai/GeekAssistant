@@ -1,7 +1,7 @@
-﻿using System;
+﻿using GeekAssistant.Forms;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using GeekAssistant.Forms;
 
 internal partial class GA_SetTheme : Theming {
     private static Timer HomeTheme_delayTimer = new() { Interval = 100 };
@@ -45,8 +45,10 @@ internal partial class GA_SetTheme : Theming {
                 HomeTheme_delayTimer.Tick += new(HomeTheme_delayTimer_Tick);
                 if (c.S.VerboseLogging) {
                     string ThemeString = "dark theme";
-                    if (c.S.DarkTheme)
+                    if (c.S.DarkTheme) {
                         ThemeString = "Light Theme";
+                    }
+
                     GA_SetProgressText.Run($"Switched to {ThemeString}.", -1);
                 }
                 if (!initiating & c.S.PerformAnimations) {
@@ -162,7 +164,9 @@ internal partial class GA_SetTheme : Theming {
             c.S.PerformAnimations = false;
             SetControlsArrTheme(Controls_array);
             c.S.PerformAnimations = true;
-        } else SetControlsArrTheme(Controls_array);
+        } else {
+            SetControlsArrTheme(Controls_array);
+        }
 
         var h_add_b = h.AutoDetectDeviceInfo_Button;
         if (c.S.DarkTheme) {

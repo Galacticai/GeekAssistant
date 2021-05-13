@@ -1,7 +1,7 @@
-﻿using System;
+﻿using GeekAssistant.Forms;
+using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using GeekAssistant.Forms;
 
 namespace GeekAssistant {
     static class RunGeekAssistant {
@@ -34,7 +34,9 @@ namespace GeekAssistant {
         [System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptions]
         private static void Main() {
             //Single Instance 
-            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1) return;
+            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1) {
+                return;
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

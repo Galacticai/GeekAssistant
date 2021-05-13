@@ -1,8 +1,7 @@
-﻿using System.Drawing;
-using GeekAssistant.Forms;
-using System.IO;
-using Markdig;
+﻿using GeekAssistant.Forms;
 using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 internal static partial class GA_Log {
@@ -11,17 +10,23 @@ internal static partial class GA_Log {
 
     private static Home Home = null;
     private static void RefresHome() {
-        foreach (Form h in Application.OpenForms)
-            if (h.GetType() == typeof(Home))
+        foreach (Form h in Application.OpenForms) {
+            if (h.GetType() == typeof(Home)) {
                 Home = (Home)h;
+            }
+        }
     }
     public static void CreateLog() {
         RefresHome();
 
-        if (!Directory.Exists(c.GA))
+        if (!Directory.Exists(c.GA)) {
             Directory.CreateDirectory(c.GA);
-        if (!Directory.Exists($@"{c.GA}\log"))
+        }
+
+        if (!Directory.Exists($@"{c.GA}\log")) {
             Directory.CreateDirectory($@"{c.GA}\log");
+        }
+
         latestLogName = $"GA-log_{DateAndTime.Now:(yyy.MM.dd)-hh.mm.ss}.log";
         latestLogPath = $@"{c.GA}\log\{latestLogName}";
         File.Create(latestLogPath).Dispose();
@@ -69,8 +74,11 @@ internal static partial class GA_Log {
             {
                 Home.ShowLog_ErrorBlink_Timer.Stop();
                 Home.ShowLog_InfoBlink_Timer.Stop();
-                if (c.S.DarkTheme) Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
-                else Home.ShowLog_Button.Icon = prop.x24.Commands_24;
+                if (c.S.DarkTheme) {
+                    Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
+                } else {
+                    Home.ShowLog_Button.Icon = prop.x24.Commands_24;
+                }
 
                 // .ShowLog_Button.BackColor = Color.White
                 Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
@@ -79,11 +87,14 @@ internal static partial class GA_Log {
     }
 
     public static void ClearIf30days() {
-        if (!Directory.Exists(c.GA_logs))
+        if (!Directory.Exists(c.GA_logs)) {
             return; // Exit if doesn't exist
+        }
+
         foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles("*.txt")) {
-            if ((DateAndTime.Now - file.CreationTime).Days > 30)
+            if ((DateAndTime.Now - file.CreationTime).Days > 30) {
                 file.Delete();
+            }
         }
     }
 }

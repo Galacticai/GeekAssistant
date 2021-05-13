@@ -1,8 +1,4 @@
-﻿using GeekAssistant.Forms;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using MetroFramework;
+﻿using System;
 
 internal static partial class c {
 

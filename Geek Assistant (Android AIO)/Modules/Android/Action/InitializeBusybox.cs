@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
@@ -13,8 +11,10 @@ internal static partial class InitializeBusybox {
         inf.detail.code = "BI-00";
         if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
                        "This is not finished. Go?",
-                     ("Go", "Cancel")))
+                     ("Go", "Cancel"))) {
             return;
+        }
+
         inf.Run(inf.lvls.Error, "(Disabled) " + inf.currentTitle,
                 "This has been disabled by the developer");
         var dev = madb.GetListOfDevice()[0];
@@ -23,8 +23,10 @@ internal static partial class InitializeBusybox {
             goto Finish_madb_InstallBusyboxReady;
         }
 
-        if (!File.Exists($@"{c.GA_tools}\busybox"))
+        if (!File.Exists($@"{c.GA_tools}\busybox")) {
             GA_PrepareAppdata.Run();
+        }
+
         adbCMD.adbDo("shell mkdir /data/busybox");
         GA_Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
         if (adbCMD.adbOutput.ToLower().Contains("denied")) {
@@ -43,8 +45,11 @@ internal static partial class InitializeBusybox {
         GA_Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c './data/busybox --install'");
         GA_Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
-        if (dev.BusyBox.Available) MessageBox.Show("busybox available");
-        else MessageBox.Show("busybox not installed");
+        if (dev.BusyBox.Available) {
+            MessageBox.Show("busybox available");
+        } else {
+            MessageBox.Show("busybox not installed");
+        }
 
         // adb shell mkdir /data/busybox
         // adb push busybox /data/busybox

@@ -1,14 +1,11 @@
 ﻿using MaterialSkin;
-using MaterialSkin.Controls;
 using MaterialSkin.Animations;
+using MaterialSkin.Controls;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 public class MaterialTextBox : MaterialSingleLineTextField, IMaterialControl {
     //Properties for managing the material design properties
@@ -55,7 +52,7 @@ public class MaterialTextBox : MaterialSingleLineTextField, IMaterialControl {
 
         //Fix for tabstop
         _baseTextBox.TabStop = true;
-        this.TabStop = false;
+        TabStop = false;
     }
 
     protected override void OnPaint(PaintEventArgs pevent) {

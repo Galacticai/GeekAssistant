@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 internal static partial class GA_HideAllForms {
 
@@ -17,19 +16,25 @@ internal static partial class GA_HideAllForms {
         if (Hide) {
             HiddenForms = Application.OpenForms;
             foreach (Form formname in Application.OpenForms) // Save all forms to HiddenFormsList then hide
+{
                 formname.Hide();
+            }
         } else {
             if (HiddenForms.Count == 0) { // failsafe
                 inf.detail.code += "-HF0";
                 inf.Run(inf.lvls.FatalError, "Something went wrong.", "We failed to revive hidden windows.");
                 if (inf.Run(inf.lvls.Question, "Refresh Geek Assistant?",
                               "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",
-                            ("Refresh", "No")))
+                            ("Refresh", "No"))) {
                     Application.Restart();
+                }
+
                 return;
             }
             foreach (Form formname in HiddenForms) // Show all forms saved in list
+{
                 formname.Show();
+            }
 
             HiddenForms = null; //reset
             currentForm.BringToFront();

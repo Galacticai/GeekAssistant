@@ -1,19 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Managed;
-using Microsoft.VisualBasic.CompilerServices; // Install-Package Microsoft.VisualBasic
 
 internal static partial class GA_adb {
 
 
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
-        if (DeviceSerial != null) c.S.DeviceSerial = DeviceSerial;
-        if (DeviceState != null) c.S.DeviceState = DeviceState;
-        if (DeviceManufacturer != null) c.S.DeviceManufacturer = DeviceManufacturer;
-        if (DeviceAPILevel > 0) c.S.DeviceAPILevel = DeviceAPILevel;
-        if (DeviceUnlockedBootloader != default) c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
-        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomRecovery = DeviceCustomRecovery;
-        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomROM = DeviceCustomRom;
+        if (DeviceSerial != null) {
+            c.S.DeviceSerial = DeviceSerial;
+        }
+
+        if (DeviceState != null) {
+            c.S.DeviceState = DeviceState;
+        }
+
+        if (DeviceManufacturer != null) {
+            c.S.DeviceManufacturer = DeviceManufacturer;
+        }
+
+        if (DeviceAPILevel > 0) {
+            c.S.DeviceAPILevel = DeviceAPILevel;
+        }
+
+        if (DeviceUnlockedBootloader != default) {
+            c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
+        }
+
+        if (DeviceUnlockedBootloader != default) {
+            c.S.DeviceCustomRecovery = DeviceCustomRecovery;
+        }
+
+        if (DeviceUnlockedBootloader != default) {
+            c.S.DeviceCustomROM = DeviceCustomRom;
+        }
+
         c.S.Save();
     }
 
@@ -25,7 +44,10 @@ internal static partial class GA_adb {
     public static string FixManufacturerString(string ManufacturerString) {
         string mStr = ManufacturerString.ToString();
         mStr = mStr.Substring(0, 1).ToUpper() + mStr.Substring(1).ToLower();
-        if (mStr == "Lge") mStr = "LG"; // Special case for LG 
+        if (mStr == "Lge") {
+            mStr = "LG"; // Special case for LG 
+        }
+
         return mStr;
     }
 
@@ -138,8 +160,10 @@ internal static partial class GA_adb {
 
     public static string[] ConvertAPILevelToAVer(int APIint, bool silent = false) {
         if (APIint <= 0) {
-            if (!silent)
+            if (!silent) {
                 inf.Run(inf.lvls.FatalError, inf.currentTitle, "Error while processing your device API level!");
+            }
+
             return new[] { "❌", "❌" };
         }
         ApiToVer.TryGetValue(APIint, out string[] disposableDictionary);
@@ -257,8 +281,10 @@ internal static partial class GA_adb {
             return "";
         }
 
-        if (!dev.BusyBox.Available)
+        if (!dev.BusyBox.Available) {
             InitializeBusybox.Run(true);
+        }
+
         dev.ExecuteRootShellCommand($"busybox killall system_server", scr);
         return scr.Result;
     }

@@ -1,15 +1,20 @@
-﻿using System;
+﻿using Managed.Adb;
 using System.Text.RegularExpressions;
-using Managed.Adb;
 
 internal static partial class cmd {
     public static string madbShell(Device dev, string cmd, bool sudo = false) {
-        if (ConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials()))
+        if (ConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials())) {
             inf.Run(inf.detail, ("Close", null));
+        }
 
         madb.madbBridge(); // failsafe
         CommandResultReceiver crr = new();
-        if (sudo) dev.ExecuteRootShellCommand(cmd, crr); else dev.ExecuteShellCommand(cmd, crr);
+        if (sudo) {
+            dev.ExecuteRootShellCommand(cmd, crr);
+        } else {
+            dev.ExecuteShellCommand(cmd, crr);
+        }
+
         return crr.Result;
     }
     public static void Run(string command) {

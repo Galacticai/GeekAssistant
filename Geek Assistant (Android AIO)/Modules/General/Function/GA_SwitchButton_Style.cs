@@ -18,7 +18,9 @@ internal static partial class GA_SwitchButton_Style {
 
         // Fixing button flying away problem when long clicking with keyboard (repeating KeyDown event) 
         aButton_xy = (aButton.Left, aButton.Top);
-        if (ButtonPressedAlready) return;
+        if (ButtonPressedAlready) {
+            return;
+        }
 
         ButtonPressedAlready = true;
         aButton.ForeColor = Color.White;
@@ -30,8 +32,9 @@ internal static partial class GA_SwitchButton_Style {
     public static void MouseUp(Control aButton) {
         ButtonPressedAlready = false;
         aButton.ForeColor = colors.fg;
-        if (aButton.BackColor == Color.Green | aButton.BackColor == Color.FromArgb(0, 130, 0))
+        if (aButton.BackColor == Color.Green | aButton.BackColor == Color.FromArgb(0, 130, 0)) {
             aButton.ForeColor = Color.White;
+        }
 
         aButton.Left = aButton_xy.x;
         aButton.Top = aButton_xy.y;
@@ -77,10 +80,16 @@ internal static partial class GA_SwitchButton_Style {
     /// <param name="aTooltip_txt">Tooltip text</param>
     /// <returns></returns>
     public static bool MouseClick(Control aButton, bool prop, string aTooltip_txt) {
-        if (prop) aButton.BackColor = colors.SwitchButton.bg;
-        else aButton.BackColor = colors.SwitchButton.bg_Active;
-        if (!string.IsNullOrEmpty(aTooltip_txt))
+        if (prop) {
+            aButton.BackColor = colors.SwitchButton.bg;
+        } else {
+            aButton.BackColor = colors.SwitchButton.bg_Active;
+        }
+
+        if (!string.IsNullOrEmpty(aTooltip_txt)) {
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {aTooltip_txt}");
+        }
+
         return !prop;
         //c.S.Save();
     }
@@ -93,7 +102,8 @@ internal static partial class GA_SwitchButton_Style {
             aButton.ForeColor = colors.fg;
             aButton.BackColor = colors.SwitchButton.bg;
         }
-        if (!string.IsNullOrEmpty(tooltip.GetToolTip(aButton)))
+        if (!string.IsNullOrEmpty(tooltip.GetToolTip(aButton))) {
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {txt.WithoutState_SwitchButton_tooltipTxt(aButton)}");
+        }
     }
 }

@@ -135,8 +135,9 @@ namespace GeekAssistant.Forms {
                 GA_SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
                 return;
             }
-            if (willClear.Length <= 9)
+            if (willClear.Length <= 9) {
                 GA_SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+            }
         }
         private void ResetGA_MouseDown(object sender, EventArgs e) {
             ResetGA.ForeColor = colors.bg;
@@ -162,16 +163,18 @@ namespace GeekAssistant.Forms {
             GA_SetTooltipInfo.Run(ref tooltip, ResetGA_SelectAll, "Select All", tooltip.GetToolTip(ResetGA_SelectAll));
         }
         private void ResetGA_SelectAll_MouseDown(object sender, EventArgs e) {
-            if (c.S.DarkTheme)
+            if (c.S.DarkTheme) {
                 ResetGA_SelectAll.Image = prop.x24.SelectAll_B_24;
-            else ResetGA_SelectAll.Image = prop.x24.SelectAll_W_24;
-
+            } else {
+                ResetGA_SelectAll.Image = prop.x24.SelectAll_W_24;
+            }
         }
         private void ResetGA_SelectAll_MouseUp(object sender, EventArgs e) {
-            if (c.S.DarkTheme)
+            if (c.S.DarkTheme) {
                 ResetGA_SelectAll.Image = prop.x24.SelectAll_W_24;
-            else ResetGA_SelectAll.Image = prop.x24.SelectAll_B_24;
-
+            } else {
+                ResetGA_SelectAll.Image = prop.x24.SelectAll_B_24;
+            }
         }
         private void ResetGA_SelectAll_Click(object sender, EventArgs e) {
             if (ResetGA_Settings_CheckBox.Checked && ResetGA_LogsOnly_CheckBox.Checked) {
@@ -213,8 +216,9 @@ namespace GeekAssistant.Forms {
             //}
             //willClear += "?"
             GA_SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", willClear);
-            if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked)
+            if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked) {
                 GA_SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
+            }
         }
 
         ////ResetGA_Settings_CheckBox - Label
@@ -318,9 +322,11 @@ namespace GeekAssistant.Forms {
             if (c.S.VerboseLogging) {
                 if (c.S.VerboseLoggingPrompt) {
                     VerbousLoggingPrompt_SwitchButton.PerformClick();
-                    if (c.S.DarkTheme)
+                    if (c.S.DarkTheme) {
                         VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(64, 64, 64);
-                    else VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(191, 191, 191);
+                    } else {
+                        VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(191, 191, 191);
+                    }
                 }
                 VerbousLoggingPrompt_SwitchButton.Enabled = false;
             } else {

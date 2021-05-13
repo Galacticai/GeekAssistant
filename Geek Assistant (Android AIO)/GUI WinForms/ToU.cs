@@ -1,6 +1,4 @@
-﻿
-using GeekAssistant.Forms;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -38,7 +36,9 @@ namespace GeekAssistant.Forms {
             base.OnFormClosing(e);
             c.S.Save();
             RunningAlready = false;
-            if (ToURead_Timer.Enabled) ToURead_Timer.Stop();
+            if (ToURead_Timer.Enabled) {
+                ToURead_Timer.Stop();
+            }
         }
 
         public int ToURead_TimeAmount = 6;
@@ -85,7 +85,12 @@ namespace GeekAssistant.Forms {
             }
 
             if (c.S.ToU_dontShow) {  //ToU():[ Dont show ToU() >> Show Startup:[ Don//t show AppMode() >> Start newbie / moderate ] ]
-                if (c.S.AppMode_dontshow) Home.Show(); else new AppMode().Show();
+                if (c.S.AppMode_dontshow) {
+                    Home.Show();
+                } else {
+                    new AppMode().Show();
+                }
+
                 Close();
             }
         }
@@ -95,10 +100,17 @@ namespace GeekAssistant.Forms {
             string terms_rtf = $@"{c.GA}\terms.rtf"; //set destination
 
             var Current_rtf = prop.GA.TermsOfUse; //set default file
-            if (c.S.DarkTheme) Current_rtf = prop.GA.TermsOfUse_Dark; //set dark file if dark theme
+            if (c.S.DarkTheme) {
+                Current_rtf = prop.GA.TermsOfUse_Dark; //set dark file if dark theme
+            }
 
-            if (!Directory.Exists(c.GA)) Directory.CreateDirectory(c.GA); //create GA folder if not present
-            if (File.Exists(terms_rtf)) File.Delete(terms_rtf); //delete old file if present
+            if (!Directory.Exists(c.GA)) {
+                Directory.CreateDirectory(c.GA); //create GA folder if not present
+            }
+
+            if (File.Exists(terms_rtf)) {
+                File.Delete(terms_rtf); //delete old file if present
+            }
 
             File.WriteAllText(terms_rtf, Current_rtf); //write file to GA
             TermsOfUse_Box.LoadFile(terms_rtf); //load file to the box

@@ -3,30 +3,25 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-internal static partial class math {
-    public struct Random {
-        /// <summary>
-        /// Generate a random integer between <c>min</c> and <c>max</c> paremeters
-        /// </summary>
-        /// <param name="min">Minimum range for output</param>
-        /// <param name="max">Maximum range for output</param>
-        /// <returns><paramref name="max"/> &lt; (Integer) &lt; <paramref name="max"/></returns>
-        public static int RandomInt(int min, int max)
-                => new System.Random().Next(min, max);
-
-        /// <summary>
-        /// Chooses a random object from input array
-        /// </summary>
-        /// <param name="arr">Input Object array</param>
-        /// <returns>Random object from input array</returns>
-        public static object RandomObjectFromArr(object[] arr)
-                => arr[RandomInt(0, arr.Length - 1)]; // -1 because it starts from 0
-    }
-
+internal static class math {
+    /// <summary> Manipulate numbers </summary>
     public struct Arithmatics {
-        /// <summary>
-        /// Force input variable into the range of min and max
-        /// </summary>
+        /// <summary> Random manipulation </summary>
+        public struct Random {
+            /// <summary> Generate a random integer between <c>min</c> and <c>max</c> paremeters </summary>
+            /// <param name="min">Minimum range for output</param>
+            /// <param name="max">Maximum range for output</param>
+            /// <returns><paramref name="max"/> &lt; (Integer) &lt; <paramref name="max"/></returns>
+            public static int RandomInt(int min, int max)
+                    => new System.Random().Next(min, max);
+
+            /// <summary> Chooses a random object from input array </summary>
+            /// <param name="arr">Input Object array</param>
+            /// <returns>Random object from input array</returns>
+            public static object RandomObjectFromArr(object[] arr)
+                    => arr[RandomInt(0, arr.Length - 1)]; // -1 because it starts from 0
+        }
+        /// <summary> Force input variable into the range of min and max </summary>
         /// <param name="input">Value to process</param>
         /// <param name="min">Minimum floor</param>
         /// <param name="max">Maximum ceiling</param>
@@ -35,26 +30,12 @@ internal static partial class math {
         /// <item>Returns <paramref name="min"/> — if <paramref name="input"/> &lt; <paramref name="min"/></item>
         /// <item>Returns <paramref name="input"/> — if already in range</item>
         /// </list></returns>
-        public static double ForceInRange(double input, double min, double max) {
+        public static double ForcedInRange(double input, double min, double max) {
             if (input > max) return max;
             if (input < min) return min;
             return input;
         }
-        /// <summary>
-        /// Force input variable into the range of min and max
-        /// </summary>
-        /// <param name="input">Value to process</param>
-        /// <param name="min">Minimum floor</param>
-        /// <param name="max">Maximum ceiling</param>
-        /// <returns><list type="bullet">
-        /// <item>Returns <paramref name="max"/> — if <paramref name="input"/> &gt; <paramref name="max"/></item>
-        /// <item>Returns <paramref name="min"/> — if <paramref name="input"/> &lt; <paramref name="min"/></item>
-        /// <item>Returns <paramref name="input"/> — if already in range</item>
-        /// </list></returns>
-        public static void ForceInRange(ref double input, double min, double max) {
-            if (input > max) input = max;
-            if (input < min) input = min;
-        }
+
         /// <summary> Check if <paramref name="input"/> is in range </summary>
         /// <param name="input">Value to process</param>
         /// <param name="min">Minimum floor</param>
@@ -64,12 +45,14 @@ internal static partial class math {
             => input <= max & input >= min;
     }
 
+    /// <summary> Predefined functions </summary>
+    public struct Fx {
 
-    public struct fx {
         // s    .- 
         // |   /
         // | _-
-        // 0一一一s
+        // 0一一一s  
+
         /// <summary>
         /// <list>
         /// <item>Puts the value on a curve function</item>
@@ -85,14 +68,16 @@ internal static partial class math {
         /// <param name="scale">Size of the wave (Half wave)</param>
         /// <returns>Returns <c>f(x)</c></returns>
         public static double cosSmoothStartEnd(double x, double scale) {
-            Arithmatics.ForceInRange(x, 0, scale); // force x between 0一一一s
+            Arithmatics.ForcedInRange(x, 0, scale); // force x between 0一一一s
             return scale * (-Math.Cos(x * Math.PI) / (2 * scale) + 1 / 2);
         }
+
 
         // s -.
         // |   \
         // |    -_
         // 0一一一s
+
         /// <summary>
         /// <list>
         /// <item>Puts the value on a curve function</item>
@@ -107,15 +92,17 @@ internal static partial class math {
         /// <param name="x">input</param>
         /// <param name="scale">Size of the wave (Half wave)</param>
         /// <returns>Returns <c>f(x)</c></returns>
-        private static double sinSmoothEnd_01(double x, double scale) {
-            Arithmatics.ForceInRange(x, 0, scale); // force x between 0一一一s
+        public static double sinSmoothEnd_01(double x, double scale) {
+            Arithmatics.ForcedInRange(x, 0, scale); // force x between 0一一一s
             return scale * (Math.Sin(x * Math.PI + Math.PI / 2) / 2 + 1 / 2);
         }
+
 
         // s \
         // |  \
         // |   *._
         // 0一一一s
+
         /// <summary>
         /// <list>
         /// <item>Puts the value on a curve function</item>
@@ -131,14 +118,16 @@ internal static partial class math {
         /// <param name="scale">Size of the wave (Half wave)</param>
         /// <returns>Returns <c>f(x)</c></returns>
         public static double sinSmoothEnd(double x, double scale) {
-            Arithmatics.ForceInRange(x, 0, scale); // force x between 0一一一s
+            Arithmatics.ForcedInRange(x, 0, scale); // force x between 0一一一s
             return scale * (-Math.Sin(x * (Math.PI / 2) / scale) + 1);
         }
+
 
         // s --.
         // |    \
         // |     \
         // 0一一一s
+
         /// <summary>
         /// <list>
         /// <item>Puts the value on a curve function</item>
@@ -154,13 +143,13 @@ internal static partial class math {
         /// <param name="scale">Size of the wave (Half wave)</param>
         /// <returns>Returns <c>f(x)</c></returns>
         public static double sinSmoothStart(double x, double scale) {
-            Arithmatics.ForceInRange(x, 0, scale); // force x between 0一一一s
+            Arithmatics.ForcedInRange(x, 0, scale); // force x between 0一一一s
             return scale * Math.Sin(x * (Math.PI / (2 * scale)) + Math.PI / 2);
         }
     }
 
     public struct Vision {
-        /// <summary>Blends the specified colors together.</summary>
+        /// <summary>  Blends the specified colors together. </summary>
         /// <param name="foreColor">Color to blend onto the background color.</param>
         /// <param name="backColor">Color to blend the other color onto.</param>
         /// <param name="amount"> 
@@ -179,7 +168,7 @@ internal static partial class math {
             return Color.FromArgb(R, G, B);
         }
 
-        /// <returns>True if both images are equal (Brightness matrix hash)</returns>
+        /// <returns>true if brightness matrix hashes are of the images are equal</returns>
         public static bool CompareImagesBritghtnessMatrix(Image input1, Image input2)
                 => GetImageHash(input1) == GetImageHash(input2) ? true : false;
         private static List<bool> GetImageHash(Image input) {
@@ -198,17 +187,17 @@ internal static partial class math {
 
     public struct Geometry {
         /// <param name="boundsRect">Original rectangle to convert</param>
-        /// <param name="radius">Radius of rounded corners/param>
+        /// <param name="radius">Radius of rounded corners</param>
         /// <returns>Rounded rectangle as <see cref="GraphicsPath"/></returns>
         public static GraphicsPath RoundedRect(Rectangle boundsRect, int radius) {
             // Bound radius by half the height and width of boundsRect  
-            radius = (int)math.Arithmatics.ForceInRange(radius, 0, boundsRect.Height / 2);
-            radius = (int)math.Arithmatics.ForceInRange(radius, 0, boundsRect.Width / 2);
+            radius = (int)math.Arithmatics.ForcedInRange(radius, 0, boundsRect.Height / 2);
+            radius = (int)math.Arithmatics.ForcedInRange(radius, 0, boundsRect.Width / 2);
 
             int diameter = radius * 2;
             Rectangle arc = new(boundsRect.Location, new Size(diameter, diameter));
             GraphicsPath path = new();
-
+            path.StartFigure();
             if (radius == 0) {
                 path.AddRectangle(boundsRect);
                 return path;
