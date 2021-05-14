@@ -42,7 +42,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
             Invalidate();
         }
     }
-    private Color ForeColorA60 => Color.FromArgb(50, ForeColor);
+    private Color ForeColorA64 => Color.FromArgb(64, ForeColor);
     private Color saved_ForeColor = Color.Empty;
     private Color _ForeColor;
     public override Color ForeColor {
@@ -101,13 +101,13 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         _hoverAnimationManager.OnAnimationProgress += sender => Invalidate();
         _animationManager.OnAnimationProgress += sender => Invalidate();
 
-        base.ForeColor = ForeColor;
-        base.BackColor = BackColor;
+        base.ForeColor = _ForeColor;
+        base.BackColor = _BackColor;
     }
 
     private Rectangle iconRect;
     protected override void OnPaint(PaintEventArgs pevent) {
-        var g = pevent.Graphics;
+        Graphics g = pevent.Graphics;
         if (Radius != 0
            | string.IsNullOrEmpty(Text)
            | _animationManager.IsAnimating()
@@ -121,54 +121,67 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
 
 
         g.Clear(Parent.BackColor);
-        Rectangle fxRect = new(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-        GraphicsPath fxRoundedRect = math.Geometry.RoundedRect(fxRect, Radius);
+        Rectangle FxRect = new(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+        GraphicsPath fxPath;
+        if (string.IsNullOrEmpty(Text) & Icon != null) // Circle
+            fxPath = math.Geometry.Circle(
+                                ClientRectangle.Width / 2 - .5f,
+                                ClientRectangle.Height / 2 - .5f,
+                                ClientRectangle.Width / 2 - 1
+                            );//-1 offset left-right top-bottom 
+        else fxPath = math.Geometry.RoundedRect(FxRect, Radius); //Rect or RoundedRect
+
+
+
+        #region BackColor support
         //using (Brush b = new SolidBrush(
         //            Enabled ?
         //            Color.FromArgb(Math.Abs((int)(_hoverAnimationManager.GetProgress() * realBackColor.A) - 255), realBackColor.RemoveAlpha())
         //            : Color.Transparent))
         //    if (Idle) g.FillPath(b, RoundedRect(fxRect, Radius));
+        #endregion
 
         //Hover 
         //SkinManager.GetFlatButtonHoverBackgroundColor(); 
         using (Brush b = new SolidBrush(
-                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * 60 /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha()))) {
-            if (string.IsNullOrEmpty(Text) & Icon != null) {
-                GraphicsPath hoverCirclePath =
-                    math.Geometry.Circle(ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 1);
-                math.Geometry.FillCircle(g, b,
-                            ClientRectangle.Width / 2 - .5f, ClientRectangle.Height / 2 - .5f, ClientRectangle.Width / 2 - 1);//-1 offset left-right top-bottom
-            } else {
-                g.FillPath(b, fxRoundedRect);
-            }
+                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * (Width == Height ? 128 : 64) /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha()))) {
+            g.FillPath(b, fxPath);
         }
+
 
         //Ripple 
         if (_animationManager.IsAnimating()) {
             Color RippleColor = Color.FromArgb(60, saved_ForeColor);
-            Rectangle rippleRect; //GraphicsPath rippleRoundedRect;
+            Rectangle rippleRect; GraphicsPath fxRipple;
+            Region fxIntersect = new(fxPath);
+
             for (var i = 0; i < _animationManager.GetAnimationCount(); i++) {
                 double animationValue = _animationManager.GetProgress(i);
                 Point animationSource = _animationManager.GetSource(i);
 
-                using (Brush rippleBrush = new SolidBrush(Color.FromArgb((int)((101 - (animationValue * 100)) * 2), RippleColor))) {
+                using (Brush b = new SolidBrush(Color.FromArgb((int)((101 - (animationValue * 100)) * 2), RippleColor))) {
                     int rippleSize = (int)(animationValue * Width * 2);
                     rippleRect = new(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize);
+                    fxRipple = math.Geometry.EllipseInRect(rippleRect);
+                    fxIntersect.Intersect(fxRipple);
+                    g.FillRegion(b, fxIntersect);
 
-                    if (string.IsNullOrEmpty(Text) & Icon != null) {
-                        math.Geometry.FillCircle(g, rippleBrush, animationSource.X, animationSource.Y, rippleSize);
-                        continue;
-                    }
-                    if (Radius == 0) {
-                        g.FillEllipse(rippleBrush, rippleRect); //fill using an ellipse if no radius
-                    } else {
+                    //continue; 
+                    //if (string.IsNullOrEmpty(Text) & Icon != null) {
+                    //    math.Geometry.FillCircle(g, b, animationSource.X, animationSource.Y, rippleSize);
+                    //    g.FillRegion(new SolidBrush(colors.UI.bg()), fxIntersect);
+                    //    continue;
+                    //}
+                    //if (Radius == 0)
+                    //    g.FillEllipse(b, rippleRect); //fill using an ellipse if no radius
+                    //else {
+                    //    if (rippleRect.Width > ClientRectangle.Width * 0.8)
+                    //        g.FillEllipse(b, rippleRect); //fill ellipse before reaching 80%
+                    //    else
+                    //        g.FillPath(b, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
 
-                        if (rippleRect.Width > ClientRectangle.Width * 0.8) {
-                            g.FillEllipse(rippleBrush, rippleRect); //fill ellipse before reaching 80%
-                        } else {
-                            g.FillPath(rippleBrush, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
-                        }
-                    }
+                    //}
+                    //g.FillRegion(new SolidBrush(colors.UI.bg()), fxIntersect);
                 }
             }
         }
@@ -208,16 +221,16 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
                      textRect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
                      );
     }
-
+    private bool _AutoSize;
     public override bool AutoSize {
-        get => base.AutoSize;
+        get => _AutoSize;
         set {
-            base.AutoSize = value;
+            _AutoSize = value;
             GetPreferredSize();
             Invalidate();
         }
     }
-    private Size GetPreferredSize() => AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
+    private Size GetPreferredSize() => _AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
     public override Size GetPreferredSize(Size proposedSize) {
         Size result = new((int)Math.Ceiling(_textSize.Width) + 16, base.Height);
         if (Icon != null) {
@@ -231,7 +244,6 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         return result;
     }
     private bool animating = false;
-    private Timer animTimer = new() { Interval = 501 };
     protected override void OnCreateControl() {
         base.OnCreateControl();
         if (DesignMode) {
@@ -248,7 +260,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
                     saved_ForeColor = ForeColor;
                 }
 
-                Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA60, colors.bg).GetBrightness() > 0.5f
+                Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA64, colors.UI.bg()).GetBrightness() > 0.5f
                                                      ? colors.constColors.fg : colors.constColors.bg); //flip to current anti-bg color on hover  
             }
             Invalidate();
@@ -258,16 +270,11 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
 
             _hoverAnimationManager.StartNewAnimation(AnimationDirection.Out);
 
-            //if (animating) ForeColor = saved_ForeColor;
-            //else {
-            animTimer.Start();
+            Scheduler s = new();
             animating = true;
             Animate.Run(this, nameof(ForeColor), saved_ForeColor);
-            animTimer.Tick += (sender, ev) => {
-                animating = false;
-                animTimer.Stop();
-            };
-            //}
+            s.Execute(() => animating = false, 500);
+
             Invalidate();
         };
         MouseDown += (sender, ev) => {
@@ -293,8 +300,8 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
 //    public static MaterialTheme style(Color f, Color b, Color x)
 //         => new MaterialTheme { fg = f, bg = b, fx = x };
 //    /// <summary> Green</summary>
-//    public MaterialTheme Default { get => style(colors.fg, Color.Transparent, Color.FromArgb(60, colors.Misc.Green)); }
-//    public MaterialTheme Default_Colored { get => style(colors.fg, Color.FromArgb(128, colors.Misc.Green), Color.FromArgb(60, colors.Misc.Green)); }
+//    public MaterialTheme Default { get => style(colors.UI.fg, Color.Transparent, Color.FromArgb(60, colors.Misc.Green)); }
+//    public MaterialTheme Default_Colored { get => style(colors.UI.fg, Color.FromArgb(128, colors.Misc.Green), Color.FromArgb(60, colors.Misc.Green)); }
 
 //}
 #region Dependancies

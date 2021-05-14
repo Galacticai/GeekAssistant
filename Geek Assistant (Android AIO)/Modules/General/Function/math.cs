@@ -253,7 +253,14 @@ internal static class math {
                               radius + radius,
                               radius + radius);
             return result;
+        }
 
+        /// <param name="boundsRect">Parent rectangle</param>
+        /// <returns>Circle path as <see cref="GraphicsPath"/> bounded by <paramref name="boundsRect"/></returns>
+        public static GraphicsPath EllipseInRect(Rectangle boundsRect) {
+            GraphicsPath result = new();
+            result.AddEllipse(boundsRect);
+            return result;
         }
     }
 }

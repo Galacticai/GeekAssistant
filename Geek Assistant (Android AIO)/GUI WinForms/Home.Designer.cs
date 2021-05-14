@@ -120,6 +120,10 @@ namespace GeekAssistant.Forms {
             this.CustomRecovery_Label = new System.Windows.Forms.Label();
             this.CustomROM_Title_Label = new System.Windows.Forms.Label();
             this.CustomROM_Label = new System.Windows.Forms.Label();
+            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -139,6 +143,7 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenLogFolder
@@ -160,7 +165,7 @@ namespace GeekAssistant.Forms {
             // 
             // Toggle_ManualDeviceInfo_Button
             // 
-            this.Toggle_ManualDeviceInfo_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Toggle_ManualDeviceInfo_Button.AutoSize = true;
             this.Toggle_ManualDeviceInfo_Button.Depth = 0;
             this.Toggle_ManualDeviceInfo_Button.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Toggle_ManualDeviceInfo_Button.Icon = null;
@@ -202,7 +207,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -310,6 +315,7 @@ namespace GeekAssistant.Forms {
             // 
             // FlashZip_Button
             // 
+            this.FlashZip_Button.AutoSize = true;
             this.FlashZip_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FlashZip_Button.Depth = 0;
             this.FlashZip_Button.Icon = null;
@@ -318,16 +324,16 @@ namespace GeekAssistant.Forms {
             this.FlashZip_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.FlashZip_Button.Name = "FlashZip_Button";
             this.FlashZip_Button.Primary = false;
-            this.FlashZip_Button.Size = new System.Drawing.Size(160, 36);
+            this.FlashZip_Button.Size = new System.Drawing.Size(94, 36);
             this.FlashZip_Button.TabIndex = 85583;
             this.FlashZip_Button.Text = "Start Flashing";
             this.FlashZip_Button.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.FlashZip_Button.UseVisualStyleBackColor = false;
             // 
             // About_Button
             // 
             this.About_Button.AutoSize = true;
             this.About_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.About_Button.BackColor = System.Drawing.Color.Transparent;
             this.About_Button.Depth = 0;
             this.About_Button.FlatAppearance.BorderSize = 0;
             this.About_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -340,7 +346,7 @@ namespace GeekAssistant.Forms {
             this.About_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.About_Button.Name = "About_Button";
             this.About_Button.Primary = true;
-            this.About_Button.Size = new System.Drawing.Size(44, 36);
+            this.About_Button.Size = new System.Drawing.Size(36, 36);
             this.About_Button.TabIndex = 85587;
             this.About_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.About_Button.UseVisualStyleBackColor = false;
@@ -349,7 +355,6 @@ namespace GeekAssistant.Forms {
             // 
             this.Settings_Button.AutoSize = true;
             this.Settings_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Settings_Button.BackColor = System.Drawing.Color.Transparent;
             this.Settings_Button.Depth = 0;
             this.Settings_Button.FlatAppearance.BorderSize = 0;
             this.Settings_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -362,7 +367,7 @@ namespace GeekAssistant.Forms {
             this.Settings_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Settings_Button.Name = "Settings_Button";
             this.Settings_Button.Primary = true;
-            this.Settings_Button.Size = new System.Drawing.Size(44, 36);
+            this.Settings_Button.Size = new System.Drawing.Size(36, 36);
             this.Settings_Button.TabIndex = 85588;
             this.Settings_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Settings_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -371,7 +376,7 @@ namespace GeekAssistant.Forms {
             // Feedback_Button
             // 
             this.Feedback_Button.AutoSize = true;
-            this.Feedback_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Feedback_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Feedback_Button.Depth = 0;
             this.Feedback_Button.FlatAppearance.BorderSize = 0;
             this.Feedback_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -384,7 +389,7 @@ namespace GeekAssistant.Forms {
             this.Feedback_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Feedback_Button.Name = "Feedback_Button";
             this.Feedback_Button.Primary = true;
-            this.Feedback_Button.Size = new System.Drawing.Size(44, 36);
+            this.Feedback_Button.Size = new System.Drawing.Size(36, 36);
             this.Feedback_Button.TabIndex = 85589;
             this.Feedback_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Feedback_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -498,7 +503,6 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowLog_Button.AutoSize = true;
             this.ShowLog_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ShowLog_Button.BackColor = System.Drawing.Color.Transparent;
             this.ShowLog_Button.Depth = 0;
             this.ShowLog_Button.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ShowLog_Button.FlatAppearance.BorderSize = 0;
@@ -512,7 +516,7 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.Name = "ShowLog_Button";
             this.ShowLog_Button.Primary = false;
             this.ShowLog_Button.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ShowLog_Button.Size = new System.Drawing.Size(44, 36);
+            this.ShowLog_Button.Size = new System.Drawing.Size(36, 36);
             this.ShowLog_Button.TabIndex = 85585;
             this.ShowLog_Button.Tag = " ";
             this.ShowLog_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -520,7 +524,7 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log.BackColor = System.Drawing.Color.White;
             this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -552,7 +556,6 @@ namespace GeekAssistant.Forms {
             // 
             this.SwitchTheme_Button.AutoSize = true;
             this.SwitchTheme_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SwitchTheme_Button.BackColor = System.Drawing.Color.Transparent;
             this.SwitchTheme_Button.Depth = 0;
             this.SwitchTheme_Button.FlatAppearance.BorderSize = 0;
             this.SwitchTheme_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -564,7 +567,7 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.SwitchTheme_Button.Name = "SwitchTheme_Button";
             this.SwitchTheme_Button.Primary = false;
-            this.SwitchTheme_Button.Size = new System.Drawing.Size(44, 36);
+            this.SwitchTheme_Button.Size = new System.Drawing.Size(36, 36);
             this.SwitchTheme_Button.TabIndex = 85589;
             this.SwitchTheme_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SwitchTheme_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -574,7 +577,6 @@ namespace GeekAssistant.Forms {
             // 
             this.Donate_Button.AutoSize = true;
             this.Donate_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Donate_Button.BackColor = System.Drawing.Color.Transparent;
             this.Donate_Button.Depth = 0;
             this.Donate_Button.FlatAppearance.BorderSize = 0;
             this.Donate_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -586,7 +588,7 @@ namespace GeekAssistant.Forms {
             this.Donate_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Donate_Button.Name = "Donate_Button";
             this.Donate_Button.Primary = false;
-            this.Donate_Button.Size = new System.Drawing.Size(44, 36);
+            this.Donate_Button.Size = new System.Drawing.Size(36, 36);
             this.Donate_Button.TabIndex = 85618;
             this.Donate_Button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Donate_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -594,7 +596,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -616,7 +618,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs
             // 
-            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
@@ -728,8 +730,7 @@ namespace GeekAssistant.Forms {
             // 
             // MagiskRoot_Button
             // 
-            this.MagiskRoot_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.MagiskRoot_Button.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_Button.AutoSize = true;
             this.MagiskRoot_Button.Depth = 0;
             this.MagiskRoot_Button.Icon = null;
             this.MagiskRoot_Button.Location = new System.Drawing.Point(10, 301);
@@ -737,7 +738,7 @@ namespace GeekAssistant.Forms {
             this.MagiskRoot_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.MagiskRoot_Button.Name = "MagiskRoot_Button";
             this.MagiskRoot_Button.Primary = false;
-            this.MagiskRoot_Button.Size = new System.Drawing.Size(172, 36);
+            this.MagiskRoot_Button.Size = new System.Drawing.Size(179, 36);
             this.MagiskRoot_Button.TabIndex = 6;
             this.MagiskRoot_Button.Text = "Start Rooting";
             this.MagiskRoot_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -756,8 +757,7 @@ namespace GeekAssistant.Forms {
             // 
             // UnlockBL_Button
             // 
-            this.UnlockBL_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.UnlockBL_Button.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_Button.AutoSize = true;
             this.UnlockBL_Button.Depth = 0;
             this.UnlockBL_Button.Icon = null;
             this.UnlockBL_Button.Location = new System.Drawing.Point(10, 118);
@@ -765,7 +765,7 @@ namespace GeekAssistant.Forms {
             this.UnlockBL_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.UnlockBL_Button.Name = "UnlockBL_Button";
             this.UnlockBL_Button.Primary = false;
-            this.UnlockBL_Button.Size = new System.Drawing.Size(172, 36);
+            this.UnlockBL_Button.Size = new System.Drawing.Size(179, 36);
             this.UnlockBL_Button.TabIndex = 6;
             this.UnlockBL_Button.Text = "Start Unlocking";
             this.UnlockBL_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -949,7 +949,7 @@ namespace GeekAssistant.Forms {
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -969,7 +969,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
@@ -980,7 +980,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
@@ -1001,7 +1001,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
@@ -1022,7 +1022,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
@@ -1033,7 +1033,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
@@ -1044,7 +1044,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
@@ -1098,7 +1098,7 @@ namespace GeekAssistant.Forms {
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 0);
@@ -1361,6 +1361,49 @@ namespace GeekAssistant.Forms {
             this.CustomROM_Label.Text = "No";
             this.CustomROM_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // materialTabControl1
+            // 
+            this.materialTabControl1.Controls.Add(this.tabPage1);
+            this.materialTabControl1.Controls.Add(this.tabPage2);
+            this.materialTabControl1.Depth = 0;
+            this.materialTabControl1.Location = new System.Drawing.Point(750, 276);
+            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl1.Name = "materialTabControl1";
+            this.materialTabControl1.SelectedIndex = 0;
+            this.materialTabControl1.Size = new System.Drawing.Size(200, 100);
+            this.materialTabControl1.TabIndex = 85620;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(192, 72);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(192, 72);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Location = new System.Drawing.Point(721, 177);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(306, 48);
+            this.materialTabSelector1.TabIndex = 85621;
+            this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1368,6 +1411,8 @@ namespace GeekAssistant.Forms {
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1174, 599);
+            this.Controls.Add(this.materialTabSelector1);
+            this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.SwitchTheme_Fore_UI);
             this.Controls.Add(this.SwitchTheme_Mid_UI);
             this.Controls.Add(this.SwitchTheme_Back_UI);
@@ -1432,6 +1477,7 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.materialTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1538,5 +1584,9 @@ namespace GeekAssistant.Forms {
         private Label CustomROM_Label;
         private Label CustomRecovery_Title_Label;
         private MaterialTextBox manualCMD_TextBox;
+        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
     }
 }

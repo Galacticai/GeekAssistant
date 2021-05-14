@@ -524,18 +524,18 @@ namespace GeekAssistant.Forms {
                     DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 128);
                     break;
                 case "Offline":
-                    DeviceState_Label.ForeColor = colors.infColorRes.errRed;
+                    DeviceState_Label.ForeColor = colors.infColorRes.errRed();
                     break;
                 case "Download mode":
                 case "Recovery mode":
                 case "Fastboot mode":
-                    DeviceState_Label.ForeColor = colors.infColorRes.warnYellow;
+                    DeviceState_Label.ForeColor = colors.infColorRes.warnYellow();
                     break;
                 case "Connected (ADB)":
-                    DeviceState_Label.ForeColor = colors.Misc.Green;
+                    DeviceState_Label.ForeColor = colors.Misc.Green();
                     break;
                 case "Multiple":
-                    DeviceState_Label.ForeColor = colors.Misc.Purple;
+                    DeviceState_Label.ForeColor = colors.Misc.Purple();
                     break;
             }
         }

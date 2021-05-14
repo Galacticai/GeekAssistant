@@ -9,8 +9,8 @@ internal partial class Theming {
         }
     }
     public static void SetControlTheme(Control ControlObj) {
-        Animate.Run(ControlObj, nameof(ControlObj.ForeColor), colors.fg);
-        Animate.Run(ControlObj, nameof(ControlObj.BackColor), colors.bg);
+        Animate.Run(ControlObj, nameof(ControlObj.ForeColor), colors.UI.fg());
+        Animate.Run(ControlObj, nameof(ControlObj.BackColor), colors.UI.bg());
     }
 
     public static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
@@ -19,7 +19,7 @@ internal partial class Theming {
         }
     }
     public static void SetControlTheme_Metro(MetroFramework.Interfaces.IMetroControl ControlObj) {
-        ControlObj.Theme = colors.Metro;  //Note: Cannot animate "Theme"   
+        ControlObj.Theme = colors.UI.Metro();  //Note: Cannot animate "Theme"   
     }
 
 }

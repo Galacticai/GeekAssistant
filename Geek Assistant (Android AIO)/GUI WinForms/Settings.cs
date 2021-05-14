@@ -140,10 +140,10 @@ namespace GeekAssistant.Forms {
             }
         }
         private void ResetGA_MouseDown(object sender, EventArgs e) {
-            ResetGA.ForeColor = colors.bg;
+            ResetGA.ForeColor = colors.UI.bg();
         }
         private void ResetGA_MouseUp(object sender, EventArgs e) {
-            ResetGA.ForeColor = colors.fg;
+            ResetGA.ForeColor = colors.UI.fg();
         }
 
         //private void Close_Button_MouseDown(object sender, EventArgs e) { Close_Button.MouseDown

@@ -1,51 +1,48 @@
 ﻿using MetroFramework;
 using System.Drawing;
 
-internal static partial class colors {
-    //SwitchTheme_Button // 
-    //Feedback_Button // 
-    //About_Button // 
-    //Settings_Button // 
-    //ShowLog_Button //  
-    /// <summary> Dynamically selected colors according to global Light/Dark Theme </summary> 
-
-    public struct SwitchButton {
-        public static Color bg { get => c.S.DarkTheme ? ColorTranslator.FromHtml("#202020") : Color.WhiteSmoke; }
-        public static Color bg_Hover { get => Color.FromArgb(128, Misc.Green); }
-        public static Color bg_Active { get => Misc.Green; }
+internal static class colors {
+    private static bool dark { get => c.S.DarkTheme; }
+    private static bool theme(bool anti) => dark & !anti;
+    public struct UI {
+        public static Color bg(bool anti = false) => theme(anti) ? constColors.bg_Dark : constColors.bg;
+        public static Color fg(bool anti = false) => theme(anti) ? constColors.fg_Dark : constColors.fg;
+        public static MetroThemeStyle Metro(bool anti = false) => theme(anti) ? MetroThemeStyle.Dark : MetroThemeStyle.Light;
     }
-    public static Color bg { get => c.S.DarkTheme ? constColors.bg_Dark : constColors.bg; }
-    public static Color fg { get => c.S.DarkTheme ? constColors.fg_Dark : constColors.fg; }
-    public static MetroThemeStyle Metro { get => c.S.DarkTheme ? MetroThemeStyle.Dark : MetroThemeStyle.Light; }
+    /// <summary> Dynamically selected colors according to global Light/Dark c.S.DarkTheme & !instance.inverseTheme </summary>  
+    public struct SwitchButton {
+        public static Color bg(bool anti = false) => theme(anti) ? ColorTranslator.FromHtml("#202020") : Color.WhiteSmoke;
+        public static Color bg_Hover(bool anti = false) => Color.FromArgb(128, Misc.Green(anti));
+        public static Color bg_Active(bool anti = false) => Misc.Green(anti);
+    }
 
     public struct Misc {
-        public static Color Green { get => c.S.DarkTheme ? constColors.Misc.Green_Dark : constColors.Misc.Green; }
-        public static Color Purple { get => c.S.DarkTheme ? constColors.Misc.Purple_Dark : constColors.Misc.Purple; }
+        public static Color Green(bool anti = false) => theme(anti) ? constColors.Misc.Green_Dark : constColors.Misc.Green;
+        public static Color Purple(bool anti = false) => theme(anti) ? constColors.Misc.Purple_Dark : constColors.Misc.Purple;
     }
-
-
     public struct infColorRes {
-        public static Color infBlue { get => c.S.DarkTheme ? constColors.infColorRes.infBlue_Dark : constColors.infColorRes.infBlue; }
-        public static Color warnYellow { get => c.S.DarkTheme ? constColors.infColorRes.warnYellow_Dark : constColors.infColorRes.warnYellow; }
-        public static Color errRed { get => c.S.DarkTheme ? constColors.infColorRes.errRed_Dark : constColors.infColorRes.errRed; }
-        public static Color questBlue { get => c.S.DarkTheme ? constColors.infColorRes.questBlue_Dark : constColors.infColorRes.questBlue; }
+        public static Color infBlue(bool anti = false) => theme(anti) ? constColors.infColorRes.infBlue_Dark : constColors.infColorRes.infBlue;
+        public static Color warnYellow(bool anti = false) => theme(anti) ? constColors.infColorRes.warnYellow_Dark : constColors.infColorRes.warnYellow;
+        public static Color errRed(bool anti = false) => theme(anti) ? constColors.infColorRes.errRed_Dark : constColors.infColorRes.errRed;
+        public static Color questBlue(bool anti = false) => theme(anti) ? constColors.infColorRes.questBlue_Dark : constColors.infColorRes.questBlue;
     }
+
     public struct Iconcolors {
-        public static Color Donate { get => c.S.DarkTheme ? constColors.Iconcolors.Donate_Dark : constColors.Iconcolors.Donate; }
-        public static Color Theme { get => c.S.DarkTheme ? constColors.Iconcolors.Theme_Dark : constColors.Iconcolors.Theme; }
-        public static Color Smile { get => c.S.DarkTheme ? constColors.Iconcolors.Smile_Dark : constColors.Iconcolors.Smile; }
-        public static Color Settings { get => c.S.DarkTheme ? constColors.Iconcolors.Settings_Dark : constColors.Iconcolors.Settings; }
-        public static Color ToU { get => c.S.DarkTheme ? constColors.Iconcolors.ToU_Dark : constColors.Iconcolors.ToU; }
-        public static Color Commands { get => c.S.DarkTheme ? constColors.Iconcolors.Commands_Dark : constColors.Iconcolors.Commands; }
+        public static Color Donate(bool anti = false) => theme(anti) ? constColors.Iconcolors.Donate_Dark : constColors.Iconcolors.Donate;
+        public static Color SwitchTheme(bool anti = false) => theme(anti) ? constColors.Iconcolors.Theme_Dark : constColors.Iconcolors.SwitchTheme;
+        public static Color Smile(bool anti = false) => theme(anti) ? constColors.Iconcolors.Smile_Dark : constColors.Iconcolors.Smile;
+        public static Color Settings(bool anti = false) => theme(anti) ? constColors.Iconcolors.Settings_Dark : constColors.Iconcolors.Settings;
+        public static Color ToU(bool anti = false) => theme(anti) ? constColors.Iconcolors.ToU_Dark : constColors.Iconcolors.ToU;
+        public static Color Commands(bool anti = false) => theme(anti) ? constColors.Iconcolors.Commands_Dark : constColors.Iconcolors.Commands;
     }
 
     /// <summary> Constant colors not affected by themes or anything </summary>
     public struct constColors {
         /// <summary> Color.White </summary>
         public static Color bg { get => Color.White; }
+
         /// <summary> ColorTranslator.FromHtml(17, 17, 17) </summary>
         public static Color bg_Dark { get => ColorTranslator.FromHtml("#111111"); }
-
         /// <summary> SystemColors.ControlText </summary>
         public static Color fg { get => SystemColors.ControlText; }
         /// <summary> Color.White </summary>
@@ -82,7 +79,7 @@ internal static partial class colors {
             /// <summary> #bfcdff </summary>
             public static Color Theme_Dark { get => ColorTranslator.FromHtml("#bfcdff"); }
             /// <summary> #665200 </summary>
-            public static Color Theme { get => ColorTranslator.FromHtml("#665200"); }
+            public static Color SwitchTheme { get => ColorTranslator.FromHtml("#665200"); }
 
             /// <summary> #BFFFBF </summary>
             public static Color Smile_Dark { get => ColorTranslator.FromHtml("#BFFFBF"); }
@@ -116,6 +113,5 @@ internal static partial class colors {
             /// <summary> #800080 </summary>
             public static Color Purple { get => ColorTranslator.FromHtml("#800080"); }
         }
-
     }
 }

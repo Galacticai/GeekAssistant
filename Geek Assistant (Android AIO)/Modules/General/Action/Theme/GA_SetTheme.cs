@@ -23,14 +23,14 @@ internal partial class GA_SetTheme : Theming {
                 break;
             case Preparing:
                 p = (Preparing)f;
-                p.Preparing_Label.ForeColor = colors.fg;
-                p.BackColor = colors.bg;
+                p.Preparing_Label.ForeColor = colors.UI.fg();
+                p.BackColor = colors.UI.bg();
                 break;
             case AppMode:
                 am = (AppMode)f;
                 //Control am = AppMode;
                 SetControlTheme(am);
-                am.startup_dontShow.ForeColor = colors.fg;
+                am.startup_dontShow.ForeColor = colors.UI.fg();
                 break;
             case Donate:
                 d = (Donate)f;
@@ -93,7 +93,7 @@ internal partial class GA_SetTheme : Theming {
                 d.BitcoinAddressQR.Image = prop.xXX.BTCAddressQR;
                 d.GooglePayLink.Image = prop.x16.linkIcon_16;
             }
-            d.title.ForeColor = colors.Iconcolors.Donate;
+            d.title.ForeColor = colors.Iconcolors.Donate();
             d.GeekAssistant_PictureBox.BackColor = d.ButtonsBG_UI.BackColor;
         }
     }
@@ -217,14 +217,14 @@ internal partial class GA_SetTheme : Theming {
                 //hom.manualCMD_TextBox.Icon = prop.x16.Commands_16;
             }
         }
-        h.Donate_Button.ForeColor = colors.Iconcolors.Donate;
-        h.SwitchTheme_Button.ForeColor = colors.Iconcolors.Theme;
-        h.Feedback_Button.ForeColor = colors.Iconcolors.Smile;
-        h.About_Button.ForeColor = colors.Iconcolors.ToU;
-        h.Settings_Button.ForeColor = colors.Iconcolors.Settings;
-        h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands;
+        h.Donate_Button.ForeColor = colors.Iconcolors.Donate(true);
+        h.SwitchTheme_Button.ForeColor = colors.Iconcolors.SwitchTheme(true);
+        h.Feedback_Button.ForeColor = colors.Iconcolors.Smile(true);
+        h.About_Button.ForeColor = colors.Iconcolors.ToU(true);
+        h.Settings_Button.ForeColor = colors.Iconcolors.Settings(true);
+        h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands(true);
 
-        h_add_b.ForeColor = colors.Misc.Green;
+        h_add_b.ForeColor = colors.Misc.Green();
         h.Toggle_ManualDeviceInfo_Button.ForeColor = h_add_b.ForeColor;
 
         h.DeviceState_Label_TextChanged(h.DeviceState_Label, EventArgs.Empty);
@@ -300,7 +300,7 @@ internal partial class GA_SetTheme : Theming {
 
         }
         {
-            s.SettingsTitle_Label.ForeColor = colors.Iconcolors.Settings;
+            s.SettingsTitle_Label.ForeColor = colors.Iconcolors.Settings();
             s.ResetGA.BackColor = s.ButtonsBG_UI.BackColor;
             s.ResetGA_SelectAll.BackColor = s.ButtonsBG_UI.BackColor;
             s.GeekAssistant_PictureBox.BackColor = s.ButtonsBG_UI.BackColor;
@@ -322,11 +322,11 @@ internal partial class GA_SetTheme : Theming {
             t.ButtonsBG_UI.BackColor = Color.WhiteSmoke;
             t.Icon_PictureBox.Image = prop.x64.ToU_64;
         }
-        t.ToUTitle_Label.ForeColor = colors.Iconcolors.ToU;
+        t.ToUTitle_Label.ForeColor = colors.Iconcolors.ToU();
         t.AcceptCheck_ToU.ForeColor = t.ToUTitle_Label.ForeColor;
         t.Copyright_Label.ForeColor = t.ToUTitle_Label.ForeColor;
-        t.AcceptCheck_ToU.ForeColor = colors.fg;
-        t.DontShow_ToU.ForeColor = colors.fg;
+        t.AcceptCheck_ToU.ForeColor = colors.UI.fg();
+        t.DontShow_ToU.ForeColor = colors.UI.fg();
         t.AcceptCheck_ToU.BackColor = t.ButtonsBG_UI.BackColor;
         t.DontShow_ToU.BackColor = t.ButtonsBG_UI.BackColor;
         t.GeekAssistant_PictureBox.BackColor = t.ButtonsBG_UI.BackColor;
