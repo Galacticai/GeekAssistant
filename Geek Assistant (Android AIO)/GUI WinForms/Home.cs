@@ -242,7 +242,30 @@ namespace GeekAssistant.Forms {
                 Enabled = true; //Enable when done with everything
                 GA_Wait.Run(false);
                 BringToFront();
+
+                BruteForce_Set_ControlsProps();
             };
+        }
+        private void BruteForce_Set_ControlsProps() {
+
+            // Toggle_ManualDeviceInfo_Button 
+            this.Toggle_ManualDeviceInfo_Button.Depth = 0;
+            this.Toggle_ManualDeviceInfo_Button.Font = new("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Toggle_ManualDeviceInfo_Button.Icon = null;
+            this.Toggle_ManualDeviceInfo_Button.Location = new(24, 482);
+            this.Toggle_ManualDeviceInfo_Button.Margin = new(0);
+            this.Toggle_ManualDeviceInfo_Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Toggle_ManualDeviceInfo_Button.Name = "Toggle_ManualDeviceInfo_Button";
+            this.Toggle_ManualDeviceInfo_Button.Primary = true;
+            this.Toggle_ManualDeviceInfo_Button.Size = new(243, 36);
+            this.Toggle_ManualDeviceInfo_Button.TabIndex = 85352;
+            this.Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
+            this.Toggle_ManualDeviceInfo_Button.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.Toggle_ManualDeviceInfo_Button.UseVisualStyleBackColor = false;
+            this.Toggle_ManualDeviceInfo_Button.AutoSize = false;
+            this.Toggle_ManualDeviceInfo_Button._AutoSize = false;
+            this.Toggle_ManualDeviceInfo_Button.ForeColor = colors.Misc.Green();
+            this.Toggle_ManualDeviceInfo_Button.AutoSizeMode = AutoSizeMode.GrowOnly;
         }
 
         private void Main_HelpButtonClicked() {

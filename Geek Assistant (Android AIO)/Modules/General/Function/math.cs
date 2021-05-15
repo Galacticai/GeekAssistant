@@ -158,7 +158,7 @@ internal static class math {
         /// </list> </param>
         /// <returns>The blended color.</returns>
         public static Color BlendColors(Color foreColor, Color backColor, float amount = -1) {
-            //if amount not set, Use  foreColor.A (bounded by 0-1)
+            //if amount not set, Use  foreColor.A  [ 0 >=> 1 ]
             if (amount == -1)
                 amount = foreColor.A / 255; // convert alpha 0<=<255 to 0<=<1
 

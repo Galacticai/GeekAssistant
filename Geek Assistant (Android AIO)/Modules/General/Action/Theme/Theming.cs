@@ -10,8 +10,12 @@ internal partial class Theming {
     }
     public static void SetControlTheme(Control ControlObj) {
         Animate.Run(ControlObj, nameof(ControlObj.ForeColor), colors.UI.fg());
-        Animate.Run(ControlObj, nameof(ControlObj.BackColor), colors.UI.bg());
+
+        string BackColor = nameof(ControlObj.BackColor);
+        if (ControlObj.GetType() == typeof(MaterialButton)) BackColor = nameof(MaterialButton.realBackColor);
+        Animate.Run(ControlObj, BackColor, colors.UI.bg());
     }
+
 
     public static void SetControlsArrTheme_Metro(MetroFramework.Interfaces.IMetroControl[] ControlsObj) {
         foreach (var ctrl in ControlsObj) {

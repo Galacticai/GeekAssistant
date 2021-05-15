@@ -165,7 +165,6 @@ namespace GeekAssistant.Forms {
             // 
             // Toggle_ManualDeviceInfo_Button
             // 
-            this.Toggle_ManualDeviceInfo_Button.AutoSize = true;
             this.Toggle_ManualDeviceInfo_Button.Depth = 0;
             this.Toggle_ManualDeviceInfo_Button.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Toggle_ManualDeviceInfo_Button.Icon = null;
@@ -187,7 +186,6 @@ namespace GeekAssistant.Forms {
             // 
             // CustomRecovery_CheckBox
             // 
-            this.CustomRecovery_CheckBox.AutoSize = true;
             this.CustomRecovery_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CustomRecovery_CheckBox.Location = new System.Drawing.Point(20, 201);
             this.CustomRecovery_CheckBox.Name = "CustomRecovery_CheckBox";
@@ -197,7 +195,6 @@ namespace GeekAssistant.Forms {
             // 
             // CustomROM_CheckBox
             // 
-            this.CustomROM_CheckBox.AutoSize = true;
             this.CustomROM_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CustomROM_CheckBox.Location = new System.Drawing.Point(20, 174);
             this.CustomROM_CheckBox.Name = "CustomROM_CheckBox";
@@ -207,7 +204,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -271,7 +268,6 @@ namespace GeekAssistant.Forms {
             // 
             // Rooted_Checkbox
             // 
-            this.Rooted_Checkbox.AutoSize = true;
             this.Rooted_Checkbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Rooted_Checkbox.Location = new System.Drawing.Point(20, 147);
             this.Rooted_Checkbox.Name = "Rooted_Checkbox";
@@ -281,7 +277,6 @@ namespace GeekAssistant.Forms {
             // 
             // BootloaderUnlockable_CheckBox
             // 
-            this.BootloaderUnlockable_CheckBox.AutoSize = true;
             this.BootloaderUnlockable_CheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BootloaderUnlockable_CheckBox.Location = new System.Drawing.Point(20, 120);
             this.BootloaderUnlockable_CheckBox.Name = "BootloaderUnlockable_CheckBox";
@@ -315,8 +310,6 @@ namespace GeekAssistant.Forms {
             // 
             // FlashZip_Button
             // 
-            this.FlashZip_Button.AutoSize = true;
-            this.FlashZip_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FlashZip_Button.Depth = 0;
             this.FlashZip_Button.Icon = null;
             this.FlashZip_Button.Location = new System.Drawing.Point(19, 303);
@@ -332,8 +325,6 @@ namespace GeekAssistant.Forms {
             // 
             // About_Button
             // 
-            this.About_Button.AutoSize = true;
-            this.About_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.About_Button.Depth = 0;
             this.About_Button.FlatAppearance.BorderSize = 0;
             this.About_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -353,8 +344,6 @@ namespace GeekAssistant.Forms {
             // 
             // Settings_Button
             // 
-            this.Settings_Button.AutoSize = true;
-            this.Settings_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Settings_Button.Depth = 0;
             this.Settings_Button.FlatAppearance.BorderSize = 0;
             this.Settings_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -375,8 +364,6 @@ namespace GeekAssistant.Forms {
             // 
             // Feedback_Button
             // 
-            this.Feedback_Button.AutoSize = true;
-            this.Feedback_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Feedback_Button.Depth = 0;
             this.Feedback_Button.FlatAppearance.BorderSize = 0;
             this.Feedback_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -397,7 +384,6 @@ namespace GeekAssistant.Forms {
             // 
             // FlashZip_RebootWhenComplete_Checkbox
             // 
-            this.FlashZip_RebootWhenComplete_Checkbox.AutoSize = true;
             this.FlashZip_RebootWhenComplete_Checkbox.BackColor = System.Drawing.Color.Transparent;
             this.FlashZip_RebootWhenComplete_Checkbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FlashZip_RebootWhenComplete_Checkbox.Location = new System.Drawing.Point(25, 276);
@@ -447,7 +433,6 @@ namespace GeekAssistant.Forms {
             // 
             // FlashZip_Title
             // 
-            this.FlashZip_Title.AutoSize = true;
             this.FlashZip_Title.BackColor = System.Drawing.Color.Transparent;
             this.FlashZip_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FlashZip_Title.Location = new System.Drawing.Point(15, 19);
@@ -501,8 +486,6 @@ namespace GeekAssistant.Forms {
             // ShowLog_Button
             // 
             this.ShowLog_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ShowLog_Button.AutoSize = true;
-            this.ShowLog_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ShowLog_Button.Depth = 0;
             this.ShowLog_Button.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ShowLog_Button.FlatAppearance.BorderSize = 0;
@@ -524,7 +507,7 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log.BackColor = System.Drawing.Color.White;
             this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -554,8 +537,6 @@ namespace GeekAssistant.Forms {
             // 
             // SwitchTheme_Button
             // 
-            this.SwitchTheme_Button.AutoSize = true;
-            this.SwitchTheme_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.SwitchTheme_Button.Depth = 0;
             this.SwitchTheme_Button.FlatAppearance.BorderSize = 0;
             this.SwitchTheme_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -575,8 +556,6 @@ namespace GeekAssistant.Forms {
             // 
             // Donate_Button
             // 
-            this.Donate_Button.AutoSize = true;
-            this.Donate_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Donate_Button.Depth = 0;
             this.Donate_Button.FlatAppearance.BorderSize = 0;
             this.Donate_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -596,7 +575,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -618,7 +597,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs
             // 
-            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
@@ -663,7 +642,6 @@ namespace GeekAssistant.Forms {
             // 
             // UnlockBL_Label
             // 
-            this.UnlockBL_Label.AutoSize = true;
             this.UnlockBL_Label.BackColor = System.Drawing.Color.Transparent;
             this.UnlockBL_Label.Location = new System.Drawing.Point(10, 50);
             this.UnlockBL_Label.Margin = new System.Windows.Forms.Padding(0);
@@ -675,7 +653,6 @@ namespace GeekAssistant.Forms {
             // 
             // MagiskRoot_Label
             // 
-            this.MagiskRoot_Label.AutoSize = true;
             this.MagiskRoot_Label.BackColor = System.Drawing.Color.Transparent;
             this.MagiskRoot_Label.Location = new System.Drawing.Point(10, 225);
             this.MagiskRoot_Label.Name = "MagiskRoot_Label";
@@ -708,7 +685,6 @@ namespace GeekAssistant.Forms {
             // 
             // MagiskRoot_Title
             // 
-            this.MagiskRoot_Title.AutoSize = true;
             this.MagiskRoot_Title.BackColor = System.Drawing.Color.Transparent;
             this.MagiskRoot_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MagiskRoot_Title.Location = new System.Drawing.Point(10, 191);
@@ -719,7 +695,6 @@ namespace GeekAssistant.Forms {
             // 
             // UnlockBL_Title
             // 
-            this.UnlockBL_Title.AutoSize = true;
             this.UnlockBL_Title.BackColor = System.Drawing.Color.Transparent;
             this.UnlockBL_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UnlockBL_Title.Location = new System.Drawing.Point(10, 19);
@@ -730,7 +705,6 @@ namespace GeekAssistant.Forms {
             // 
             // MagiskRoot_Button
             // 
-            this.MagiskRoot_Button.AutoSize = true;
             this.MagiskRoot_Button.Depth = 0;
             this.MagiskRoot_Button.Icon = null;
             this.MagiskRoot_Button.Location = new System.Drawing.Point(10, 301);
@@ -738,7 +712,7 @@ namespace GeekAssistant.Forms {
             this.MagiskRoot_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.MagiskRoot_Button.Name = "MagiskRoot_Button";
             this.MagiskRoot_Button.Primary = false;
-            this.MagiskRoot_Button.Size = new System.Drawing.Size(179, 36);
+            this.MagiskRoot_Button.Size = new System.Drawing.Size(222, 36);
             this.MagiskRoot_Button.TabIndex = 6;
             this.MagiskRoot_Button.Text = "Start Rooting";
             this.MagiskRoot_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -757,7 +731,6 @@ namespace GeekAssistant.Forms {
             // 
             // UnlockBL_Button
             // 
-            this.UnlockBL_Button.AutoSize = true;
             this.UnlockBL_Button.Depth = 0;
             this.UnlockBL_Button.Icon = null;
             this.UnlockBL_Button.Location = new System.Drawing.Point(10, 118);
@@ -765,7 +738,7 @@ namespace GeekAssistant.Forms {
             this.UnlockBL_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.UnlockBL_Button.Name = "UnlockBL_Button";
             this.UnlockBL_Button.Primary = false;
-            this.UnlockBL_Button.Size = new System.Drawing.Size(179, 36);
+            this.UnlockBL_Button.Size = new System.Drawing.Size(222, 36);
             this.UnlockBL_Button.TabIndex = 6;
             this.UnlockBL_Button.Text = "Start Unlocking";
             this.UnlockBL_Button.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -949,7 +922,7 @@ namespace GeekAssistant.Forms {
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -969,7 +942,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
@@ -980,7 +953,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
@@ -1001,7 +974,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
@@ -1022,7 +995,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
@@ -1033,7 +1006,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
@@ -1044,7 +1017,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
@@ -1087,7 +1060,6 @@ namespace GeekAssistant.Forms {
             // 
             // GA_About_Label
             // 
-            this.GA_About_Label.AutoSize = true;
             this.GA_About_Label.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GA_About_Label.Location = new System.Drawing.Point(112, 74);
             this.GA_About_Label.Name = "GA_About_Label";
@@ -1098,7 +1070,7 @@ namespace GeekAssistant.Forms {
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 0);
@@ -1317,7 +1289,6 @@ namespace GeekAssistant.Forms {
             // 
             // CustomRecovery_Title_Label
             // 
-            this.CustomRecovery_Title_Label.AutoSize = true;
             this.CustomRecovery_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomRecovery_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CustomRecovery_Title_Label.Location = new System.Drawing.Point(3, 225);
@@ -1329,7 +1300,6 @@ namespace GeekAssistant.Forms {
             // 
             // CustomRecovery_Label
             // 
-            this.CustomRecovery_Label.AutoSize = true;
             this.CustomRecovery_Label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomRecovery_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CustomRecovery_Label.Location = new System.Drawing.Point(103, 225);
@@ -1366,11 +1336,11 @@ namespace GeekAssistant.Forms {
             this.materialTabControl1.Controls.Add(this.tabPage1);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Location = new System.Drawing.Point(750, 276);
+            this.materialTabControl1.Location = new System.Drawing.Point(673, 122);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(200, 100);
+            this.materialTabControl1.Size = new System.Drawing.Size(385, 396);
             this.materialTabControl1.TabIndex = 85620;
             // 
             // tabPage1
@@ -1378,7 +1348,7 @@ namespace GeekAssistant.Forms {
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(192, 72);
+            this.tabPage1.Size = new System.Drawing.Size(377, 368);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1388,7 +1358,7 @@ namespace GeekAssistant.Forms {
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 72);
+            this.tabPage2.Size = new System.Drawing.Size(377, 368);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1397,10 +1367,10 @@ namespace GeekAssistant.Forms {
             // 
             this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
             this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(721, 177);
+            this.materialTabSelector1.Location = new System.Drawing.Point(673, 92);
             this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(306, 48);
+            this.materialTabSelector1.Size = new System.Drawing.Size(385, 48);
             this.materialTabSelector1.TabIndex = 85621;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
@@ -1454,13 +1424,11 @@ namespace GeekAssistant.Forms {
             this.TransparencyKey = System.Drawing.Color.Magenta;
             this.Load += new System.EventHandler(this.Home_Load);
             this.ManualInfo_GroupBox.ResumeLayout(false);
-            this.ManualInfo_GroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).EndInit();
             this.Main_Tabs.ResumeLayout(false);
             this.PrepareYourDevice_Tab.ResumeLayout(false);
-            this.PrepareYourDevice_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).EndInit();
             this.FlashImg_Tab.ResumeLayout(false);
@@ -1476,7 +1444,6 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.materialTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

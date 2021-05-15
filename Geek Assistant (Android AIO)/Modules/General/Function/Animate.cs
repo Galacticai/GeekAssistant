@@ -11,10 +11,8 @@ internal static partial class Animate {
     /// <param name="destination">Final value of prop</param>
     /// <param name="AnimationTime">Optional animation time (ms) (Default: 500ms)</param>
     public static void Run(object target, string propName, object destination, int AnimationTime = 500) {
-        if (c.S.PerformAnimations) {
+        if (c.S.PerformAnimations)
             Transition.With(target, propName, destination).CriticalDamp(TimeSpan.FromMilliseconds(AnimationTime));
-        }
-        //Transition.run(target, propName, destination, new TransitionType_CriticalDamping(AnimationTime));
         else {
             var propInfo = target.GetType().GetProperty(propName);
             propInfo.SetValue(target, destination);

@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 internal partial class GA_SetTheme : Theming {
-    private static Timer HomeTheme_delayTimer = new() { Interval = 100 };
+    public static bool Running = false;
+
+    private static bool initiatingbool = false;
 
     private static Wait pw = null;
     private static Preparing p = null;
@@ -15,6 +17,7 @@ internal partial class GA_SetTheme : Theming {
     private static Settings s = null;
     private static ToU t = null;
     public static void Run(Form f, bool initiating = false) {
+        Running = true;
         initiatingbool = initiating;
         switch (f) {
             case Wait:
@@ -42,25 +45,7 @@ internal partial class GA_SetTheme : Theming {
                 break;
             case Home:
                 h = (Home)f;
-                HomeTheme_delayTimer.Tick += new(HomeTheme_delayTimer_Tick);
-                if (c.S.VerboseLogging) {
-                    string ThemeString = "dark theme";
-                    if (c.S.DarkTheme) {
-                        ThemeString = "Light Theme";
-                    }
-
-                    GA_SetProgressText.Run($"Switched to {ThemeString}.", -1);
-                }
-                if (!initiating & c.S.PerformAnimations) {
-                    if (c.S.DarkTheme) {
-                        h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
-                        Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
-                    } else {
-                        h.SwitchTheme_Back_UI.Top = new Home().Height;
-                        Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
-                    }
-                }
-                HomeTheme_delayTimer.Start();
+                Home_Theme();
                 break;
             case Settings:
                 s = (Settings)f;
@@ -71,7 +56,7 @@ internal partial class GA_SetTheme : Theming {
                 ToU_Theme();
                 break;
         }
-
+        Running = false;
     }
 
 
@@ -125,10 +110,29 @@ internal partial class GA_SetTheme : Theming {
     #endregion
 
     #region Home 
-    private static bool initiatingbool = false;
-    private static void HomeTheme_delayTimer_Tick(object sender, EventArgs e) {
-        //Home h = new();
-        Control[] Controls_array = new Control[] {
+    private static void Home_Theme() {
+        Timer HomeTheme_delayTimer = new() { Interval = 100 };
+        if (c.S.VerboseLogging) {
+            string ThemeString = "dark theme";
+            if (c.S.DarkTheme) {
+                ThemeString = "Light Theme";
+            }
+
+            GA_SetProgressText.Run($"Switched to {ThemeString}.", -1);
+        }
+        if (!initiatingbool & c.S.PerformAnimations) {
+            if (c.S.DarkTheme) {
+                h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
+                Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
+            } else {
+                h.SwitchTheme_Back_UI.Top = new Home().Height;
+                Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
+            }
+        }
+        HomeTheme_delayTimer.Start();
+        HomeTheme_delayTimer.Tick += (sender, ev) => {
+
+            Control[] Controls_array = new Control[] {
             h,
             h.log,
             h.ManualInfo_GroupBox,
@@ -144,7 +148,7 @@ internal partial class GA_SetTheme : Theming {
             h.FlashZip_Button,
             h.CustomRecovery_CheckBox
         };
-        MetroFramework.Interfaces.IMetroControl[] MetroControls_array = new MetroFramework.Interfaces.IMetroControl[] {
+            MetroFramework.Interfaces.IMetroControl[] MetroControls_array = new MetroFramework.Interfaces.IMetroControl[] {
             h.Main_Tabs,
             h.PrepareYourDevice_Tab,
             h.FlashImg_Tab,
@@ -158,77 +162,79 @@ internal partial class GA_SetTheme : Theming {
             h.ProgressBarLabel
         };//, c.Home.FlashZip_ChooseFile_TextBox, common.Home.manualCMD_TextBox };
 
-        SetControlsArrTheme_Metro(MetroControls_array);
+            SetControlsArrTheme_Metro(MetroControls_array);
 
-        if (initiatingbool) {
-            c.S.PerformAnimations = false;
-            SetControlsArrTheme(Controls_array);
-            c.S.PerformAnimations = true;
-        } else {
-            SetControlsArrTheme(Controls_array);
-        }
-
-        var h_add_b = h.AutoDetectDeviceInfo_Button;
-        if (c.S.DarkTheme) {
-            // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(235, 245, 235)
-            // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(0, 20, 0), New TransitionType_CriticalDamping(1000))
-            h.Main_ToolTip.BackColor = SystemColors.InfoText;
-            h.Main_ToolTip.ForeColor = SystemColors.Info;
-            {
-                {
-                    h_add_b.BackColor = Color.FromArgb(64, 64, 64);
-                    h_add_b.FlatAppearance.MouseDownBackColor = Color.Honeydew;
-                    h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
-                    h_add_b.Image = prop.x64.AutoDetect_dark_64;
-                }
-
-                // .DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119)
-                h.Donate_Button.Icon = prop.x24.DonateHeart_Dark_24;
-                h.SwitchTheme_Button.Icon = prop.x24.Theme_Dark_24;
-                h.GeekAssistant.Image = prop.GA.Geek_Assistant___25_;
-                h.Feedback_Button.Icon = prop.x24.Smile_dark_24;
-                h.About_Button.Icon = prop.x24.ToU_dark_24;
-                h.Settings_Button.Icon = prop.x24.Settings_dark_24;
-                h.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
-                //hom.manualCMD_TextBox.Icon = prop.x16.Commands_dark_16;
+            if (initiatingbool) {
+                c.S.PerformAnimations = false;
+                SetControlsArrTheme(Controls_array);
+                c.S.PerformAnimations = true;
+            } else {
+                SetControlsArrTheme(Controls_array);
             }
-        } else // Light Theme
-          {
-            // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(0, 20, 0)
-            // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(235, 245, 235), New TransitionType_CriticalDamping(1000))
-            h.Main_ToolTip.BackColor = SystemColors.Info;
-            h.Main_ToolTip.ForeColor = SystemColors.InfoText;
-            {
+
+            var h_add_b = h.AutoDetectDeviceInfo_Button;
+            if (c.S.DarkTheme) {
+                // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(235, 245, 235)
+                // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(0, 20, 0), New TransitionType_CriticalDamping(1000))
+                h.Main_ToolTip.BackColor = SystemColors.InfoText;
+                h.Main_ToolTip.ForeColor = SystemColors.Info;
                 {
-                    h_add_b.BackColor = Color.Honeydew;
-                    h_add_b.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
-                    h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 245, 230);
-                    h_add_b.Image = prop.x64.AutoDetect_64;
+                    {
+                        h_add_b.BackColor = Color.FromArgb(64, 64, 64);
+                        h_add_b.FlatAppearance.MouseDownBackColor = Color.Honeydew;
+                        h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
+                        h_add_b.Image = prop.x64.AutoDetect_dark_64;
+                    }
+
+                    // .DeviceState_Label.ForeColor = Color.FromArgb(95, 191, 119)
+                    h.Donate_Button.Icon = prop.x24.DonateHeart_Dark_24;
+                    h.SwitchTheme_Button.Icon = prop.x24.Theme_Dark_24;
+                    h.GeekAssistant.Image = prop.GA.Geek_Assistant___25_;
+                    h.Feedback_Button.Icon = prop.x24.Smile_dark_24;
+                    h.About_Button.Icon = prop.x24.ToU_dark_24;
+                    h.Settings_Button.Icon = prop.x24.Settings_dark_24;
+                    h.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
+                    //hom.manualCMD_TextBox.Icon = prop.x16.Commands_dark_16;
                 }
+            } else // Light Theme
+              {
+                // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(0, 20, 0)
+                // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(235, 245, 235), New TransitionType_CriticalDamping(1000))
+                h.Main_ToolTip.BackColor = SystemColors.Info;
+                h.Main_ToolTip.ForeColor = SystemColors.InfoText;
+                {
+                    {
+                        h_add_b.BackColor = Color.Honeydew;
+                        h_add_b.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
+                        h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 245, 230);
+                        h_add_b.Image = prop.x64.AutoDetect_64;
+                    }
 
-                // .DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32)
-                h.Donate_Button.Icon = prop.x24.DonateHeart_24;
-                h.SwitchTheme_Button.Icon = prop.x24.Theme_Light_24;
-                h.GeekAssistant.Image = prop.GA.Geek_Assistant;
-                h.Feedback_Button.Icon = prop.x24.Smile_24;
-                h.About_Button.Icon = prop.x24.ToU_24;
-                h.Settings_Button.Icon = prop.x24.Settings_24;
-                h.ShowLog_Button.Icon = prop.x24.Commands_24;
-                //hom.manualCMD_TextBox.Icon = prop.x16.Commands_16;
+                    // .DeviceState_Label.ForeColor = Color.FromArgb(0, 128, 32)
+                    h.Donate_Button.Icon = prop.x24.DonateHeart_24;
+                    h.SwitchTheme_Button.Icon = prop.x24.Theme_Light_24;
+                    h.GeekAssistant.Image = prop.GA.Geek_Assistant;
+                    h.Feedback_Button.Icon = prop.x24.Smile_24;
+                    h.About_Button.Icon = prop.x24.ToU_24;
+                    h.Settings_Button.Icon = prop.x24.Settings_24;
+                    h.ShowLog_Button.Icon = prop.x24.Commands_24;
+                    //hom.manualCMD_TextBox.Icon = prop.x16.Commands_16;
+                }
             }
-        }
-        h.Donate_Button.ForeColor = colors.Iconcolors.Donate(true);
-        h.SwitchTheme_Button.ForeColor = colors.Iconcolors.SwitchTheme(true);
-        h.Feedback_Button.ForeColor = colors.Iconcolors.Smile(true);
-        h.About_Button.ForeColor = colors.Iconcolors.ToU(true);
-        h.Settings_Button.ForeColor = colors.Iconcolors.Settings(true);
-        h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands(true);
+            h.Donate_Button.ForeColor = colors.Iconcolors.Donate(true);
+            h.SwitchTheme_Button.ForeColor = colors.Iconcolors.SwitchTheme();
+            h.Feedback_Button.ForeColor = colors.Iconcolors.Smile(true);
+            h.About_Button.ForeColor = colors.Iconcolors.ToU(true);
+            h.Settings_Button.ForeColor = colors.Iconcolors.Settings(true);
+            h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands(true);
 
-        h_add_b.ForeColor = colors.Misc.Green();
-        h.Toggle_ManualDeviceInfo_Button.ForeColor = h_add_b.ForeColor;
+            h_add_b.ForeColor = colors.Misc.Green();
+            h.Toggle_ManualDeviceInfo_Button.ForeColor = h_add_b.ForeColor;
 
-        h.DeviceState_Label_TextChanged(h.DeviceState_Label, EventArgs.Empty);
-        HomeTheme_delayTimer.Enabled = false;
+            h.DeviceState_Label_TextChanged(h.DeviceState_Label, EventArgs.Empty);
+            HomeTheme_delayTimer.Enabled = false;
+        };
+
     }
     #endregion
 

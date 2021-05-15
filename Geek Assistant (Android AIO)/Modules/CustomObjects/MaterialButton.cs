@@ -34,35 +34,29 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
             Invalidate();
         }
     }
-    private Color _BackColor;
-    public override Color BackColor {
-        get => _BackColor;
+
+    public override Color BackColor { //Kill system BackColor
+        get => Color.Empty;
+        set =>
+            inf.Run((inf.detail.code + "-MB-BCX",  // (code) - MaterialButton - BackColor X
+                     inf.lvls.FatalError, "The dev messed up...",
+                       "This shouldn't happen.",
+                     $"Setting BackColor of MaterialButton is forbidden.\n Control: {Name}"));
+    }
+
+    private Color _realBackColor;
+    public Color realBackColor {
+        get => _realBackColor;
         set {
-            _BackColor = value;
+            _realBackColor = value;
             Invalidate();
         }
     }
     private Color ForeColorA64 => Color.FromArgb(64, ForeColor);
     private Color saved_ForeColor = Color.Empty;
-    private Color _ForeColor;
     public override Color ForeColor {
-        get => _ForeColor;
-        set {
-            _ForeColor = value;
-            Invalidate();
-        }
-    }
-    private bool _ThemeChanged;
-    private bool ThemeChanged {
-        get {
-            if (c.S.DarkTheme != _ThemeChanged) {
-                _ThemeChanged = true;
-            } else {
-                _ThemeChanged = false;
-            }
-
-            return _ThemeChanged;
-        }
+        get => base.ForeColor;
+        set { base.ForeColor = value; Invalidate(); }
     }
 
     private SizeF _textSize;
@@ -71,10 +65,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         set {
             base.Text = value;
             _textSize = CreateGraphics().MeasureString(value, Font);
-            if (AutoSize) {
-                Size = GetPreferredSize();
-            }
-
+            if (AutoSize) Size = GetPreferredSize();
             Invalidate();
         }
     }
@@ -85,6 +76,28 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
             Invalidate();
         }
     }
+    [DefaultValue(false)]
+    public override bool AutoSize {
+        get {
+            if (!__AutoSize) AutoSizeMode = AutoSizeMode.GrowOnly;
+            else AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            return false;
+        }
+    }//kill this retarded thing
+
+    private bool __AutoSize;
+    [DefaultValue(false)]
+    public bool _AutoSize {
+        get => __AutoSize;
+        set {
+            __AutoSize = value;
+            if (!__AutoSize) AutoSizeMode = AutoSizeMode.GrowOnly;
+            else AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            if (__AutoSize) GetPreferredSize();
+            Invalidate();
+        }
+    }
+    private static bool ThemeChanging => GA_SetTheme.Running;
     //private bool Idle = true; 
     public MaterialButton() {
         Primary = false;
@@ -101,8 +114,7 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         _hoverAnimationManager.OnAnimationProgress += sender => Invalidate();
         _animationManager.OnAnimationProgress += sender => Invalidate();
 
-        base.ForeColor = _ForeColor;
-        base.BackColor = _BackColor;
+        base.ForeColor = ForeColor;
     }
 
     private Rectangle iconRect;
@@ -144,44 +156,36 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
         //Hover 
         //SkinManager.GetFlatButtonHoverBackgroundColor(); 
         using (Brush b = new SolidBrush(
-                                Color.FromArgb((int)(_hoverAnimationManager.GetProgress() * (Width == Height ? 128 : 64) /*saved_ForeColor.A*/), saved_ForeColor.RemoveAlpha()))) {
+                                Color.FromArgb(
+                                    (int)(_hoverAnimationManager.GetProgress() * (Width == Height ? 128 : 64) /*saved_ForeColor.A*/),
+                                    saved_ForeColor.RemoveAlpha())))
             g.FillPath(b, fxPath);
-        }
+
 
 
         //Ripple 
         if (_animationManager.IsAnimating()) {
-            Color RippleColor = Color.FromArgb(60, saved_ForeColor);
+            Color RippleColor = BackColor != Color.Empty | BackColor != Color.Transparent ?
+                                Color.FromArgb(60, saved_ForeColor)
+                                : BackColor.GetBrightness() > .5f ?
+                                  colors.UI.bg() : colors.UI.fg();
+
             Rectangle rippleRect; GraphicsPath fxRipple;
-            Region fxIntersect = new(fxPath);
+            Region fxIntersect = new(fxPath); // initialize ( = original hover path )
+
+            double animationValue;
+            Point animationSource;
 
             for (var i = 0; i < _animationManager.GetAnimationCount(); i++) {
-                double animationValue = _animationManager.GetProgress(i);
-                Point animationSource = _animationManager.GetSource(i);
+                animationValue = _animationManager.GetProgress(i);
+                animationSource = _animationManager.GetSource(i);
 
                 using (Brush b = new SolidBrush(Color.FromArgb((int)((101 - (animationValue * 100)) * 2), RippleColor))) {
                     int rippleSize = (int)(animationValue * Width * 2);
                     rippleRect = new(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize);
                     fxRipple = math.Geometry.EllipseInRect(rippleRect);
-                    fxIntersect.Intersect(fxRipple);
+                    fxIntersect.Intersect(fxRipple); // update ( = ripple /\ hover )
                     g.FillRegion(b, fxIntersect);
-
-                    //continue; 
-                    //if (string.IsNullOrEmpty(Text) & Icon != null) {
-                    //    math.Geometry.FillCircle(g, b, animationSource.X, animationSource.Y, rippleSize);
-                    //    g.FillRegion(new SolidBrush(colors.UI.bg()), fxIntersect);
-                    //    continue;
-                    //}
-                    //if (Radius == 0)
-                    //    g.FillEllipse(b, rippleRect); //fill using an ellipse if no radius
-                    //else {
-                    //    if (rippleRect.Width > ClientRectangle.Width * 0.8)
-                    //        g.FillEllipse(b, rippleRect); //fill ellipse before reaching 80%
-                    //    else
-                    //        g.FillPath(b, math.Geometry.RoundedRect(rippleRect, Radius)); //fill according to path after 80%
-
-                    //}
-                    //g.FillRegion(new SolidBrush(colors.UI.bg()), fxIntersect);
                 }
             }
         }
@@ -221,15 +225,6 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
                      textRect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
                      );
     }
-    private bool _AutoSize;
-    public override bool AutoSize {
-        get => _AutoSize;
-        set {
-            _AutoSize = value;
-            GetPreferredSize();
-            Invalidate();
-        }
-    }
     private Size GetPreferredSize() => _AutoSize ? GetPreferredSize(new Size(0, 0)) : Size;
     public override Size GetPreferredSize(Size proposedSize) {
         Size result = new((int)Math.Ceiling(_textSize.Width) + 16, base.Height);
@@ -246,9 +241,8 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
     private bool animating = false;
     protected override void OnCreateControl() {
         base.OnCreateControl();
-        if (DesignMode) {
-            return;
-        }
+        if (DesignMode) return;
+
 
         MouseState = MouseState.OUT;
         MouseEnter += (sender, ev) => {
@@ -256,10 +250,8 @@ public class MaterialButton : MaterialFlatButton, IMaterialControl {
             _hoverAnimationManager.StartNewAnimation(AnimationDirection.In);
 
             if (!animating) {
-                if (ThemeChanged | saved_ForeColor == Color.Empty) {
+                if (ThemeChanging | saved_ForeColor == Color.Empty)
                     saved_ForeColor = ForeColor;
-                }
-
                 Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA64, colors.UI.bg()).GetBrightness() > 0.5f
                                                      ? colors.constColors.fg : colors.constColors.bg); //flip to current anti-bg color on hover  
             }
