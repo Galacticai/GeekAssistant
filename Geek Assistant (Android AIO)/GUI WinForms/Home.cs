@@ -4,16 +4,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using GeekAssistant.Controls.Material;
 
 namespace GeekAssistant.Forms {
     public partial class Home : Form {
-        public Home() {
-            InitializeComponent();
-        }
+        public Home() => InitializeComponent();
+
         private void AssignEvents() {
-
-
-            //Delayed_DeviceChanged_Timer.Tick += new(Delayed_DeviceChanged_Timer_Tick);
 
             FormClosing += new(Home_FormClosing);
             Move += new(Home_Move);
@@ -29,8 +26,6 @@ namespace GeekAssistant.Forms {
             AutoDetectDeviceInfo_Button.MouseUp += new(AutoDetectDeviceInfo_Button_MouseUp); AutoDetectDeviceInfo_Button.KeyUp += new(AutoDetectDeviceInfo_Button_MouseUp);
             AutoDetectDeviceInfo_Button.Click += new(AutoDetectDeviceInfo_Button_Click);
 
-            ShowWaitThenAutoDetect_Timer.Tick += new(ShowWaitThenAutoDetect_Timer_Tick);
-
             EventHandler Ev__logMouseEnter = new(ShowLog_MouseEnter);
             ShowLog_Button.MouseEnter += Ev__logMouseEnter; log.MouseEnter += Ev__logMouseEnter; ShowLog_Button.MouseEnter += Ev__logMouseEnter;
             ProgressFakeBG_UI.MouseEnter += Ev__logMouseEnter; ProgressBarLabel.MouseEnter += Ev__logMouseEnter;
@@ -44,12 +39,13 @@ namespace GeekAssistant.Forms {
 
             FlashZip_ChooseFile_Button.Click += new(FlashZip_ChooseFile_Button_Click);
             FlashZip_Button.Click += new(FlashZip_Button_Click);
-            //X     FlashZip_ChooseFile_TextBox.DoubleClick += new(FlashZip_ChooseFile_TextBox_DoubleClick); 
+            //?     FlashZip_ChooseFile_TextBox.DoubleClick += new(FlashZip_ChooseFile_TextBox_DoubleClick); 
 
             log.TextChanged += new(log_TextChanged);
 
             bar.MouseEnter += new(bar_MouseEnter);
             ProgressBarLabel.MouseEnter += new(ProgressBarLabel_MouseEnter);
+            ProgressBarLabel.TextChanged += new(ProgressBarLabel_TextChanged);
             ProgressBarLabel.Click += Ev__log; bar.Click += Ev__log;
 
             Manufacturer_ComboBox.MouseEnter += new(Manufacturer_ComboBox_MouseEnter);
@@ -146,11 +142,9 @@ namespace GeekAssistant.Forms {
 
         private DeviceMonitor devMon = new(AndroidDebugBridge.Bridge);
         private void madb_devChanged(object sender, EventArgs e) {
-            if (!finishedLoading) {
-                return; //Cancel while loading Home
-            }
+            if (!finishedLoading) return; //Cancel while loading Home
 
-            Invoke(new Action(() => {
+            bar.Invoke(new Action(() => {
                 AutoDetect.Run(true);
                 GA_Log.LogEvent(DeviceState_Label.Text, 1);
             }));
@@ -161,9 +155,8 @@ namespace GeekAssistant.Forms {
                 System.Media.SystemSounds.Beep.Play();
                 return;
             }
-            if (GA_HideAllForms.HiddenForms != null) {
-                return; //Stop if hiding all forms
-            }
+            if (GA_HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
+
             //EventWatcher.Stop();
 
             GA_Log.LogEvent("End", 3);
@@ -173,22 +166,17 @@ namespace GeekAssistant.Forms {
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
         }
         private void Home_GotFocus(object sender, EventArgs e) {
-            if (!finishedLoading) {
-                new Wait().BringToFront();
-            }
+            if (!finishedLoading) new Wait().BringToFront();
         }
         //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
-            if (GA_Wait.Wait != null) {
+            if (GA_Wait.Wait != null)
                 GA_Wait.Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, GA_Wait.Wait.Width, GA_Wait.Wait.Height);
-            }
         }
-        private bool finishedLoading = false;
-        private Timer HomeLoad_Delay_Timer = new() { Interval = 200 };
 
-        //private Preparing Preparing = null;
+        private bool finishedLoading = false;
         private void Home_Load(object sender, EventArgs e) {
             Enabled = false; //Disable before anything to prevent messing things up
 
@@ -196,44 +184,39 @@ namespace GeekAssistant.Forms {
 
             AssignEvents();
 
-            if (Width != 690) {
-                Width = 690; //Set width to avoid using the width selected while developing
-            }
+            Width = 690; //Set width to avoid using the width selected while developing
+
 
             Text = GA_Ver.Run("MainTitle");
             GA_About_Label.Text = GA_Ver.Run("Main");
             log.Text = GA_Ver.Run("log");
             GA_Wait.Run(true);
 
-            HomeLoad_Delay_Timer.Start();
+            Timer HomeLoad_Delay_Timer = new() { Interval = 200, Enabled = true };
             bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
             HomeLoad_Delay_Timer.Tick += (sender, ev) => {
                 GA_SetTheme.Run(this, true);
-                if (OneTimebool_HomeLoad_Delay_Timer_Tick) { OneTimebool_HomeLoad_Delay_Timer_Tick = false; return; }
+                if (OneTimebool_HomeLoad_Delay_Timer_Tick) {
+                    OneTimebool_HomeLoad_Delay_Timer_Tick = false;
+                    return;
+                }
 
                 HomeLoad_Delay_Timer.Stop();
 
-
-                if (c.S.AutoClearLogs) {
-                    GA_Log.ClearIf30days();
-                }
-
+                if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
                 GA_PrepareAppdata.Run();
                 GA_adb.PrepareAndroidDictionary();
                 GA_adb.ResetDeviceInfo();
 
                 AutoDetect.Run(true);
-                if (DeviceState_Label.Text != "Disconnected") {
+                if (DeviceState_Label.Text != "Disconnected")
                     GA_Log.LogEvent(DeviceState_Label.Text, 1);
-                }
 
                 DoNeutral();
                 AutoDetectDeviceInfo_Button.Select();
 
                 //####### DEBUG #####################################
-                if (c.V.Revision == 3) {
-                    debuggingBox.Visible = true;
-                }
+                if (c.V.Revision == 3) debuggingBox.Visible = true;
                 //###################################################
 
                 GA_Log.LogEvent("Start", 1);
@@ -243,30 +226,30 @@ namespace GeekAssistant.Forms {
                 GA_Wait.Run(false);
                 BringToFront();
 
-                BruteForce_Set_ControlsProps();
+                // BruteForce_Set_ControlsProps();
             };
         }
-        private void BruteForce_Set_ControlsProps() {
+        /* private void BruteForce_Set_ControlsProps() {
 
-            // Toggle_ManualDeviceInfo_Button 
-            this.Toggle_ManualDeviceInfo_Button.Depth = 0;
-            this.Toggle_ManualDeviceInfo_Button.Font = new("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Toggle_ManualDeviceInfo_Button.Icon = null;
-            this.Toggle_ManualDeviceInfo_Button.Location = new(24, 482);
-            this.Toggle_ManualDeviceInfo_Button.Margin = new(0);
-            this.Toggle_ManualDeviceInfo_Button.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Toggle_ManualDeviceInfo_Button.Name = "Toggle_ManualDeviceInfo_Button";
-            this.Toggle_ManualDeviceInfo_Button.Primary = true;
-            this.Toggle_ManualDeviceInfo_Button.Size = new(243, 36);
-            this.Toggle_ManualDeviceInfo_Button.TabIndex = 85352;
-            this.Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
-            this.Toggle_ManualDeviceInfo_Button.TextAlignment = System.Drawing.StringAlignment.Near;
-            this.Toggle_ManualDeviceInfo_Button.UseVisualStyleBackColor = false;
-            this.Toggle_ManualDeviceInfo_Button.AutoSize = false;
-            this.Toggle_ManualDeviceInfo_Button._AutoSize = false;
-            this.Toggle_ManualDeviceInfo_Button.ForeColor = colors.Misc.Green();
-            this.Toggle_ManualDeviceInfo_Button.AutoSizeMode = AutoSizeMode.GrowOnly;
-        }
+             // Toggle_ManualDeviceInfo_Button 
+             this.Toggle_ManualDeviceInfo_Button.Depth = 0;
+             this.Toggle_ManualDeviceInfo_Button.Font = new("Segoe UI Semilight", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+             this.Toggle_ManualDeviceInfo_Button.Icon = null;
+             this.Toggle_ManualDeviceInfo_Button.Location = new(24, 482);
+             this.Toggle_ManualDeviceInfo_Button.Margin = new(0);
+             this.Toggle_ManualDeviceInfo_Button.MouseState = MaterialSkin.MouseState.HOVER;
+             this.Toggle_ManualDeviceInfo_Button.Name = "Toggle_ManualDeviceInfo_Button";
+             this.Toggle_ManualDeviceInfo_Button.Primary = true;
+             this.Toggle_ManualDeviceInfo_Button.Size = new(243, 36);
+             this.Toggle_ManualDeviceInfo_Button.TabIndex = 85352;
+             this.Toggle_ManualDeviceInfo_Button.Text = "Select Device Info Manually";
+             this.Toggle_ManualDeviceInfo_Button.TextAlignment = StringAlignment.Near;
+             this.Toggle_ManualDeviceInfo_Button.UseVisualStyleBackColor = false;
+             this.Toggle_ManualDeviceInfo_Button.AutoSize = false;
+             this.Toggle_ManualDeviceInfo_Button._AutoSize = false;
+             this.Toggle_ManualDeviceInfo_Button.ForeColor = colors.Misc.Green();
+             this.Toggle_ManualDeviceInfo_Button.AutoSizeMode = AutoSizeMode.GrowOnly;
+         }*/
 
         private void Main_HelpButtonClicked() {
             MessageBox.Show(prop.strings.FeatureUnavailable, "Help - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -277,34 +260,32 @@ namespace GeekAssistant.Forms {
         }
 
         private void AutoDetectDeviceInfo_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, AutoDetectDeviceInfo_Button, "Auto Detect", "Let Geek Assistant automatically detect your device//s information");
+            GA_SetTooltipInfo.Run(ref Main_ToolTip, AutoDetectDeviceInfo_Button, "Auto Detect",
+                                  "Let Geek Assistant automatically detect your device//s information");
         }
         private void AutoDetectDeviceInfo_Button_MouseDown(object sender, EventArgs e) {
-            if (c.S.DarkTheme) {
+            AutoDetectDeviceInfo_Button.Image = icons.x64.AutoDetect(true);
+            if (c.S.DarkTheme)
                 AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
-                AutoDetectDeviceInfo_Button.Image = prop.x64.AutoDetect_64;
-            } else {
-                AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
-                AutoDetectDeviceInfo_Button.Image = prop.x64.AutoDetect_dark_64;
-            }
+            else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
+
         }
         private void AutoDetectDeviceInfo_Button_MouseUp(object sender, EventArgs e) {
-            if (c.S.DarkTheme) {
+            AutoDetectDeviceInfo_Button.Image = icons.x64.AutoDetect();
+            if (c.S.DarkTheme)
                 AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
-                AutoDetectDeviceInfo_Button.Image = prop.x64.AutoDetect_dark_64;
-            } else {
-                AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
-                AutoDetectDeviceInfo_Button.Image = prop.x64.AutoDetect_64;
-            }
+            else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
+
         }
         private void AutoDetectDeviceInfo_Button_Click(object sender, EventArgs e) {
             GA_Wait.Run(true);
+            Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
+            if (ShowWaitThenAutoDetect_Timer.Enabled) return; //cancel if already running
             ShowWaitThenAutoDetect_Timer.Start(); //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
-        }
-        private Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
-        private void ShowWaitThenAutoDetect_Timer_Tick(object sender, EventArgs e) {
-            ShowWaitThenAutoDetect_Timer.Enabled = false;
-            AutoDetect.Run();
+            ShowWaitThenAutoDetect_Timer.Tick += (sender, ev) => {
+                ShowWaitThenAutoDetect_Timer.Stop();
+                AutoDetect.Run();
+            };
         }
 
         //private void AutoDetectFlash_Timer_Tick(object sender, EventArgs e) { AutoDetectFlash_Timer_Deprecated.Tick
@@ -331,44 +312,26 @@ namespace GeekAssistant.Forms {
         }
 
         private void ShowLog_ErrorBlink_Timer_Tick(object sender, EventArgs e) {
-
-            MaterialButton slb = ShowLog_Button;
-            {
+            using (GeekAssistant.Controls.Material.FlatButton slb = ShowLog_Button) {
                 if ((string)slb.Tag == " ") {
                     slb.Tag = "  ";
-                    if (c.S.DarkTheme) {
-                        slb.Icon = prop.x24.Warning_Red_dark_24;
-                    } else {
-                        slb.Icon = prop.x24.Warning_Red_24;
-                    }
+                    slb.Icon = icons.x24.inf.Error();
                 } else {
                     slb.Tag = " ";
-                    if (c.S.DarkTheme) {
-                        slb.Icon = prop.x24.Warning_Red_24;
-                    } else {
-                        slb.Icon = prop.x24.Warning_Red_dark_24;
-                    }
+                    slb.Icon = icons.x24.inf.Error(true);
                 }
             }
         }
 
         private void ShowLog_InfoBlink_Timer_Tick(object sender, EventArgs e) {
-            if (ShowLog_ErrorBlink_Timer.Enabled) {
-                using (MaterialButton slb = ShowLog_Button) {
+            if (!ShowLog_ErrorBlink_Timer.Enabled) {
+                using (GeekAssistant.Controls.Material.FlatButton slb = ShowLog_Button) {
                     if ((string)slb.Tag == " ") {
                         slb.Tag = "  ";
-                        if (c.S.DarkTheme) {
-                            slb.Icon = prop.x24.Info_Yellow_dark_24;
-                        } else {
-                            slb.Icon = prop.x24.Info_Yellow_24;
-                        }
+                        slb.Icon = icons.x24.inf.Information();
                     } else {
                         slb.Tag = " ";
-                        if (c.S.DarkTheme) {
-                            slb.Icon = prop.x24.Info_Yellow_24;
-                        } else {
-                            slb.Icon = prop.x24.Info_Yellow_dark_24;
-                        }
+                        slb.Icon = icons.x24.inf.Information(true);
                     }
                 }
             }
@@ -386,13 +349,10 @@ namespace GeekAssistant.Forms {
         }
 
         private void FlashZip_Button_Click(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName)) {
+            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName))
                 FlashZip_ChooseFile_Button.PerformClick();
-            }
 
-            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName)) {
-                return;
-            }
+            if (string.IsNullOrEmpty(FlashZip_OpenFileDialog.FileName)) return;
 
             //FlashFiles.Run(FlashZip_OpenFileDialog.FileName)
         }
@@ -401,13 +361,11 @@ namespace GeekAssistant.Forms {
         }
 
         private void log_TextChanged(object sender, EventArgs e) {
-            if (log.Visible) {
-                return;
-            }
+            if (log.Visible) return;
 
-            if (ShowLog_ErrorBlink_Timer.Enabled == false) {
+            if (ShowLog_ErrorBlink_Timer.Enabled == false)
                 ShowLog_InfoBlink_Timer.Enabled = true;
-            }
+
         }
         //Already Done above 
         //private void log_MouseEnter(object sender, EventArgs e) { log.MouseEnter
@@ -419,6 +377,10 @@ namespace GeekAssistant.Forms {
         }
         private void ProgressBarLabel_MouseEnter(object sender, EventArgs e) {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, ProgressBarLabel, "Status", "Click to show/hide the log");
+        }
+        private void ProgressBarLabel_TextChanged(object sender, EventArgs e) {
+            if (ProgressBarLabel.Text.Length > 80) ProgressBarLabel.Font = new Font("Segoe UI Semilight", 9.75f);
+            else ProgressBarLabel.Font = new Font("Segoe UI", 9.75f);
         }
         //private void ProgressBarLabel_Mousedown_KeyDown(object sender, EventArgs e) { ProgressBarLabel.MouseDown, ProgressBarLabel.KeyDown
         //    With ProgressBarLabel
@@ -443,11 +405,8 @@ namespace GeekAssistant.Forms {
         public void DoNeutral() {
             ShowLog_InfoBlink_Timer.Enabled = false;
             ShowLog_ErrorBlink_Timer.Enabled = false;
-            if (c.S.DarkTheme) {
-                ShowLog_Button.Icon = prop.x24.Commands_dark_24;
-            } else {
-                ShowLog_Button.Icon = prop.x24.Commands_24;
-            }
+            ShowLog_Button.Icon = icons.x24.Commands();
+
 
             bar.Style = MetroFramework.MetroColorStyle.Green;
             bar.Value = 0;
@@ -544,77 +503,51 @@ namespace GeekAssistant.Forms {
             switch (DeviceState_Label.Text) {
                 case "Disconnected":
                 case "Unknown":
-                    DeviceState_Label.ForeColor = Color.FromArgb(128, 128, 128);
-                    break;
+                    DeviceState_Label.ForeColor = colors.UI.Buttons.FlatAppearance.MouseOverBackColor(true); break;
                 case "Offline":
-                    DeviceState_Label.ForeColor = colors.infColorRes.errRed();
-                    break;
+                    DeviceState_Label.ForeColor = colors.inf.errRed(); break;
                 case "Download mode":
                 case "Recovery mode":
                 case "Fastboot mode":
-                    DeviceState_Label.ForeColor = colors.infColorRes.warnYellow();
-                    break;
+                    DeviceState_Label.ForeColor = colors.inf.warnYellow(); break;
                 case "Connected (ADB)":
-                    DeviceState_Label.ForeColor = colors.Misc.Green();
-                    break;
+                    DeviceState_Label.ForeColor = colors.Misc.Green(); break;
                 case "Multiple":
-                    DeviceState_Label.ForeColor = colors.Misc.Purple();
-                    break;
+                    DeviceState_Label.ForeColor = colors.Misc.Purple(); break;
             }
         }
 
+        private bool devDisconnected => (DeviceState_Label.Text != "Connected (ADB)");
         private void Manufacturer_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (c.Working) {
-                Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
-            } else {
-                c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
-            }
-
-            Manufacturer_Label.Text = Manufacturer_ComboBox.Text;
+            if (c.Working) Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
+            else c.S.DeviceManufacturer = Manufacturer_ComboBox.Text;
+            Manufacturer_Label.Text = devDisconnected ? "N/A" : Manufacturer_ComboBox.Text;
         }
         private void AndroidVersion_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (c.Working) {
-                AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
-            }
+            if (c.Working) AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel, true)[0];
             //TODO: //else common.S.DeviceAPILevel = GA_adb_Functions.ConvertAVerToAPILevel(AndroidVersion_ComboBox.Text);
-            AndroidVersion_Label.Text = AndroidVersion_ComboBox.Text;
+            AndroidVersion_Label.Text = devDisconnected ? "N/A" : AndroidVersion_ComboBox.Text;
         }
         private void BootloaderUnlockable_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) {
-                BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
-            } else {
-                c.S.DeviceBootloaderUnlockSupported = BootloaderUnlockable_CheckBox.Checked;
-            }
-
-            BootloaderUnlockable_Label.Text = convert.Bool.ToYesNo(BootloaderUnlockable_CheckBox.Checked);
+            if (c.Working) BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
+            else c.S.DeviceBootloaderUnlockSupported = BootloaderUnlockable_CheckBox.Checked;
+            BootloaderUnlockable_Label.Text = devDisconnected ? "N/A" : convert.Bool.ToYesNo(BootloaderUnlockable_CheckBox.Checked);
         }
         private void Rooted_Checkbox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) {
-                Rooted_Checkbox.Checked = c.S.DeviceRooted;
-            } else {
-                c.S.DeviceRooted = Rooted_Checkbox.Checked;
-            }
-
-            Rooted_Label.Text = convert.Bool.ToYesNo(Rooted_Checkbox.Checked);
+            if (c.Working) Rooted_Checkbox.Checked = c.S.DeviceRooted;
+            else c.S.DeviceRooted = Rooted_Checkbox.Checked;
+            Rooted_Label.Text = devDisconnected ? "N/A" : convert.Bool.ToYesNo(Rooted_Checkbox.Checked);
         }
         private void CustomROM_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) {
-                CustomROM_CheckBox.Checked = c.S.DeviceCustomROM;
-            } else {
-                c.S.DeviceCustomROM = CustomROM_CheckBox.Checked;
-            }
-
-            CustomROM_Label.Text = convert.Bool.ToYesNo(CustomROM_CheckBox.Checked);
+            if (c.Working) CustomROM_CheckBox.Checked = c.S.DeviceCustomROM;
+            else c.S.DeviceCustomROM = CustomROM_CheckBox.Checked;
+            CustomROM_Label.Text = devDisconnected ? "N/A" : convert.Bool.ToYesNo(CustomROM_CheckBox.Checked);
         }
         private void CustomRecovery_CheckBox_CheckedChanged(object sender, EventArgs e) {
-            if (c.Working) {
+            if (c.Working)
                 CustomRecovery_CheckBox.Checked = c.S.DeviceCustomRecovery;
-            } else {
-                c.S.DeviceCustomRecovery = CustomRecovery_CheckBox.Checked;
-            }
-
-            CustomRecovery_Label.Text = convert.Bool.ToYesNo(CustomRecovery_CheckBox.Checked);
-
+            else c.S.DeviceCustomRecovery = CustomRecovery_CheckBox.Checked;
+            CustomRecovery_Label.Text = devDisconnected ? "N/A" : convert.Bool.ToYesNo(CustomRecovery_CheckBox.Checked);
         }
         private bool ManualDevInfo = false;
         private void Toggle_ManualDeviceInformation_Button_Click(object sender, EventArgs e) {

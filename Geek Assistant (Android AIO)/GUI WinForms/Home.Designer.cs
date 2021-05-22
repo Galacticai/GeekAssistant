@@ -1,8 +1,11 @@
 ﻿
 using System.Windows.Forms;
+using MetroFramework.Controls;
+using GeekAssistant.Controls;
+using System.Drawing;
 
 namespace GeekAssistant.Forms {
-    partial class Home : System.Windows.Forms.Form {
+    partial class Home : Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -13,9 +16,8 @@ namespace GeekAssistant.Forms {
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+            if (disposing && (components != null))
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
@@ -29,7 +31,7 @@ namespace GeekAssistant.Forms {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.OpenLogFolder = new System.Windows.Forms.Button();
-            this.Toggle_ManualDeviceInfo_Button = new MaterialButton();
+            this.Toggle_ManualDeviceInfo_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.FlashZip_OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.CustomRecovery_CheckBox = new System.Windows.Forms.CheckBox();
             this.CustomROM_CheckBox = new System.Windows.Forms.CheckBox();
@@ -40,10 +42,10 @@ namespace GeekAssistant.Forms {
             this.BootloaderUnlockable_CheckBox = new System.Windows.Forms.CheckBox();
             this.DeviceState_Label = new System.Windows.Forms.Label();
             this.DeviceStateTitle_Label = new System.Windows.Forms.Label();
-            this.FlashZip_Button = new MaterialButton();
-            this.About_Button = new MaterialButton();
-            this.Settings_Button = new MaterialButton();
-            this.Feedback_Button = new MaterialButton();
+            this.FlashZip_Button = new GeekAssistant.Controls.Material.FlatButton();
+            this.About_Button = new GeekAssistant.Controls.Material.FlatButton();
+            this.Settings_Button = new GeekAssistant.Controls.Material.FlatButton();
+            this.Feedback_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.FlashZip_RebootWhenComplete_Checkbox = new System.Windows.Forms.CheckBox();
             this.AutoDetectDeviceInfo_Button = new System.Windows.Forms.Button();
             this.ClearLog_Button = new System.Windows.Forms.Button();
@@ -51,25 +53,26 @@ namespace GeekAssistant.Forms {
             this.CopyLogToClipboard = new System.Windows.Forms.Button();
             this.GeekAssistant = new System.Windows.Forms.PictureBox();
             this.FlashZip_ChooseFile_Button = new System.Windows.Forms.Button();
-            this.ShowLog_Button = new MaterialButton();
+            this.ShowLog_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.log = new System.Windows.Forms.TextBox();
-            this.ProgressBarLabel = new MetroFramework.Controls.MetroLabel();
-            this.SwitchTheme_Button = new MaterialButton();
-            this.Donate_Button = new MaterialButton();
+            this.ProgressBarLabel = new System.Windows.Forms.Label();
+            this.SwitchTheme_Button = new GeekAssistant.Controls.Material.FlatButton();
+            this.Donate_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.MainLayout_PictureBox = new System.Windows.Forms.PictureBox();
             this.ProgressFakeBG_UI = new System.Windows.Forms.PictureBox();
-            this.Main_Tabs = new MetroFramework.Controls.MetroTabControl();
-            this.PrepareYourDevice_Tab = new MetroFramework.Controls.MetroTabPage();
+            this.Main_Tabs_old = new MetroFramework.Controls.MetroTabControl();
+            this.MoreTools_Tab_old = new MetroFramework.Controls.MetroTabPage();
+            this.FlashImg_Tab_old = new MetroFramework.Controls.MetroTabPage();
+            this.PrepareYourDevice_Tab_old = new MetroFramework.Controls.MetroTabPage();
             this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
             this.MagiskRoot_Label = new MetroFramework.Controls.MetroLabel();
             this.MagiskRoot_PictureBox = new System.Windows.Forms.PictureBox();
             this.UnlockBL_PictureBox = new System.Windows.Forms.PictureBox();
             this.MagiskRoot_Title = new System.Windows.Forms.Label();
             this.UnlockBL_Title = new System.Windows.Forms.Label();
-            this.MagiskRoot_Button = new MaterialButton();
+            this.MagiskRoot_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.MaterialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.UnlockBL_Button = new MaterialButton();
-            this.FlashImg_Tab = new MetroFramework.Controls.MetroTabPage();
+            this.UnlockBL_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -81,16 +84,6 @@ namespace GeekAssistant.Forms {
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.Button4 = new System.Windows.Forms.Button();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
-            this.MoreTools_Tab = new MetroFramework.Controls.MetroTabPage();
-            this.debuggingBox = new System.Windows.Forms.GroupBox();
-            this.MetroButton4 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton8 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton7 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton6 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton11 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton3 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton2 = new MetroFramework.Controls.MetroButton();
-            this.MetroButton1 = new MetroFramework.Controls.MetroButton();
             this.InstallBusybox_Button = new MetroFramework.Controls.MetroButton();
             this.HotReboot_Button = new MetroFramework.Controls.MetroButton();
             this.GA_About_Label = new MetroFramework.Controls.MetroLabel();
@@ -120,30 +113,41 @@ namespace GeekAssistant.Forms {
             this.CustomRecovery_Label = new System.Windows.Forms.Label();
             this.CustomROM_Title_Label = new System.Windows.Forms.Label();
             this.CustomROM_Label = new System.Windows.Forms.Label();
-            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.Home_Tabs = new MaterialSkin.Controls.MaterialTabControl();
+            this.Prepare_Tab = new System.Windows.Forms.TabPage();
+            this.Flash_Tab = new System.Windows.Forms.TabPage();
+            this.More_Tab = new System.Windows.Forms.TabPage();
+            this.debuggingBox = new System.Windows.Forms.GroupBox();
+            this.MetroButton4 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton8 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton7 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton6 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton11 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton3 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton2 = new MetroFramework.Controls.MetroButton();
+            this.MetroButton1 = new MetroFramework.Controls.MetroButton();
+            this.materialTabSelector1 = new GeekAssistant.Controls.Material.TabSelector();
+            this.button5 = new System.Windows.Forms.Button();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).BeginInit();
-            this.Main_Tabs.SuspendLayout();
-            this.PrepareYourDevice_Tab.SuspendLayout();
+            this.Main_Tabs_old.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).BeginInit();
-            this.FlashImg_Tab.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
-            this.MoreTools_Tab.SuspendLayout();
-            this.debuggingBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Back_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.materialTabControl1.SuspendLayout();
+            this.Home_Tabs.SuspendLayout();
+            this.Prepare_Tab.SuspendLayout();
+            this.Flash_Tab.SuspendLayout();
+            this.More_Tab.SuspendLayout();
+            this.debuggingBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenLogFolder
@@ -167,6 +171,7 @@ namespace GeekAssistant.Forms {
             // 
             this.Toggle_ManualDeviceInfo_Button.Depth = 0;
             this.Toggle_ManualDeviceInfo_Button.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Toggle_ManualDeviceInfo_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Toggle_ManualDeviceInfo_Button.Icon = null;
             this.Toggle_ManualDeviceInfo_Button.Location = new System.Drawing.Point(24, 482);
             this.Toggle_ManualDeviceInfo_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -311,8 +316,9 @@ namespace GeekAssistant.Forms {
             // FlashZip_Button
             // 
             this.FlashZip_Button.Depth = 0;
+            this.FlashZip_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FlashZip_Button.Icon = null;
-            this.FlashZip_Button.Location = new System.Drawing.Point(19, 303);
+            this.FlashZip_Button.Location = new System.Drawing.Point(19, 298);
             this.FlashZip_Button.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.FlashZip_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.FlashZip_Button.Name = "FlashZip_Button";
@@ -331,8 +337,9 @@ namespace GeekAssistant.Forms {
             this.About_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.About_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.About_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.About_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.About_Button.Icon = global::prop.x24.ToU_24;
-            this.About_Button.Location = new System.Drawing.Point(518, 30);
+            this.About_Button.Location = new System.Drawing.Point(528, 30);
             this.About_Button.Margin = new System.Windows.Forms.Padding(0);
             this.About_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.About_Button.Name = "About_Button";
@@ -350,8 +357,9 @@ namespace GeekAssistant.Forms {
             this.Settings_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Settings_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Settings_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Settings_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Settings_Button.Icon = global::prop.x24.Settings_24;
-            this.Settings_Button.Location = new System.Drawing.Point(562, 30);
+            this.Settings_Button.Location = new System.Drawing.Point(567, 30);
             this.Settings_Button.Margin = new System.Windows.Forms.Padding(0);
             this.Settings_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Settings_Button.Name = "Settings_Button";
@@ -370,8 +378,9 @@ namespace GeekAssistant.Forms {
             this.Feedback_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Feedback_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Feedback_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Feedback_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Feedback_Button.Icon = global::prop.x24.Smile_24;
-            this.Feedback_Button.Location = new System.Drawing.Point(474, 30);
+            this.Feedback_Button.Location = new System.Drawing.Point(489, 30);
             this.Feedback_Button.Margin = new System.Windows.Forms.Padding(0);
             this.Feedback_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.Feedback_Button.Name = "Feedback_Button";
@@ -386,7 +395,7 @@ namespace GeekAssistant.Forms {
             // 
             this.FlashZip_RebootWhenComplete_Checkbox.BackColor = System.Drawing.Color.Transparent;
             this.FlashZip_RebootWhenComplete_Checkbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FlashZip_RebootWhenComplete_Checkbox.Location = new System.Drawing.Point(25, 276);
+            this.FlashZip_RebootWhenComplete_Checkbox.Location = new System.Drawing.Point(25, 271);
             this.FlashZip_RebootWhenComplete_Checkbox.Name = "FlashZip_RebootWhenComplete_Checkbox";
             this.FlashZip_RebootWhenComplete_Checkbox.Size = new System.Drawing.Size(149, 19);
             this.FlashZip_RebootWhenComplete_Checkbox.TabIndex = 85581;
@@ -435,7 +444,7 @@ namespace GeekAssistant.Forms {
             // 
             this.FlashZip_Title.BackColor = System.Drawing.Color.Transparent;
             this.FlashZip_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FlashZip_Title.Location = new System.Drawing.Point(15, 19);
+            this.FlashZip_Title.Location = new System.Drawing.Point(15, 14);
             this.FlashZip_Title.Name = "FlashZip_Title";
             this.FlashZip_Title.Size = new System.Drawing.Size(175, 21);
             this.FlashZip_Title.TabIndex = 85575;
@@ -492,8 +501,9 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray;
             this.ShowLog_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.ShowLog_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowLog_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ShowLog_Button.Icon = global::prop.x24.Commands_24;
-            this.ShowLog_Button.Location = new System.Drawing.Point(600, 544);
+            this.ShowLog_Button.Location = new System.Drawing.Point(608, 544);
             this.ShowLog_Button.Margin = new System.Windows.Forms.Padding(0);
             this.ShowLog_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.ShowLog_Button.Name = "ShowLog_Button";
@@ -526,11 +536,10 @@ namespace GeekAssistant.Forms {
             // ProgressBarLabel
             // 
             this.ProgressBarLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ProgressBarLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.ProgressBarLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ProgressBarLabel.Location = new System.Drawing.Point(38, 544);
             this.ProgressBarLabel.Name = "ProgressBarLabel";
-            this.ProgressBarLabel.Size = new System.Drawing.Size(562, 36);
-            this.ProgressBarLabel.Style = MetroFramework.MetroColorStyle.Green;
+            this.ProgressBarLabel.Size = new System.Drawing.Size(570, 36);
             this.ProgressBarLabel.TabIndex = 85610;
             this.ProgressBarLabel.Text = "Current process information will be written here. Click for more information >>";
             this.ProgressBarLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -542,8 +551,9 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.SwitchTheme_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.SwitchTheme_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SwitchTheme_Button.Icon = global::prop.x24.Theme_Light_24;
-            this.SwitchTheme_Button.Location = new System.Drawing.Point(430, 30);
+            this.SwitchTheme_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SwitchTheme_Button.Icon = global::prop.x24.Theme_light_24;
+            this.SwitchTheme_Button.Location = new System.Drawing.Point(450, 30);
             this.SwitchTheme_Button.Margin = new System.Windows.Forms.Padding(0);
             this.SwitchTheme_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.SwitchTheme_Button.Name = "SwitchTheme_Button";
@@ -561,6 +571,7 @@ namespace GeekAssistant.Forms {
             this.Donate_Button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Donate_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.Donate_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Donate_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Donate_Button.Icon = global::prop.x24.DonateHeart_24;
             this.Donate_Button.Location = new System.Drawing.Point(606, 30);
             this.Donate_Button.Margin = new System.Windows.Forms.Padding(0);
@@ -595,55 +606,79 @@ namespace GeekAssistant.Forms {
             this.ProgressFakeBG_UI.TabIndex = 85606;
             this.ProgressFakeBG_UI.TabStop = false;
             // 
-            // Main_Tabs
+            // Main_Tabs_old
             // 
-            this.Main_Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.Main_Tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.Main_Tabs.Controls.Add(this.PrepareYourDevice_Tab);
-            this.Main_Tabs.Controls.Add(this.FlashImg_Tab);
-            this.Main_Tabs.Controls.Add(this.MoreTools_Tab);
-            this.Main_Tabs.Location = new System.Drawing.Point(273, 117);
-            this.Main_Tabs.Name = "Main_Tabs";
-            this.Main_Tabs.Padding = new System.Drawing.Point(6, 8);
-            this.Main_Tabs.SelectedIndex = 0;
-            this.Main_Tabs.Size = new System.Drawing.Size(377, 401);
-            this.Main_Tabs.Style = MetroFramework.MetroColorStyle.Green;
-            this.Main_Tabs.TabIndex = 85609;
-            this.Main_Tabs.UseSelectable = true;
+            this.Main_Tabs_old.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.Main_Tabs_old.Controls.Add(this.MoreTools_Tab_old);
+            this.Main_Tabs_old.Controls.Add(this.FlashImg_Tab_old);
+            this.Main_Tabs_old.Controls.Add(this.PrepareYourDevice_Tab_old);
+            this.Main_Tabs_old.Location = new System.Drawing.Point(273, 117);
+            this.Main_Tabs_old.Name = "Main_Tabs_old";
+            this.Main_Tabs_old.Padding = new System.Drawing.Point(6, 8);
+            this.Main_Tabs_old.SelectedIndex = 0;
+            this.Main_Tabs_old.Size = new System.Drawing.Size(377, 12);
+            this.Main_Tabs_old.Style = MetroFramework.MetroColorStyle.Green;
+            this.Main_Tabs_old.TabIndex = 85609;
+            this.Main_Tabs_old.UseSelectable = true;
             // 
-            // PrepareYourDevice_Tab
+            // MoreTools_Tab_old
             // 
-            this.PrepareYourDevice_Tab.BackColor = System.Drawing.Color.White;
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Label);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Label);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_PictureBox);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_PictureBox);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Title);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Title);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MagiskRoot_Button);
-            this.PrepareYourDevice_Tab.Controls.Add(this.MaterialDivider1);
-            this.PrepareYourDevice_Tab.Controls.Add(this.UnlockBL_Button);
-            this.PrepareYourDevice_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PrepareYourDevice_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarBarColor = true;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarHighlightOnWheel = false;
-            this.PrepareYourDevice_Tab.HorizontalScrollbarSize = 12;
-            this.PrepareYourDevice_Tab.Location = new System.Drawing.Point(4, 41);
-            this.PrepareYourDevice_Tab.Name = "PrepareYourDevice_Tab";
-            this.PrepareYourDevice_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PrepareYourDevice_Tab.Size = new System.Drawing.Size(369, 356);
-            this.PrepareYourDevice_Tab.Style = MetroFramework.MetroColorStyle.Green;
-            this.PrepareYourDevice_Tab.TabIndex = 0;
-            this.PrepareYourDevice_Tab.Text = "Prepare your device";
-            this.PrepareYourDevice_Tab.VerticalScrollbarBarColor = true;
-            this.PrepareYourDevice_Tab.VerticalScrollbarHighlightOnWheel = false;
-            this.PrepareYourDevice_Tab.VerticalScrollbarSize = 12;
+            this.MoreTools_Tab_old.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MoreTools_Tab_old.HorizontalScrollbarBarColor = true;
+            this.MoreTools_Tab_old.HorizontalScrollbarHighlightOnWheel = false;
+            this.MoreTools_Tab_old.HorizontalScrollbarSize = 3;
+            this.MoreTools_Tab_old.Location = new System.Drawing.Point(4, 41);
+            this.MoreTools_Tab_old.Name = "MoreTools_Tab_old";
+            this.MoreTools_Tab_old.Size = new System.Drawing.Size(369, 0);
+            this.MoreTools_Tab_old.TabIndex = 2;
+            this.MoreTools_Tab_old.Text = "More Tools";
+            this.MoreTools_Tab_old.VerticalScrollbarBarColor = true;
+            this.MoreTools_Tab_old.VerticalScrollbarHighlightOnWheel = false;
+            this.MoreTools_Tab_old.VerticalScrollbarSize = 3;
+            // 
+            // FlashImg_Tab_old
+            // 
+            this.FlashImg_Tab_old.BackColor = System.Drawing.Color.White;
+            this.FlashImg_Tab_old.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FlashImg_Tab_old.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FlashImg_Tab_old.HorizontalScrollbarBarColor = true;
+            this.FlashImg_Tab_old.HorizontalScrollbarHighlightOnWheel = false;
+            this.FlashImg_Tab_old.HorizontalScrollbarSize = 12;
+            this.FlashImg_Tab_old.Location = new System.Drawing.Point(4, 41);
+            this.FlashImg_Tab_old.Name = "FlashImg_Tab_old";
+            this.FlashImg_Tab_old.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FlashImg_Tab_old.Size = new System.Drawing.Size(369, -33);
+            this.FlashImg_Tab_old.TabIndex = 1;
+            this.FlashImg_Tab_old.Text = "Flash img files";
+            this.FlashImg_Tab_old.VerticalScrollbarBarColor = true;
+            this.FlashImg_Tab_old.VerticalScrollbarHighlightOnWheel = false;
+            this.FlashImg_Tab_old.VerticalScrollbarSize = 12;
+            // 
+            // PrepareYourDevice_Tab_old
+            // 
+            this.PrepareYourDevice_Tab_old.BackColor = System.Drawing.Color.White;
+            this.PrepareYourDevice_Tab_old.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PrepareYourDevice_Tab_old.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.PrepareYourDevice_Tab_old.HorizontalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab_old.HorizontalScrollbarHighlightOnWheel = false;
+            this.PrepareYourDevice_Tab_old.HorizontalScrollbarSize = 12;
+            this.PrepareYourDevice_Tab_old.Location = new System.Drawing.Point(4, 41);
+            this.PrepareYourDevice_Tab_old.Name = "PrepareYourDevice_Tab_old";
+            this.PrepareYourDevice_Tab_old.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.PrepareYourDevice_Tab_old.Size = new System.Drawing.Size(369, -33);
+            this.PrepareYourDevice_Tab_old.Style = MetroFramework.MetroColorStyle.Green;
+            this.PrepareYourDevice_Tab_old.TabIndex = 0;
+            this.PrepareYourDevice_Tab_old.Text = "Prepare your device";
+            this.PrepareYourDevice_Tab_old.VerticalScrollbarBarColor = true;
+            this.PrepareYourDevice_Tab_old.VerticalScrollbarHighlightOnWheel = false;
+            this.PrepareYourDevice_Tab_old.VerticalScrollbarSize = 12;
             // 
             // UnlockBL_Label
             // 
             this.UnlockBL_Label.BackColor = System.Drawing.Color.Transparent;
-            this.UnlockBL_Label.Location = new System.Drawing.Point(10, 50);
+            this.UnlockBL_Label.Location = new System.Drawing.Point(9, 44);
             this.UnlockBL_Label.Margin = new System.Windows.Forms.Padding(0);
             this.UnlockBL_Label.Name = "UnlockBL_Label";
             this.UnlockBL_Label.Size = new System.Drawing.Size(268, 38);
@@ -654,7 +689,7 @@ namespace GeekAssistant.Forms {
             // MagiskRoot_Label
             // 
             this.MagiskRoot_Label.BackColor = System.Drawing.Color.Transparent;
-            this.MagiskRoot_Label.Location = new System.Drawing.Point(10, 225);
+            this.MagiskRoot_Label.Location = new System.Drawing.Point(9, 219);
             this.MagiskRoot_Label.Name = "MagiskRoot_Label";
             this.MagiskRoot_Label.Size = new System.Drawing.Size(248, 38);
             this.MagiskRoot_Label.Style = MetroFramework.MetroColorStyle.Green;
@@ -665,7 +700,7 @@ namespace GeekAssistant.Forms {
             // 
             this.MagiskRoot_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MagiskRoot_PictureBox.Image = global::prop.xXX.Magisk_gray_alpha;
-            this.MagiskRoot_PictureBox.Location = new System.Drawing.Point(239, 226);
+            this.MagiskRoot_PictureBox.Location = new System.Drawing.Point(238, 220);
             this.MagiskRoot_PictureBox.Name = "MagiskRoot_PictureBox";
             this.MagiskRoot_PictureBox.Size = new System.Drawing.Size(128, 128);
             this.MagiskRoot_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -676,7 +711,7 @@ namespace GeekAssistant.Forms {
             // 
             this.UnlockBL_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.UnlockBL_PictureBox.Image = global::prop.xXX.UnlockBL_gray_alpha;
-            this.UnlockBL_PictureBox.Location = new System.Drawing.Point(239, 43);
+            this.UnlockBL_PictureBox.Location = new System.Drawing.Point(238, 37);
             this.UnlockBL_PictureBox.Name = "UnlockBL_PictureBox";
             this.UnlockBL_PictureBox.Size = new System.Drawing.Size(128, 128);
             this.UnlockBL_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -687,7 +722,7 @@ namespace GeekAssistant.Forms {
             // 
             this.MagiskRoot_Title.BackColor = System.Drawing.Color.Transparent;
             this.MagiskRoot_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MagiskRoot_Title.Location = new System.Drawing.Point(10, 191);
+            this.MagiskRoot_Title.Location = new System.Drawing.Point(9, 185);
             this.MagiskRoot_Title.Name = "MagiskRoot_Title";
             this.MagiskRoot_Title.Size = new System.Drawing.Size(131, 21);
             this.MagiskRoot_Title.TabIndex = 2;
@@ -697,7 +732,7 @@ namespace GeekAssistant.Forms {
             // 
             this.UnlockBL_Title.BackColor = System.Drawing.Color.Transparent;
             this.UnlockBL_Title.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UnlockBL_Title.Location = new System.Drawing.Point(10, 19);
+            this.UnlockBL_Title.Location = new System.Drawing.Point(9, 13);
             this.UnlockBL_Title.Name = "UnlockBL_Title";
             this.UnlockBL_Title.Size = new System.Drawing.Size(138, 21);
             this.UnlockBL_Title.TabIndex = 2;
@@ -706,8 +741,9 @@ namespace GeekAssistant.Forms {
             // MagiskRoot_Button
             // 
             this.MagiskRoot_Button.Depth = 0;
+            this.MagiskRoot_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MagiskRoot_Button.Icon = null;
-            this.MagiskRoot_Button.Location = new System.Drawing.Point(10, 301);
+            this.MagiskRoot_Button.Location = new System.Drawing.Point(9, 295);
             this.MagiskRoot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MagiskRoot_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.MagiskRoot_Button.Name = "MagiskRoot_Button";
@@ -722,7 +758,7 @@ namespace GeekAssistant.Forms {
             // 
             this.MaterialDivider1.BackColor = System.Drawing.Color.Gainsboro;
             this.MaterialDivider1.Depth = 0;
-            this.MaterialDivider1.Location = new System.Drawing.Point(3, 177);
+            this.MaterialDivider1.Location = new System.Drawing.Point(2, 171);
             this.MaterialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.MaterialDivider1.Name = "MaterialDivider1";
             this.MaterialDivider1.Size = new System.Drawing.Size(363, 1);
@@ -732,8 +768,9 @@ namespace GeekAssistant.Forms {
             // UnlockBL_Button
             // 
             this.UnlockBL_Button.Depth = 0;
+            this.UnlockBL_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.UnlockBL_Button.Icon = null;
-            this.UnlockBL_Button.Location = new System.Drawing.Point(10, 118);
+            this.UnlockBL_Button.Location = new System.Drawing.Point(9, 112);
             this.UnlockBL_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.UnlockBL_Button.MouseState = MaterialSkin.MouseState.HOVER;
             this.UnlockBL_Button.Name = "UnlockBL_Button";
@@ -743,29 +780,6 @@ namespace GeekAssistant.Forms {
             this.UnlockBL_Button.Text = "Start Unlocking";
             this.UnlockBL_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.UnlockBL_Button.UseVisualStyleBackColor = false;
-            // 
-            // FlashImg_Tab
-            // 
-            this.FlashImg_Tab.BackColor = System.Drawing.Color.White;
-            this.FlashImg_Tab.Controls.Add(this.groupBox1);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_Title);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_RebootWhenComplete_Checkbox);
-            this.FlashImg_Tab.Controls.Add(this.FlashZip_Button);
-            this.FlashImg_Tab.Controls.Add(this.PictureBox3);
-            this.FlashImg_Tab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FlashImg_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FlashImg_Tab.HorizontalScrollbarBarColor = true;
-            this.FlashImg_Tab.HorizontalScrollbarHighlightOnWheel = false;
-            this.FlashImg_Tab.HorizontalScrollbarSize = 12;
-            this.FlashImg_Tab.Location = new System.Drawing.Point(4, 41);
-            this.FlashImg_Tab.Name = "FlashImg_Tab";
-            this.FlashImg_Tab.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.FlashImg_Tab.Size = new System.Drawing.Size(369, 356);
-            this.FlashImg_Tab.TabIndex = 1;
-            this.FlashImg_Tab.Text = "Flash img files";
-            this.FlashImg_Tab.VerticalScrollbarBarColor = true;
-            this.FlashImg_Tab.VerticalScrollbarHighlightOnWheel = false;
-            this.FlashImg_Tab.VerticalScrollbarSize = 12;
             // 
             // groupBox1
             // 
@@ -779,7 +793,7 @@ namespace GeekAssistant.Forms {
             this.groupBox1.Controls.Add(this.Button3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.Button4);
-            this.groupBox1.Location = new System.Drawing.Point(48, 47);
+            this.groupBox1.Location = new System.Drawing.Point(48, 42);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(301, 178);
             this.groupBox1.TabIndex = 85595;
@@ -894,7 +908,7 @@ namespace GeekAssistant.Forms {
             // 
             this.PictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox3.Image = global::prop.xXX.FlashZip_gray_alpha;
-            this.PictureBox3.Location = new System.Drawing.Point(241, 228);
+            this.PictureBox3.Location = new System.Drawing.Point(241, 223);
             this.PictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.PictureBox3.Name = "PictureBox3";
             this.PictureBox3.Size = new System.Drawing.Size(128, 128);
@@ -902,23 +916,370 @@ namespace GeekAssistant.Forms {
             this.PictureBox3.TabIndex = 5;
             this.PictureBox3.TabStop = false;
             // 
-            // MoreTools_Tab
+            // InstallBusybox_Button
             // 
-            this.MoreTools_Tab.Controls.Add(this.debuggingBox);
-            this.MoreTools_Tab.Controls.Add(this.InstallBusybox_Button);
-            this.MoreTools_Tab.Controls.Add(this.HotReboot_Button);
-            this.MoreTools_Tab.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoreTools_Tab.HorizontalScrollbarBarColor = true;
-            this.MoreTools_Tab.HorizontalScrollbarHighlightOnWheel = false;
-            this.MoreTools_Tab.HorizontalScrollbarSize = 3;
-            this.MoreTools_Tab.Location = new System.Drawing.Point(4, 41);
-            this.MoreTools_Tab.Name = "MoreTools_Tab";
-            this.MoreTools_Tab.Size = new System.Drawing.Size(369, 356);
-            this.MoreTools_Tab.TabIndex = 2;
-            this.MoreTools_Tab.Text = "More Tools";
-            this.MoreTools_Tab.VerticalScrollbarBarColor = true;
-            this.MoreTools_Tab.VerticalScrollbarHighlightOnWheel = false;
-            this.MoreTools_Tab.VerticalScrollbarSize = 3;
+            this.InstallBusybox_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.InstallBusybox_Button.BackColor = System.Drawing.Color.Transparent;
+            this.InstallBusybox_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.InstallBusybox_Button.Highlight = true;
+            this.InstallBusybox_Button.Location = new System.Drawing.Point(39, 51);
+            this.InstallBusybox_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.InstallBusybox_Button.Name = "InstallBusybox_Button";
+            this.InstallBusybox_Button.Size = new System.Drawing.Size(172, 36);
+            this.InstallBusybox_Button.Style = MetroFramework.MetroColorStyle.Green;
+            this.InstallBusybox_Button.TabIndex = 9;
+            this.InstallBusybox_Button.Text = "Install Busybox";
+            this.InstallBusybox_Button.UseSelectable = true;
+            this.InstallBusybox_Button.UseVisualStyleBackColor = false;
+            // 
+            // HotReboot_Button
+            // 
+            this.HotReboot_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.HotReboot_Button.BackColor = System.Drawing.Color.Transparent;
+            this.HotReboot_Button.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HotReboot_Button.Highlight = true;
+            this.HotReboot_Button.Location = new System.Drawing.Point(39, 99);
+            this.HotReboot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.HotReboot_Button.Name = "HotReboot_Button";
+            this.HotReboot_Button.Size = new System.Drawing.Size(172, 36);
+            this.HotReboot_Button.Style = MetroFramework.MetroColorStyle.Green;
+            this.HotReboot_Button.TabIndex = 8;
+            this.HotReboot_Button.Text = "Hot Reboot";
+            this.HotReboot_Button.UseSelectable = true;
+            this.HotReboot_Button.UseVisualStyleBackColor = false;
+            // 
+            // GA_About_Label
+            // 
+            this.GA_About_Label.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GA_About_Label.Location = new System.Drawing.Point(112, 74);
+            this.GA_About_Label.Name = "GA_About_Label";
+            this.GA_About_Label.Size = new System.Drawing.Size(180, 19);
+            this.GA_About_Label.Style = MetroFramework.MetroColorStyle.Green;
+            this.GA_About_Label.TabIndex = 85611;
+            this.GA_About_Label.Text = "vX.x #Beta  - By NHKomaiha.";
+            // 
+            // PictureBox4
+            // 
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.PictureBox4.Location = new System.Drawing.Point(0, 0);
+            this.PictureBox4.Name = "PictureBox4";
+            this.PictureBox4.Size = new System.Drawing.Size(677, 599);
+            this.PictureBox4.TabIndex = 85613;
+            this.PictureBox4.TabStop = false;
+            // 
+            // SwitchTheme_Back_UI
+            // 
+            this.SwitchTheme_Back_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SwitchTheme_Back_UI.Location = new System.Drawing.Point(-6, 601);
+            this.SwitchTheme_Back_UI.Name = "SwitchTheme_Back_UI";
+            this.SwitchTheme_Back_UI.Size = new System.Drawing.Size(1184, 929);
+            this.SwitchTheme_Back_UI.TabIndex = 85614;
+            this.SwitchTheme_Back_UI.TabStop = false;
+            // 
+            // GeekAssistant_Icon
+            // 
+            this.GeekAssistant_Icon.Image = global::prop.GA.G_noG;
+            this.GeekAssistant_Icon.Location = new System.Drawing.Point(24, 22);
+            this.GeekAssistant_Icon.Name = "GeekAssistant_Icon";
+            this.GeekAssistant_Icon.Size = new System.Drawing.Size(70, 69);
+            this.GeekAssistant_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.GeekAssistant_Icon.TabIndex = 85615;
+            this.GeekAssistant_Icon.TabStop = false;
+            // 
+            // SwitchTheme_Mid_UI
+            // 
+            this.SwitchTheme_Mid_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SwitchTheme_Mid_UI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
+            this.SwitchTheme_Mid_UI.Location = new System.Drawing.Point(-6, 602);
+            this.SwitchTheme_Mid_UI.Name = "SwitchTheme_Mid_UI";
+            this.SwitchTheme_Mid_UI.Size = new System.Drawing.Size(1184, 929);
+            this.SwitchTheme_Mid_UI.TabIndex = 85616;
+            this.SwitchTheme_Mid_UI.TabStop = false;
+            this.SwitchTheme_Mid_UI.Visible = false;
+            // 
+            // SwitchTheme_Fore_UI
+            // 
+            this.SwitchTheme_Fore_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SwitchTheme_Fore_UI.BackColor = System.Drawing.Color.Transparent;
+            this.SwitchTheme_Fore_UI.Location = new System.Drawing.Point(-6, 602);
+            this.SwitchTheme_Fore_UI.Name = "SwitchTheme_Fore_UI";
+            this.SwitchTheme_Fore_UI.Size = new System.Drawing.Size(1184, 929);
+            this.SwitchTheme_Fore_UI.TabIndex = 85617;
+            this.SwitchTheme_Fore_UI.TabStop = false;
+            this.SwitchTheme_Fore_UI.Visible = false;
+            // 
+            // bar
+            // 
+            this.bar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bar.Location = new System.Drawing.Point(24, 538);
+            this.bar.Name = "bar";
+            this.bar.Size = new System.Drawing.Size(626, 48);
+            this.bar.Style = MetroFramework.MetroColorStyle.Green;
+            this.bar.TabIndex = 85612;
+            this.bar.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // ShowLog_ErrorBlink_Timer
+            // 
+            this.ShowLog_ErrorBlink_Timer.Interval = 700;
+            // 
+            // ShowLog_InfoBlink_Timer
+            // 
+            this.ShowLog_InfoBlink_Timer.Interval = 700;
+            // 
+            // SettingsSave_Timer
+            // 
+            this.SettingsSave_Timer.Interval = 1000;
+            // 
+            // AutoDetectFlash_Timer_Deprecated
+            // 
+            this.AutoDetectFlash_Timer_Deprecated.Interval = 650;
+            // 
+            // Wait_PostDelay_adbDetect
+            // 
+            this.Wait_PostDelay_adbDetect.Interval = 200;
+            // 
+            // Main_ToolTip
+            // 
+            this.Main_ToolTip.Active = false;
+            this.Main_ToolTip.AutomaticDelay = 1000;
+            this.Main_ToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // Unavalable_Tooltip
+            // 
+            this.Unavalable_Tooltip.AutomaticDelay = 0;
+            this.Unavalable_Tooltip.AutoPopDelay = 10000;
+            this.Unavalable_Tooltip.InitialDelay = 0;
+            this.Unavalable_Tooltip.ReshowDelay = 0;
+            this.Unavalable_Tooltip.StripAmpersands = true;
+            this.Unavalable_Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.DeviceState_Label, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DeviceStateTitle_Label, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Title_Label, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Label, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Title_Label, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Label, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Title_Label, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Label, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.Rooted_Title_Label, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.Rooted_Label, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Title_Label, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Label, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Title_Label, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Label, 1, 7);
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 191);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(243, 262);
+            this.tableLayoutPanel1.TabIndex = 85619;
+            // 
+            // Manufacturer_Title_Label
+            // 
+            this.Manufacturer_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Manufacturer_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Manufacturer_Title_Label.Location = new System.Drawing.Point(3, 65);
+            this.Manufacturer_Title_Label.Name = "Manufacturer_Title_Label";
+            this.Manufacturer_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.Manufacturer_Title_Label.TabIndex = 85598;
+            this.Manufacturer_Title_Label.Text = "Manufacturer";
+            this.Manufacturer_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Manufacturer_Label
+            // 
+            this.Manufacturer_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Manufacturer_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Manufacturer_Label.Location = new System.Drawing.Point(103, 65);
+            this.Manufacturer_Label.Name = "Manufacturer_Label";
+            this.Manufacturer_Label.Size = new System.Drawing.Size(137, 32);
+            this.Manufacturer_Label.TabIndex = 85599;
+            this.Manufacturer_Label.Text = "N/A";
+            this.Manufacturer_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // AndroidVersion_Title_Label
+            // 
+            this.AndroidVersion_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AndroidVersion_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AndroidVersion_Title_Label.Location = new System.Drawing.Point(3, 97);
+            this.AndroidVersion_Title_Label.Name = "AndroidVersion_Title_Label";
+            this.AndroidVersion_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.AndroidVersion_Title_Label.TabIndex = 85600;
+            this.AndroidVersion_Title_Label.Text = "Android Version";
+            this.AndroidVersion_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // AndroidVersion_Label
+            // 
+            this.AndroidVersion_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AndroidVersion_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AndroidVersion_Label.Location = new System.Drawing.Point(103, 97);
+            this.AndroidVersion_Label.Name = "AndroidVersion_Label";
+            this.AndroidVersion_Label.Size = new System.Drawing.Size(137, 32);
+            this.AndroidVersion_Label.TabIndex = 85601;
+            this.AndroidVersion_Label.Text = "N/A";
+            this.AndroidVersion_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BootloaderUnlockable_Title_Label
+            // 
+            this.BootloaderUnlockable_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BootloaderUnlockable_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BootloaderUnlockable_Title_Label.Location = new System.Drawing.Point(3, 129);
+            this.BootloaderUnlockable_Title_Label.Name = "BootloaderUnlockable_Title_Label";
+            this.BootloaderUnlockable_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.BootloaderUnlockable_Title_Label.TabIndex = 85602;
+            this.BootloaderUnlockable_Title_Label.Text = "Bootloader Unlockable";
+            this.BootloaderUnlockable_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BootloaderUnlockable_Label
+            // 
+            this.BootloaderUnlockable_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BootloaderUnlockable_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BootloaderUnlockable_Label.Location = new System.Drawing.Point(103, 129);
+            this.BootloaderUnlockable_Label.Name = "BootloaderUnlockable_Label";
+            this.BootloaderUnlockable_Label.Size = new System.Drawing.Size(137, 32);
+            this.BootloaderUnlockable_Label.TabIndex = 85603;
+            this.BootloaderUnlockable_Label.Text = "N/A";
+            this.BootloaderUnlockable_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Rooted_Title_Label
+            // 
+            this.Rooted_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rooted_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Rooted_Title_Label.Location = new System.Drawing.Point(3, 161);
+            this.Rooted_Title_Label.Name = "Rooted_Title_Label";
+            this.Rooted_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.Rooted_Title_Label.TabIndex = 85604;
+            this.Rooted_Title_Label.Text = "Rooted";
+            this.Rooted_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Rooted_Label
+            // 
+            this.Rooted_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rooted_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Rooted_Label.Location = new System.Drawing.Point(103, 161);
+            this.Rooted_Label.Name = "Rooted_Label";
+            this.Rooted_Label.Size = new System.Drawing.Size(137, 32);
+            this.Rooted_Label.TabIndex = 85605;
+            this.Rooted_Label.Text = "N/A";
+            this.Rooted_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CustomRecovery_Title_Label
+            // 
+            this.CustomRecovery_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomRecovery_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomRecovery_Title_Label.Location = new System.Drawing.Point(3, 225);
+            this.CustomRecovery_Title_Label.Name = "CustomRecovery_Title_Label";
+            this.CustomRecovery_Title_Label.Size = new System.Drawing.Size(94, 37);
+            this.CustomRecovery_Title_Label.TabIndex = 85606;
+            this.CustomRecovery_Title_Label.Text = "Custom Recovery";
+            this.CustomRecovery_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CustomRecovery_Label
+            // 
+            this.CustomRecovery_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomRecovery_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomRecovery_Label.Location = new System.Drawing.Point(103, 225);
+            this.CustomRecovery_Label.Name = "CustomRecovery_Label";
+            this.CustomRecovery_Label.Size = new System.Drawing.Size(137, 37);
+            this.CustomRecovery_Label.TabIndex = 85607;
+            this.CustomRecovery_Label.Text = "N/A";
+            this.CustomRecovery_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CustomROM_Title_Label
+            // 
+            this.CustomROM_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomROM_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomROM_Title_Label.Location = new System.Drawing.Point(3, 193);
+            this.CustomROM_Title_Label.Name = "CustomROM_Title_Label";
+            this.CustomROM_Title_Label.Size = new System.Drawing.Size(94, 32);
+            this.CustomROM_Title_Label.TabIndex = 85608;
+            this.CustomROM_Title_Label.Text = "Custom System";
+            this.CustomROM_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CustomROM_Label
+            // 
+            this.CustomROM_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomROM_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CustomROM_Label.Location = new System.Drawing.Point(103, 193);
+            this.CustomROM_Label.Name = "CustomROM_Label";
+            this.CustomROM_Label.Size = new System.Drawing.Size(137, 32);
+            this.CustomROM_Label.TabIndex = 85609;
+            this.CustomROM_Label.Text = "N/A";
+            this.CustomROM_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Home_Tabs
+            // 
+            this.Home_Tabs.Controls.Add(this.Prepare_Tab);
+            this.Home_Tabs.Controls.Add(this.Flash_Tab);
+            this.Home_Tabs.Controls.Add(this.More_Tab);
+            this.Home_Tabs.Depth = 0;
+            this.Home_Tabs.Location = new System.Drawing.Point(273, 153);
+            this.Home_Tabs.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Home_Tabs.Name = "Home_Tabs";
+            this.Home_Tabs.SelectedIndex = 0;
+            this.Home_Tabs.Size = new System.Drawing.Size(377, 379);
+            this.Home_Tabs.TabIndex = 85620;
+            // 
+            // Prepare_Tab
+            // 
+            this.Prepare_Tab.BackColor = System.Drawing.Color.White;
+            this.Prepare_Tab.Controls.Add(this.UnlockBL_Title);
+            this.Prepare_Tab.Controls.Add(this.UnlockBL_Button);
+            this.Prepare_Tab.Controls.Add(this.UnlockBL_Label);
+            this.Prepare_Tab.Controls.Add(this.MaterialDivider1);
+            this.Prepare_Tab.Controls.Add(this.MagiskRoot_Label);
+            this.Prepare_Tab.Controls.Add(this.MagiskRoot_Button);
+            this.Prepare_Tab.Controls.Add(this.MagiskRoot_PictureBox);
+            this.Prepare_Tab.Controls.Add(this.MagiskRoot_Title);
+            this.Prepare_Tab.Controls.Add(this.UnlockBL_PictureBox);
+            this.Prepare_Tab.Location = new System.Drawing.Point(4, 24);
+            this.Prepare_Tab.Name = "Prepare_Tab";
+            this.Prepare_Tab.Padding = new System.Windows.Forms.Padding(3);
+            this.Prepare_Tab.Size = new System.Drawing.Size(369, 351);
+            this.Prepare_Tab.TabIndex = 0;
+            this.Prepare_Tab.Text = "Prepare";
+            // 
+            // Flash_Tab
+            // 
+            this.Flash_Tab.BackColor = System.Drawing.Color.White;
+            this.Flash_Tab.Controls.Add(this.PictureBox3);
+            this.Flash_Tab.Controls.Add(this.FlashZip_Button);
+            this.Flash_Tab.Controls.Add(this.groupBox1);
+            this.Flash_Tab.Controls.Add(this.FlashZip_RebootWhenComplete_Checkbox);
+            this.Flash_Tab.Controls.Add(this.FlashZip_Title);
+            this.Flash_Tab.Location = new System.Drawing.Point(4, 24);
+            this.Flash_Tab.Name = "Flash_Tab";
+            this.Flash_Tab.Padding = new System.Windows.Forms.Padding(3);
+            this.Flash_Tab.Size = new System.Drawing.Size(369, 351);
+            this.Flash_Tab.TabIndex = 1;
+            this.Flash_Tab.Text = "Flash";
+            // 
+            // More_Tab
+            // 
+            this.More_Tab.Controls.Add(this.InstallBusybox_Button);
+            this.More_Tab.Controls.Add(this.HotReboot_Button);
+            this.More_Tab.Controls.Add(this.debuggingBox);
+            this.More_Tab.Location = new System.Drawing.Point(4, 24);
+            this.More_Tab.Name = "More_Tab";
+            this.More_Tab.Size = new System.Drawing.Size(369, 351);
+            this.More_Tab.TabIndex = 0;
+            this.More_Tab.Text = "More";
+            this.More_Tab.UseVisualStyleBackColor = true;
             // 
             // debuggingBox
             // 
@@ -933,9 +1294,9 @@ namespace GeekAssistant.Forms {
             this.debuggingBox.Controls.Add(this.MetroButton3);
             this.debuggingBox.Controls.Add(this.MetroButton2);
             this.debuggingBox.Controls.Add(this.MetroButton1);
-            this.debuggingBox.Location = new System.Drawing.Point(3, 108);
+            this.debuggingBox.Location = new System.Drawing.Point(3, 144);
             this.debuggingBox.Name = "debuggingBox";
-            this.debuggingBox.Size = new System.Drawing.Size(363, 0);
+            this.debuggingBox.Size = new System.Drawing.Size(363, 197);
             this.debuggingBox.TabIndex = 10;
             this.debuggingBox.TabStop = false;
             this.debuggingBox.Text = "Super dooper debugging (Visible in vX.x.x.3)";
@@ -1026,353 +1387,25 @@ namespace GeekAssistant.Forms {
             this.MetroButton1.Text = "CreateBridge true";
             this.MetroButton1.UseSelectable = true;
             // 
-            // InstallBusybox_Button
-            // 
-            this.InstallBusybox_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.InstallBusybox_Button.BackColor = System.Drawing.Color.Transparent;
-            this.InstallBusybox_Button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.InstallBusybox_Button.Highlight = true;
-            this.InstallBusybox_Button.Location = new System.Drawing.Point(39, 15);
-            this.InstallBusybox_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.InstallBusybox_Button.Name = "InstallBusybox_Button";
-            this.InstallBusybox_Button.Size = new System.Drawing.Size(172, 36);
-            this.InstallBusybox_Button.Style = MetroFramework.MetroColorStyle.Green;
-            this.InstallBusybox_Button.TabIndex = 9;
-            this.InstallBusybox_Button.Text = "Install Busybox";
-            this.InstallBusybox_Button.UseSelectable = true;
-            this.InstallBusybox_Button.UseVisualStyleBackColor = false;
-            // 
-            // HotReboot_Button
-            // 
-            this.HotReboot_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.HotReboot_Button.BackColor = System.Drawing.Color.Transparent;
-            this.HotReboot_Button.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.HotReboot_Button.Highlight = true;
-            this.HotReboot_Button.Location = new System.Drawing.Point(39, 182);
-            this.HotReboot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.HotReboot_Button.Name = "HotReboot_Button";
-            this.HotReboot_Button.Size = new System.Drawing.Size(172, 36);
-            this.HotReboot_Button.Style = MetroFramework.MetroColorStyle.Green;
-            this.HotReboot_Button.TabIndex = 8;
-            this.HotReboot_Button.Text = "Hot Reboot";
-            this.HotReboot_Button.UseSelectable = true;
-            this.HotReboot_Button.UseVisualStyleBackColor = false;
-            // 
-            // GA_About_Label
-            // 
-            this.GA_About_Label.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GA_About_Label.Location = new System.Drawing.Point(112, 74);
-            this.GA_About_Label.Name = "GA_About_Label";
-            this.GA_About_Label.Size = new System.Drawing.Size(180, 19);
-            this.GA_About_Label.Style = MetroFramework.MetroColorStyle.Green;
-            this.GA_About_Label.TabIndex = 85611;
-            this.GA_About_Label.Text = "vX.x #Beta  - By NHKomaiha.";
-            // 
-            // PictureBox4
-            // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox4.Location = new System.Drawing.Point(0, 0);
-            this.PictureBox4.Name = "PictureBox4";
-            this.PictureBox4.Size = new System.Drawing.Size(677, 599);
-            this.PictureBox4.TabIndex = 85613;
-            this.PictureBox4.TabStop = false;
-            // 
-            // SwitchTheme_Back_UI
-            // 
-            this.SwitchTheme_Back_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Back_UI.Location = new System.Drawing.Point(-6, 601);
-            this.SwitchTheme_Back_UI.Name = "SwitchTheme_Back_UI";
-            this.SwitchTheme_Back_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Back_UI.TabIndex = 85614;
-            this.SwitchTheme_Back_UI.TabStop = false;
-            // 
-            // GeekAssistant_Icon
-            // 
-            this.GeekAssistant_Icon.Image = ((System.Drawing.Image)(resources.GetObject("GeekAssistant_Icon.Image")));
-            this.GeekAssistant_Icon.Location = new System.Drawing.Point(24, 22);
-            this.GeekAssistant_Icon.Name = "GeekAssistant_Icon";
-            this.GeekAssistant_Icon.Size = new System.Drawing.Size(70, 69);
-            this.GeekAssistant_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.GeekAssistant_Icon.TabIndex = 85615;
-            this.GeekAssistant_Icon.TabStop = false;
-            // 
-            // SwitchTheme_Mid_UI
-            // 
-            this.SwitchTheme_Mid_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Mid_UI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
-            this.SwitchTheme_Mid_UI.Location = new System.Drawing.Point(-6, 602);
-            this.SwitchTheme_Mid_UI.Name = "SwitchTheme_Mid_UI";
-            this.SwitchTheme_Mid_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Mid_UI.TabIndex = 85616;
-            this.SwitchTheme_Mid_UI.TabStop = false;
-            this.SwitchTheme_Mid_UI.Visible = false;
-            // 
-            // SwitchTheme_Fore_UI
-            // 
-            this.SwitchTheme_Fore_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Fore_UI.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTheme_Fore_UI.Location = new System.Drawing.Point(-6, 602);
-            this.SwitchTheme_Fore_UI.Name = "SwitchTheme_Fore_UI";
-            this.SwitchTheme_Fore_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Fore_UI.TabIndex = 85617;
-            this.SwitchTheme_Fore_UI.TabStop = false;
-            this.SwitchTheme_Fore_UI.Visible = false;
-            // 
-            // bar
-            // 
-            this.bar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.bar.Location = new System.Drawing.Point(24, 538);
-            this.bar.Name = "bar";
-            this.bar.Size = new System.Drawing.Size(626, 48);
-            this.bar.Style = MetroFramework.MetroColorStyle.Green;
-            this.bar.TabIndex = 85612;
-            this.bar.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // ShowLog_ErrorBlink_Timer
-            // 
-            this.ShowLog_ErrorBlink_Timer.Interval = 700;
-            // 
-            // ShowLog_InfoBlink_Timer
-            // 
-            this.ShowLog_InfoBlink_Timer.Interval = 700;
-            // 
-            // SettingsSave_Timer
-            // 
-            this.SettingsSave_Timer.Interval = 1000;
-            // 
-            // AutoDetectFlash_Timer_Deprecated
-            // 
-            this.AutoDetectFlash_Timer_Deprecated.Interval = 650;
-            // 
-            // Wait_PostDelay_adbDetect
-            // 
-            this.Wait_PostDelay_adbDetect.Interval = 200;
-            // 
-            // Main_ToolTip
-            // 
-            this.Main_ToolTip.AutomaticDelay = 1000;
-            this.Main_ToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // Unavalable_Tooltip
-            // 
-            this.Unavalable_Tooltip.AutomaticDelay = 0;
-            this.Unavalable_Tooltip.AutoPopDelay = 10000;
-            this.Unavalable_Tooltip.InitialDelay = 0;
-            this.Unavalable_Tooltip.ReshowDelay = 0;
-            this.Unavalable_Tooltip.StripAmpersands = true;
-            this.Unavalable_Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.DeviceState_Label, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.DeviceStateTitle_Label, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Title_Label, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.Manufacturer_Label, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Title_Label, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.AndroidVersion_Label, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Title_Label, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.BootloaderUnlockable_Label, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.Rooted_Title_Label, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.Rooted_Label, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Title_Label, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.CustomRecovery_Label, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Title_Label, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.CustomROM_Label, 1, 7);
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 191);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(243, 262);
-            this.tableLayoutPanel1.TabIndex = 85619;
-            // 
-            // Manufacturer_Title_Label
-            // 
-            this.Manufacturer_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Manufacturer_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Manufacturer_Title_Label.Location = new System.Drawing.Point(3, 65);
-            this.Manufacturer_Title_Label.Name = "Manufacturer_Title_Label";
-            this.Manufacturer_Title_Label.Size = new System.Drawing.Size(94, 32);
-            this.Manufacturer_Title_Label.TabIndex = 85598;
-            this.Manufacturer_Title_Label.Text = "Manufacturer";
-            this.Manufacturer_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Manufacturer_Label
-            // 
-            this.Manufacturer_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Manufacturer_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Manufacturer_Label.Location = new System.Drawing.Point(103, 65);
-            this.Manufacturer_Label.Name = "Manufacturer_Label";
-            this.Manufacturer_Label.Size = new System.Drawing.Size(137, 32);
-            this.Manufacturer_Label.TabIndex = 85599;
-            this.Manufacturer_Label.Text = "Company";
-            this.Manufacturer_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // AndroidVersion_Title_Label
-            // 
-            this.AndroidVersion_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AndroidVersion_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AndroidVersion_Title_Label.Location = new System.Drawing.Point(3, 97);
-            this.AndroidVersion_Title_Label.Name = "AndroidVersion_Title_Label";
-            this.AndroidVersion_Title_Label.Size = new System.Drawing.Size(94, 32);
-            this.AndroidVersion_Title_Label.TabIndex = 85600;
-            this.AndroidVersion_Title_Label.Text = "Android Version";
-            this.AndroidVersion_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // AndroidVersion_Label
-            // 
-            this.AndroidVersion_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AndroidVersion_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AndroidVersion_Label.Location = new System.Drawing.Point(103, 97);
-            this.AndroidVersion_Label.Name = "AndroidVersion_Label";
-            this.AndroidVersion_Label.Size = new System.Drawing.Size(137, 32);
-            this.AndroidVersion_Label.TabIndex = 85601;
-            this.AndroidVersion_Label.Text = "Android x.x X";
-            this.AndroidVersion_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BootloaderUnlockable_Title_Label
-            // 
-            this.BootloaderUnlockable_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BootloaderUnlockable_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BootloaderUnlockable_Title_Label.Location = new System.Drawing.Point(3, 129);
-            this.BootloaderUnlockable_Title_Label.Name = "BootloaderUnlockable_Title_Label";
-            this.BootloaderUnlockable_Title_Label.Size = new System.Drawing.Size(94, 32);
-            this.BootloaderUnlockable_Title_Label.TabIndex = 85602;
-            this.BootloaderUnlockable_Title_Label.Text = "Bootloader Unlockable";
-            this.BootloaderUnlockable_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // BootloaderUnlockable_Label
-            // 
-            this.BootloaderUnlockable_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BootloaderUnlockable_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BootloaderUnlockable_Label.Location = new System.Drawing.Point(103, 129);
-            this.BootloaderUnlockable_Label.Name = "BootloaderUnlockable_Label";
-            this.BootloaderUnlockable_Label.Size = new System.Drawing.Size(137, 32);
-            this.BootloaderUnlockable_Label.TabIndex = 85603;
-            this.BootloaderUnlockable_Label.Text = "Yes";
-            this.BootloaderUnlockable_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Rooted_Title_Label
-            // 
-            this.Rooted_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Rooted_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Rooted_Title_Label.Location = new System.Drawing.Point(3, 161);
-            this.Rooted_Title_Label.Name = "Rooted_Title_Label";
-            this.Rooted_Title_Label.Size = new System.Drawing.Size(94, 32);
-            this.Rooted_Title_Label.TabIndex = 85604;
-            this.Rooted_Title_Label.Text = "Rooted";
-            this.Rooted_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Rooted_Label
-            // 
-            this.Rooted_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Rooted_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Rooted_Label.Location = new System.Drawing.Point(103, 161);
-            this.Rooted_Label.Name = "Rooted_Label";
-            this.Rooted_Label.Size = new System.Drawing.Size(137, 32);
-            this.Rooted_Label.TabIndex = 85605;
-            this.Rooted_Label.Text = "Yes";
-            this.Rooted_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CustomRecovery_Title_Label
-            // 
-            this.CustomRecovery_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomRecovery_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomRecovery_Title_Label.Location = new System.Drawing.Point(3, 225);
-            this.CustomRecovery_Title_Label.Name = "CustomRecovery_Title_Label";
-            this.CustomRecovery_Title_Label.Size = new System.Drawing.Size(94, 37);
-            this.CustomRecovery_Title_Label.TabIndex = 85606;
-            this.CustomRecovery_Title_Label.Text = "Custom Recovery";
-            this.CustomRecovery_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // CustomRecovery_Label
-            // 
-            this.CustomRecovery_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomRecovery_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomRecovery_Label.Location = new System.Drawing.Point(103, 225);
-            this.CustomRecovery_Label.Name = "CustomRecovery_Label";
-            this.CustomRecovery_Label.Size = new System.Drawing.Size(137, 37);
-            this.CustomRecovery_Label.TabIndex = 85607;
-            this.CustomRecovery_Label.Text = "No";
-            this.CustomRecovery_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CustomROM_Title_Label
-            // 
-            this.CustomROM_Title_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomROM_Title_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomROM_Title_Label.Location = new System.Drawing.Point(3, 193);
-            this.CustomROM_Title_Label.Name = "CustomROM_Title_Label";
-            this.CustomROM_Title_Label.Size = new System.Drawing.Size(94, 32);
-            this.CustomROM_Title_Label.TabIndex = 85608;
-            this.CustomROM_Title_Label.Text = "Custom System";
-            this.CustomROM_Title_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // CustomROM_Label
-            // 
-            this.CustomROM_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomROM_Label.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.CustomROM_Label.Location = new System.Drawing.Point(103, 193);
-            this.CustomROM_Label.Name = "CustomROM_Label";
-            this.CustomROM_Label.Size = new System.Drawing.Size(137, 32);
-            this.CustomROM_Label.TabIndex = 85609;
-            this.CustomROM_Label.Text = "No";
-            this.CustomROM_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // materialTabControl1
-            // 
-            this.materialTabControl1.Controls.Add(this.tabPage1);
-            this.materialTabControl1.Controls.Add(this.tabPage2);
-            this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Location = new System.Drawing.Point(673, 122);
-            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl1.Name = "materialTabControl1";
-            this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(385, 396);
-            this.materialTabControl1.TabIndex = 85620;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(377, 368);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(377, 368);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // materialTabSelector1
             // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.BaseTabControl = this.Home_Tabs;
             this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(673, 92);
+            this.materialTabSelector1.Location = new System.Drawing.Point(273, 122);
             this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(385, 48);
+            this.materialTabSelector1.Size = new System.Drawing.Size(377, 31);
             this.materialTabSelector1.TabIndex = 85621;
             this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(343, 88);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 85622;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // Home
             // 
@@ -1381,8 +1414,9 @@ namespace GeekAssistant.Forms {
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1174, 599);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.materialTabSelector1);
-            this.Controls.Add(this.materialTabControl1);
+            this.Controls.Add(this.Home_Tabs);
             this.Controls.Add(this.SwitchTheme_Fore_UI);
             this.Controls.Add(this.SwitchTheme_Mid_UI);
             this.Controls.Add(this.SwitchTheme_Back_UI);
@@ -1396,7 +1430,7 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.Donate_Button);
             this.Controls.Add(this.GeekAssistant_Icon);
             this.Controls.Add(this.GA_About_Label);
-            this.Controls.Add(this.Main_Tabs);
+            this.Controls.Add(this.Main_Tabs_old);
             this.Controls.Add(this.About_Button);
             this.Controls.Add(this.SwitchTheme_Button);
             this.Controls.Add(this.Feedback_Button);
@@ -1427,36 +1461,36 @@ namespace GeekAssistant.Forms {
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressFakeBG_UI)).EndInit();
-            this.Main_Tabs.ResumeLayout(false);
-            this.PrepareYourDevice_Tab.ResumeLayout(false);
+            this.Main_Tabs_old.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MagiskRoot_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UnlockBL_PictureBox)).EndInit();
-            this.FlashImg_Tab.ResumeLayout(false);
-            this.FlashImg_Tab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
-            this.MoreTools_Tab.ResumeLayout(false);
-            this.debuggingBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Back_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.materialTabControl1.ResumeLayout(false);
+            this.Home_Tabs.ResumeLayout(false);
+            this.Prepare_Tab.ResumeLayout(false);
+            this.Flash_Tab.ResumeLayout(false);
+            this.Flash_Tab.PerformLayout();
+            this.More_Tab.ResumeLayout(false);
+            this.debuggingBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
         #endregion
 
-        public MaterialButton Toggle_ManualDeviceInfo_Button;
+        public GeekAssistant.Controls.Material.FlatButton Toggle_ManualDeviceInfo_Button;
         public Button OpenLogFolder;
         public OpenFileDialog FlashZip_OpenFileDialog;
         public GroupBox ManualInfo_GroupBox;
         public Label DeviceStateTitle_Label;
-        public MaterialButton About_Button;
+        public GeekAssistant.Controls.Material.FlatButton About_Button;
         public CheckBox FlashZip_RebootWhenComplete_Checkbox;
         public Button AutoDetectDeviceInfo_Button;
         public Button ClearLog_Button;
@@ -1464,67 +1498,58 @@ namespace GeekAssistant.Forms {
         public Button CopyLogToClipboard;
         public PictureBox GeekAssistant;
         public TextBox log;
-        public MaterialButton Feedback_Button;
+        public GeekAssistant.Controls.Material.FlatButton Feedback_Button;
         public Button Settings;
         public PictureBox MainLayout_PictureBox;
-        public MaterialButton Settings_Button;
-        public MaterialButton FlashZip_Button;
-        public MaterialButton ShowLog_Button;
+        public GeekAssistant.Controls.Material.FlatButton Settings_Button;
+        public GeekAssistant.Controls.Material.FlatButton FlashZip_Button;
+        public GeekAssistant.Controls.Material.FlatButton ShowLog_Button;
         public PictureBox ProgressFakeBG_UI;
-        public MetroFramework.Controls.MetroTabControl Main_Tabs;
-        public MetroFramework.Controls.MetroTabPage PrepareYourDevice_Tab;
-        public MetroFramework.Controls.MetroTabPage FlashImg_Tab;
+        public MetroTabControl Main_Tabs_old;
+        public MetroTabPage PrepareYourDevice_Tab_old;
+        public MetroTabPage FlashImg_Tab_old;
         public Label UnlockBL_Title;
         public Label MagiskRoot_Title;
-        public MetroFramework.Controls.MetroComboBox Manufacturer_ComboBox;
+        public MetroComboBox Manufacturer_ComboBox;
         public CheckBox BootloaderUnlockable_CheckBox;
-        public MetroFramework.Controls.MetroComboBox AndroidVersion_ComboBox;
+        public MetroComboBox AndroidVersion_ComboBox;
         public CheckBox CustomRecovery_CheckBox;
         public CheckBox CustomROM_CheckBox;
-        public MetroFramework.Controls.MetroLabel ProgressBarLabel;
-        public MetroFramework.Controls.MetroLabel GA_About_Label;
+        public Label ProgressBarLabel;
+        public MetroLabel GA_About_Label;
         public MaterialSkin.Controls.MaterialDivider MaterialDivider1;
-        public MetroFramework.Controls.MetroTabPage MoreTools_Tab;
+        public MetroTabPage MoreTools_Tab_old;
         public PictureBox MagiskRoot_PictureBox;
         public PictureBox UnlockBL_PictureBox;
         public ToolTip Main_ToolTip;
-        public MaterialButton UnlockBL_Button;
-        public MaterialButton MagiskRoot_Button;
-        public MetroFramework.Controls.MetroLabel UnlockBL_Label;
-        public MetroFramework.Controls.MetroLabel MagiskRoot_Label;
+        public GeekAssistant.Controls.Material.FlatButton UnlockBL_Button;
+        public GeekAssistant.Controls.Material.FlatButton MagiskRoot_Button;
+        public MetroLabel UnlockBL_Label;
+        public MetroLabel MagiskRoot_Label;
         public PictureBox PictureBox3;
-        public MetroFramework.Controls.MetroProgressBar ProgressBar;
+        public MetroProgressBar ProgressBar;
         public PictureBox PictureBox4;
         public PictureBox SwitchTheme_Back_UI;
-        public MaterialButton SwitchTheme_Button;
+        public GeekAssistant.Controls.Material.FlatButton SwitchTheme_Button;
         public Button FlashZip_ChooseFile_Button;
         public Label DeviceState_Label;
         public PictureBox GeekAssistant_Icon;
         public PictureBox SwitchTheme_Mid_UI;
         public PictureBox SwitchTheme_Fore_UI;
         public CheckBox Rooted_Checkbox;
-        public MaterialButton Donate_Button;
-        public MetroFramework.Controls.MetroButton HotReboot_Button;
-        public MetroFramework.Controls.MetroButton InstallBusybox_Button;
+        public GeekAssistant.Controls.Material.FlatButton Donate_Button;
+        public MetroButton HotReboot_Button;
+        public MetroButton InstallBusybox_Button;
         public Button Button4;
-        public MetroFramework.Controls.MetroTextBox MetroTextBox4;
+        public MetroTextBox MetroTextBox4;
         public Button Button3;
-        public MetroFramework.Controls.MetroTextBox MetroTextBox3;
+        public MetroTextBox MetroTextBox3;
         public Button Button2;
-        public MetroFramework.Controls.MetroTextBox MetroTextBox2;
+        public MetroTextBox MetroTextBox2;
         public Button Button1;
-        public MetroFramework.Controls.MetroTextBox MetroTextBox1;
-        public MetroFramework.Controls.MetroTextBox MetroTextBox5;
-        public GroupBox debuggingBox;
-        public MetroFramework.Controls.MetroButton MetroButton3;
-        public MetroFramework.Controls.MetroButton MetroButton2;
-        public MetroFramework.Controls.MetroButton MetroButton1;
-        public MetroFramework.Controls.MetroButton MetroButton11;
-        public MetroFramework.Controls.MetroButton MetroButton7;
-        public MetroFramework.Controls.MetroButton MetroButton6;
-        public MetroFramework.Controls.MetroButton MetroButton8;
-        public MetroFramework.Controls.MetroButton MetroButton4;
-        public MetroFramework.Controls.MetroProgressBar bar;
+        public MetroTextBox MetroTextBox1;
+        public MetroTextBox MetroTextBox5;
+        public MetroProgressBar bar;
         public Timer ShowLog_ErrorBlink_Timer;
         public Timer ShowLog_InfoBlink_Timer;
         public Timer AutoDetectFlash_Timer_Deprecated;
@@ -1550,10 +1575,21 @@ namespace GeekAssistant.Forms {
         private Label CustomROM_Title_Label;
         private Label CustomROM_Label;
         private Label CustomRecovery_Title_Label;
-        private MaterialTextBox manualCMD_TextBox;
-        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private GeekAssistant.Controls.Material.MaterialTextBox manualCMD_TextBox;
+        private MaterialSkin.Controls.MaterialTabControl Home_Tabs;
+        private TabPage Prepare_Tab;
+        private TabPage Flash_Tab;
+        private GeekAssistant.Controls.Material.TabSelector materialTabSelector1;
+        private TabPage More_Tab;
+        public GroupBox debuggingBox;
+        public MetroButton MetroButton4;
+        public MetroButton MetroButton8;
+        public MetroButton MetroButton7;
+        public MetroButton MetroButton6;
+        public MetroButton MetroButton11;
+        public MetroButton MetroButton3;
+        public MetroButton MetroButton2;
+        public MetroButton MetroButton1;
+        private Button button5;
     }
 }

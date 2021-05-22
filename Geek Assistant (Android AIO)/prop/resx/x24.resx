@@ -145,7 +145,7 @@
   <data name="DonateHeart_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\DonateHeart-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DonateHeart_Dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="DonateHeart_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\DonateHeart_Dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Info_Blue_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -172,6 +172,12 @@
   <data name="OpenFolder_W_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\OpenFolder_W_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Question_Blue_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\res\Images\x24\Question-Blue-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Question_Blue_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\res\Images\x24\Question-Blue-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SelectAll_B_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\SelectAll-B-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -190,10 +196,10 @@
   <data name="Smile_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\Smile-dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Theme_Dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Theme_dark_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\Theme_Dark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Theme_Light_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Theme_light_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Res\Images\x24\Theme_Light-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ToU_24" type="System.Resources.ResXFileRef, System.Windows.Forms">

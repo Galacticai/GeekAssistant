@@ -66,22 +66,17 @@ namespace GeekAssistant.Forms {
             }
 
 
-            info_PictureBox.Image = inf.infIcon;
-            title_Label.ForeColor = inf.infColor;
+            info_PictureBox.Image = icons.x64.inf.From_inflvls(inf.detail.lvl);
+            title_Label.ForeColor = colors.inf.From_inflvls(inf.detail.lvl);
             if (inf.theme.icon != null) {
                 switch (inf.theme.icon.Length) {
                     case 2:
-                        if (inf.theme.icon[0] != null & inf.theme.icon[1] != null)   // 2nd failsafe
-{
+                        if (inf.theme.icon[0] != null & inf.theme.icon[1] != null)   // 2nd failsafe 
                             info_PictureBox.Image = inf.theme.icon[Convert.ToInt32(c.S.DarkTheme)];
-                        }
-
                         break;
                     case 1:
-                        if (inf.theme.icon[0] != null) {
-                            info_PictureBox.Image = inf.theme.icon[0];   //set first icon if 1 item
-                        }
-
+                        if (inf.theme.icon[0] != null)
+                            info_PictureBox.Image = inf.theme.icon[0];   //set first icon if 1 item 
                         break;
                 }
             }

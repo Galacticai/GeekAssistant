@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CairoSharp" Version="3.24.24.34" />
     <PackageReference Include="Camalot.Common" Version="1.0.5937.17275" />
     <PackageReference Include="Control.Draggable" Version="1.0.5049.269" />
     <PackageReference Include="dot-net-transitions" Version="1.2.1" />
@@ -35,6 +36,7 @@
     <PackageReference Include="MetroModernUI" Version="1.4.0" />
     <PackageReference Include="morelinq" Version="1.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="8.0.3" />
+    <PackageReference Include="OpenTK" Version="4.6.3" />
     <PackageReference Include="System.Buffers" Version="4.5.1" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     <PackageReference Include="System.Management" Version="5.0.0" />
@@ -77,14 +79,22 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\MaterialTabs.cs">
-      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    <Compile Update="Modules\CustomObjects\Themed Controls\Themed_TextBox.cs">
+      <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\CustomObjects\Themed Controls\Themed_Label.cs">
+      <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Modules\CustomObjects\TabSelector.cs">
+      <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\CustomObjects\MaterialTextBox.cs">
-      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+      <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\MaterialButton.cs">
-      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    <Compile Update="Modules\CustomObjects\FlatButton.cs">
+      <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
@@ -113,10 +123,10 @@
     <Compile Update="Modules\General\Action\GA_SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Theme\Theming.cs">
+    <Compile Update="Modules\General\Action\Style\Theming.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Theme\GA_SetTheme.cs">
+    <Compile Update="Modules\General\Action\Style\GA_SetTheme.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\inf.cs">

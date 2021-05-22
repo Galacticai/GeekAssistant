@@ -43,17 +43,17 @@ internal static partial class GA_SwitchButton_Style {
             aButton.BackColor = Color.FromArgb(0, 130, 0);
             aButton.ForeColor = Color.White;
         } else {
-            aButton.BackColor = colors.SwitchButton.bg_Hover();
+            aButton.BackColor = colors.UI.SwitchButton.bg_Hover();
             aButton.ForeColor = colors.UI.fg();
         }
     }
 
     public static void MouseLeave(Control aButton, bool aBoolean) {
         if (aBoolean) {
-            aButton.BackColor = colors.SwitchButton.bg_Active();
+            aButton.BackColor = colors.UI.SwitchButton.bg_Active();
             aButton.ForeColor = Color.White;
         } else {
-            aButton.BackColor = colors.SwitchButton.bg();
+            aButton.BackColor = colors.UI.SwitchButton.bg();
             aButton.ForeColor = colors.UI.fg();
         }
     }
@@ -78,8 +78,8 @@ internal static partial class GA_SwitchButton_Style {
     /// <param name="aTooltip_txt">Tooltip text</param>
     /// <returns></returns>
     public static bool MouseClick(Control aButton, bool prop, string aTooltip_txt) {
-        if (prop) aButton.BackColor = colors.SwitchButton.bg();
-        else aButton.BackColor = colors.SwitchButton.bg_Active();
+        if (prop) aButton.BackColor = colors.UI.SwitchButton.bg();
+        else aButton.BackColor = colors.UI.SwitchButton.bg_Active();
 
         if (!string.IsNullOrEmpty(aTooltip_txt))
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {aTooltip_txt}");
@@ -91,10 +91,10 @@ internal static partial class GA_SwitchButton_Style {
     public static void EnableIfTrue(Control aButton, bool prop) {
         if (prop) {
             aButton.ForeColor = Color.White;
-            aButton.BackColor = colors.SwitchButton.bg_Active();
+            aButton.BackColor = colors.UI.SwitchButton.bg_Active();
         } else {
             aButton.ForeColor = colors.UI.fg();
-            aButton.BackColor = colors.SwitchButton.bg();
+            aButton.BackColor = colors.UI.SwitchButton.bg();
         }
         if (!string.IsNullOrEmpty(tooltip.GetToolTip(aButton)))
             tooltip.SetToolTip(aButton, $"({(prop ? "Disabled" : "Enabled")}) {txt.WithoutState_SwitchButton_tooltipTxt(aButton)}");

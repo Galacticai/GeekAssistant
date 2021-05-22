@@ -8,19 +8,31 @@ internal static partial class GA_CenterToHomeBounds {
         int[] xy;
         Home h = null;
 
-        foreach (Form home in Application.OpenForms) {
-            if (home.GetType() == typeof(Home)) {
+        foreach (Form home in Application.OpenForms)
+            if (home.GetType() == typeof(Home))
                 h = (Home)home;
-            }
-        }
 
-        if (h != null) {
-            xy = new[] { (h.Width / 2) - (f.Width / 2) + h.Location.X,      // Center horizontally (relative to home)
-                         h.Top };                                           // Top (relative to home)
-        } else {
+        //   _______________________                   
+        //  |      |         |      |  <= Home
+        //  |      |         | <= f |
+        //  |      |_________|      |
+        //  |                       |
+        //  |_______________________|
+        //
+        if (h != null)
+            xy = new[] { (h.Width / 2) - (f.Width / 2) + h.Location.X,
+                         h.Top };
+        //   _______________________                   
+        //  |       _________       |  <= Screen
+        //  |      |         | <= f |
+        //  |      |         |      |
+        //  |      |_________|      |
+        //  |_______________________|
+        //
+        else {
             var currentScreenRect = Screen.FromControl(f).WorkingArea;
-            xy = new[] { (h.Width / 2) - (f.Width / 2) + h.Location.X,      // Center horizontally (relative to screen)
-                         (currentScreenRect.Height / 2) - (f.Height / 2) }; // Center Vertically  (relative to screen)
+            xy = new[] { (currentScreenRect.Width / 2) - (f.Width / 2) + currentScreenRect.Location.X,
+                         (currentScreenRect.Height / 2) - (f.Height / 2) };
         }
         f.SetBounds(xy[0], xy[1], f.Width, f.Height);
     }

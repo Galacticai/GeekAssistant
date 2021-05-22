@@ -100,27 +100,8 @@ internal static partial class inf { //inform
             lvls.FatalError => $" ❌  Fatal Error: {detailcode} — Geek Assistant",
             _ => $"{detail.title} — Geek Assistant"  // -1 and 2
         };
-    public static Image infIcon
-        => detail.lvl switch {
-            lvls.Warn => infIconRes.Warn, // 0
-            lvls.Error => infIconRes.Error, // 1 
-            lvls.FatalError => infIconRes.Error, // 10
-            lvls.Question => infIconRes.Question, // 2
-            _ => infIconRes.Information  // -1
-        };
-    public static Color infColor
-        => detail.lvl switch {
-            lvls.Warn => colors.infColorRes.warnYellow(), // 0
-            lvls.Error => colors.infColorRes.errRed(), // 1
-            lvls.FatalError => colors.infColorRes.errRed(), // 10
-            lvls.Question => colors.infColorRes.questBlue(), // 2
-            _ => colors.infColorRes.infBlue()  // -1
-        };
 
-    public struct infIconRes {
-        public static Image Information { get => c.S.DarkTheme ? prop.x64.Info_Blue_dark_64 : prop.x64.Info_Blue_64; }
-        public static Image Warn { get => c.S.DarkTheme ? prop.x64.Info_Yellow_dark_64 : prop.x64.Info_Yellow_64; }
-        public static Image Question { get => c.S.DarkTheme ? prop.x64.Question_Blue_dark_64 : prop.x64.Question_Blue_64; }
-        public static Image Error { get => c.S.DarkTheme ? prop.x64.Warning_Red_dark_64 : prop.x64.Warning_Red_64; }
-    }
+
+
+
 }

@@ -22,6 +22,8 @@ internal static partial class c {
     #region prop 
 
     public static prop.S S = new();
+    public static bool theme(bool anti = false) => anti ? !S.DarkTheme : S.DarkTheme;
+
     public static readonly prop.GA RGA = new prop.GA();
     public static readonly prop.strings Pstrings = new prop.strings();
     public static readonly prop.layout Playout = new prop.layout();
