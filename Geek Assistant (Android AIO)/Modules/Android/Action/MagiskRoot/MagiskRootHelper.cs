@@ -28,11 +28,12 @@ internal class MagiskRootHelper {
     public static string MagiskAPK_urlLine {
         get {
             string urlLineRegex = new("\"browser_download_url\": \"" +
-                                    "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
+                                      "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
             string urlLine = "";
             foreach (string line in LatestAssets_LineArr)
-                if (Regex.IsMatch(line, urlLineRegex, RegexOptions.IgnoreCase))
-                    urlLine = line;
+                if (Regex.IsMatch(line, urlLineRegex, RegexOptions.IgnoreCase)) {
+                    urlLine = line; break;
+                }
             return urlLine;
         }
     }
@@ -41,19 +42,32 @@ internal class MagiskRootHelper {
             string[] urlLine_splitAtColon = MagiskAPK_urlLine.Split("\"");
             string uri = "";
             foreach (string entry in urlLine_splitAtColon)
-                if (entry.Contains("https") & entry.Contains("Magisk"))
-                    uri = entry;
+                if (entry.Contains("https") & entry.Contains("Magisk")) {
+                    uri = entry; break;
+                }
             return new(uri, UriKind.Absolute); ;
         }
     }
-
-    public static async Task Download_MagiskAPK(string downloadPath = null) {
-        if (downloadPath == null)
-            downloadPath = c.GA_tools;
+    private static int _Download_MagiskAPK_Progress;
+    public static int Download_MagiskAPK_Progress {
+        get => _Download_MagiskAPK_Progress;
+        set {
+            value = (int)math.Arithmatics.ForcedInRange(value, 0, 100);
+            _Download_MagiskAPK_Progress = value;
+        }
+    }
+    public static async Task Download_MagiskAPK() {
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
         WebClient web = new();
-        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, downloadPath));
+        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, @$"{c.GA_tools}\Magisk.apk"));
+        web.DownloadProgressChanged += (sender, args) => {
+            //Download_MagiskAPK_Progress =
+            //todo: size of downloaded file - "size" in json (size index = url index - 4)
+        };
+        web.DownloadFileCompleted += (sender, args) => {
+
+        };
     }
 }
 
