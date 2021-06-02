@@ -32,22 +32,26 @@ internal class MagiskRootHelper {
             string urlLine = "";
             foreach (string line in LatestAssets_LineArr)
                 if (Regex.IsMatch(line, urlLineRegex, RegexOptions.IgnoreCase)) {
-                    urlLine = line; break;
+                    urlLine = line;
+                    break;
                 }
             return urlLine;
         }
     }
+
     public static Uri MagiskAPK_uri {
         get {
             string[] urlLine_splitAtColon = MagiskAPK_urlLine.Split("\"");
             string uri = "";
             foreach (string entry in urlLine_splitAtColon)
-                if (entry.Contains("https") & entry.Contains("Magisk")) {
-                    uri = entry; break;
+                if (entry.ToLower().Contains("https") & entry.ToLower().Contains("magisk")) {
+                    uri = entry;
+                    break;
                 }
             return new(uri, UriKind.Absolute); ;
         }
     }
+
     private static int _Download_MagiskAPK_Progress;
     public static int Download_MagiskAPK_Progress {
         get => _Download_MagiskAPK_Progress;
@@ -56,6 +60,7 @@ internal class MagiskRootHelper {
             _Download_MagiskAPK_Progress = value;
         }
     }
+
     public static async Task Download_MagiskAPK() {
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
