@@ -4,6 +4,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
 internal class MagiskRootHelper {
 
     // name: "Magisk-${json.version}(${json.versionCode})"
@@ -86,6 +87,7 @@ internal class MagiskRootHelper {
             Download_MagiskAPK_Progress = (apkInfo.Length / MagiskAPK_size) * 100;
         };
         web.DownloadFileCompleted += (sender, args) => {
+            Download_MagiskAPK_Progress = 100;
             File.Move(apkPart, apk); // set to real name 
         };
     }
