@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 internal static class math {
     /// <summary> Manipulate numbers </summary>
@@ -170,18 +171,22 @@ internal static class math {
 
         /// <returns>true if brightness matrix hashes are of the images are equal</returns>
         public static bool CompareImagesBritghtnessMatrix(Image input1, Image input2)
-                => GetImageHash(input1) == GetImageHash(input2) ? true : false;
+                => GetImageHash(input1) == GetImageHash(input2);
         private static List<bool> GetImageHash(Image input) {
-            List<bool> lResult = new();
-            //create new image with 16x16 pixel
+            List<bool> result = new();
             Bitmap bmpMin = new(input, new Size(16, 16));
-            for (int j = 0; j < bmpMin.Height; j++) {
-                for (int i = 0; i < bmpMin.Width; i++) {
-                    //reduce colors to true / false                
-                    lResult.Add(bmpMin.GetPixel(i, j).GetBrightness() < 0.5f);
-                }
-            }
-            return lResult;
+            for (int j = 0; j < bmpMin.Height; j++)
+                for (int i = 0; i < bmpMin.Width; i++)
+                    result.Add(bmpMin.GetPixel(i, j).GetBrightness() < 0.5f); //reduce colors to true / false         
+
+            return result;
+        }
+
+        public static Image Screenshot(Rectangle rect) {
+            Bitmap bmp = new(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
+            Graphics.FromImage(bmp).
+                CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+            return bmp;
         }
     }
 

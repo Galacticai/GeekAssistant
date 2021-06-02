@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 internal static partial class convert {
     public struct Bool {
         /// <param name="value">Input</param>
@@ -45,5 +47,14 @@ internal static partial class convert {
             _ => false
         };
 
+        /// <summary> Split string to string[] of every line </summary>
+        /// <param name="value">Input</param>
+        /// <returns><see cref="string[]"/> containing every line of <paramref name="value"/> as an entry</returns>
+        public static string[] ToLineArr(string value) {
+            // Foolproof
+            if (string.IsNullOrEmpty(value)) return null;
+            // Do 
+            return value.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries); ;
+        }
     }
 }

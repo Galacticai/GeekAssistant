@@ -15,7 +15,6 @@ namespace GeekAssistant.Forms {
             FormClosing += new(Home_FormClosing);
             Move += new(Home_Move);
             GotFocus += new(Home_GotFocus);
-            //HelpButtonClicked += new (Home_Help);
             MouseMove += new(Main_MouseMove);
 
 
@@ -157,8 +156,6 @@ namespace GeekAssistant.Forms {
             }
             if (GA_HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
 
-            //EventWatcher.Stop();
-
             GA_Log.LogEvent("End", 3);
             GA_Log.CreateLog();
             c.S.Save();
@@ -166,6 +163,9 @@ namespace GeekAssistant.Forms {
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
         }
         private void Home_GotFocus(object sender, EventArgs e) {
+            bool waiting = false;
+            foreach (Form w in Application.OpenForms)
+                if (w is Wait) waiting = true;
             if (!finishedLoading) new Wait().BringToFront();
         }
         //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
@@ -251,10 +251,6 @@ namespace GeekAssistant.Forms {
              this.Toggle_ManualDeviceInfo_Button.AutoSizeMode = AutoSizeMode.GrowOnly;
          }*/
 
-        private void Main_HelpButtonClicked() {
-            MessageBox.Show(prop.strings.FeatureUnavailable, "Help - Geek Assistant", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            System.Media.SystemSounds.Beep.Play();
-        }
         private void Main_MouseMove(object sender, EventArgs e) {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, this, "Selected:", null);
         }
@@ -298,8 +294,7 @@ namespace GeekAssistant.Forms {
         //        AutoDetectDeviceInfo_Button.BackColor = SystemColors.ButtonFace
         //        AutoDetectDeviceInfo_Button.BackgroundImage = null
         //    }
-        //} 
-        private int[] HomeWidth = { 690, 1190 };
+        //}  
         private void ShowLog_MouseEnter(object sender, EventArgs e) {
             GA_SetTooltipInfo.Run(ref Main_ToolTip, ShowLog_Button, "Show log", "Click to show/hide the log");
             GA_Log.StopNotifyIfLogSeen();
@@ -307,12 +302,13 @@ namespace GeekAssistant.Forms {
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_InfoBlink_Timer.Stop();
+            int[] HomeWidth = { 690, 1190 };
             Animate.Run(this, nameof(Width), HomeWidth[Width == HomeWidth[0] ? 1 : 0]);
 
         }
 
         private void ShowLog_ErrorBlink_Timer_Tick(object sender, EventArgs e) {
-            using (GeekAssistant.Controls.Material.FlatButton slb = ShowLog_Button) {
+            using (FlatButton slb = ShowLog_Button) {
                 if ((string)slb.Tag == " ") {
                     slb.Tag = "  ";
                     slb.Icon = icons.x24.inf.Error();
@@ -325,7 +321,7 @@ namespace GeekAssistant.Forms {
 
         private void ShowLog_InfoBlink_Timer_Tick(object sender, EventArgs e) {
             if (!ShowLog_ErrorBlink_Timer.Enabled) {
-                using (GeekAssistant.Controls.Material.FlatButton slb = ShowLog_Button) {
+                using (FlatButton slb = ShowLog_Button) {
                     if ((string)slb.Tag == " ") {
                         slb.Tag = "  ";
                         slb.Icon = icons.x24.inf.Information();
@@ -362,10 +358,7 @@ namespace GeekAssistant.Forms {
 
         private void log_TextChanged(object sender, EventArgs e) {
             if (log.Visible) return;
-
-            if (ShowLog_ErrorBlink_Timer.Enabled == false)
-                ShowLog_InfoBlink_Timer.Enabled = true;
-
+            if (!ShowLog_ErrorBlink_Timer.Enabled) ShowLog_InfoBlink_Timer.Start();
         }
         //Already Done above 
         //private void log_MouseEnter(object sender, EventArgs e) { log.MouseEnter
@@ -407,7 +400,6 @@ namespace GeekAssistant.Forms {
             ShowLog_ErrorBlink_Timer.Enabled = false;
             ShowLog_Button.Icon = icons.x24.Commands();
 
-
             bar.Style = MetroFramework.MetroColorStyle.Green;
             bar.Value = 0;
             ProgressBarLabel.Text = "Current process information will be written here. Click for more information >>";
@@ -430,9 +422,7 @@ namespace GeekAssistant.Forms {
             GA_Log.LogEvent("Hot Reboot", 2);
             GA_SetProgressText.Run("Attempting hot reboot...", -1);
             var hr = GA_adb.HotReboot("HR");
-            if (!string.IsNullOrEmpty(hr)) {
-                GA_Log.LogAppendText(hr, 1);
-            }
+            if (!string.IsNullOrEmpty(hr)) GA_Log.LogAppendText(hr, 1);
         }
 
         private void InstallBusybox_Button_Click(object sender, EventArgs e) {

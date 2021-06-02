@@ -64,8 +64,8 @@ namespace GeekAssistant.Forms {
             this.MoreTools_Tab_old = new MetroFramework.Controls.MetroTabPage();
             this.FlashImg_Tab_old = new MetroFramework.Controls.MetroTabPage();
             this.PrepareYourDevice_Tab_old = new MetroFramework.Controls.MetroTabPage();
-            this.UnlockBL_Label = new MetroFramework.Controls.MetroLabel();
-            this.MagiskRoot_Label = new MetroFramework.Controls.MetroLabel();
+            this.UnlockBL_Label = new System.Windows.Forms.Label();
+            this.MagiskRoot_Label = new System.Windows.Forms.Label();
             this.MagiskRoot_PictureBox = new System.Windows.Forms.PictureBox();
             this.UnlockBL_PictureBox = new System.Windows.Forms.PictureBox();
             this.MagiskRoot_Title = new System.Windows.Forms.Label();
@@ -86,7 +86,7 @@ namespace GeekAssistant.Forms {
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.InstallBusybox_Button = new MetroFramework.Controls.MetroButton();
             this.HotReboot_Button = new MetroFramework.Controls.MetroButton();
-            this.GA_About_Label = new MetroFramework.Controls.MetroLabel();
+            this.GA_About_Label = new System.Windows.Forms.Label();
             this.PictureBox4 = new System.Windows.Forms.PictureBox();
             this.SwitchTheme_Back_UI = new System.Windows.Forms.PictureBox();
             this.GeekAssistant_Icon = new System.Windows.Forms.PictureBox();
@@ -127,7 +127,6 @@ namespace GeekAssistant.Forms {
             this.MetroButton2 = new MetroFramework.Controls.MetroButton();
             this.MetroButton1 = new MetroFramework.Controls.MetroButton();
             this.materialTabSelector1 = new GeekAssistant.Controls.Material.TabSelector();
-            this.button5 = new System.Windows.Forms.Button();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -209,7 +208,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -517,7 +516,7 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log.BackColor = System.Drawing.Color.White;
             this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -586,7 +585,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -608,7 +607,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs_old
             // 
-            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs_old.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs_old.Controls.Add(this.MoreTools_Tab_old);
@@ -678,23 +677,23 @@ namespace GeekAssistant.Forms {
             // UnlockBL_Label
             // 
             this.UnlockBL_Label.BackColor = System.Drawing.Color.Transparent;
+            this.UnlockBL_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UnlockBL_Label.Location = new System.Drawing.Point(9, 44);
             this.UnlockBL_Label.Margin = new System.Windows.Forms.Padding(0);
             this.UnlockBL_Label.Name = "UnlockBL_Label";
             this.UnlockBL_Label.Size = new System.Drawing.Size(268, 38);
-            this.UnlockBL_Label.Style = MetroFramework.MetroColorStyle.Green;
             this.UnlockBL_Label.TabIndex = 7;
             this.UnlockBL_Label.Text = "Check fastboot status then attempt to unlock\nyour device bootloader";
             // 
             // MagiskRoot_Label
             // 
             this.MagiskRoot_Label.BackColor = System.Drawing.Color.Transparent;
+            this.MagiskRoot_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MagiskRoot_Label.Location = new System.Drawing.Point(9, 219);
             this.MagiskRoot_Label.Name = "MagiskRoot_Label";
             this.MagiskRoot_Label.Size = new System.Drawing.Size(248, 38);
-            this.MagiskRoot_Label.Style = MetroFramework.MetroColorStyle.Green;
             this.MagiskRoot_Label.TabIndex = 7;
-            this.MagiskRoot_Label.Text = "Download the latest Magisk zip & apk then\nattempt to install them";
+            this.MagiskRoot_Label.Text = "Download the latest Magisk zip and apk \r\nthen attempt to install them";
             // 
             // MagiskRoot_PictureBox
             // 
@@ -922,7 +921,7 @@ namespace GeekAssistant.Forms {
             this.InstallBusybox_Button.BackColor = System.Drawing.Color.Transparent;
             this.InstallBusybox_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.InstallBusybox_Button.Highlight = true;
-            this.InstallBusybox_Button.Location = new System.Drawing.Point(39, 51);
+            this.InstallBusybox_Button.Location = new System.Drawing.Point(22, 62);
             this.InstallBusybox_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.InstallBusybox_Button.Name = "InstallBusybox_Button";
             this.InstallBusybox_Button.Size = new System.Drawing.Size(172, 36);
@@ -938,7 +937,7 @@ namespace GeekAssistant.Forms {
             this.HotReboot_Button.BackColor = System.Drawing.Color.Transparent;
             this.HotReboot_Button.ForeColor = System.Drawing.SystemColors.ControlText;
             this.HotReboot_Button.Highlight = true;
-            this.HotReboot_Button.Location = new System.Drawing.Point(39, 99);
+            this.HotReboot_Button.Location = new System.Drawing.Point(22, 14);
             this.HotReboot_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.HotReboot_Button.Name = "HotReboot_Button";
             this.HotReboot_Button.Size = new System.Drawing.Size(172, 36);
@@ -951,16 +950,16 @@ namespace GeekAssistant.Forms {
             // GA_About_Label
             // 
             this.GA_About_Label.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GA_About_Label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.GA_About_Label.Location = new System.Drawing.Point(112, 74);
             this.GA_About_Label.Name = "GA_About_Label";
             this.GA_About_Label.Size = new System.Drawing.Size(180, 19);
-            this.GA_About_Label.Style = MetroFramework.MetroColorStyle.Green;
             this.GA_About_Label.TabIndex = 85611;
             this.GA_About_Label.Text = "vX.x #Beta  - By NHKomaiha.";
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 0);
@@ -1283,7 +1282,7 @@ namespace GeekAssistant.Forms {
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -1294,31 +1293,31 @@ namespace GeekAssistant.Forms {
             this.debuggingBox.Controls.Add(this.MetroButton3);
             this.debuggingBox.Controls.Add(this.MetroButton2);
             this.debuggingBox.Controls.Add(this.MetroButton1);
-            this.debuggingBox.Location = new System.Drawing.Point(3, 144);
+            this.debuggingBox.Location = new System.Drawing.Point(3, 143);
             this.debuggingBox.Name = "debuggingBox";
-            this.debuggingBox.Size = new System.Drawing.Size(363, 197);
+            this.debuggingBox.Size = new System.Drawing.Size(363, 198);
             this.debuggingBox.TabIndex = 10;
             this.debuggingBox.TabStop = false;
             this.debuggingBox.Text = "Super dooper debugging (Visible in vX.x.x.3)";
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
-            this.MetroButton4.Size = new System.Drawing.Size(351, 26);
+            this.MetroButton4.Size = new System.Drawing.Size(224, 26);
             this.MetroButton4.TabIndex = 9;
             this.MetroButton4.Text = "web log";
             this.MetroButton4.UseSelectable = true;
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
-            this.MetroButton8.Size = new System.Drawing.Size(351, 26);
+            this.MetroButton8.Size = new System.Drawing.Size(224, 26);
             this.MetroButton8.TabIndex = 8;
             this.MetroButton8.Text = "Terminate Bridge";
             this.MetroButton8.UseSelectable = true;
@@ -1326,7 +1325,7 @@ namespace GeekAssistant.Forms {
             // MetroButton7
             // 
             this.MetroButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MetroButton7.Location = new System.Drawing.Point(287, 52);
+            this.MetroButton7.Location = new System.Drawing.Point(160, 52);
             this.MetroButton7.Name = "MetroButton7";
             this.MetroButton7.Size = new System.Drawing.Size(70, 26);
             this.MetroButton7.TabIndex = 7;
@@ -1335,11 +1334,11 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
-            this.MetroButton6.Size = new System.Drawing.Size(275, 26);
+            this.MetroButton6.Size = new System.Drawing.Size(148, 26);
             this.MetroButton6.TabIndex = 6;
             this.MetroButton6.Text = "CreateBridge start true";
             this.MetroButton6.UseSelectable = true;
@@ -1347,7 +1346,7 @@ namespace GeekAssistant.Forms {
             // MetroButton11
             // 
             this.MetroButton11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MetroButton11.Location = new System.Drawing.Point(287, 20);
+            this.MetroButton11.Location = new System.Drawing.Point(160, 20);
             this.MetroButton11.Name = "MetroButton11";
             this.MetroButton11.Size = new System.Drawing.Size(70, 26);
             this.MetroButton11.TabIndex = 5;
@@ -1356,33 +1355,33 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
-            this.MetroButton3.Size = new System.Drawing.Size(351, 26);
+            this.MetroButton3.Size = new System.Drawing.Size(224, 26);
             this.MetroButton3.TabIndex = 2;
             this.MetroButton3.Text = "State";
             this.MetroButton3.UseSelectable = true;
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
-            this.MetroButton2.Size = new System.Drawing.Size(351, 26);
+            this.MetroButton2.Size = new System.Drawing.Size(224, 26);
             this.MetroButton2.TabIndex = 1;
             this.MetroButton2.Text = "Count";
             this.MetroButton2.UseSelectable = true;
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
-            this.MetroButton1.Size = new System.Drawing.Size(275, 26);
+            this.MetroButton1.Size = new System.Drawing.Size(148, 26);
             this.MetroButton1.TabIndex = 0;
             this.MetroButton1.Text = "CreateBridge true";
             this.MetroButton1.UseSelectable = true;
@@ -1398,15 +1397,6 @@ namespace GeekAssistant.Forms {
             this.materialTabSelector1.TabIndex = 85621;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(343, 88);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 85622;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1414,7 +1404,6 @@ namespace GeekAssistant.Forms {
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1174, 599);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.Home_Tabs);
             this.Controls.Add(this.SwitchTheme_Fore_UI);
@@ -1516,7 +1505,7 @@ namespace GeekAssistant.Forms {
         public CheckBox CustomRecovery_CheckBox;
         public CheckBox CustomROM_CheckBox;
         public Label ProgressBarLabel;
-        public MetroLabel GA_About_Label;
+        public Label GA_About_Label;
         public MaterialSkin.Controls.MaterialDivider MaterialDivider1;
         public MetroTabPage MoreTools_Tab_old;
         public PictureBox MagiskRoot_PictureBox;
@@ -1524,8 +1513,8 @@ namespace GeekAssistant.Forms {
         public ToolTip Main_ToolTip;
         public GeekAssistant.Controls.Material.FlatButton UnlockBL_Button;
         public GeekAssistant.Controls.Material.FlatButton MagiskRoot_Button;
-        public MetroLabel UnlockBL_Label;
-        public MetroLabel MagiskRoot_Label;
+        public Label UnlockBL_Label;
+        public Label MagiskRoot_Label;
         public PictureBox PictureBox3;
         public MetroProgressBar ProgressBar;
         public PictureBox PictureBox4;
@@ -1590,6 +1579,5 @@ namespace GeekAssistant.Forms {
         public MetroButton MetroButton3;
         public MetroButton MetroButton2;
         public MetroButton MetroButton1;
-        private Button button5;
     }
 }
