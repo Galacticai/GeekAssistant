@@ -3,7 +3,7 @@ using GeekAssistant.Forms;
 using System;
 using System.Windows.Forms;
 
-class MagiskRoot : MagiskRootHelper {
+internal class MagiskRoot : MagiskRootHelper {
     private static Home Home = null;
     public static async void Run() {
         //Refresh current Home instance
@@ -12,9 +12,9 @@ class MagiskRoot : MagiskRootHelper {
                 Home = (Home)home;
 
 
-        inf.currentTitle = "Auto Detect";
-        c.Working = true;
-        inf.detail.code = "AD-00";  // adb Auto - Begin
+        inf.currentTitle = "Auto Detect"; !use GA_workmanager instead!
+        c.Working = true; !use GA_workmanager instead!
+         inf.detail.code = "AD-00"; !use GA_workmanager instead! // adb Auto - Begin
 
         GA_Log.LogEvent("Magisk Root", 2);
 

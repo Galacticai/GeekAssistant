@@ -7,7 +7,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-class MagiskRootHelper {
+internal class MagiskRootHelper {
 
     // name: "Magisk-${json.version}(${json.versionCode})"
     // SDK: >= 26
