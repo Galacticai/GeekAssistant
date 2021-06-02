@@ -41,12 +41,13 @@ internal class MagiskRootHelper {
         => LatestAssets_LineArr[MagiskAPK_urlLineIndex];
     public static Uri MagiskAPK_uri {
         get {
-            string uri_String = MagiskAPK_url_Line[
-                           MagiskAPK_url_Line.IndexOf("https")..(MagiskAPK_url_Line.Length - 1)
-                         ];
-            return new(uri_String, UriKind.Absolute); ;
+            string line = MagiskAPK_url_Line;
+            return new Uri(line[line.IndexOf("https://") /* link start */
+                                ..(line.Length - 1 /* before ending """ */ - 1) /* compensate for counting from 0 */
+                               ], UriKind.Absolute);
         }
     }
+
     public static string MagiskAPK_size_Line
         => LatestAssets_LineArr[MagiskAPK_urlLineIndex - 4];
     public static long MagiskAPK_size {
@@ -54,9 +55,8 @@ internal class MagiskRootHelper {
             // ""size": 6874374," 
             string line = MagiskAPK_size_Line;
             return Convert.ToInt64(line[
-                                     (line.IndexOf(": ") + 2) // after ": "
-                                     ..(line.Length - 1 // before ending "," 
-                                        - 1) // -1 to compensate for counting from 0 
+                                     (line.IndexOf(": ") + 2) /* after ": " */
+                                     ..(line.Length - 1 /* before ending "," */ - 1) /* compensate for counting from 0 */
                                    ]);
             // "6874374" 
         }
