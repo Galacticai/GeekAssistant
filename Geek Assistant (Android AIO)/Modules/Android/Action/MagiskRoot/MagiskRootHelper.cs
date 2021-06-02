@@ -1,7 +1,9 @@
 ﻿
 //using Octokit;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -25,23 +27,25 @@ internal class MagiskRootHelper {
     public static string[] LatestAssets_LineArr
         => convert.String.ToLineArr(LatestAssets_jsonRaw_string);
 
-    public static string MagiskAPK_urlLine {
+    public static int MagiskAPK_urlLineIndex {
         get {
             string urlLineRegex = new("\"browser_download_url\": \"" +
                                       "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
-            string urlLine = "";
-            foreach (string line in LatestAssets_LineArr)
-                if (Regex.IsMatch(line, urlLineRegex, RegexOptions.IgnoreCase)) {
-                    urlLine = line;
+            int urlLineIndex = -1;
+            for (int i = 0; i <= LatestAssets_LineArr.Length - 1; i++)
+                if (Regex.IsMatch(LatestAssets_LineArr[i], urlLineRegex, RegexOptions.IgnoreCase)) {
+                    urlLineIndex = i;
                     break;
                 }
-            return urlLine;
+            return urlLineIndex;
         }
     }
 
+    public static string MagiskAPK_url_Line
+        => LatestAssets_LineArr[MagiskAPK_urlLineIndex];
     public static Uri MagiskAPK_uri {
         get {
-            string[] urlLine_splitAtColon = MagiskAPK_urlLine.Split("\"");
+            string[] urlLine_splitAtColon = MagiskAPK_url_Line.Split("\"");
             string uri = "";
             foreach (string entry in urlLine_splitAtColon)
                 if (entry.ToLower().Contains("https") & entry.ToLower().Contains("magisk")) {
@@ -49,6 +53,18 @@ internal class MagiskRootHelper {
                     break;
                 }
             return new(uri, UriKind.Absolute); ;
+        }
+    }
+    public static string MagiskAPK_size_Line
+        => LatestAssets_LineArr[MagiskAPK_urlLineIndex - 4];
+    public static int MagiskAPK_size {
+        get {
+            // "size": 6874374, 
+            // " : ,
+            // 0 | size
+            // 1 | 6874374
+
+            return Convert.ToInt32(MagiskAPK_size_Line.Split(new char[] { '\"', ':', ',' })[1]);
         }
     }
 
@@ -76,10 +92,41 @@ internal class MagiskRootHelper {
     }
 }
 
+//internal class MagiskAsset {
+//    public string url { get; private set; }
+//    public string id { get; private set; }
+//    public string name { get; private set; }
+//    public string uploader { get; private set; }
+//    //public struct uploader {
+//    //    public string lgoin { get; private set; }
+//    //    public string id { get; private set; }
+//    //    public string label { get; private set; }
+//    //    public string label { get; private set; }
+//    //    public string label { get; private set; }
+//    //    public string label { get; private set; }
+//    //    public string label { get; private set; }
+//    //    public string label { get; private set; }
+
+//    //}
+//    public string content_type { get; private set; }
+//    public string state { get; private set; }
+//    public string size { get; private set; }
+//    public string created_at { get; private set; }
+//    public string updated_at { get; private set; }
+//    public string browser_download_url { get; private set; }
+//    public MagiskAsset JsonAssets() {
+//        var jlines = MagiskRootHelper.LatestAssets_LineArr;
+
+//        return new MagiskAsset {
+
+//        };
+//    }
+//}
 
 //Example raw json
-/* 
- {
+
+/*  
+{
     "url": "https://api.github.com/repos/topjohnwu/Magisk/releases/42815075",
   "assets_url": "https://api.github.com/repos/topjohnwu/Magisk/releases/42815075/assets",
   "upload_url": "https://uploads.github.com/repos/topjohnwu/Magisk/releases/42815075/assets{?name,label}",
@@ -143,7 +190,7 @@ internal class MagiskRootHelper {
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 6874374,
-      "download_count": 264277,
+      "download_count": 272793,
       "created_at": "2021-05-12T05:29:19Z",
       "updated_at": "2021-05-12T05:29:46Z",
       "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/v23.0/Magisk-v23.0.apk"
@@ -177,7 +224,7 @@ internal class MagiskRootHelper {
       "content_type": "application/java-archive",
       "state": "uploaded",
       "size": 57732,
-      "download_count": 6307,
+      "download_count": 6476,
       "created_at": "2021-05-12T05:29:32Z",
       "updated_at": "2021-05-12T05:29:32Z",
       "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/v23.0/snet.jar"
@@ -211,7 +258,7 @@ internal class MagiskRootHelper {
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 29110,
-      "download_count": 7551,
+      "download_count": 7786,
       "created_at": "2021-05-12T05:29:32Z",
       "updated_at": "2021-05-12T05:29:46Z",
       "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/v23.0/stub-release.apk"
@@ -222,8 +269,8 @@ internal class MagiskRootHelper {
   "body": "This release is focused on fixing regressions and bugs.\r\n\r\nNote: Magisk v22 is the last major version to support Jellybean and Kitkat. Magisk v23 only supports Android 5.0 and higher.\r\n\r\n### Bug Fixes\r\n\r\n- [App] Update snet extension. This fixes SafetyNet API errors.\r\n- [App] Fix a bug in the stub app that causes APK installation to fail\r\n- [App] Hide annoying errors in logs when hidden as stub\r\n- [App] Fix issues when patching ODIN tar files when the app is hidden\r\n- [General] Remove all pre Android 5.0 support\r\n- [General] Update BusyBox to use proper libc\r\n- [General] Fix C++ undefined behaviors\r\n- [General] Several `sepolicy.rule` copy/installation fixes\r\n- [MagiskPolicy] Remove unnecessary sepolicy rules\r\n- [MagiskHide] Update package and process name validation logic\r\n- [MagiskHide] Some changes that prevents zygote deadlock\r\n\r\n### Full Changelog: [here](https://topjohnwu.github.io/Magisk/changes.html)",
   "reactions": {
         "url": "https://api.github.com/repos/topjohnwu/Magisk/releases/42815075/reactions",
-    "total_count": 3,
-    "+1": 3,
+    "total_count": 7,
+    "+1": 7,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
@@ -233,5 +280,4 @@ internal class MagiskRootHelper {
     "eyes": 0
   }
 }
-
 */
