@@ -1,9 +1,4 @@
-﻿
-//using Octokit;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -70,23 +65,24 @@ internal class MagiskRootHelper {
         }
     }
 
-    private static int _Download_MagiskAPK_Progress;
-    public static int Download_MagiskAPK_Progress {
+    private static long _Download_MagiskAPK_Progress;
+    public static long Download_MagiskAPK_Progress {
         get => _Download_MagiskAPK_Progress;
         set {
-            value = (int)math.Arithmatics.ForcedInRange(value, 0, 100);
+            value = (long)math.Arithmatics.ForcedInRange(value, 0, 100);
             _Download_MagiskAPK_Progress = value;
         }
     }
 
     public static async Task Download_MagiskAPK() {
+        string apk = @$"{c.GA_tools}\Magisk.apk";
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
         WebClient web = new();
-        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, @$"{c.GA_tools}\Magisk.apk"));
+        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, apk));
         web.DownloadProgressChanged += (sender, args) => {
-            //Download_MagiskAPK_Progress =
-            //todo: size of downloaded file - "size" in json (size index = url index - 4)
+            FileInfo apkInfo = new(apk);
+            Download_MagiskAPK_Progress = (apkInfo.Length / MagiskAPK_size) * 100;
         };
         web.DownloadFileCompleted += (sender, args) => {
 
