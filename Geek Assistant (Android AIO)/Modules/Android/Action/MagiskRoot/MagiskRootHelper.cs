@@ -68,11 +68,11 @@ internal class MagiskRootHelper {
             string line = MagiskAPK_url_Line;
             return line[(line.IndexOf("/download/") + 10) /* after "/download/" */
                          ..(line.IndexOf("/Magisk-") - 1 /* before "/Magisk" */ - 1) /* compensate for counting from 0 */
-                                   ];
+                       ];
 
         }
     }
-    public (int major, int minor) MagiskAPK_Version_inf {
+    public static (int major, int minor) MagiskAPK_Version_inf {
         get {
             // "v23.0" 
             string version = MagiskAPK_version;
@@ -98,14 +98,17 @@ internal class MagiskRootHelper {
 
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
-        else if (File.Exists(apk))
-            File.Delete(apk);
+        else if (File.Exists(apk)) {
+            if (new FileInfo(apk).Length == MagiskAPK_size)
+                return;
+            else File.Delete(apk);
+        }
+
 
         WebClient web = new();
 
         web.DownloadProgressChanged += (sender, args) => {
-            FileInfo apkInfo = new(apk);
-            Download_MagiskAPK_Progress = (apkInfo.Length / MagiskAPK_size) * 100;
+            Download_MagiskAPK_Progress = (new FileInfo(apk).Length / MagiskAPK_size) * 100;
         };
 
         web.DownloadFileCompleted += (sender, args) => {
