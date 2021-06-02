@@ -96,13 +96,19 @@ internal class MagiskRootHelper {
         string apk = @$"{c.GA_tools}\Magisk-{MagiskAPK_version}.apk",
                apkPart = $"{apk}.part";
 
-        if (!Directory.Exists(c.GA_tools))
-            GA_PrepareAppdata.Run();
-        else if (File.Exists(apk)) {
+        if (File.Exists(apkPart)) {
+            if (new FileInfo(apkPart).Length == MagiskAPK_size) {
+                File.Move(apkPart, apk); // set to real name  
+                return;
+            } else File.Delete(apkPart);
+        }
+        if (File.Exists(apk)) {
             if (new FileInfo(apk).Length == MagiskAPK_size)
                 return;
             else File.Delete(apk);
         }
+        if (!Directory.Exists(c.GA_tools))
+            GA_PrepareAppdata.Run();
 
 
         WebClient web = new();
