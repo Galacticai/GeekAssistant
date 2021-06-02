@@ -18,10 +18,9 @@ internal static partial class AutoDetect {
             if (home.GetType() == typeof(Home))
                 Home = (Home)home;
 
-
         inf.currentTitle = "Auto Detect"; !cant set title forcefully because this runs between tasks(flag changes)
         c.Working = true; !cant set true forcefully because this runs between tasks(flag changes)
-        inf.detail.code = "AD-00"; !cant set inf forcefully because this runs between tasks(flag changes) // adb Auto - Begin
+        inf.detail.code = "AD-00"; !cant set inf forcefully because this runs between tasks(flag changes)   // Auto Detect - Begin
         if (!Silent)
             GA_Log.LogEvent("Auto Detect", 2);
 

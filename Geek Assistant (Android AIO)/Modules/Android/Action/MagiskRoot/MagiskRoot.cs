@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 class MagiskRoot : MagiskRootHelper {
     private static Home Home = null;
-    public static void Run() {
+    public static async void Run() {
         //Refresh current Home instance
         foreach (Form home in Application.OpenForms)
             if (home.GetType() == typeof(Home))

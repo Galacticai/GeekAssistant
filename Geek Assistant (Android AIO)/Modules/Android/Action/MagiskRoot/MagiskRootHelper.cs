@@ -1,8 +1,11 @@
 ﻿
 //using Octokit;
 
+using System;
+using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 class MagiskRootHelper {
 
@@ -12,11 +15,15 @@ class MagiskRootHelper {
     // // latest json asset url: https://api.github.com/repos/topjohnwu/Magisk/releases/assets/36837876
     // // // url line regex: "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/\w+\.\w+/Magisk-v\w+\.\w+\.apk"
 
-    public static string LatestAssets_jsonRaw
-        => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest");
+    public static async Task<string> LatestAssets_jsonRaw()
+        => await Task.Run(()
+                => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest")
+           );
+    public static string LatestAssets_jsonRaw_string
+        => LatestAssets_jsonRaw().Result.ToString();
 
     public static string[] LatestAssets_LineArr
-        => convert.String.ToLineArr(LatestAssets_jsonRaw);
+        => convert.String.ToLineArr(LatestAssets_jsonRaw_string);
 
     public static string MagiskAPK_urlLine {
         get {
@@ -29,15 +36,24 @@ class MagiskRootHelper {
             return urlLine;
         }
     }
-    public static string MagiskAPK_url {
+    public static Uri MagiskAPK_uri {
         get {
             string[] urlLine_splitAtColon = MagiskAPK_urlLine.Split("\"");
-            string url = "";
+            string uri = "";
             foreach (string entry in urlLine_splitAtColon)
                 if (entry.Contains("https") & entry.Contains("Magisk"))
-                    url = entry;
-            return url;
+                    uri = entry;
+            return new(uri, UriKind.Absolute); ;
         }
+    }
+
+    public static async Task Download_MagiskAPK(string downloadPath = null) {
+        if (downloadPath == null)
+            downloadPath = c.GA_tools;
+        if (!Directory.Exists(c.GA_tools))
+            GA_PrepareAppdata.Run();
+        WebClient web = new();
+        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, downloadPath));
     }
 }
 
