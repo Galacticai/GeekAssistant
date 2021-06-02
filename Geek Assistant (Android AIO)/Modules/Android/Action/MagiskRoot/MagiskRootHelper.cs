@@ -41,14 +41,10 @@ internal class MagiskRootHelper {
         => LatestAssets_LineArr[MagiskAPK_urlLineIndex];
     public static Uri MagiskAPK_uri {
         get {
-            string[] urlLine_splitAtColon = MagiskAPK_url_Line.Split("\"");
-            string uri = "";
-            foreach (string entry in urlLine_splitAtColon)
-                if (entry.ToLower().Contains("https") & entry.ToLower().Contains("magisk")) {
-                    uri = entry;
-                    break;
-                }
-            return new(uri, UriKind.Absolute); ;
+            string uri_String = MagiskAPK_url_Line[
+                           MagiskAPK_url_Line.IndexOf("https")..(MagiskAPK_url_Line.Length - 1)
+                         ];
+            return new(uri_String, UriKind.Absolute); ;
         }
     }
     public static string MagiskAPK_size_Line
