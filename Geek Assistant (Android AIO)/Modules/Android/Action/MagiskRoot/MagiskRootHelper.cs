@@ -61,7 +61,11 @@ internal class MagiskRootHelper {
         get {
             // ""size": 6874374," 
             string line = MagiskAPK_size_Line;
-            return Convert.ToInt32(line[(line.IndexOf(": ") + 2)..(line.Length - 1 - 1)]);
+            return Convert.ToInt32(line[
+                                     (line.IndexOf(": ") + 2) // after ": "
+                                     ..(line.Length - 1 // before ending "," 
+                                        - 1) // -1 to compensate for counting from 0 
+                                   ]);
             // "6874374" 
         }
     }
