@@ -76,16 +76,17 @@ internal class MagiskRootHelper {
 
     public static async Task Download_MagiskAPK() {
         string apk = @$"{c.GA_tools}\Magisk.apk";
+        string apkPart = $"{apk}.part";
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
         WebClient web = new();
-        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, apk));
+        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, apkPart));
         web.DownloadProgressChanged += (sender, args) => {
             FileInfo apkInfo = new(apk);
             Download_MagiskAPK_Progress = (apkInfo.Length / MagiskAPK_size) * 100;
         };
         web.DownloadFileCompleted += (sender, args) => {
-
+            File.Move(apkPart, apk); // set to real name 
         };
     }
 }
