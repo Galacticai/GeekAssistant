@@ -59,12 +59,10 @@ internal class MagiskRootHelper {
         => LatestAssets_LineArr[MagiskAPK_urlLineIndex - 4];
     public static int MagiskAPK_size {
         get {
-            // "size": 6874374, 
-            // " : ,
-            // 0 | size
-            // 1 | 6874374
-
-            return Convert.ToInt32(MagiskAPK_size_Line.Split(new char[] { '\"', ':', ',' })[1]);
+            // ""size": 6874374," 
+            string line = MagiskAPK_size_Line;
+            return Convert.ToInt32(line[(line.IndexOf(": ") + 2)..(line.Length - 1 - 1)]);
+            // "6874374" 
         }
     }
 
