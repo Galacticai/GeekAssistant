@@ -62,6 +62,27 @@ internal class MagiskRootHelper {
         }
     }
 
+    public static string MagiskAPK_version {
+        get {
+            // "...../download/v23.0/Magisk-....." 
+            string line = MagiskAPK_url_Line;
+            return line[(line.IndexOf("/download/") + 10) /* after "/download/" */
+                         ..(line.IndexOf("/Magisk-") - 1 /* before "/Magisk" */ - 1) /* compensate for counting from 0 */
+                                   ];
+
+        }
+    }
+    public (int major, int minor) MagiskAPK_Version_inf {
+        get {
+            // "v23.0" 
+            string version = MagiskAPK_version;
+            int major = Convert.ToInt32(version[1..version.IndexOf(".")]), // "v>>23<<.0" 
+                minor = Convert.ToInt32(version[version.IndexOf(".") + 1]); // "v23.>>0>>" 
+            return (major, minor);
+        }
+    }
+
+
     private static long _Download_MagiskAPK_Progress;
     public static long Download_MagiskAPK_Progress {
         get => _Download_MagiskAPK_Progress;
@@ -72,7 +93,7 @@ internal class MagiskRootHelper {
     }
 
     public static async Task Download_MagiskAPK() {
-        string apk = @$"{c.GA_tools}\Magisk.apk",
+        string apk = @$"{c.GA_tools}\Magisk-{MagiskAPK_version}.apk",
                apkPart = $"{apk}.part";
 
         if (!Directory.Exists(c.GA_tools))
