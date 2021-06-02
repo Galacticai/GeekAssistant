@@ -75,8 +75,8 @@ internal class MagiskRootHelper {
     }
 
     public static async Task Download_MagiskAPK() {
-        string apk = @$"{c.GA_tools}\Magisk.apk";
-        string apkPart = $"{apk}.part";
+        string apk = @$"{c.GA_tools}\Magisk.apk",
+               apkPart = $"{apk}.part";
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
         WebClient web = new();
