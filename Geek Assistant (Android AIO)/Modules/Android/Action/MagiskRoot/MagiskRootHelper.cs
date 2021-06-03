@@ -13,9 +13,11 @@ internal class MagiskRootHelper {
     // // latest json asset url: https://api.github.com/repos/topjohnwu/Magisk/releases/assets/36837876
     // // // url line regex: "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/\w+\.\w+/Magisk-v\w+\.\w+\.apk"
 
+    // latest stable: https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json
+
     public static async Task<string> LatestAssets_jsonRaw()
-        => await Task.Run(()
-                => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest")
+        => await Task.Run(
+                () => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest")
            );
     public static string LatestAssets_jsonRaw_string
         => LatestAssets_jsonRaw().Result.ToString();
@@ -28,8 +30,9 @@ internal class MagiskRootHelper {
             string urlLineRegex = new("\"browser_download_url\": \"" +
                                       "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
             int urlLineIndex = -1;
-            for (int i = 0; i <= LatestAssets_LineArr.Length - 1; i++)
-                if (Regex.IsMatch(LatestAssets_LineArr[i], urlLineRegex, RegexOptions.IgnoreCase)) {
+            string[] lines = LatestAssets_LineArr;
+            for (int i = 0; i <= lines.Length - 1; i++)
+                if (Regex.IsMatch(lines[i], urlLineRegex, RegexOptions.IgnoreCase)) {
                     urlLineIndex = i;
                     break;
                 }
@@ -69,7 +72,6 @@ internal class MagiskRootHelper {
             return line[(line.IndexOf("/download/") + 10) /* after "/download/" */
                          ..(line.IndexOf("/Magisk-") - 1 /* before "/Magisk" */ - 1) /* compensate for counting from 0 */
                        ];
-
         }
     }
     public static (int major, int minor) MagiskAPK_Version_inf {
@@ -98,7 +100,7 @@ internal class MagiskRootHelper {
 
         if (File.Exists(apkPart)) {
             if (new FileInfo(apkPart).Length == MagiskAPK_size) {
-                File.Move(apkPart, apk); // set to real name  
+                File.Move(apkPart, apk, true); // set to real name  
                 return;
             } else File.Delete(apkPart);
         }
@@ -115,11 +117,12 @@ internal class MagiskRootHelper {
 
         web.DownloadProgressChanged += (sender, args) => {
             Download_MagiskAPK_Progress = (new FileInfo(apk).Length / MagiskAPK_size) * 100;
+            //todo: more action
         };
 
         web.DownloadFileCompleted += (sender, args) => {
             Download_MagiskAPK_Progress = 100;
-            File.Move(apkPart, apk); // set to real name 
+            File.Move(apkPart, apk, true); // set to real name 
         };
 
         //set events before awaiting task
@@ -127,36 +130,53 @@ internal class MagiskRootHelper {
     }
 }
 
-//internal class MagiskAsset {
-//    public string url { get; private set; }
-//    public string id { get; private set; }
-//    public string name { get; private set; }
-//    public string uploader { get; private set; }
-//    //public struct uploader {
-//    //    public string lgoin { get; private set; }
-//    //    public string id { get; private set; }
-//    //    public string label { get; private set; }
-//    //    public string label { get; private set; }
-//    //    public string label { get; private set; }
-//    //    public string label { get; private set; }
-//    //    public string label { get; private set; }
-//    //    public string label { get; private set; }
+/* Example 2
+{
+  "magisk": {
+    "version": "23.0",
+    "versionCode": "23000",
+    "link": "https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@23.0/app-release.apk",
+    "note": "https://topjohnwu.github.io/Magisk/releases/23000.md"
+  },
+  "stub": {
+    "versionCode": "21",
+    "link": "https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@23.0/stub-release.apk"
+  }
+}
+ 
+ */
 
-//    //}
-//    public string content_type { get; private set; }
-//    public string state { get; private set; }
-//    public string size { get; private set; }
-//    public string created_at { get; private set; }
-//    public string updated_at { get; private set; }
-//    public string browser_download_url { get; private set; }
-//    public MagiskAsset JsonAssets() {
-//        var jlines = MagiskRootHelper.LatestAssets_LineArr;
 
-//        return new MagiskAsset {
+internal class MagiskAsset {
+    public string url { get; private set; }
+    public string id { get; private set; }
+    public string name { get; private set; }
+    public string uploader { get; private set; }
+    //public struct uploader {
+    //    public string lgoin { get; private set; }
+    //    public string id { get; private set; }
+    //    public string label { get; private set; }
+    //    public string label { get; private set; }
+    //    public string label { get; private set; }
+    //    public string label { get; private set; }
+    //    public string label { get; private set; }
+    //    public string label { get; private set; }
 
-//        };
-//    }
-//}
+    //}
+    public string content_type { get; private set; }
+    public string state { get; private set; }
+    public string size { get; private set; }
+    public string created_at { get; private set; }
+    public string updated_at { get; private set; }
+    public string browser_download_url { get; private set; }
+    public MagiskAsset JsonAssets() {
+        var jlines = MagiskRootHelper.LatestAssets_LineArr;
+
+        return new MagiskAsset {
+
+        };
+    }
+}
 
 //Example raw json
 
