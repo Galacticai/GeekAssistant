@@ -3,86 +3,87 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 internal class MagiskRootHelper {
-
-    // name: "Magisk-${json.version}(${json.versionCode})"
-    // SDK: >= 26
-    // latest json full: https://api.github.com/repos/topjohnwu/Magisk/releases/latest
-    // // latest json asset url: https://api.github.com/repos/topjohnwu/Magisk/releases/assets/36837876
-    // // // url line regex: "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/\w+\.\w+/Magisk-v\w+\.\w+\.apk"
-
+    /*
+        // name: "Magisk-${json.version}(${json.versionCode})"
+        // SDK: >= 26
+        // latest json full: https://api.github.com/repos/topjohnwu/Magisk/releases/latest
+        // // latest json asset url: https://api.github.com/repos/topjohnwu/Magisk/releases/assets/36837876
+        // // // url line regex: "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/\w+\.\w+/Magisk-v\w+\.\w+\.apk"
+   
     // latest stable: https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json
+ */
+    //public static async Task<string> LatestAssets_jsonRaw()
+    //    => await Task.Run(
+    //            () => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest")
+    //       );
+    //public static string LatestAssets_jsonRaw_string
+    //    => LatestAssets_jsonRaw().Result.ToString();
 
-    public static async Task<string> LatestAssets_jsonRaw()
-        => await Task.Run(
-                () => new WebClient().DownloadString("https://api.github.com/repos/topjohnwu/Magisk/releases/latest")
-           );
-    public static string LatestAssets_jsonRaw_string
-        => LatestAssets_jsonRaw().Result.ToString();
+    //public static string[] LatestAssets_LineArr
+    //    => convert.String.ToLineArr(LatestAssets_jsonRaw_string);
 
-    public static string[] LatestAssets_LineArr
-        => convert.String.ToLineArr(LatestAssets_jsonRaw_string);
+    //public static int MagiskAPK_urlLineIndex {
+    //    get {
+    //        string urlLineRegex = new("\"browser_download_url\": \"" +
+    //                                  "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
+    //        int urlLineIndex = -1;
+    //        string[] lines = LatestAssets_LineArr;
+    //        for (int i = 0; i <= lines.Length - 1; i++)
+    //            if (Regex.IsMatch(lines[i], urlLineRegex, RegexOptions.IgnoreCase)) {
+    //                urlLineIndex = i;
+    //                break;
+    //            }
+    //        return urlLineIndex;
+    //    }
+    //}
 
-    public static int MagiskAPK_urlLineIndex {
-        get {
-            string urlLineRegex = new("\"browser_download_url\": \"" +
-                                      "https://github.com/topjohnwu/Magisk/releases/download/\\w+\\.\\w+/Magisk-v\\w+\\.\\w+\\.apk\"");
-            int urlLineIndex = -1;
-            string[] lines = LatestAssets_LineArr;
-            for (int i = 0; i <= lines.Length - 1; i++)
-                if (Regex.IsMatch(lines[i], urlLineRegex, RegexOptions.IgnoreCase)) {
-                    urlLineIndex = i;
-                    break;
-                }
-            return urlLineIndex;
-        }
-    }
+    //public static string MagiskAPK_url_Line
+    //    => LatestAssets_LineArr[MagiskAPK_urlLineIndex];
+    //public static Uri MagiskAPK_uri {
+    //    get {
+    //        string line = MagiskAPK_url_Line;
+    //        return new Uri(line[line.IndexOf("https://") /* link start */
+    //                            ..(line.Length - 1 /* before ending """ */ - 1) /* compensate for counting from 0 */
+    //                           ], UriKind.Absolute);
+    //    }
+    //}
 
-    public static string MagiskAPK_url_Line
-        => LatestAssets_LineArr[MagiskAPK_urlLineIndex];
-    public static Uri MagiskAPK_uri {
-        get {
-            string line = MagiskAPK_url_Line;
-            return new Uri(line[line.IndexOf("https://") /* link start */
-                                ..(line.Length - 1 /* before ending """ */ - 1) /* compensate for counting from 0 */
-                               ], UriKind.Absolute);
-        }
-    }
+    //public static string MagiskAPK_size_Line
+    //    => LatestAssets_LineArr[MagiskAPK_urlLineIndex - 4];
+    //public static long MagiskAPK_size {
+    //    get {
+    //        // ""size": 6874374," 
+    //        string line = MagiskAPK_size_Line;
+    //        return Convert.ToInt64(line[
+    //                                 (line.IndexOf(": ") + 2) /* after ": " */
+    //                                 ..(line.Length - 1 /* before ending "," */ - 1) /* compensate for counting from 0 */
+    //                               ]);
+    //        // "6874374" 
+    //    }
+    //}
 
-    public static string MagiskAPK_size_Line
-        => LatestAssets_LineArr[MagiskAPK_urlLineIndex - 4];
-    public static long MagiskAPK_size {
-        get {
-            // ""size": 6874374," 
-            string line = MagiskAPK_size_Line;
-            return Convert.ToInt64(line[
-                                     (line.IndexOf(": ") + 2) /* after ": " */
-                                     ..(line.Length - 1 /* before ending "," */ - 1) /* compensate for counting from 0 */
-                                   ]);
-            // "6874374" 
-        }
-    }
-
-    public static string MagiskAPK_version {
-        get {
-            // "...../download/v23.0/Magisk-....." 
-            string line = MagiskAPK_url_Line;
-            return line[(line.IndexOf("/download/") + 10) /* after "/download/" */
-                         ..(line.IndexOf("/Magisk-") - 1 /* before "/Magisk" */ - 1) /* compensate for counting from 0 */
-                       ];
-        }
-    }
-    public static (int major, int minor) MagiskAPK_Version_inf {
-        get {
-            // "v23.0" 
-            string version = MagiskAPK_version;
-            int major = Convert.ToInt32(version[1..version.IndexOf(".")]), // "v>>23<<.0" 
-                minor = Convert.ToInt32(version[version.IndexOf(".") + 1]); // "v23.>>0>>" 
-            return (major, minor);
-        }
-    }
+    //public static string MagiskAPK_version {
+    //    get {
+    //        // "...../download/v23.0/Magisk-....." 
+    //        string line = MagiskAPK_url_Line;
+    //        return line[(line.IndexOf("/download/") + 10) /* after "/download/" */
+    //                     ..(line.IndexOf("/Magisk-") - 1 /* before "/Magisk" */ - 1) /* compensate for counting from 0 */
+    //                   ];
+    //    }
+    //}
+    //public static (int major, int minor) MagiskAPK_Version_inf {
+    //    get {
+    //        // "v23.0" 
+    //        string version = MagiskAPK_version;
+    //        int major = Convert.ToInt32(version[1..version.IndexOf(".")]), // "v>>23<<.0" 
+    //            minor = Convert.ToInt32(version[version.IndexOf(".") + 1]); // "v23.>>0>>" 
+    //        return (major, minor);
+    //    }
+    //}
 
 
     private static long _Download_MagiskAPK_Progress;
@@ -146,31 +147,37 @@ internal class MagiskRootHelper {
  
  */
 
-
+/// <summary> Latest Magisk Assets Manager</summary>
 internal class MagiskAsset {
-    public string url { get; private set; }
-    public string id { get; private set; }
-    public string name { get; private set; }
-    public string uploader { get; private set; }
-    //public struct uploader {
-    //    public string lgoin { get; private set; }
-    //    public string id { get; private set; }
-    //    public string label { get; private set; }
-    //    public string label { get; private set; }
-    //    public string label { get; private set; }
-    //    public string label { get; private set; }
-    //    public string label { get; private set; }
-    //    public string label { get; private set; }
+    /// <summary><list type="bullet">
+    /// <item> 0 stable: "master/stable"</item>
+    /// <item> 1 beta: "master/beta"</item>
+    /// <item> 2 canary: "master/canary"</item>
+    /// </list> </summary> 
+    public enum IMagiskBranch { stable, beta, canary }
+    private string MagiskBranch_string(IMagiskBranch branch)
+        => branch switch {
+            IMagiskBranch.beta => "master/beta",
+            IMagiskBranch.canary => "master/canary",
+            _ => "master/stable",
+        };
+    /// <returns> Latest magisk asset .json link according to <paramref name="branch"/></returns> 
+    /// <param name="branch"><list type="bullet">
+    /// <item> 0 stable: "master/stable"</item>
+    /// <item> 1 beta: "master/beta"</item>
+    /// <item> 2 canary: "master/canary"</item>
+    /// </list> </param>
+    public string Magisk_Asset_link(IMagiskBranch branch)
+        => "https://raw.githubusercontent.com/topjohnwu/magisk-files/" + MagiskBranch_string(branch) + ".json";
 
-    //}
-    public string content_type { get; private set; }
-    public string state { get; private set; }
-    public string size { get; private set; }
-    public string created_at { get; private set; }
-    public string updated_at { get; private set; }
-    public string browser_download_url { get; private set; }
-    public MagiskAsset JsonAssets() {
-        var jlines = MagiskRootHelper.LatestAssets_LineArr;
+    public async Task<string> Download_Magisk_Asset_jsonRaw(IMagiskBranch branch)
+        => await Task.Run(() => new WebClient().DownloadString(Magisk_Asset_link(branch)));
+
+    public static string LatestAssets_jsonRaw_string
+        => LatestAssets_jsonRaw().Result.ToString();
+
+    public JObject json;
+    public MagiskAsset Instance() {
 
         return new MagiskAsset {
 
