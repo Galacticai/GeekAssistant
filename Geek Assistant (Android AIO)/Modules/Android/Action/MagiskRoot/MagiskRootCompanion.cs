@@ -14,8 +14,8 @@ internal class MagiskRootCompanion {
         // // latest json asset url: https://api.github.com/repos/topjohnwu/Magisk/releases/assets/36837876
         // // // url line regex: "browser_download_url": "https://github.com/topjohnwu/Magisk/releases/download/\w+\.\w+/Magisk-v\w+\.\w+\.apk"
    
-    // latest stable: https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json
- */
+        // latest stable: https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json
+    */
 
     private static long _Download_MagiskAPK_Progress;
     public static long Download_MagiskAPK_Progress {

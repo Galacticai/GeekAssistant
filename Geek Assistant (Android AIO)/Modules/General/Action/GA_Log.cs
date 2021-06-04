@@ -1,5 +1,5 @@
 ﻿using GeekAssistant.Forms;
-using Microsoft.VisualBasic; // Install-Package Microsoft.VisualBasic
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -10,33 +10,26 @@ internal static partial class GA_Log {
 
     private static Home Home = null;
     private static void RefresHome() {
-        foreach (Form h in Application.OpenForms) {
-            if (h.GetType() == typeof(Home)) {
+        foreach (Form h in Application.OpenForms)
+            if (h.GetType() == typeof(Home))
                 Home = (Home)h;
-            }
-        }
     }
     public static void CreateLog() {
         RefresHome();
 
-        if (!Directory.Exists(c.GA)) {
-            Directory.CreateDirectory(c.GA);
-        }
+        if (!Directory.Exists(c.GA)) Directory.CreateDirectory(c.GA);
+        if (!Directory.Exists($@"{c.GA}\log")) Directory.CreateDirectory($@"{c.GA}\log");
 
-        if (!Directory.Exists($@"{c.GA}\log")) {
-            Directory.CreateDirectory($@"{c.GA}\log");
-        }
-
-        latestLogName = $"GA-log_{DateAndTime.Now:(yyy.MM.dd)-hh.mm.ss}.log";
+        latestLogName = $"GA-log_{DateTime.Now:(yyy.MM.dd)-hh.mm.ss}.log";
         latestLogPath = $@"{c.GA}\log\{latestLogName}";
         File.Create(latestLogPath).Dispose();
-        StreamWriter swriter = new StreamWriter(latestLogPath);
+        StreamWriter swriter = new(latestLogPath);
         swriter.WriteLine(Home.log.Text);
         swriter.Close();
     }
 
     public static void LogEvent(string EventName, int lines) {
-        LogAppendText($"// {DateAndTime.Now:hhh:mm:ss.ff} // {EventName} //", lines);
+        LogAppendText($"// {DateTime.Now:hhh:mm:ss.ff} // {EventName} //", lines);
     }
 
     public static void ResetLog() {
@@ -71,30 +64,17 @@ internal static partial class GA_Log {
         RefresHome();
 
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
-            {
-                Home.ShowLog_ErrorBlink_Timer.Stop();
-                Home.ShowLog_InfoBlink_Timer.Stop();
-                if (c.S.DarkTheme) {
-                    Home.ShowLog_Button.Icon = prop.x24.Commands_dark_24;
-                } else {
-                    Home.ShowLog_Button.Icon = prop.x24.Commands_24;
-                }
-
-                // .ShowLog_Button.BackColor = Color.White
-                Home.ProgressBarLabel.ForeColor = SystemColors.ControlText;
-            }
+            Home.ShowLog_ErrorBlink_Timer.Stop();
+            Home.ShowLog_InfoBlink_Timer.Stop();
+            Home.ShowLog_Button.Icon = icons.x24.Commands();
+            Home.ProgressBarLabel.ForeColor = colors.UI.fg();
         }
     }
 
     public static void ClearIf30days() {
-        if (!Directory.Exists(c.GA_logs)) {
-            return; // Exit if doesn't exist
-        }
-
-        foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles("*.txt")) {
-            if ((DateAndTime.Now - file.CreationTime).Days > 30) {
+        if (!Directory.Exists(c.GA_logs)) return; // Exit if doesn't exist 
+        foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles("*.txt"))
+            if ((DateTime.Now - file.CreationTime).Days > 30)
                 file.Delete();
-            }
-        }
     }
 }

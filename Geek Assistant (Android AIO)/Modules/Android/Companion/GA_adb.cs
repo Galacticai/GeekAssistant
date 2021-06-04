@@ -82,36 +82,36 @@ internal static partial class GA_adb {
         string Q_ = "Android 10 Q";
         string R_ = "Android 11 R (And Above)";
         {
-            var withBlock = ApiToVer;
-            withBlock.Add(1, new[] { "1.0", K_ });
-            withBlock.Add(2, new[] { "1.1", K_ });
-            withBlock.Add(3, new[] { "Cupcake 1.5", K_ });
-            withBlock.Add(4, new[] { "Donut 1.6", K_ });
-            withBlock.Add(5, new[] { "Eclair 2.0", K_ });
-            withBlock.Add(6, new[] { "Eclair 2.0", K_ });
-            withBlock.Add(7, new[] { "Eclair 2.1", K_ });
-            withBlock.Add(8, new[] { "Froyo 2.2", K_ });
-            withBlock.Add(9, new[] { "Gingerbread 2.3", K_ });
-            withBlock.Add(10, new[] { "Gingerbread 2.3", K_ });
-            withBlock.Add(11, new[] { "Honeycomb 3.0", K_ });
-            withBlock.Add(12, new[] { "Honeycomb 3.1", K_ });
-            withBlock.Add(13, new[] { "Honeycomb 3.2", K_ });
-            withBlock.Add(14, new[] { "ICS 4.0", K_ });
-            withBlock.Add(15, new[] { "ICS 4.0", K_ });
-            withBlock.Add(16, new[] { "Jelly Bean 4.1", K_ });
-            withBlock.Add(17, new[] { "Jelly Bean 4.2", K_ });
-            withBlock.Add(18, new[] { "Jelly Bean 4.3", K_ });
-            withBlock.Add(19, new[] { "KitKat 4.4", K_ });
-            withBlock.Add(21, new[] { "Lollipop 5.0", L_ });
-            withBlock.Add(22, new[] { "Lollipop 5.1", L_ });
-            withBlock.Add(23, new[] { "Marshmallow 6.0", M_ });
-            withBlock.Add(24, new[] { "Nougat 7.0", N_ });
-            withBlock.Add(25, new[] { "Nougat 7.1", N_ });
-            withBlock.Add(26, new[] { "Oreo 8.0", O_ });
-            withBlock.Add(27, new[] { "Oreo 8.1", O_ });
-            withBlock.Add(28, new[] { P_, P_ });
-            withBlock.Add(29, new[] { Q_, Q_ });
-            withBlock.Add(30, new[] { R_, R_ });
+            var av = ApiToVer;
+            av.Add(1, new[] { "1.0", K_ });
+            av.Add(2, new[] { "1.1", K_ });
+            av.Add(3, new[] { "Cupcake 1.5", K_ });
+            av.Add(4, new[] { "Donut 1.6", K_ });
+            av.Add(5, new[] { "Eclair 2.0", K_ });
+            av.Add(6, new[] { "Eclair 2.0", K_ });
+            av.Add(7, new[] { "Eclair 2.1", K_ });
+            av.Add(8, new[] { "Froyo 2.2", K_ });
+            av.Add(9, new[] { "Gingerbread 2.3", K_ });
+            av.Add(10, new[] { "Gingerbread 2.3", K_ });
+            av.Add(11, new[] { "Honeycomb 3.0", K_ });
+            av.Add(12, new[] { "Honeycomb 3.1", K_ });
+            av.Add(13, new[] { "Honeycomb 3.2", K_ });
+            av.Add(14, new[] { "ICS 4.0", K_ });
+            av.Add(15, new[] { "ICS 4.0", K_ });
+            av.Add(16, new[] { "Jelly Bean 4.1", K_ });
+            av.Add(17, new[] { "Jelly Bean 4.2", K_ });
+            av.Add(18, new[] { "Jelly Bean 4.3", K_ });
+            av.Add(19, new[] { "KitKat 4.4", K_ });
+            av.Add(21, new[] { "Lollipop 5.0", L_ });
+            av.Add(22, new[] { "Lollipop 5.1", L_ });
+            av.Add(23, new[] { "Marshmallow 6.0", M_ });
+            av.Add(24, new[] { "Nougat 7.0", N_ });
+            av.Add(25, new[] { "Nougat 7.1", N_ });
+            av.Add(26, new[] { "Oreo 8.0", O_ });
+            av.Add(27, new[] { "Oreo 8.1", O_ });
+            av.Add(28, new[] { P_, P_ });
+            av.Add(29, new[] { Q_, Q_ });
+            av.Add(30, new[] { R_, R_ });
         }
     }
     // Public Sub PrepareDeviceInfo(APIlevel As Integer, Manufacturer As Boolean, Count As Boolean)
@@ -280,10 +280,7 @@ internal static partial class GA_adb {
             inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg);
             return "";
         }
-
-        if (!dev.BusyBox.Available) {
-            InitializeBusybox.Run(true);
-        }
+        if (!dev.BusyBox.Available) InitializeBusybox.Run(true);
 
         dev.ExecuteRootShellCommand($"busybox killall system_server", scr);
         return scr.Result;

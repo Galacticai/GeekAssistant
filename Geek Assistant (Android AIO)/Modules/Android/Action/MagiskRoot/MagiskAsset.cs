@@ -28,12 +28,12 @@ internal class LatestMagiskAsset {
     private string Update_Json_link(IMagiskBranch branch)
         => Json_link = $"https://raw.githubusercontent.com/topjohnwu/magisk-files/{MagiskBranch_string(branch)}.json";
 
-    /// <summary> Magisk asset json structure as string</summary>
+    /// <summary> Magisk asset json structure as <see cref="string"/></summary>
     public string json_string { get; private set; }
     private async Task<string> Update_json_string(IMagiskBranch branch)
         => await Task.Run(() => json_string = new WebClient().DownloadString(Update_Json_link(branch)));
 
-    /// <summary> Magisk asset json structure provided by <see cref=" JObject"/></summary>
+    /// <summary> Magisk asset json structure provided by <see cref="Newtonsoft.Json.Linq"/>.<see cref="JObject"/> </summary>
     public JObject json { get; private set; }
     private JObject Update_json(IMagiskBranch branch)
         => json = new(Update_json_string(branch));
@@ -51,17 +51,20 @@ internal class LatestMagiskAsset {
 
     //    return version = (Convert.ToInt32(major_string), Convert.ToInt32(minor_string));
     //}
-    /// <summary> Magisk apk version as "XX.x" or (canary)"abc12345"</summary>
+    /// <summary> Magisk apk version as "XX.x" or (canary)"abc12345" </summary>
     public string version { get; private set; }
     private string Update_version(IMagiskBranch branch, bool Update_Json = false)
         // stable/beta "23.0" or canary "f822ca5b"
         => version = (string)(Update_Json ? Update_json(branch)["magisk"]["version"]
                                           : json["magisk"]["version"]);
 
+    /// <summary> Magisk apk link as <see cref="string"/> </summary>
     public string apk_link_string { get; private set; }
     private string Update_apk_link_string(IMagiskBranch branch, bool Update_Json = false)
         => apk_link_string = (string)(Update_Json ? Update_json(branch)["magisk"]["link"]
                                                   : json["magisk"]["link"]);
+
+    /// <summary> Magisk apk link as <see cref="Uri"/> </summary>
     public Uri apk_link { get; private set; }
     private Uri Update_apk_link(IMagiskBranch branch, bool Update_Json = false)
         => apk_link = new(Update_apk_link_string(branch, Update_Json));

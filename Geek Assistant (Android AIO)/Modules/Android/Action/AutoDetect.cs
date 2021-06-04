@@ -27,28 +27,25 @@ internal static partial class AutoDetect {
         c.Working = true;
 
         if (!RunningInBetween) inf.currentTitle = currentTitle;
-        inf.detail.workCode = $"{(RunningInBetween ? $"{inf.detail.workCode}-" : "")}AD-00"; // (RunningInBetween? {workCode} -) Auto Detect - Begin
+        inf.detail.workCode = $"{(RunningInBetween ? $"{inf.detail.workCode}-" : "")}" +
+            $"                  {workCode}-00"; // (RunningInBetween? {workCode} -) Auto Detect - Begin
         if (!Silent)
             GA_Log.LogEvent(currentTitle, 2);
 
-        Home.bar.Value = 0;
         try {
-            if (!Silent)
-                GA_SetProgressText.Run("Clearing previous device information.", -1);
-
+            Home.bar.Value = 0;
+            if (!Silent) GA_SetProgressText.Run("Clearing previous device information.", -1);
             inf.detail = ($"{workCode}-CD", inf.lvls.FatalError, inf.currentTitle, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
             GA_adb.ResetDeviceInfo();
 
             Home.bar.Value = 2;
-            if (!Silent)
-                GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
+            if (!Silent) GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
 
             inf.detail = ($"{workCode}-PE", inf.lvls.FatalError, inf.currentTitle, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
             madb.madbBridge();
 
             Home.bar.Value = 5;
-            if (!Silent)
-                GA_SetProgressText.Run("Counting the connected devices...", -1);
+            if (!Silent) GA_SetProgressText.Run("Counting the connected devices...", -1);
 
             inf.detail = ($"{workCode}-Dc", inf.lvls.FatalError, inf.currentTitle, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
             switch (madb.GetDeviceCount()) {
@@ -63,8 +60,7 @@ internal static partial class AutoDetect {
             }
 
             Home.bar.Value = 7;
-            if (!Silent)
-                GA_SetProgressText.Run("Communicating with your device...", -1);
+            if (!Silent) GA_SetProgressText.Run("Communicating with your device...", -1);
 
             inf.detail = ($"{workCode}-Ds", inf.lvls.Warn, inf.currentTitle, "We have trouble reading your device.", null); // Auto Detect - Device count (failed to count devices)
             string DeviceState_String = "Device is ";
