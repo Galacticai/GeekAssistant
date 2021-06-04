@@ -10,6 +10,8 @@ using System.Windows.Forms;
 // Factory Reset: "adb shell su -c recovery --wipe_data"
 
 internal static partial class AutoDetect {
+
+    private static bool RunningInBetween = false;
     private static Home Home = null;
 
     public static void Run(bool Silent = false) {
@@ -18,9 +20,11 @@ internal static partial class AutoDetect {
             if (home.GetType() == typeof(Home))
                 Home = (Home)home;
 
-        inf.currentTitle = "Auto Detect"; !cant set title forcefully because this runs between tasks(flag changes)
-        c.Working = true; !cant set true forcefully because this runs between tasks(flag changes)
-        inf.detail.code = "AD-00"; !cant set inf forcefully because this runs between tasks(flag changes)   // Auto Detect - Begin
+        RunningInBetween = c.Working; //true if auto detecting while running another process
+        c.Working = true;
+
+        if (!RunningInBetween) inf.currentTitle = "Auto Detect";
+        inf.detail.workCode = $"{(RunningInBetween ? $"{inf.detail.workCode}-" : "")}AD-00"; // (RunningInBetween? {workCode} -) Auto Detect - Begin
         if (!Silent)
             GA_Log.LogEvent("Auto Detect", 2);
 
@@ -89,7 +93,7 @@ internal static partial class AutoDetect {
                 case 1: // bootloader 
                     DeviceState_String += $"in fastboot mode.";
                     Home.DeviceState_Label.Text = "Fastboot mode";
-                    inf.detail.code = "AD-DF"; // Auto Detect - Device Fastboot
+                    inf.detail.workCode = "AD-DF"; // Auto Detect - Device Fastboot
                     Home.bar.Value = 10;
                     if (!Silent) {
                         var DeviceInFastboot_ContinueAsk =
@@ -233,7 +237,7 @@ internal static partial class AutoDetect {
 
             Home.bar.Value = 100;
         } catch (Exception ex) {
-            GA_Wait.Run(false); // Close before error dialog
+            if (!RunningInBetween) GA_Wait.Run(false); // Close before error dialog
             if (!Silent) {
                 inf.detail.fullFatalError = ex.ToString();
                 inf.Run();
@@ -243,7 +247,7 @@ internal static partial class AutoDetect {
         }
 
         c.S.DeviceState = Home.DeviceState_Label.Text;
-        GA_Wait.Run(false); // Close if Try was successful
-        c.Working = false; !cant set false forcefully because this runs between tasks(flag changes)
+        if (!RunningInBetween) GA_Wait.Run(false); // Close if Try was successful
+        c.Working = RunningInBetween;
     }
 }

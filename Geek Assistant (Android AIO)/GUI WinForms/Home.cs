@@ -410,7 +410,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void MagiskRoot_Button_Click(object sender, EventArgs e) {
-            inf.detail.code = "MR-00";
+            inf.detail.workCode = "MR-00";
             GA_FeatureUnavailable.Run("Root with magisk");
         }
 

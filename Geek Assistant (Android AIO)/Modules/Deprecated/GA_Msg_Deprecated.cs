@@ -47,13 +47,13 @@ internal static partial class GA_Msg_Deprecated {
         if (c.S.VerboseLogging & !string.IsNullOrEmpty(FullError)) {
             msg += $"\n\n" +
                 $"————— #Verbose Logging# Full Error:\n" +
-                $" ❰{inf.detail.code}❱" +
+                $" ❰{inf.detail.workCode}❱" +
                 $"\n{FullError}\n" +
-                $" ❰/{inf.detail.code}❱\n" +
+                $" ❰/{inf.detail.workCode}❱\n" +
                 $"————— #Verbose Logging# End —————";
         } else if (level == 10)
             msg += $"\n > {prop.strings.EnableVerboseLogging}";
-        GA_Log.LogAppendText($"{msgIcon} ❰{inf.detail.code}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
+        GA_Log.LogAppendText($"{msgIcon} ❰{inf.detail.workCode}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
         if (c.S.PopupMessages) {
             c.S.info_Msg = txt.CutFirstLine(msg);
             c.S.info_MsgTitle = msgTitle;

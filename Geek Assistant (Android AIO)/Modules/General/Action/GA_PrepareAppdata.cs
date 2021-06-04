@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using System.Threading.Tasks;
-
 internal static partial class GA_PrepareAppdata {
     public static void Run() {
         if (!Directory.Exists(c.GA))
@@ -17,6 +15,5 @@ internal static partial class GA_PrepareAppdata {
             File.WriteAllBytes($@"{c.GA_tools}\fastboot.exe", prop.tools.fastboot);
         if (!File.Exists($@"{c.GA_tools}\busybox"))
             File.WriteAllBytes($@"{c.GA_tools}\busybox", prop.tools.busybox);
-
     }
 }

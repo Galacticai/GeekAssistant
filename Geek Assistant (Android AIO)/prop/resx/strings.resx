@@ -139,4 +139,7 @@
  - Unlock the lockscreen
  - Try another USB cable / port</value>
   </data>
+  <data name="WaitForCurrentProcess" xml:space="preserve">
+    <value>We need to wait the current process to finish first...</value>
+  </data>
 </root>

@@ -93,11 +93,11 @@ internal static partial class txt {
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
     public static string GA_GetErrorInitials() {
         // failsafe
-        if (string.IsNullOrEmpty(inf.detail.code)) return "";
+        if (string.IsNullOrEmpty(inf.detail.workCode)) return "";
         // failsafe
-        if (inf.detail.code.IndexOf("-") < 1) return "";
+        if (inf.detail.workCode.IndexOf("-") < 1) return "";
 
-        return inf.detail.code.Substring(0, inf.detail.code.IndexOf("-"));
+        return inf.detail.workCode.Substring(0, inf.detail.workCode.IndexOf("-"));
     }
     /// <summary>
     /// Return tooltip of SwitchButton without the state ((Enabled) | (Disabled))

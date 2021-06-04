@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 internal static partial class GA_Reset {
     public static void Run(bool Data, bool logs) {
-        inf.detail.code = "GAr-00";
+        inf.detail.workCode = "GAr-00";
         GA_Log.LogEvent("Reset Geek Assistant", 2);
         if (!inf.Run(inf.lvls.Question, "Reset Geek Assistant",
                        $"Are you sure you want to {Settings.willClear}?",
@@ -18,14 +18,14 @@ internal static partial class GA_Reset {
         try {
             string notify = "Process Complete. ";
             if (Data) {
-                inf.detail.code = "GAr-S"; // GA reset - Settings()
+                inf.detail.workCode = "GAr-S"; // GA reset - Settings()
                 c.S.Reset();
                 c.S.Save();
                 notify += $"\nDo you want to relaunch Geek Assistant?\n\n\n" + "⚠ Warning: Relaunching will recreate some files needed to run Geek Assistant.";
             }
 
             if (logs) {
-                inf.detail.code = "GAr-L"; // GA reset - Logs
+                inf.detail.workCode = "GAr-L"; // GA reset - Logs
                 if (Directory.Exists(c.GA_logs)) {
                     foreach (string foundName in Microsoft.VisualBasic.FileIO.FileSystem.GetFiles(c.GA_logs, Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, "*.*")) {
                         if (File.Exists($@"{foundName}\*.*")) {

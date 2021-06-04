@@ -9,7 +9,7 @@ internal static partial class UnlockBL {
     public static void Run() {
         bool Cancelled = false;
         if (c.Working) {
-            inf.Run(inf.lvls.Error, "Unlock Bootloader", "We need to wait the current process to finish first...", null);
+            inf.Run(inf.lvls.Error, "Unlock Bootloader", prop.strings.WaitForCurrentProcess, null);
             return;
         }
 
@@ -17,7 +17,7 @@ internal static partial class UnlockBL {
         Home.bar.Value = 0;
         inf.currentTitle = "Unlock Bootloader";
         c.Working = true;
-        inf.detail.code = "UB-00"; // Unlock Bootloader - Start
+        inf.detail.workCode = "UB-00"; // Unlock Bootloader - Start
         GA_Log.LogEvent(inf.currentTitle, 2);
         GA_Wait.Run(true);
         try {
@@ -27,7 +27,7 @@ internal static partial class UnlockBL {
             Home.bar.Value = 10;
             if (!ConnectionIsCompatible.fbIsCompatible("UB")) {
                 Cancelled = true;
-                if (inf.detail.code == "UB-DS") {
+                if (inf.detail.workCode == "UB-DS") {
                     inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n" +
                         $"You can unlock Samsung devices using this method:\n" +
                           $" - Unhide \"Developer options\":\n" +
@@ -46,7 +46,7 @@ internal static partial class UnlockBL {
             if (!c.S.DeviceBootloaderUnlockSupported) {
                 Cancelled = true;
                 // ' cancel if not unlockable
-                inf.detail.code = "UB-BLX"; // Unlock Bootloader - Bootloader X (BLU is not supported)
+                inf.detail.workCode = "UB-BLX"; // Unlock Bootloader - Bootloader X (BLU is not supported)
                 // ErrorInfo = (1, "Oh no... Bootloader unlock is not supported on your device.") 'you can enable with checkbox
                 throw new Exception();
             }
@@ -75,7 +75,7 @@ internal static partial class UnlockBL {
                 } else {
                     Home.bar.Value = 35;
                     Cancelled = true;
-                    inf.detail.code = "UB-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
+                    inf.detail.workCode = "UB-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
                     // ErrorInfo = (0, "You have cancelled the process.")
                     GA_Log.LogEvent("Unlock Bootloader Cancelled", 1);
                     throw new Exception();
@@ -86,13 +86,13 @@ internal static partial class UnlockBL {
                 if (c.S.DeviceState == "Disconnected") // failsafe  
                 {
                     GA_SetProgressText.Run("Device is disconnected.", 0);
-                    inf.detail.code = "UB-xX"; // Unlock Bootloader - x error X (device disconnected)
+                    inf.detail.workCode = "UB-xX"; // Unlock Bootloader - x error X (device disconnected)
                 }
                 // ErrorInfo = (1, $"We lost contact with your device!\n" & My.R.TroubleshootConnection)
                 else // not adb and not fastboot and not disconnected 
                 {
                     GA_SetProgressText.Run("Device is not in adb or fastboot mode.", 0);
-                    inf.detail.code = "UB-rX";
+                    inf.detail.workCode = "UB-rX";
                     // ErrorInfo = (0, $"We cannot reboot into fastboot while your device is in {S.DeviceState}.\n" & My.R.TroubleshootConnection)
                 } // Unlock Bootloader - reboot X (Device is not in adb or fastboot (cant reboot to fastboot))
 
@@ -120,18 +120,18 @@ internal static partial class UnlockBL {
             if (fbCMD.fbDo("oem device-info").Contains("Device unlocked: true")) {
                 Home.bar.Value = 100;
                 Cancelled = true;
-                inf.detail.code = "UB-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
+                inf.detail.workCode = "UB-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
                 // ErrorInfo = (0, $"Hooray! The Bootloader is unlocked already.\nNo need to unlock it once more.")
                 throw new Exception();
             }
 
             Home.bar.Value = 50;
-            inf.detail.code = "UB-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
+            inf.detail.workCode = "UB-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
             GA_SetProgressText.Run("Attempting to unlock bootloader...", -1);
             fbCMD.fbDo($"flashing unlock");
             if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
                 Home.bar.Value = 52;
-                inf.detail.code = "UB-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
+                inf.detail.workCode = "UB-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
                 GA_SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
                 Home.bar.Value = 55;
                 fbCMD.fbDo($"oem unlock");

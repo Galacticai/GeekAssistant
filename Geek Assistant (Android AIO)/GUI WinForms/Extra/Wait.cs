@@ -24,7 +24,7 @@ namespace GeekAssistant.Forms {
             }
 
             if (Home == null) {
-                inf.Run(($"{inf.detail.code}-W-HX", /* (code) - Wait - Home null*/
+                inf.Run(($"{inf.detail.workCode}-W-HX", /* (code) - Wait - Home null*/
                          inf.lvls.FatalError, "Something went wrong...",
                          "Couldn't find the required instance to control", $"{nameof(Wait)} : NullReferenceException"));
             }

@@ -25,7 +25,7 @@ internal static partial class GA_SetProgressText {
 
             case 1: {
                 Home.bar.Style = MetroFramework.MetroColorStyle.Red;
-                Home.ProgressBarLabel.Text = $"({inf.detail.code}) {text}";
+                Home.ProgressBarLabel.Text = $"({inf.detail.workCode}) {text}";
                 System.Media.SystemSounds.Asterisk.Play();
                 return;
             }

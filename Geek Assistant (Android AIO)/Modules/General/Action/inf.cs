@@ -17,7 +17,7 @@ internal static partial class inf { //inform
     /// <item>When an Exception is thrown the (info) form will use this ErrorInfo</item>
     /// </list>
     /// </summary>
-    public static (string code, lvls lvl, string title, string msg, string fullFatalError) detail;
+    public static (string workCode, lvls lvl, string title, string msg, string fullFatalError) detail;
     //public struct detail {
     //    public static string code;
     //    public static lvls lvl;
@@ -46,11 +46,11 @@ internal static partial class inf { //inform
     /// <param name="infDetail">info details provided by inf.detail</param> 
     /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
-    public static bool Run((string code, lvls lvl, string title, string msg, string fullFatalError) infDetail,
+    public static bool Run((string workCode, lvls lvl, string title, string msg, string fullFatalError) infDetail,
                            (string YesButton, string NoButton) YesNoButtons = default) {
 
-        if (!string.IsNullOrEmpty(detail.code)) {
-            detail.code = infDetail.code;
+        if (!string.IsNullOrEmpty(detail.workCode)) {
+            detail.workCode = infDetail.workCode;
         }
 
         if (!string.IsNullOrEmpty(detail.fullFatalError)) {
@@ -84,7 +84,7 @@ internal static partial class inf { //inform
         //theme = (null, null);
 
         //set
-        detail = (detail.code, _lvl, _title, _msg, _fullFatalError);
+        detail = (detail.workCode, _lvl, _title, _msg, _fullFatalError);
         YesNoButtons = _YesNoButtons;
         theme = _theme;
 
@@ -92,7 +92,7 @@ internal static partial class inf { //inform
         Info.ShowDialog();
         return infoAnswer;
     }
-    private static string detailcode => string.IsNullOrEmpty(detail.code) ? $"{detail.title}" : $"❰{detail.code}❱";
+    private static string detailcode => string.IsNullOrEmpty(detail.workCode) ? $"{detail.title}" : $"❰{detail.workCode}❱";
     public static string WindowTitle
         => detail.lvl switch {
             lvls.Warn => $" ⚠  Warn: {detailcode} — Geek Assistant", // 0

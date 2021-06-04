@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 
 /// <summary> Latest Magisk Assets Manager</summary>
-internal class MagiskAsset {
+internal class LatestMagiskAsset {
     /// <summary><list type="bullet">
     /// <item> 0 stable: "master/stable"</item>
     /// <item> 1 beta: "master/beta"</item>
@@ -26,7 +26,7 @@ internal class MagiskAsset {
     /// </list> </param>
     public string Json_link { get; private set; }
     private string Update_Json_link(IMagiskBranch branch)
-        => Json_link = "https://raw.githubusercontent.com/topjohnwu/magisk-files/" + MagiskBranch_string(branch) + ".json";
+        => Json_link = $"https://raw.githubusercontent.com/topjohnwu/magisk-files/{MagiskBranch_string(branch)}.json";
 
     /// <summary> Magisk asset json structure as string</summary>
     public string json_string { get; private set; }
@@ -61,7 +61,7 @@ internal class MagiskAsset {
     public string apk_link_string { get; private set; }
     private string Update_apk_link_string(IMagiskBranch branch, bool Update_Json = false)
         => apk_link_string = (string)(Update_Json ? Update_json(branch)["magisk"]["link"]
-                                       : json["magisk"]["link"]);
+                                                  : json["magisk"]["link"]);
     public Uri apk_link { get; private set; }
     private Uri Update_apk_link(IMagiskBranch branch, bool Update_Json = false)
         => apk_link = new(Update_apk_link_string(branch, Update_Json));
@@ -81,8 +81,8 @@ internal class MagiskAsset {
     /// <item> 2 canary: "master/canary"</item>
     /// </list> </param>
     /// <returns>Create and return an instance of <see cref="MagiskAsset"/></returns>
-    public MagiskAsset Instance(WebClient webClient = null, IMagiskBranch branch = IMagiskBranch.stable)
-        => new MagiskAsset() {
+    public LatestMagiskAsset Instance(WebClient webClient = null, IMagiskBranch branch = IMagiskBranch.stable)
+        => new() {
             json = Update_json(branch), //init First to Update all
             version = Update_version(branch),
             apk_link = Update_apk_link(branch),

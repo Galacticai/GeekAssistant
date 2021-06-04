@@ -21,7 +21,7 @@ internal static partial class GA_HideAllForms {
             }
         } else {
             if (HiddenForms.Count == 0) { // failsafe
-                inf.detail.code += "-HF0";
+                inf.detail.workCode += "-HF0";
                 inf.Run(inf.lvls.FatalError, "Something went wrong.", "We failed to revive hidden windows.");
                 if (inf.Run(inf.lvls.Question, "Refresh Geek Assistant?",
                               "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",

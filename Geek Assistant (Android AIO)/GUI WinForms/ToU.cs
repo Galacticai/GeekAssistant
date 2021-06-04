@@ -127,14 +127,14 @@ namespace GeekAssistant.Forms {
         }
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
-            inf.detail.code = "ToU()-R-H"; // ToU() Rejected Hide
+            inf.detail.workCode = "ToU()-R-H"; // ToU() Rejected Hide
             GA_HideAllForms.Run(true);
             if (inf.Run(inf.lvls.Question, "Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
                                ("Exit", "Back"))) {
                 Application.Exit();
             } else {
-                inf.detail.code = "ToU()-R-S";
+                inf.detail.workCode = "ToU()-R-S";
                 GA_HideAllForms.Run(false);
             }
         }

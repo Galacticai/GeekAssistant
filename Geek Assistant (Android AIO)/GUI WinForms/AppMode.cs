@@ -68,7 +68,7 @@ namespace GeekAssistant.Forms {
                 case 0:
                     //common.S.startup_newbie = true
                     //common.S.startup_moderate = false
-                    inf.detail.code = "NM-00";
+                    inf.detail.workCode = "NM-00";
                     GA_FeatureUnavailable.Run("Newbie Mode");
                     break;
                 case 1:

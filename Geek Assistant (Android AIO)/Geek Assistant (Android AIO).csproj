@@ -140,28 +140,28 @@
     <Compile Update="Modules\CustomObjects\TestingTextBox.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\Scheduler.cs">
+    <Compile Update="Modules\General\Companion\Scheduler.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\Animate.cs">
+    <Compile Update="Modules\General\Companion\Animate.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\c.cs">
+    <Compile Update="Modules\General\Companion\c.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\GA_SwitchButton_Style.cs">
+    <Compile Update="Modules\General\Companion\GA_SwitchButton_Style.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\GA_Ver.cs">
+    <Compile Update="Modules\General\Companion\GA_Ver.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\math.cs">
+    <Compile Update="Modules\General\Companion\math.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\convert.cs">
+    <Compile Update="Modules\General\Companion\convert.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Function\txt.cs">
+    <Compile Update="Modules\General\Companion\txt.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="prop\RunGeekAssistant.cs">

@@ -3,12 +3,12 @@ using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
         if (c.Working) { //dont change inf.currentTitle while working
-            inf.Run(inf.lvls.Error, "Initialize Busybox", "We need to wait the current process to finish first...");
+            inf.Run(inf.lvls.Error, "Initialize Busybox", prop.strings.WaitForCurrentProcess);
             return;
         }
         inf.currentTitle = "Initialize Busybox";
         c.Working = true;
-        inf.detail.code = "BI-00";
+        inf.detail.workCode = "BI-00";
         if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
                        "This is not finished. Go?",
                      ("Go", "Cancel"))) {

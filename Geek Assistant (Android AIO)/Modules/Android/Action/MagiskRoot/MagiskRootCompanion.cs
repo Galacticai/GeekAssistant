@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-internal class MagiskRootHelper {
+internal class MagiskRootCompanion {
     /*
         // name: "Magisk-${json.version}(${json.versionCode})"
         // SDK: >= 26
@@ -25,42 +25,46 @@ internal class MagiskRootHelper {
             _Download_MagiskAPK_Progress = value;
         }
     }
+    /// <summary> Download latest Magisk apk and provide the <see cref="FileStream"/></summary>
+    /// <param name="branch"></param>
+    /// <returns></returns>
+    public static async Task<FileStream> Download_MagiskAPK
+                (LatestMagiskAsset.IMagiskBranch branch
+                    = LatestMagiskAsset.IMagiskBranch.stable) {
 
-    public static async Task Download_MagiskAPK(MagiskAsset.IMagiskBranch branch = MagiskAsset.IMagiskBranch.stable) {
-
-        WebClient web = new();
-        MagiskAsset magisk = new MagiskAsset().Instance(web, branch);
+        WebClient webClient = new();
+        LatestMagiskAsset magisk = new LatestMagiskAsset().Instance(webClient, branch);
 
         string apk = @$"{c.GA_tools}\Magisk-v{magisk.version}.apk",
-               apkPart = apk + ".part";
+           apkPart = apk + ".part";
 
         if (File.Exists(apkPart)) {
             if (new FileInfo(apkPart).Length == magisk.apk_size) {
                 File.Move(apkPart, apk, true); // set to real name  
-                return;
+                goto FileReady;
             } else File.Delete(apkPart);
         }
         if (File.Exists(apk)) {
             if (new FileInfo(apk).Length == magisk.apk_size)
-                return;
+                goto FileReady;
             else File.Delete(apk);
         }
         if (!Directory.Exists(c.GA_tools))
             GA_PrepareAppdata.Run();
 
-
-
-        web.DownloadProgressChanged += (sender, args) => {
+        webClient.DownloadProgressChanged += (sender, args) => {
             Download_MagiskAPK_Progress = (new FileInfo(apk).Length / magisk.apk_size) * 100;
             //todo: more action (gui)
         };
-
-        web.DownloadFileCompleted += (sender, args) => {
+        webClient.DownloadFileCompleted += (sender, args) => {
             Download_MagiskAPK_Progress = 100;
             File.Move(apkPart, apk, true); // set to real name 
         };
+        // Events before task
+        await Task.Run(() => webClient.DownloadFileAsync(magisk.apk_link, apkPart));
 
-        //set events before awaiting task
-        await Task.Run(() => web.DownloadFileAsync(magisk.apk_link, apkPart));
+        //File is ready
+        FileReady:;
+        return File.OpenRead(apk);
     }
 }
