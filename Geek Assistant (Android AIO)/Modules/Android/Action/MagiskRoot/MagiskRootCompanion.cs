@@ -26,8 +26,12 @@ internal class MagiskRootCompanion {
         }
     }
     /// <summary> Download latest Magisk apk and provide the <see cref="FileStream"/></summary>
-    /// <param name="branch"></param>
-    /// <returns></returns>
+    /// <param name="branch"><list type="bullet">
+    /// <item> 0 stable: "master/stable"</item>
+    /// <item> 1 beta: "master/beta"</item>
+    /// <item> 2 canary: "master/canary"</item>
+    /// </list> </param>
+    /// <returns>Final downloaded Magisk apk file as <see cref="FileStream"/></returns>
     public static async Task<FileStream> Download_MagiskAPK
                 (LatestMagiskAsset.IMagiskBranch branch
                     = LatestMagiskAsset.IMagiskBranch.stable) {
