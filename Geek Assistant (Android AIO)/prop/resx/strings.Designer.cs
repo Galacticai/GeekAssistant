@@ -111,6 +111,41 @@ namespace prop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can unlock Samsung devices bootloader &amp; FRP using this method:
+        /// ❱ Unlock bootloader: ⚠Your device will be factory reset after this⚠
+        /// | (Power off) : Hold volume+ and -  : connect USB cable : (Your device will enter download mode) : Hold power up (Unlock) : Read everything then confirm.
+        /// | (Wait for it to power on)
+        /// |
+        /// ❱ Unlock FRP:
+        /// | Unhide &quot;Developer options&quot;:
+        ///Settings : About : Software information : (Tap &quot;Build number&quot; 7 times) : (Confirm security unlock if asked)
+        /// | OEM Unlock:
+        ///Settings :  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UnlockBL_Samsung {
+            get {
+                return ResourceManager.GetString("UnlockBL_Samsung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can unlock older Samsung devices FRP using this method:
+        /// ❱ Unlock FRP:
+        /// | Unhide &quot;Developer options&quot;:
+        ///Settings : About : Software information : (Tap &quot;Build number&quot; 7 times) : (Confirm security unlock if asked)
+        /// | OEM Unlock:
+        ///Settings : Developer options : (Find and Enable &quot;OEM Unlock&quot;)
+        ///
+        /// ⚠ Warning: Some devices will factory reset when unlocking for security reasons.
+        /// ⚠ Notice: If you don&apos;t see &quot;OEM Unlock&quot; then your device is either unlocked by default, or your manufacturer has hidden the option [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UnlockBL_Samsung_old {
+            get {
+                return ResourceManager.GetString("UnlockBL_Samsung_old", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We need to wait the current process to finish first....
         /// </summary>
         internal static string WaitForCurrentProcess {

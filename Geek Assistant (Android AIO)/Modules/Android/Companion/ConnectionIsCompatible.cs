@@ -47,13 +47,12 @@ internal static partial class ConnectionIsCompatible {
     /// <returns>True if the device is compatible with fastboot mode</returns>
     public static bool fbIsCompatible(string ErrorCode_init) {
         GA_SetProgressText.Run("Checking fastboot compatibility...", -1);
-        if (!IsConnected(ErrorCode_init)) {
-            return false;
-        }
+        if (!IsConnected(ErrorCode_init)) return false;
 
         if (c.S.DeviceManufacturer == "Samsung") {
-            inf.detail = ($"{ErrorCode_init}-DS", inf.lvls.Error, inf.currentTitle,
-                $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted.", null); // Unlock Bootloader - Device Samsung (Samsung is not supported)
+            inf.detail = ($"{ErrorCode_init}-DS{(c.S.DeviceAPILevel <= 25 ? "o" : "n")}",  // Unlock Bootloader - Device Samsung (Samsung is not supported) (api<=25? old | new)
+                inf.lvls.Error, inf.currentTitle,
+                $"Sorry we cannot access fastboot mode on Samsung devices.\n > Process Aborted.", null);
             return false;
         }
 

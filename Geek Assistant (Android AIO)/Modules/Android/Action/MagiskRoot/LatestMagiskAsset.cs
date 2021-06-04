@@ -75,6 +75,13 @@ internal class LatestMagiskAsset {
         return apk_size = Convert.ToInt64(webClient.ResponseHeaders["Content-Length"]);
     }
 
+    ///// <summary> Magisk apk last modified as <see cref="DateTime"/></summary>
+    //public DateTime apk_DateTime { get; private set; }
+    //private DateTime Update_apk_DateTime(WebClient webClient, IMagiskBranch branch, bool Update_Json = false) {
+    //    webClient.OpenRead(Update_apk_link(branch, Update_Json));
+    //    return apk_DateTime = DateTime.Parse(webClient.ResponseHeaders["Last-Modified"]); //? Unknown format
+    //}
+
     /// <param name="webClient"><see cref="WebClient"/> to be used | <see cref="null"/> = <see cref="new()"/></param>
     /// <param name="branch">Magisk Branch 
     /// <list type="bullet">

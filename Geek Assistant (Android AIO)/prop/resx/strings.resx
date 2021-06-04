@@ -139,7 +139,34 @@
  - Unlock the lockscreen
  - Try another USB cable / port</value>
   </data>
+  <data name="UnlockBL_Samsung" xml:space="preserve">
+    <value>You can unlock Samsung devices bootloader &amp; FRP using this method:
+ ❱ Unlock bootloader: ⚠Your device will be factory reset after this⚠
+ | (Power off) : Hold volume+ and -  : connect USB cable : (Your device will enter download mode) : Hold power up (Unlock) : Read everything then confirm.
+ | (Wait for it to power on)
+ |
+ ❱ Unlock FRP:
+ | Unhide "Developer options":
+Settings : About : Software information : (Tap "Build number" 7 times) : (Confirm security unlock if asked)
+ | OEM Unlock:
+Settings : Developer options : (Find and Enable "OEM Unlock")
+ |
+ ⚠ Warning: Some devices will factory reset when unlocking for security reasons.
+ ⚠ Notice: If you don't see \"OEM Unlock\" then your device is either unlocked by default, or your manufacturer has hidden the option to unlock (Certain tricks needed to make it visible)</value>
+  </data>
+  <data name="UnlockBL_Samsung_old" xml:space="preserve">
+    <value>You can unlock older Samsung devices FRP using this method:
+ ❱ Unlock FRP:
+ | Unhide "Developer options":
+Settings : About : Software information : (Tap "Build number" 7 times) : (Confirm security unlock if asked)
+ | OEM Unlock:
+Settings : Developer options : (Find and Enable "OEM Unlock")
+
+ ⚠ Warning: Some devices will factory reset when unlocking for security reasons.
+ ⚠ Notice: If you don't see "OEM Unlock" then your device is either unlocked by default, or your manufacturer has hidden the option to unlock (Try changing the date to 3 years ago)</value>
+  </data>
   <data name="WaitForCurrentProcess" xml:space="preserve">
     <value>We need to wait the current process to finish first...</value>
+    <comment>c.Working</comment>
   </data>
 </root>

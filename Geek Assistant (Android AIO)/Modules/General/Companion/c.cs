@@ -12,13 +12,6 @@ internal static partial class c {
     #endregion
 
 
-    /*#region GA Forms 
-
-    /// <summary> A manually set (at code time) list of all forms in this project </summary>
-    public static readonly Form[] AllForms = { new Wait(), new AppMode(), new Donate(), new Home(), new Info(), new Settings(), new ToU() };
-
-    #endregion*/
-
     #region prop 
 
     public static prop.S S = new();

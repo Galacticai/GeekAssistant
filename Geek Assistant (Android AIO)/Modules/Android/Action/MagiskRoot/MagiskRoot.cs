@@ -1,6 +1,7 @@
 ﻿
 using GeekAssistant.Forms;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 internal class MagiskRoot : MagiskRootCompanion {
@@ -9,7 +10,8 @@ internal class MagiskRoot : MagiskRootCompanion {
     public static async void Run() {
         bool Cancelled = false;
         if (c.Working) {
-            inf.Run(inf.lvls.Error, currentTitle, prop.strings.WaitForCurrentProcess, null);
+            if (!Application.OpenForms.OfType<Info>().Any())
+                inf.Run(inf.lvls.Error, currentTitle, prop.strings.WaitForCurrentProcess, null);
             return;
         }
         //Refresh current Home instance

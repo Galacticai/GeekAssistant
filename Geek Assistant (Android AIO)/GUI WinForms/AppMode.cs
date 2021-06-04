@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
     public partial class AppMode : Form {
+        private static string workCode => "AM";
+        private static string currentTitle => "App Mode";
         public AppMode() {
             InitializeComponent();
         }
@@ -68,7 +70,7 @@ namespace GeekAssistant.Forms {
                 case 0:
                     //common.S.startup_newbie = true
                     //common.S.startup_moderate = false
-                    inf.detail.workCode = "NM-00";
+                    inf.detail.workCode = $"{workCode}-00";
                     GA_FeatureUnavailable.Run("Newbie Mode");
                     break;
                 case 1:

@@ -1,10 +1,7 @@
-﻿using System;
+﻿
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 internal class MagiskRootCompanion : LatestMagiskAsset {
     /*
@@ -25,13 +22,7 @@ internal class MagiskRootCompanion : LatestMagiskAsset {
             _Download_MagiskAPK_Progress = value;
         }
     }
-    /// <summary> Download latest Magisk apk and provide the <see cref="FileStream"/></summary>
-    /// <param name="branch"><list type="bullet">
-    /// <item> 0 stable: "master/stable"</item>
-    /// <item> 1 beta: "master/beta"</item>
-    /// <item> 2 canary: "master/canary"</item>
-    /// </list> </param>
-    /// <returns>Final downloaded Magisk apk file as <see cref="FileStream"/></returns>
+
     public static async Task<FileStream> Download_MagiskAPK
                 (IMagiskBranch branch = IMagiskBranch.stable) {
 

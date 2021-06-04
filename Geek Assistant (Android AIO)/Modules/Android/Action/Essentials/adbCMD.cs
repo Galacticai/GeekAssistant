@@ -4,9 +4,7 @@ using System.Linq;
 internal static partial class adbCMD {
     private readonly static Process adb_process = new Process();
     public static string adbOutput;
-    /// <summary>
-    /// >>>>>>>>>>>>>>>>> UPDATE THIS TO UTILIZE Managed.Managed.Adb.Device.ExecuteShellCommand
-    /// 
+    /// <summary> 
     /// Sends a command to $"{GA_tools}\adb.exe" and waits for process output
     /// Do not include "adb" in the arguments parameter
     /// </summary>
@@ -15,7 +13,7 @@ internal static partial class adbCMD {
     public static string adbDo(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
-            inf.detail.workCode = $"{inf.detail.workCode}-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
+            inf.detail.workCode += "-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
             inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the adb command.");
         }
 
@@ -24,9 +22,8 @@ internal static partial class adbCMD {
         // DoMsg(ErrorInfo.lvl, ErrorInfo.msg, 2)
         // End If
         // Inform if not running  
-        if (Process.GetProcessesByName("adb").Count() == 0) {
+        if (Process.GetProcessesByName("adb").Count() == 0)
             GA_SetProgressText.Run(txt.RandomWorkText(), -1);
-        }
 
         // <Failsafe
         {

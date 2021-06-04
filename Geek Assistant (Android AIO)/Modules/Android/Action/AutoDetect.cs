@@ -13,7 +13,7 @@ using System.Windows.Forms;
 //             >> 0 or 1
 
 internal static partial class AutoDetect {
-    private static string workCode => $"{workCode}";
+    private static string workCode => $"AD";
     private static string currentTitle => "Auto Detect";
 
     private static bool RunningInBetween = false;
