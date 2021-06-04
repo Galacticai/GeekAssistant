@@ -9,6 +9,8 @@ using System.Windows.Forms;
 // Clear dulvik cache: $"{workCode}b shell su -c rm -R /data/dalvik-cache"
 // Factory Reset: $"{workCode}b shell su -c recovery --wipe_data"
 // Root check: << "adb shell su" example >> "su: not found" 
+// Root check: << set uid= for /f "delims=" %%a in ('adb -s devicename shell "su 0 id -u 2>/dev/null"') do set uid=%%a && echo %uid%
+//             >> 0 or 1
 
 internal static partial class AutoDetect {
     private static string workCode => $"{workCode}";
