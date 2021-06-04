@@ -52,16 +52,16 @@ namespace GeekAssistant.Forms {
             this.No_Button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.No_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.No_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.No_Button.Location = new System.Drawing.Point(415, 276);
+            this.No_Button.Location = new System.Drawing.Point(390, 276);
             this.No_Button.Name = "No_Button";
-            this.No_Button.Size = new System.Drawing.Size(107, 30);
+            this.No_Button.Size = new System.Drawing.Size(132, 30);
             this.No_Button.TabIndex = 85561;
             this.No_Button.Text = "Close";
             this.No_Button.UseVisualStyleBackColor = false;
             // 
             // ButtonsBG_UI
             // 
-            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ButtonsBG_UI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonsBG_UI.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonsBG_UI.Enabled = false;
@@ -84,7 +84,7 @@ namespace GeekAssistant.Forms {
             // 
             // Yes_Button
             // 
-            this.Yes_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.Yes_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Yes_Button.BackColor = System.Drawing.Color.Transparent;
             this.Yes_Button.DialogResult = System.Windows.Forms.DialogResult.Yes;
@@ -94,7 +94,7 @@ namespace GeekAssistant.Forms {
             this.Yes_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Yes_Button.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Yes_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Yes_Button.Location = new System.Drawing.Point(260, 276);
+            this.Yes_Button.Location = new System.Drawing.Point(235, 276);
             this.Yes_Button.Name = "Yes_Button";
             this.Yes_Button.Size = new System.Drawing.Size(155, 30);
             this.Yes_Button.TabIndex = 85565;
@@ -104,7 +104,7 @@ namespace GeekAssistant.Forms {
             // 
             // title_Label
             // 
-            this.title_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.title_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.title_Label.BackColor = System.Drawing.Color.Transparent;
             this.title_Label.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -118,8 +118,8 @@ namespace GeekAssistant.Forms {
             // 
             // msg_Textbox
             // 
-            this.msg_Textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.msg_Textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.msg_Textbox.BackColor = System.Drawing.Color.White;
             this.msg_Textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -128,13 +128,15 @@ namespace GeekAssistant.Forms {
             this.msg_Textbox.MaxLength = 99999;
             this.msg_Textbox.Multiline = true;
             this.msg_Textbox.Name = "msg_Textbox";
-            this.msg_Textbox.PlaceholderText = "Error details and some potential fixes to the problem will appear here Error details and some potential fixes to the problem will appear here";
+            this.msg_Textbox.PlaceholderText = "Error details and some potential fixes to the problem will appear here Error deta" +
+    "ils and some potential fixes to the problem will appear here";
             this.msg_Textbox.ReadOnly = true;
             this.msg_Textbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.msg_Textbox.Size = new System.Drawing.Size(537, 168);
             this.msg_Textbox.TabIndex = 85567;
             this.msg_Textbox.TabStop = false;
-            this.msg_Textbox.Text = "Error details and some potential fixes to the problem will appear here Error details and some potential fixes to the problem will appear here";
+            this.msg_Textbox.Text = "Error details and some potential fixes to the problem will appear here Error deta" +
+    "ils and some potential fixes to the problem will appear here";
             // 
             // Copy_Button
             // 
