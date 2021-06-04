@@ -26,21 +26,22 @@ internal class MagiskRootHelper {
         }
     }
 
-    public static async Task Download_MagiskAPK() {
+    public static async Task Download_MagiskAPK(MagiskAsset.IMagiskBranch branch = MagiskAsset.IMagiskBranch.stable) {
 
-        MagiskAsset magisk = MagiskAsset.Instance(MagiskAsset.IMagiskBranch.stable);
+        WebClient web = new();
+        MagiskAsset magisk = new MagiskAsset().Instance(web, branch);
 
-        string apk = @$"{c.GA_tools}\Magisk-{MagiskAPK_version}.apk",
-               apkPart = $"{apk}.part";
+        string apk = @$"{c.GA_tools}\Magisk-v{magisk.version}.apk",
+               apkPart = apk + ".part";
 
         if (File.Exists(apkPart)) {
-            if (new FileInfo(apkPart).Length == MagiskAPK_size) {
+            if (new FileInfo(apkPart).Length == magisk.apk_size) {
                 File.Move(apkPart, apk, true); // set to real name  
                 return;
             } else File.Delete(apkPart);
         }
         if (File.Exists(apk)) {
-            if (new FileInfo(apk).Length == MagiskAPK_size)
+            if (new FileInfo(apk).Length == magisk.apk_size)
                 return;
             else File.Delete(apk);
         }
@@ -48,11 +49,10 @@ internal class MagiskRootHelper {
             GA_PrepareAppdata.Run();
 
 
-        WebClient web = new();
 
         web.DownloadProgressChanged += (sender, args) => {
-            Download_MagiskAPK_Progress = (new FileInfo(apk).Length / MagiskAPK_size) * 100;
-            //todo: more action
+            Download_MagiskAPK_Progress = (new FileInfo(apk).Length / magisk.apk_size) * 100;
+            //todo: more action (gui)
         };
 
         web.DownloadFileCompleted += (sender, args) => {
@@ -61,76 +61,10 @@ internal class MagiskRootHelper {
         };
 
         //set events before awaiting task
-        await Task.Run(() => web.DownloadFileAsync(MagiskAPK_uri, apkPart));
+        await Task.Run(() => web.DownloadFileAsync(magisk.apk_link, apkPart));
     }
 }
 
-
-/// <summary> Latest Magisk Assets Manager</summary>
-internal class MagiskAsset {
-    /// <summary><list type="bullet">
-    /// <item> 0 stable: "master/stable"</item>
-    /// <item> 1 beta: "master/beta"</item>
-    /// <item> 2 canary: "master/canary"</item>
-    /// </list> </summary> 
-    public enum IMagiskBranch { stable, beta, canary }
-    private static string MagiskBranch_string(IMagiskBranch branch)
-        => branch switch {
-            IMagiskBranch.beta => "master/beta",
-            IMagiskBranch.canary => "master/canary",
-            _ => "master/stable",
-        };
-    /// <returns> Latest magisk asset .json link according to <paramref name="branch"/></returns> 
-    /// <param name="branch"><list type="bullet">
-    /// <item> 0 stable: "master/stable"</item>
-    /// <item> 1 beta: "master/beta"</item>
-    /// <item> 2 canary: "master/canary"</item>
-    /// </list> </param>
-    public string Json_link { get; private set; }
-    private string Update_Json_link(IMagiskBranch branch)
-        => Json_link = "https://raw.githubusercontent.com/topjohnwu/magisk-files/" + MagiskBranch_string(branch) + ".json";
-
-    public string json_string { get; private set; }
-    private async Task<string> Update_json_string(IMagiskBranch branch)
-        => await Task.Run(() => json_string = new WebClient().DownloadString(Update_Json_link(branch)));
-
-    public JObject json { get; private set; }
-    public JObject Update_json(IMagiskBranch branch)
-        => json = new(Update_json_string(branch));
-
-    public (int major, int minor) version { get; private set; }
-    private (int major, int minor) Update_version(IMagiskBranch branch, bool Update_Json = false) {
-        // "23.0"
-        string version_string = (string)(Update_Json ? Update_json(branch)["magisk"]["version"]
-                                                     : json["magisk"]["version"]),
-               // "23<<.0"
-               major_string = version_string[..version_string.IndexOf(".")],
-               // "23.>>0"
-               minor_string = version_string[(version_string.IndexOf(".") + 1)..];
-
-        return version = (Convert.ToInt32(major_string), Convert.ToInt32(minor_string));
-    }
-
-    public string apklink_string { get; private set; }
-    private string Update_apklink_string(IMagiskBranch branch, bool Update_Json = false)
-        => apklink_string = (string)(Update_Json ? Update_json(branch)["magisk"]["link"]
-                                       : json["magisk"]["link"]);
-    public Uri apklink { get; private set; }
-    private Uri Update_apklink(IMagiskBranch branch, bool Update_Json = false)
-        => apklink = new((string)(Update_Json ? Update_json(branch)["magisk"]["link"]
-                                          : json["magisk"]["link"]));
-
-    private MagiskAsset init_Instance(IMagiskBranch branch = IMagiskBranch.stable)
-        => new MagiskAsset() {
-            json = Update_json(branch), //init First to Update all
-            version = Update_version(branch),
-            apklink = Update_apklink(branch)
-        };
-
-    public static MagiskAsset Instance(IMagiskBranch branch = IMagiskBranch.stable)
-        => new MagiskAsset().init_Instance(branch);
-
-}
 
 
 
@@ -150,9 +84,8 @@ internal class MagiskAsset {
  
  */
 
-//Example full assets .json
 
-/*  
+/*  Example full assets .json
 {
     "url": "https://api.github.com/repos/topjohnwu/Magisk/releases/42815075",
   "assets_url": "https://api.github.com/repos/topjohnwu/Magisk/releases/42815075/assets",
