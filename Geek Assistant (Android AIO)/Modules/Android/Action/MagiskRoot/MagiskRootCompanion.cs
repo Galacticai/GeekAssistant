@@ -33,11 +33,11 @@ internal class MagiskRootCompanion {
     /// </list> </param>
     /// <returns>Final downloaded Magisk apk file as <see cref="FileStream"/></returns>
     public static async Task<FileStream> Download_MagiskAPK
-                (LatestMagiskAsset.IMagiskBranch branch
-                    = LatestMagiskAsset.IMagiskBranch.stable) {
+                (MagiskAssets.IMagiskBranch branch
+                    = MagiskAssets.IMagiskBranch.stable) {
 
         WebClient webClient = new();
-        LatestMagiskAsset magisk = new LatestMagiskAsset().Instance(webClient, branch);
+        MagiskAssets magisk = new MagiskAssets().Instance(webClient, branch);
 
         string apk = @$"{c.GA_tools}\Magisk-v{magisk.version}.apk",
            apkPart = apk + ".part";

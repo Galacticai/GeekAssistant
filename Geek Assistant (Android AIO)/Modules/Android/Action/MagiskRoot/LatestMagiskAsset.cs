@@ -3,7 +3,6 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-
 /// <summary> Latest Magisk Assets Manager</summary>
 internal class LatestMagiskAsset {
     /// <summary><list type="bullet">

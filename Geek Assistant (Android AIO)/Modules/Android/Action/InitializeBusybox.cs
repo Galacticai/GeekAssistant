@@ -18,14 +18,13 @@ internal static partial class InitializeBusybox {
         inf.Run(inf.lvls.Error, "(Disabled) " + inf.currentTitle,
                 "This has been disabled by the developer");
         var dev = madb.GetListOfDevice()[0];
-        if (dev.BusyBox.Available) {
-            // ErrorInfo = (0, "Busybox is set and ready for use.")
+        if (dev.BusyBox.Available)
             goto Finish_madb_InstallBusyboxReady;
-        }
 
-        if (!File.Exists($@"{c.GA_tools}\busybox")) {
+
+        if (!File.Exists($@"{c.GA_tools}\busybox"))
             GA_PrepareAppdata.Run();
-        }
+
 
         adbCMD.adbDo("shell mkdir /data/busybox");
         GA_Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
@@ -45,11 +44,8 @@ internal static partial class InitializeBusybox {
         GA_Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c './data/busybox --install'");
         GA_Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
-        if (dev.BusyBox.Available) {
-            MessageBox.Show("busybox available");
-        } else {
-            MessageBox.Show("busybox not installed");
-        }
+        if (dev.BusyBox.Available) MessageBox.Show("busybox available");
+        else MessageBox.Show("busybox not installed");
 
         // adb shell mkdir /data/busybox
         // adb push busybox /data/busybox
@@ -62,12 +58,11 @@ internal static partial class InitializeBusybox {
 
         return;
 
-        // Dim bbInstall = dev.BusyBox.Install($"{GA_tools}\busybox")
-        if (!true) // bbInstall Then
-        {
-            // ErrorInfo = (1, "We had trouble while installing busybox.")
-            goto Finish_madb_InstallBusyboxReady;
-        }
+        //// Dim bbInstall = dev.BusyBox.Install($"{GA_tools}\busybox")
+        //if (bbInstall) {
+        //    // ErrorInfo = (1, "We had trouble while installing busybox.")
+        //    goto Finish_madb_InstallBusyboxReady;
+        //}
         // ErrorInfo = (0, "Busybox is set and ready for use.")
         Finish_madb_InstallBusyboxReady:;
 
