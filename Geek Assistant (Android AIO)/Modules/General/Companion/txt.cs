@@ -29,7 +29,6 @@ internal static partial class txt {
         // Failsafe: return if only 1 line
         if (input.IndexOf(Environment.NewLine) < 1) return input;
 
-
         // Do
         // ' Text Example>>(\n)blabla bla<<
         return input.Substring(input.IndexOf(Environment.NewLine) + 1);
@@ -91,14 +90,11 @@ internal static partial class txt {
     }
 
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
-    public static string GA_GetErrorInitials() {
-        // failsafe
-        if (string.IsNullOrEmpty(inf.detail.workCode)) return "";
-        // failsafe
-        if (inf.detail.workCode.IndexOf("-") < 1) return "";
+    public static string GA_GetworkCode()
+        => string.IsNullOrEmpty(inf.detail.workCode)
+           | inf.detail.workCode.IndexOf("-") < 1
+           ? "??" : inf.detail.workCode[..inf.detail.workCode.IndexOf("-")];
 
-        return inf.detail.workCode.Substring(0, inf.detail.workCode.IndexOf("-"));
-    }
     /// <summary>
     /// Return tooltip of SwitchButton without the state ((Enabled) | (Disabled))
     /// </summary>
@@ -111,7 +107,7 @@ internal static partial class txt {
 
         string txt = tooltip.GetToolTip(aButton); //abreviation + Get 1 time for performance
         if (string.IsNullOrEmpty(tooltip.GetToolTip(aButton)))
-            return "";
+            return string.Empty;
 
         int indexFrom = 0;
         if (txt[..10] == "(Disabled)")
