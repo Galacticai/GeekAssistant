@@ -61,7 +61,7 @@ namespace GeekAssistant.Forms {
 
             Wait_MainEnabled(false);
 
-            Wait_text.Text = txt.RandomWorkText();
+            Wait_text.Text = txt.RandomWorkText;
         }
 
         private void StopProcess_Button_Click(object sender, EventArgs e) {

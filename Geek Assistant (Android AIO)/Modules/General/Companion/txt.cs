@@ -48,15 +48,15 @@ internal static partial class txt {
 
         // Remove double space if present
         int index = 1;
-        if (Strings.GetChar(input, input.IndexOf(" ")) == Strings.GetChar(input, input.IndexOf(" ") + 1))
+        if (input.ToCharArray()[input.IndexOf(" ")] == input.ToCharArray()[input.IndexOf(" ") + 1])
             index += 1;
 
         // Do
         return input.Substring(input.IndexOf(" ") + index, input.Length);
     }
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
-    public static string RandomWorkText() {
-        return (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
+    public static string RandomWorkText
+        => (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
             "Hold on... We're doing magic!",
             "Stuff... Please be patient...",
             "Wait a second... Magic ongoing...",
@@ -73,11 +73,10 @@ internal static partial class txt {
             "Progressing, we will finish soon",
             "Want a snack? Finishing soon..."
         });
-    }
 
     /// <returns>Random string from a preset String() (open to edit preset array)</returns>
-    public static string RandomFactText() {
-        return (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
+    public static string RandomFactText
+        => (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
             "The first oranges weren’t orange.",
             "Samsung uses a butt-shaped robot to test phone durability.",
             "Peanuts aren’t technically nuts.",
@@ -87,12 +86,11 @@ internal static partial class txt {
             "Cows have no top front teeth.",
             "NASA can email tools to astronauts to 3D print."
         });
-    }
+
 
     /// <returns>Gets current error code initials (XX)-xx without "-" (From S.ErrorCode)</returns>
-    public static string GA_GetworkCode()
-        => string.IsNullOrEmpty(inf.detail.workCode)
-           | inf.detail.workCode.IndexOf("-") < 1
+    public static string GA_current_workCode
+        => (string.IsNullOrEmpty(inf.detail.workCode) | (inf.detail.workCode.IndexOf("-") < 1))
            ? "??" : inf.detail.workCode[..inf.detail.workCode.IndexOf("-")];
 
     /// <summary>

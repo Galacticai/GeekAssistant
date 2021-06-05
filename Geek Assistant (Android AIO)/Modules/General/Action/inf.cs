@@ -9,7 +9,7 @@ internal static partial class inf { //inform
 
     public static bool infoAnswer = false;
 
-    public static string currentTitle;
+    public static string workTitle;
     /// <summary>
     /// <list>
     /// <item>Current Error lvl and msg </item>

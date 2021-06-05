@@ -161,7 +161,7 @@ internal static partial class GA_adb {
     public static string[] ConvertAPILevelToAVer(int APIint, bool silent = false) {
         if (APIint <= 0) {
             if (!silent) {
-                inf.Run(inf.lvls.FatalError, inf.currentTitle, "Error while processing your device API level!");
+                inf.Run(inf.lvls.FatalError, inf.workTitle, "Error while processing your device API level!");
             }
 
             return new[] { "❌", "❌" };
@@ -275,9 +275,9 @@ internal static partial class GA_adb {
 
     public static string HotReboot(string ErrorCode_init) {
         var scr = new Managed.Adb.CommandResultReceiver();
-        var dev = madb.GetListOfDevice()[0];
-        if (!madb.madb_IsRooted(ErrorCode_init)) {
-            inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg);
+        var dev = madb.GetListOfDevice().Result[0];
+        if (!madb.madb_IsRooted()) {
+            inf.Run(inf.detail.lvl, inf.workTitle, inf.detail.msg);
             return "";
         }
         if (!dev.BusyBox.Available) InitializeBusybox.Run(true);

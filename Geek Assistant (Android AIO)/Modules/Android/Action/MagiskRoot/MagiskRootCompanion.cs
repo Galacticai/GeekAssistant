@@ -34,7 +34,7 @@ internal class MagiskRootCompanion : LatestMagiskAsset {
 
         if (File.Exists(apkPart)) {
             if (new FileInfo(apkPart).Length == magisk.apk_size) {
-                File.Move(apkPart, apk, true); // set to real name  
+                File.Move(apkPart, apk, true); // set real name  
                 goto FileReady;
             } else File.Delete(apkPart);
         }
@@ -52,13 +52,13 @@ internal class MagiskRootCompanion : LatestMagiskAsset {
         };
         webClient.DownloadFileCompleted += (sender, args) => {
             Download_MagiskAPK_Progress = 100;
-            File.Move(apkPart, apk, true); // set to real name 
+            File.Move(apkPart, apk, true); // set real name 
+            //todo: more action (gui)
         };
         // Events before task
         await Task.Run(() => webClient.DownloadFileAsync(magisk.apk_link, apkPart));
 
-        //File is ready
-        FileReady:;
+        FileReady:; //! File is ready
         return File.OpenRead(apk);
     }
 }

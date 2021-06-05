@@ -2,11 +2,11 @@
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
     public static void Run(bool silent) {
-        if (c.Working) { //dont change inf.currentTitle while working
+        if (c.Working) { //dont change inf.workTitle while working
             inf.Run(inf.lvls.Error, "Initialize Busybox", prop.strings.WaitForCurrentProcess);
             return;
         }
-        inf.currentTitle = "Initialize Busybox";
+        inf.workTitle = "Initialize Busybox";
         c.Working = true;
         inf.detail.workCode = "BI-00";
         if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
@@ -15,9 +15,9 @@ internal static partial class InitializeBusybox {
             return;
         }
 
-        inf.Run(inf.lvls.Error, "(Disabled) " + inf.currentTitle,
+        inf.Run(inf.lvls.Error, "(Disabled) " + inf.workTitle,
                 "This has been disabled by the developer");
-        var dev = madb.GetListOfDevice()[0];
+        var dev = madb.GetListOfDevice().Result[0];
         if (dev.BusyBox.Available)
             goto Finish_madb_InstallBusyboxReady;
 

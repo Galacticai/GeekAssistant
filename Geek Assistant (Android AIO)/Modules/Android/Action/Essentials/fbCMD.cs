@@ -14,10 +14,10 @@ internal static partial class fbCMD {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
             inf.detail.workCode = $"{inf.detail.workCode}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
-            inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the fastboot command.");
+            inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the fastboot command.");
         }
 
-        if (!ConnectionIsCompatible.fbIsReady(txt.GA_GetErrorInitials())) {
+        if (!ConnectionIsCompatible.fbIsReady()) {
             inf.detail.workCode = $"{inf.detail.workCode}-fbD0"; // error code (last process) - adb device 0 (no device)
             inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
         }

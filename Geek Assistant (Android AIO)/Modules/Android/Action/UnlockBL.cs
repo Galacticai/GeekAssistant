@@ -4,8 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 internal static partial class UnlockBL {
-    private static string workCode => "UB";
-    private static string currentTitle => "Unlock Bootloader";
+    private static string workCode_init => "UB";
+    private static string workTitle => "Unlock Bootloader";
 
     // Private ErrorInfo As (lvl As Integer, msg As String) 
     // ' https://source.android.com/devices/bootloader/locking_unlocking
@@ -14,7 +14,7 @@ internal static partial class UnlockBL {
         bool Cancelled = false;
         if (c.Working) {
             if (!Application.OpenForms.OfType<Info>().Any()) //failsafe
-                inf.Run(inf.lvls.Error, currentTitle, prop.strings.WaitForCurrentProcess, null);
+                inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess, null);
             return;
         }
 
@@ -23,17 +23,17 @@ internal static partial class UnlockBL {
         foreach (Form home in Application.OpenForms)
             if (home.GetType() == typeof(Home))
                 Home = (Home)home;
-        inf.currentTitle = currentTitle;
+        inf.workTitle = workTitle;
         c.Working = true;
-        inf.detail.workCode = $"{workCode}-00"; // Unlock Bootloader - Start
-        GA_Log.LogEvent(inf.currentTitle, 2);
+        inf.detail.workCode = $"{workCode_init}-00"; // Unlock Bootloader - Start
+        GA_Log.LogEvent(inf.workTitle, 2);
         GA_Wait.Run(true);
         try {
             Home.bar.Value = 0;
 
             // check if fb compatible 
             Home.bar.Value = 10;
-            if (!ConnectionIsCompatible.fbIsCompatible(workCode)) {
+            if (!ConnectionIsCompatible.fbIsCompatible()) {
                 Cancelled = true;
                 if (inf.detail.workCode.Contains("-DS"))
                     inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n"
@@ -53,7 +53,7 @@ internal static partial class UnlockBL {
             }
 
             Home.bar.Value = 17;
-            Managed.Adb.Device dev = madb.GetListOfDevice()[0];
+            Managed.Adb.Device dev = madb.GetListOfDevice().Result[0];
             Home.bar.Value = 25;
             // ' detected but not in fastboot
             GA_SetProgressText.Run("Checking connection status...", -1);
@@ -76,8 +76,8 @@ internal static partial class UnlockBL {
                 } else {
                     Home.bar.Value = 35;
                     Cancelled = true;
-                    inf.detail.workCode = $"{workCode}-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
-                                                            // ErrorInfo = (0, "You have cancelled the process.")
+                    inf.detail.workCode = $"{workCode_init}-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
+                                                                 // ErrorInfo = (0, "You have cancelled the process.")
                     GA_Log.LogEvent("Unlock Bootloader Cancelled", 1);
                     throw new Exception();
                 }
@@ -86,11 +86,11 @@ internal static partial class UnlockBL {
                 Cancelled = true;
                 if (c.S.DeviceState == "Disconnected") { // failsafe   
                     GA_SetProgressText.Run("Device is disconnected.", 0);
-                    inf.detail.workCode = $"{workCode}-xX"; // Unlock Bootloader - x error X (device disconnected)
+                    inf.detail.workCode = $"{workCode_init}-xX"; // Unlock Bootloader - x error X (device disconnected)
 
                 } else {// not adb and not fastboot and not disconnected  
                     GA_SetProgressText.Run("Device is not in adb or fastboot mode.", 0);
-                    inf.detail.workCode = $"{workCode}-rX";
+                    inf.detail.workCode = $"{workCode_init}-rX";
                 } // Unlock Bootloader - reboot X (Device is not in adb or fastboot (cant reboot to fastboot))
 
                 Home.bar.Value = 32;
@@ -114,18 +114,18 @@ internal static partial class UnlockBL {
             if (fbCMD.fbDo("oem device-info").Contains("Device unlocked: true")) {
                 Home.bar.Value = 100;
                 Cancelled = true;
-                inf.detail.workCode = $"{workCode}-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
-                                                        // ErrorInfo = (0, $"Hooray! The Bootloader is unlocked already.\nNo need to unlock it once more.")
+                inf.detail.workCode = $"{workCode_init}-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
+                                                             // ErrorInfo = (0, $"Hooray! The Bootloader is unlocked already.\nNo need to unlock it once more.")
                 throw new Exception();
             }
 
             Home.bar.Value = 50;
-            inf.detail.workCode = $"{workCode}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
+            inf.detail.workCode = $"{workCode_init}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
             GA_SetProgressText.Run("Attempting to unlock bootloader...", -1);
             fbCMD.fbDo($"flashing unlock");
             if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
                 Home.bar.Value = 52;
-                inf.detail.workCode = $"{workCode}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
+                inf.detail.workCode = $"{workCode_init}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
                 GA_SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
                 Home.bar.Value = 55;
                 fbCMD.fbDo($"oem unlock");
@@ -143,10 +143,10 @@ internal static partial class UnlockBL {
             fbCMD.fbDo("reboot");
         } catch (Exception ex) {
             GA_Wait.Run(false); // Close before error dialog 
-            inf.Run(inf.detail.lvl, inf.currentTitle, inf.detail.msg, ex.ToString());
+            inf.Run(inf.detail.lvl, inf.workTitle, inf.detail.msg, ex.ToString());
             if (!Cancelled)
                 if (c.S.DeviceState == "Connected (ADB)" | c.S.DeviceState == "Fastboot mode")
-                    if (inf.Run(inf.lvls.Question, inf.currentTitle,
+                    if (inf.Run(inf.lvls.Question, inf.workTitle,
                                   "We are sorry... Seems like we failed.\nDo you want to reboot your device?",
                                 ("Reboot", "Do Nothing")))
                         fbCMD.fbDo("reboot");

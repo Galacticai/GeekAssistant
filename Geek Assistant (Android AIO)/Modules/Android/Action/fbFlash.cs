@@ -13,28 +13,28 @@ internal static partial class FastbootFlash {
             return;
         }
 
-        inf.currentTitle = "Fastboot Flash";
+        inf.workTitle = "Fastboot Flash";
         c.Working = true;
         inf.detail.workCode = "fbF-00";
-        GA_Log.LogEvent(inf.currentTitle, 2);
+        GA_Log.LogEvent(inf.workTitle, 2);
         GA_Wait.Run(true);
         try {
             if (string.IsNullOrEmpty(img)) { // check zip string  
-                inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.currentTitle, "File name is not set!", null);
+                inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.workTitle, "File name is not set!", null);
                 throw new Exception();
             }
             if (type < 0 | type > 5) {
-                inf.detail = ("fbF-T0", inf.lvls.FatalError, inf.currentTitle, "Type is out of range!", null);
+                inf.detail = ("fbF-T0", inf.lvls.FatalError, inf.workTitle, "Type is out of range!", null);
                 throw new Exception();
             }
 
             // ' check if fb compatible 
-            if (!ConnectionIsCompatible.fbIsCompatible("FF")) //inf.detail is already set inside this
+            if (!ConnectionIsCompatible.fbIsCompatible()) //inf.detail is already set inside this
 {
                 throw new Exception();
             }
 
-            Managed.Adb.Device dev = madb.GetListOfDevice()[0];
+            Managed.Adb.Device dev = madb.GetListOfDevice().Result[0];
 
             // ' detected but not in fastboot
             if (c.S.DeviceState == "Connected (ADB)") {
@@ -128,11 +128,9 @@ internal static partial class FastbootFlash {
     /// </list></returns>
     private static string TypeToString(int type) {
         if (!math.Arithmatics.IsInRange(type, 0, 5)) {
-            inf.detail.workCode = $"{txt.GA_GetErrorInitials()}-FtX";
-            // ErrorInfo = (10, $"File type not set.")
+            inf.detail.workCode = $"{txt.GA_current_workCode}-FtX";
             throw new Exception();
         }
-
         return type switch {
             0 => "boot",
             1 => "bootloader",

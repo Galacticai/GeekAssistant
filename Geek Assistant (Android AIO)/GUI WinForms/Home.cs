@@ -415,7 +415,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void HotReboot_Button_Click(object sender, EventArgs e) {
-            if (!ConnectionIsCompatible.adbIsCompatible("HR")) { // Hot Reboot 
+            if (!ConnectionIsCompatible.adbIsCompatible()) { // Hot Reboot 
                 inf.Run();
                 return;
             }

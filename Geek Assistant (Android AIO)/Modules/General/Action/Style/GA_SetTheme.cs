@@ -146,16 +146,16 @@ internal partial class GA_SetTheme : Theming {
                     h.MagiskRoot_Button,
                     h.FlashZip_Button,
                     h.CustomRecovery_CheckBox,
-                    h.ProgressBarLabel
+                    h.ProgressBarLabel,
+                    h.GA_About_Label,
+                    h.UnlockBL_Label,
+                    h.MagiskRoot_Label
             };
             IMetroControl[] MetroControls_array = new IMetroControl[] {
                     h.Main_Tabs_old,
                     h.PrepareYourDevice_Tab_old,
                     h.FlashImg_Tab_old,
                     h.MoreTools_Tab_old,
-                    h.GA_About_Label,
-                    h.UnlockBL_Label,
-                    h.MagiskRoot_Label,
                     h.Manufacturer_ComboBox,
                     h.AndroidVersion_ComboBox,
                     h.bar,

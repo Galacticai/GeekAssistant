@@ -14,7 +14,7 @@ internal static partial class adbCMD {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
             inf.detail.workCode += "-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
-            inf.Run(inf.lvls.FatalError, inf.currentTitle, "Unable to run the adb command.");
+            inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the adb command.");
         }
 
         // If Not adbIsReady(txt.GA_GetErrorInitials) Then
@@ -23,7 +23,7 @@ internal static partial class adbCMD {
         // End If
         // Inform if not running  
         if (Process.GetProcessesByName("adb").Count() == 0)
-            GA_SetProgressText.Run(txt.RandomWorkText(), -1);
+            GA_SetProgressText.Run(txt.RandomWorkText, -1);
 
         // <Failsafe
         {

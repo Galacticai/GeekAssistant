@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 internal static partial class cmd {
     public static string madbShell(Device dev, string cmd, bool sudo = false) {
-        if (ConnectionIsCompatible.adbIsReady(txt.GA_GetErrorInitials())) {
+        if (ConnectionIsCompatible.adbIsReady()) {
             inf.Run(inf.detail, ("Close", null));
         }
 
@@ -77,12 +77,12 @@ internal static partial class cmd {
         GA_Log.LogAppendText(invalid_text, 2);
     }
     private static string adbDo_WithTrack(string command) {
-        inf.detail.workCode = $"{txt.GA_GetErrorInitials()}-adb-cmd";
+        inf.detail.workCode = $"{txt.GA_current_workCode}-adb-cmd";
         return adbCMD.adbDo(command);
     }
 
     private static string fbDo_WithTrack(string command) {
-        inf.detail.workCode = $"{txt.GA_GetErrorInitials()}-fb-cmd";
+        inf.detail.workCode = $"{txt.GA_current_workCode}-fb-cmd";
         return fbCMD.fbDo(command);
     }
 }
