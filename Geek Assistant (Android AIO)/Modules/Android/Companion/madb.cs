@@ -9,14 +9,14 @@ internal static partial class madb {
     /// <param name="forceNewBridge">Kill previous server if true</param>
     /// <returns>Managed.Adb.AndroidDebugBridge</returns>
     public static async Task<Managed.Adb.AndroidDebugBridge> madbBridge(bool forceNewBridge = false)
-        => await Task.Run(() => Managed.Adb.AndroidDebugBridge.CreateBridge($@"{c.GA_tools}\adb.exe", forceNewBridge)); // .Start()
+        => await Task.Run(() => Managed.Adb.AndroidDebugBridge.CreateBridge($"{c.GA_tools}\\adb.exe", forceNewBridge)); // .Start()
 
     /// <summary>
     /// Start adb server at $"{GA_tools}\adb.exe"
     /// </summary>
     /// <param name="forceNewBridge">Kill previous server if true</param>
-    public static void madbBridgeStart(bool forceNewBridge = false)
-        => madbBridge(forceNewBridge).Start();
+    public static async void madbBridgeStart(bool forceNewBridge = false)
+        => await Task.Run(() => madbBridge(forceNewBridge).Start());
 
     /// <summary>
     /// Terminate madb
@@ -65,24 +65,16 @@ internal static partial class madb {
     /// Converts madb_GetDeviceState() to the corresponding string
     /// </summary>
     /// <returns>(String): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
-    public static string Convert_DeviceState_IntToString() {
-        string result = "";
-        switch (GetDeviceState().Result) {
-            case 0:
-                result = "recovery"; break;
-            case 1:
-                result = "bootloader"; break;
-            case 2:
-                result = "offline"; break;
-            case 3:
-                result = "online"; break;
-            case 4:
-                result = "download"; break;
-            case 5:
-                result = "unknown"; break;
-        }
-        return result;
-    }
+    public static Task<string> Convert_DeviceState_IntToString()
+        => Task.Run(() => (GetDeviceState().Result) switch {
+            0 => "recovery",
+            1 => "bootloader",
+            2 => "offline",
+            3 => "online",
+            4 => "download",
+            5 => "unknown",
+            _ => "unknown"
+        });
 
     /// <returns>True if Device is can SU</returns>
     public static bool madb_IsRooted() {
