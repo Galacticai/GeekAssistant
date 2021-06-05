@@ -44,7 +44,7 @@ internal class MagiskRootCompanion : LatestMagiskAsset {
             else File.Delete(apk);
         }
         if (!Directory.Exists(c.GA_tools))
-            GA_PrepareAppdata.Run();
+            PrepareAppdata.Run();
 
         webClient.DownloadProgressChanged += (sender, args) => {
             Download_MagiskAPK_Progress = (new FileInfo(apk).Length / magisk.apk_size) * 100;

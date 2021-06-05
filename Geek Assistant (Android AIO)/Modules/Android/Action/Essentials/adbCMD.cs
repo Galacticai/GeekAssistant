@@ -23,7 +23,7 @@ internal static partial class adbCMD {
         // End If
         // Inform if not running  
         if (Process.GetProcessesByName("adb").Count() == 0)
-            GA_SetProgressText.Run(txt.RandomWorkText, -1);
+            SetProgressText.Run(txt.RandomWorkText, -1);
 
         // <Failsafe
         {

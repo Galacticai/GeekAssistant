@@ -1,37 +1,32 @@
 ﻿
+using System.Threading.Tasks;
+
 internal static partial class ConnectionIsCompatible {
 
-
-    /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
     /// <returns>True if the device is ready for adb commands</returns>
     public static bool adbIsReady() {
-        GA_SetProgressText.Run("Checking adb state...", -1);
+        SetProgressText.Run("Checking adb state...", -1);
         if (!adbIsCompatible()) return false; // connected 
         if ((int)madb.GetListOfDevice().Result[0].State != 3) return false; // online 
         return true;
     }
-
-    /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
     /// <returns>True if the device is compatible with adb mode</returns>
     public static bool adbIsCompatible() {
-        GA_SetProgressText.Run("Checking adb compatibility...", -1);
+        SetProgressText.Run("Checking adb compatibility...", -1);
         if (!IsConnected()) return false;
         return true;
     }
 
-
-    /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
     /// <returns>True if the device is ready for fastboot commands</returns>
     public static bool fbIsReady() {
-        GA_SetProgressText.Run("Checking fastboot state...", -1);
+        SetProgressText.Run("Checking fastboot state...", -1);
         if (!fbIsCompatible()) return false;
         if ((int)madb.GetListOfDevice().Result[0].State != 1) return false; // bootloader 
         return true;
     }
-    /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
     /// <returns>True if the device is compatible with fastboot mode</returns>
     public static bool fbIsCompatible() {
-        GA_SetProgressText.Run("Checking fastboot compatibility...", -1);
+        SetProgressText.Run("Checking fastboot compatibility...", -1);
         if (!IsConnected()) return false;
 
         if (c.S.DeviceManufacturer == "Samsung") {
@@ -43,7 +38,6 @@ internal static partial class ConnectionIsCompatible {
         return true;
     }
 
-    /// <param name="ErrorCode_init">Error code initials (XX)-yy</param>
     /// <returns>True if 1 device is connected</returns>
     private static bool IsConnected() {
         if (string.IsNullOrEmpty(c.S.DeviceState)) return false; // failsafe

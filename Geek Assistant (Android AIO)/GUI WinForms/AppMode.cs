@@ -62,7 +62,7 @@ namespace GeekAssistant.Forms {
 
                 Close();
             }
-            GA_SetTheme.Run(this);
+            SetTheme.Run(this);
         }
 
         private void AppMode_Do(int StartupLevel) {
@@ -71,7 +71,7 @@ namespace GeekAssistant.Forms {
                     //common.S.startup_newbie = true
                     //common.S.startup_moderate = false
                     inf.detail.workCode = $"{workCode_init}-00";
-                    GA_FeatureUnavailable.Run("Newbie Mode");
+                    FeatureUnavailable.Run("Newbie Mode");
                     break;
                 case 1:
                     c.S.AppMode_newbie = false;
@@ -117,10 +117,10 @@ namespace GeekAssistant.Forms {
             }
         }
         private void startup_dontShow_MouseDown(object sender, EventArgs e) {
-            GA_SwitchButton_Style.MouseDown(startup_dontShow);
+            SwitchButton_Style.MouseDown(startup_dontShow);
         }
         private void startup_dontShow_Mouseup(object sender, EventArgs e) {
-            GA_SwitchButton_Style.MouseUp(startup_dontShow);
+            SwitchButton_Style.MouseUp(startup_dontShow);
         }
         private void startup_dontShow_Click(object sender, EventArgs e) {
             if (c.S.AppMode_dontshow) {

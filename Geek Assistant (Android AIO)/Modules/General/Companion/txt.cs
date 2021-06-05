@@ -101,7 +101,7 @@ internal static partial class txt {
     /// <returns>tooltip text without "(Disabled)" or "(Enabled)"</returns>
     public static string WithoutState_SwitchButton_tooltipTxt(Control aButton, ToolTip tooltip = null) {
         if (tooltip is null)
-            tooltip = GA_SwitchButton_Style.tooltip; //set if null
+            tooltip = SwitchButton_Style.tooltip; //set if null
 
         string txt = tooltip.GetToolTip(aButton); //abreviation + Get 1 time for performance
         if (string.IsNullOrEmpty(tooltip.GetToolTip(aButton)))

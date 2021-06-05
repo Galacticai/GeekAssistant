@@ -123,8 +123,8 @@ namespace GeekAssistant.Forms {
                     Height += 75;
                     break;
             }
-            GA_CenterToHomeBounds.Run(this);
-            GA_SetTheme.Run(this);
+            CenterToHomeBounds.Run(this);
+            SetTheme.Run(this);
         }
 
         private void Yes_Button_Mousedown(object sender, EventArgs e) {

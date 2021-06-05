@@ -97,37 +97,37 @@
     <Compile Update="Modules\CustomObjects\FlatButton.cs">
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_CenterToHomeBounds.cs">
+    <Compile Update="Modules\General\Action\CenterToHomeBounds.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_FeatureUnavailable.cs">
+    <Compile Update="Modules\General\Action\FeatureUnavailable.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_HideAllForms.cs">
+    <Compile Update="Modules\General\Action\HideAllForms.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_Log.cs">
+    <Compile Update="Modules\General\Action\Log.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_Wait.cs">
+    <Compile Update="Modules\General\Action\GAwait.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_PrepareAppdata.cs">
+    <Compile Update="Modules\General\Action\PrepareAppdata.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_Reset.cs">
+    <Compile Update="Modules\General\Action\GAreset.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_SetProgressText.cs">
+    <Compile Update="Modules\General\Action\SetProgressText.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GA_SetTooltipInfo.cs">
+    <Compile Update="Modules\General\Action\SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\Style\Theming.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Style\GA_SetTheme.cs">
+    <Compile Update="Modules\General\Action\Style\SetTheme.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Action\inf.cs">
@@ -149,10 +149,10 @@
     <Compile Update="Modules\General\Companion\c.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\GA_SwitchButton_Style.cs">
+    <Compile Update="Modules\CustomObjects\SwitchButton_Style.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\GA_Ver.cs">
+    <Compile Update="Modules\General\Companion\GAver.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\General\Companion\math.cs">

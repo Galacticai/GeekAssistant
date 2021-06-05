@@ -3,18 +3,18 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-internal static partial class GA_Reset {
+internal static partial class GAreset {
     public static void Run(bool Data, bool logs) {
         inf.detail.workCode = "GAr-00";
-        GA_Log.LogEvent("Reset Geek Assistant", 2);
+        Log.LogEvent("Reset Geek Assistant", 2);
         if (!inf.Run(inf.lvls.Question, "Reset Geek Assistant",
                        $"Are you sure you want to {Settings.willClear}?",
                      ("Yes", "Cancel"))) {
-            GA_Log.LogAppendText("Reset Geek Assistant Cancelled.", 1);
+            Log.LogAppendText("Reset Geek Assistant Cancelled.", 1);
             return;
         }
 
-        GA_Log.LogAppendText($"Resetting Geek Assistant... \n({Settings.willClear})", 1);
+        Log.LogAppendText($"Resetting Geek Assistant... \n({Settings.willClear})", 1);
         try {
             string notify = "Process Complete. ";
             if (Data) {
@@ -37,7 +37,7 @@ internal static partial class GA_Reset {
                 }
             }
 
-            GA_Log.LogAppendText(notify, 1);
+            Log.LogAppendText(notify, 1);
             if (Data) {
                 c.S.VerboseLoggingPrompt = false; // disable to avoid asking on exit
                 if (inf.Run(inf.lvls.Question, "Reset Geek Assistant", notify,

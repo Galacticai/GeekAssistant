@@ -29,22 +29,22 @@ internal class AutoDetect {
         if (!RunningInBetween) inf.workTitle = workTitle;
         inf.detail.workCode =
             $"{(RunningInBetween ? $"{inf.detail.workCode}-" : "")}" + $"{workCode_init}-00"; // (RunningInBetween? {workCode_init} -) Auto Detect - Begin
-        if (!Silent) GA_Log.LogEvent(workTitle, 2);
+        if (!Silent) Log.LogEvent(workTitle, 2);
 
         try {
             Home.bar.Value = 0;
-            if (!Silent) GA_SetProgressText.Run("Clearing previous device information.", -1);
+            if (!Silent) SetProgressText.Run("Clearing previous device information.", -1);
             inf.detail = ($"{workCode_init}-CD", inf.lvls.FatalError, inf.workTitle, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
             GA_adb.ResetDeviceInfo();
 
             Home.bar.Value = 2;
-            if (!Silent) GA_SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
+            if (!Silent) SetProgressText.Run("c.Preparing the environment... Please be patient.", -1);
 
             inf.detail = ($"{workCode_init}-PE", inf.lvls.FatalError, inf.workTitle, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
             await madb.madbBridge();
 
             Home.bar.Value = 5;
-            if (!Silent) GA_SetProgressText.Run("Counting the connected devices...", -1);
+            if (!Silent) SetProgressText.Run("Counting the connected devices...", -1);
 
             inf.detail = ($"{workCode_init}-Dc", inf.lvls.FatalError, inf.workTitle, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
             switch (madb.GetDeviceCount().Result) {
@@ -59,7 +59,7 @@ internal class AutoDetect {
             }
 
             Home.bar.Value = 7;
-            if (!Silent) GA_SetProgressText.Run("Communicating with your device...", -1);
+            if (!Silent) SetProgressText.Run("Communicating with your device...", -1);
 
             inf.detail = ($"{workCode_init}-Ds", inf.lvls.Warn, inf.workTitle, "We have trouble reading your device.", null); // Auto Detect - Device count (failed to count devices)
             string DeviceState_String = "Device is ";
@@ -106,7 +106,7 @@ internal class AutoDetect {
                         // later maybe will be implemented
                         // ''''''''''''''''''''''''''''''''
                         else {
-                            GA_SetProgressText.Run("Detection cancelled by user.", 0);
+                            SetProgressText.Run("Detection cancelled by user.", 0);
                         }
                     }
                     break;
@@ -121,7 +121,7 @@ internal class AutoDetect {
 
                     inf.detail = ($"{workCode_init}-D-m", inf.lvls.Error, inf.workTitle, "Failed to check your device manufacturer information.", null); // Auto Detect - Device - manufacturer
                     if (!Silent)
-                        GA_SetProgressText.Run("Fetching device manufacturer, model, and codename...", -1);
+                        SetProgressText.Run("Fetching device manufacturer, model, and codename...", -1);
 
                     Home.bar.Value = 13;
 
@@ -134,47 +134,43 @@ internal class AutoDetect {
 
                     inf.detail = ($"{workCode_init}-D-mc", inf.lvls.Error, inf.workTitle, "Failed to check your device model or codename.", null);// Auto Detect - Device - model codename
                     if (!Silent)
-                        GA_Log.LogAppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
+                        Log.LogAppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
 
                     Home.bar.Value = 17;
 
                     inf.detail = ($"{workCode_init}-D-s", inf.lvls.Error, inf.workTitle, "Failed to check your device serial number.", null);// Auto Detect - Device - serial
                     if (!Silent)
-                        GA_SetProgressText.Run("Fetching device serial#...", -1);
+                        SetProgressText.Run("Fetching device serial#...", -1);
 
                     c.S.DeviceSerial = dev.SerialNumber;
                     c.S.Save();
                     if (!Silent)
-                        GA_Log.LogAppendText($" | Serial: {c.S.DeviceSerial}", 1);
+                        Log.LogAppendText($" | Serial: {c.S.DeviceSerial}", 1);
 
                     Home.bar.Value = 20;
 
                     inf.detail = ($"{workCode_init}-D-su", inf.lvls.Error, inf.workTitle, "Failed to check your device root status.", null);// Auto Detect - Device - su
                     if (!Silent)
-                        GA_SetProgressText.Run("Fetching root state...", -1);
+                        SetProgressText.Run("Fetching root state...", -1);
 
                     c.S.DeviceRooted = dev.CanSU();
                     c.S.Save();
                     Home.Rooted_Checkbox.Checked = c.S.DeviceRooted;
-                    if (!Silent)
-                        GA_Log.LogAppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
+                    if (!Silent) Log.LogAppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
 
                     Home.bar.Value = 23;
 
                     inf.detail = ($"{workCode_init}-D-bb", inf.lvls.Error, inf.workTitle, "Failed to check your device busybox availability.", null);// Auto Detect - Device - busybox
-                    if (!Silent)
-                        GA_SetProgressText.Run("Fetching busybox availability...", -1);
+                    if (!Silent) SetProgressText.Run("Fetching busybox availability...", -1);
 
                     c.S.DeviceBusyBoxReady = dev.BusyBox.Available;
                     c.S.Save();
-                    if (!Silent)
-                        GA_Log.LogAppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
+                    if (!Silent) Log.LogAppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
 
                     Home.bar.Value = 25;
 
                     inf.detail = ($"{workCode_init}-D-blu", inf.lvls.Error, inf.workTitle, "Failed to check your device bootloader unlock support.", null); // Auto Detect - Device - bootloader unlock
-                    if (!Silent)
-                        GA_SetProgressText.Run("Fetching bootloader unlock support state...", -1);
+                    if (!Silent) SetProgressText.Run("Fetching bootloader unlock support state...", -1);
 
                     Home.bar.Value = 26;
                     c.S.DeviceBootloaderUnlockSupported =
@@ -183,31 +179,27 @@ internal class AutoDetect {
                     Home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
                     Home.bar.Value = 27;
                     if (!Silent)
-                        GA_Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                        Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
 
                     Home.bar.Value = 30;
 
                     inf.detail = ($"{workCode_init}-D-al", inf.lvls.Error, inf.workTitle, "Failed to check your device API level.", null);// Auto Detect - Device - API level
-                    if (!Silent)
-                        GA_SetProgressText.Run("Fetching Android API level...", -1);
+                    if (!Silent) SetProgressText.Run("Fetching Android API level...", -1);
 
                     Home.bar.Value = 32;
                     c.S.DeviceAPILevel = Convert.ToInt32(cmd.madbShell(dev, $"getprop {Device.PROP_BUILD_API_LEVEL}"));
                     c.S.Save();
                     inf.detail = ($"{workCode_init}-D-atv", inf.lvls.Error, inf.workTitle, "Failed to convert the API level to Android version.", null);// Auto Detect - Device - API level version
                     Home.AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1];
-                    if (!Silent)
-                        GA_SetProgressText.Run("Converting API level to Android name...", -1);
+                    if (!Silent) SetProgressText.Run("Converting API level to Android name...", -1);
 
                     Home.bar.Value = 33;
-                    if (!Silent)
-                        GA_Log.LogAppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
+                    if (!Silent) Log.LogAppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
 
                     Home.bar.Value = 35;
 
                     inf.detail = ($"{workCode_init}-D-b", inf.lvls.Error, inf.workTitle, "Failed to check your device battery level.", null); // Auto Detect - Device - battery
-                    if (!Silent)
-                        GA_SetProgressText.Run("Fetching battery level...", -1);
+                    if (!Silent) SetProgressText.Run("Fetching battery level...", -1);
 
                     Home.bar.Value = 36;
                     string batteryString;
@@ -216,26 +208,23 @@ internal class AutoDetect {
                         batteryString = $"{c.S.DeviceBatteryLevel}%";
                     } else {
                         c.S.DeviceBatteryLevel = -1; // no level. Not present
-                        if (!Silent)
-                            GA_SetProgressText.Run("Battery not present!", -1);
+                        if (!Silent) SetProgressText.Run("Battery not present!", -1);
 
                         batteryString = "❌";
                     }
                     c.S.Save();
                     Home.bar.Value = 38;
-                    if (!Silent)
-                        GA_Log.LogAppendText($" | Battery: {batteryString}", 1);
+                    if (!Silent) Log.LogAppendText($" | Battery: {batteryString}", 1);
 
                     Home.bar.Value = 40;
-                    if (!Silent)
-                        GA_SetProgressText.Run(DeviceState_String, -1); // This is after retrieving info to stay written in Progress Text
+                    if (!Silent) SetProgressText.Run(DeviceState_String, -1); // This is after retrieving info to stay written in Progress Text
 
                     break;
             }
 
             Home.bar.Value = 100;
         } catch (Exception ex) {
-            if (!RunningInBetween) GA_Wait.Run(false); // Close before error dialog
+            if (!RunningInBetween) GAwait.Run(false); // Close before error dialog
             if (!Silent) {
                 inf.detail.fullFatalError = ex.ToString();
                 inf.Run();
@@ -244,7 +233,7 @@ internal class AutoDetect {
         }
 
         c.S.DeviceState = Home.DeviceState_Label.Text;
-        if (!RunningInBetween) GA_Wait.Run(false); // Close if Try was successful
+        if (!RunningInBetween) GAwait.Run(false); // Close if Try was successful
         c.Working = RunningInBetween;
     }
 }

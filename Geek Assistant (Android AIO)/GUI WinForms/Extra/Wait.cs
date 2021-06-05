@@ -53,7 +53,7 @@ namespace GeekAssistant.Forms {
         }
         private void Wait_Load(object sender, EventArgs e) {
             AssignEvents();
-            GA_SetTheme.Run(this);
+            SetTheme.Run(this);
             Home h = (Home)Application.OpenForms["Home"];
             //24, 97    
             var titleHeight = h.RectangleToScreen(h.ClientRectangle).Top - h.Top;

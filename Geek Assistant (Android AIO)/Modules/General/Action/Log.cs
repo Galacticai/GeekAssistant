@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-internal static partial class GA_Log {
+internal static partial class Log {
     private static string latestLogName;
     private static string latestLogPath;
 
@@ -37,7 +37,7 @@ internal static partial class GA_Log {
 
         LogEvent("Log Cleared", 3);
         CreateLog();
-        Home.log.Text = GA_Ver.Run("log");
+        Home.log.Text = GAver.Run("log");
         LogAppendText($"// Previous log saved //  {latestLogName}  //", 1);
         LogEvent("Continue", 1);
     }

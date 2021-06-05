@@ -1,5 +1,5 @@
 ﻿
-internal static partial class GA_FeatureUnavailable {
+internal static partial class FeatureUnavailable {
     public static void Run(string title) {
         string state = "cooking progress";
         switch (c.V.Revision) {

@@ -45,9 +45,9 @@ namespace GeekAssistant.Forms {
         private void ToU_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            GA_SetTheme.Run(this);
+            SetTheme.Run(this);
 
-            Copyright_Label.Text = GA_Ver.Run("ToU()");
+            Copyright_Label.Text = GAver.Run("ToU()");
 
             Load_ToU_rtf();
 
@@ -58,7 +58,7 @@ namespace GeekAssistant.Forms {
             //Accept || xy // Size xy: 337, 405 // 173, 46
             //Reject || xy // Size xy: 204, 405 // 133, 46
             if (RunningAlready) {
-                GA_CenterToHomeBounds.Run(this);
+                CenterToHomeBounds.Run(this);
                 AcceptCheck_ToU.Visible = false;
                 DontShow_ToU.Visible = false;
                 ToU_Reject.Text = "✖";
@@ -128,14 +128,14 @@ namespace GeekAssistant.Forms {
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
             inf.detail.workCode = "ToU()-R-H"; // ToU() Rejected Hide
-            GA_HideAllForms.Run(true);
+            HideAllForms.Run(true);
             if (inf.Run(inf.lvls.Question, "Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
                                ("Exit", "Back"))) {
                 Application.Exit();
             } else {
                 inf.detail.workCode = "ToU()-R-S";
-                GA_HideAllForms.Run(false);
+                HideAllForms.Run(false);
             }
         }
 

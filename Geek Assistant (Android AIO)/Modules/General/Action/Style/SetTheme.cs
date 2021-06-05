@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Interfaces;
 
-internal partial class GA_SetTheme : Theming {
+internal partial class SetTheme : Theming {
     public static bool Running = false;
 
     private static bool initiatingbool = false;
@@ -24,7 +24,7 @@ internal partial class GA_SetTheme : Theming {
         initiatingbool = initiating;
 
         if (c.S.VerboseLogging & h != null)
-            GA_SetProgressText.Run($"Switched to {(dark ? "dark" : "light")} theme.", -1);
+            SetProgressText.Run($"Switched to {(dark ? "dark" : "light")} theme.", -1);
 
         switch (f) {
             case Wait:

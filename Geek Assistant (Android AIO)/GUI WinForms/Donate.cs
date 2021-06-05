@@ -55,8 +55,8 @@ namespace GeekAssistant.Forms {
         private void Donate_Load(object sender, EventArgs e) {
             AssignEvents();
 
-            GA_CenterToHomeBounds.Run(this);
-            GA_SetTheme.Run(this, true);
+            CenterToHomeBounds.Run(this);
+            SetTheme.Run(this, true);
         }
 
         private void Close_Button_Click(object sender, EventArgs e) {

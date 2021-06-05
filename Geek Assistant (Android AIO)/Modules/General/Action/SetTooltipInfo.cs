@@ -1,7 +1,7 @@
 ﻿
 using System.Windows.Forms;
 
-internal static partial class GA_SetTooltipInfo {
+internal static partial class SetTooltipInfo {
     public static void Run(ref ToolTip ToolTipName, Control control, string ToolTipTitle, string ToolTipText) {
         if (c.S.ShowToolTips) {
             if (ToolTipTitle != ToolTipName.ToolTipTitle) {

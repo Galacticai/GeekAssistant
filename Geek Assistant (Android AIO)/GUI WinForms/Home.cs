@@ -145,7 +145,7 @@ namespace GeekAssistant.Forms {
 
             bar.Invoke(new Action(() => {
                 AutoDetect.Run(true);
-                GA_Log.LogEvent(DeviceState_Label.Text, 1);
+                Log.LogEvent(DeviceState_Label.Text, 1);
             }));
         }
 
@@ -154,10 +154,10 @@ namespace GeekAssistant.Forms {
                 System.Media.SystemSounds.Beep.Play();
                 return;
             }
-            if (GA_HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
+            if (HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
 
-            GA_Log.LogEvent("End", 3);
-            GA_Log.CreateLog();
+            Log.LogEvent("End", 3);
+            Log.CreateLog();
             c.S.Save();
             //Environment.Exit(Environment.ExitCode)   //Quit all threads while closing
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
@@ -172,8 +172,8 @@ namespace GeekAssistant.Forms {
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
-            if (GA_Wait.Wait != null)
-                GA_Wait.Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, GA_Wait.Wait.Width, GA_Wait.Wait.Height);
+            if (GAwait.Wait != null)
+                GAwait.Wait.SetBounds(Location.X + 24, Location.Y + 97 + titleHeight, GAwait.Wait.Width, GAwait.Wait.Height);
         }
 
         private bool finishedLoading = false;
@@ -187,15 +187,15 @@ namespace GeekAssistant.Forms {
             Width = 690; //Set width to avoid using the width selected while developing
 
 
-            Text = GA_Ver.Run("MainTitle");
-            GA_About_Label.Text = GA_Ver.Run("Main");
-            log.Text = GA_Ver.Run("log");
-            GA_Wait.Run(true);
+            Text = GAver.Run("MainTitle");
+            GA_About_Label.Text = GAver.Run("Main");
+            log.Text = GAver.Run("log");
+            GAwait.Run(true);
 
             Timer HomeLoad_Delay_Timer = new() { Interval = 200, Enabled = true };
             bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
             HomeLoad_Delay_Timer.Tick += (sender, ev) => {
-                GA_SetTheme.Run(this, true);
+                SetTheme.Run(this, true);
                 if (OneTimebool_HomeLoad_Delay_Timer_Tick) {
                     OneTimebool_HomeLoad_Delay_Timer_Tick = false;
                     return;
@@ -203,14 +203,14 @@ namespace GeekAssistant.Forms {
 
                 HomeLoad_Delay_Timer.Stop();
 
-                if (c.S.AutoClearLogs) GA_Log.ClearIf30days();
-                GA_PrepareAppdata.Run();
+                if (c.S.AutoClearLogs) Log.ClearIf30days();
+                PrepareAppdata.Run();
                 GA_adb.PrepareAndroidDictionary();
                 GA_adb.ResetDeviceInfo();
 
                 AutoDetect.Run(true);
                 if (DeviceState_Label.Text != "Disconnected")
-                    GA_Log.LogEvent(DeviceState_Label.Text, 1);
+                    Log.LogEvent(DeviceState_Label.Text, 1);
 
                 DoNeutral();
                 AutoDetectDeviceInfo_Button.Select();
@@ -219,11 +219,11 @@ namespace GeekAssistant.Forms {
                 if (c.V.Revision == 3) debuggingBox.Visible = true;
                 //###################################################
 
-                GA_Log.LogEvent("Start", 1);
+                Log.LogEvent("Start", 1);
 
                 finishedLoading = true;
                 Enabled = true; //Enable when done with everything
-                GA_Wait.Run(false);
+                GAwait.Run(false);
                 BringToFront();
 
                 // BruteForce_Set_ControlsProps();
@@ -252,11 +252,11 @@ namespace GeekAssistant.Forms {
          }*/
 
         private void Main_MouseMove(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, this, "Selected:", null);
+            SetTooltipInfo.Run(ref Main_ToolTip, this, "Selected:", null);
         }
 
         private void AutoDetectDeviceInfo_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, AutoDetectDeviceInfo_Button, "Auto Detect",
+            SetTooltipInfo.Run(ref Main_ToolTip, AutoDetectDeviceInfo_Button, "Auto Detect",
                                   "Let Geek Assistant automatically detect your device//s information");
         }
         private void AutoDetectDeviceInfo_Button_MouseDown(object sender, EventArgs e) {
@@ -274,7 +274,7 @@ namespace GeekAssistant.Forms {
 
         }
         private void AutoDetectDeviceInfo_Button_Click(object sender, EventArgs e) {
-            GA_Wait.Run(true);
+            GAwait.Run(true);
             Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
             if (ShowWaitThenAutoDetect_Timer.Enabled) return; //cancel if already running
             ShowWaitThenAutoDetect_Timer.Start(); //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
@@ -296,8 +296,8 @@ namespace GeekAssistant.Forms {
         //    }
         //}  
         private void ShowLog_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, ShowLog_Button, "Show log", "Click to show/hide the log");
-            GA_Log.StopNotifyIfLogSeen();
+            SetTooltipInfo.Run(ref Main_ToolTip, ShowLog_Button, "Show log", "Click to show/hide the log");
+            Log.StopNotifyIfLogSeen();
         }
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
@@ -339,7 +339,7 @@ namespace GeekAssistant.Forms {
 
         private void FlashZip_ChooseFile_Button_Click(object sender, EventArgs e) {
             if (FlashZip_OpenFileDialog.ShowDialog() == DialogResult.OK) {
-                GA_Log.LogAppendText($"// Flash ZIP //\nSelected file: {FlashZip_OpenFileDialog.FileName}", 2);
+                Log.LogAppendText($"// Flash ZIP //\nSelected file: {FlashZip_OpenFileDialog.FileName}", 2);
                 //FlashZip_ChooseFile_TextBox.Text = FlashZip_OpenFileDialog.FileName;
             }
         }
@@ -366,10 +366,10 @@ namespace GeekAssistant.Forms {
         //}
 
         private void bar_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, bar, "Status percentage", "Click to show/hide the log");
+            SetTooltipInfo.Run(ref Main_ToolTip, bar, "Status percentage", "Click to show/hide the log");
         }
         private void ProgressBarLabel_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, ProgressBarLabel, "Status", "Click to show/hide the log");
+            SetTooltipInfo.Run(ref Main_ToolTip, ProgressBarLabel, "Status", "Click to show/hide the log");
         }
         private void ProgressBarLabel_TextChanged(object sender, EventArgs e) {
             if (ProgressBarLabel.Text.Length > 80) ProgressBarLabel.Font = new Font("Segoe UI Semilight", 9.75f);
@@ -388,11 +388,11 @@ namespace GeekAssistant.Forms {
         //    End With
         //}
         private void Manufacturer_ComboBox_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, Manufacturer_ComboBox, "Manufacturer", "(Required) Select your device//s manufacturer");
+            SetTooltipInfo.Run(ref Main_ToolTip, Manufacturer_ComboBox, "Manufacturer", "(Required) Select your device//s manufacturer");
         }
 
         private void AndroidVersion_ComboBox_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, AndroidVersion_ComboBox, "Android Version", "Select your device//s android version");
+            SetTooltipInfo.Run(ref Main_ToolTip, AndroidVersion_ComboBox, "Android Version", "Select your device//s android version");
         }
 
         public void DoNeutral() {
@@ -411,7 +411,7 @@ namespace GeekAssistant.Forms {
 
         private void MagiskRoot_Button_Click(object sender, EventArgs e) {
             inf.detail.workCode = "MR-00";
-            GA_FeatureUnavailable.Run("Root with magisk");
+            FeatureUnavailable.Run("Root with magisk");
         }
 
         private void HotReboot_Button_Click(object sender, EventArgs e) {
@@ -419,10 +419,10 @@ namespace GeekAssistant.Forms {
                 inf.Run();
                 return;
             }
-            GA_Log.LogEvent("Hot Reboot", 2);
-            GA_SetProgressText.Run("Attempting hot reboot...", -1);
+            Log.LogEvent("Hot Reboot", 2);
+            SetProgressText.Run("Attempting hot reboot...", -1);
             var hr = GA_adb.HotReboot("HR");
-            if (!string.IsNullOrEmpty(hr)) GA_Log.LogAppendText(hr, 1);
+            if (!string.IsNullOrEmpty(hr)) Log.LogAppendText(hr, 1);
         }
 
         private void InstallBusybox_Button_Click(object sender, EventArgs e) {
@@ -445,39 +445,39 @@ namespace GeekAssistant.Forms {
         #region #Debug#
         private void MetroButton1_Click(object sender, EventArgs e) {//MetroButton1.Click
             madb.madbBridgeStart(true);
-            GA_Log.LogAppendText("ran madbCreateBridge(true)", 1);
+            Log.LogAppendText("ran madbCreateBridge(true)", 1);
         }
         private void MetroButton11_Click(object sender, EventArgs e) {//MetroButton11.Click
             madb.madbBridgeStart(false);
-            GA_Log.LogAppendText("ran madbCreateBridge(false)", 1);
+            Log.LogAppendText("ran madbCreateBridge(false)", 1);
         }
         private void MetroButton2_Click(object sender, EventArgs e) {//MetroButton2.Click
             var i = madb.GetDeviceCount();
-            GA_Log.LogAppendText("ran madb_GetDeviceCount()", 1);
-            GA_Log.LogAppendText($"Count: {i}", 1);
+            Log.LogAppendText("ran madb_GetDeviceCount()", 1);
+            Log.LogAppendText($"Count: {i}", 1);
         }
         private void MetroButton6_Click(object sender, EventArgs e) {//MetroButton6.Click
             madb.madbBridgeStart(true);
-            GA_Log.LogAppendText("ran madbCreateBridge_Return(true).Start()", 1);
+            Log.LogAppendText("ran madbCreateBridge_Return(true).Start()", 1);
         }
         private void MetroButton7_Click(object sender, EventArgs e) {//MetroButton7.Click
             madb.madbBridgeStart(false);
-            GA_Log.LogAppendText("ran madbBridgeStart(false)", 1);
+            Log.LogAppendText("ran madbBridgeStart(false)", 1);
         }
         private void MetroButton8_Click(object sender, EventArgs e) {//MetroButton8.Click
             madb.madbStop();
-            GA_Log.LogAppendText("ran madbStop()", 1);
+            Log.LogAppendText("ran madbStop()", 1);
         }
         private void MetroButton3_Click(object sender, EventArgs e) {//MetroButton3.Click
             var i = madb.GetDeviceState();
-            GA_Log.LogAppendText("ran madb_GetDeviceState()", 1);
+            Log.LogAppendText("ran madb_GetDeviceState()", 1);
             var i_s = madb.Convert_DeviceState_IntToString();
-            GA_Log.LogAppendText("ran madb_Convert_DeviceState_IntToString()", 1);
-            GA_Log.LogAppendText($"State: {i} - {i_s}", 1);
+            Log.LogAppendText("ran madb_Convert_DeviceState_IntToString()", 1);
+            Log.LogAppendText($"State: {i} - {i_s}", 1);
         }
 
         private void MetroButton4_Click(object sender, EventArgs e) {
-            GA_Log.LogAppendText("## Test", 1);
+            Log.LogAppendText("## Test", 1);
             //WebBrowser1.DocumentText &= "test" & "<br/>" & "> text"
         }
 
@@ -559,14 +559,14 @@ namespace GeekAssistant.Forms {
 
         #region Upper right buttons
         private void Settings_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, Settings_Button, "Settings()", "Reset / Modify various options inside Geek Assistant");
+            SetTooltipInfo.Run(ref Main_ToolTip, Settings_Button, "Settings()", "Reset / Modify various options inside Geek Assistant");
         }
         private void Settings_Button_Click(object sender, EventArgs e) {
             Settings Settings = new Settings(); Settings.ShowDialog();
         }
 
         private void About_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, About_Button, "About Geek Assistant", "View some information about this program");
+            SetTooltipInfo.Run(ref Main_ToolTip, About_Button, "About Geek Assistant", "View some information about this program");
         }
         private void About_Button_Click(object sender, EventArgs e) {
             ToU ToU = new();
@@ -583,11 +583,11 @@ namespace GeekAssistant.Forms {
             new Donate().Show();
         }
         private void Donate_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, Donate_Button, "Send love", "Support the Developer.");
+            SetTooltipInfo.Run(ref Main_ToolTip, Donate_Button, "Send love", "Support the Developer.");
         }
 
         private void Feedback_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, Feedback_Button, "Send Feedback", $"Reach out to the developer.");
+            SetTooltipInfo.Run(ref Main_ToolTip, Feedback_Button, "Send Feedback", $"Reach out to the developer.");
         }
         private void Feedback_Button_Click(object sender, EventArgs e) {
             if (inf.Run(inf.lvls.Question,
@@ -600,17 +600,17 @@ namespace GeekAssistant.Forms {
             }
         }
         private void SwitchTheme_Button_Click(object sender, EventArgs e) {
-            GA_SetTheme.Run(this);
+            SetTheme.Run(this);
             c.S.DarkTheme = !c.S.DarkTheme;
         }
         private void SwitchTheme_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, SwitchTheme_Button, "Switch Theme", "Turn the lights on or off!");
+            SetTooltipInfo.Run(ref Main_ToolTip, SwitchTheme_Button, "Switch Theme", "Turn the lights on or off!");
         }
         #endregion
 
         #region "log area"
         private void CopyLogToClipboard_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, CopyLogToClipboard, "Copy log", "Copy the current log contents to clipboard");
+            SetTooltipInfo.Run(ref Main_ToolTip, CopyLogToClipboard, "Copy log", "Copy the current log contents to clipboard");
         }
         private void CopyLogToClipboard_MouseDown(object sender, EventArgs e) {
             CopyLogToClipboard.Image = prop.x24.Copy_W_24;
@@ -619,12 +619,12 @@ namespace GeekAssistant.Forms {
             CopyLogToClipboard.Image = prop.x24.Copy_B_24;
         }
         private void CopyLogToClipboard_Click(object sender, EventArgs e) {
-            GA_Log.LogEvent("Copied log to clipboard.", 2);
+            Log.LogEvent("Copied log to clipboard.", 2);
             Clipboard.SetText(log.Text);
         }
 
         private void ClearLog_Button_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, ClearLog_Button, "Clear log", "Save the current log and continue with a new fresh one");
+            SetTooltipInfo.Run(ref Main_ToolTip, ClearLog_Button, "Clear log", "Save the current log and continue with a new fresh one");
         }
         private void ClearLog_Button_MouseDown(object sender, EventArgs e) {
             ClearLog_Button.Image = prop.x24.Backspace_W_24;
@@ -633,11 +633,11 @@ namespace GeekAssistant.Forms {
             ClearLog_Button.Image = prop.x24.Backspace_B_24;
         }
         private void ClearLog_Button_Click(object sender, EventArgs e) {
-            GA_Log.ResetLog();
+            Log.ResetLog();
         }
 
         private void OpenLogFolder_MouseEnter(object sender, EventArgs e) {
-            GA_SetTooltipInfo.Run(ref Main_ToolTip, OpenLogFolder, "Open logs folder", c.GA_logs);
+            SetTooltipInfo.Run(ref Main_ToolTip, OpenLogFolder, "Open logs folder", c.GA_logs);
         }
         private void OpenLogFolder_MouseDown(object sender, EventArgs e) {
             OpenLogFolder.Image = prop.x24.OpenFolder_W_24;

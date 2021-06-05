@@ -88,7 +88,7 @@ namespace GeekAssistant.Controls.Material {
                 Invalidate();
             }
         }
-        private static bool SetThemeRunning => GA_SetTheme.Running;
+        private static bool SetThemeRunning => SetTheme.Running;
         //private bool Idle = true; 
         public FlatButton() {
             Primary = false;

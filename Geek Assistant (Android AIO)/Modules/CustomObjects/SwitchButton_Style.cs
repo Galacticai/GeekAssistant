@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-internal static partial class GA_SwitchButton_Style {
+internal static partial class SwitchButton_Style {
 
     // Public Shared Top As Integer
     // Public Shared Left As Integer

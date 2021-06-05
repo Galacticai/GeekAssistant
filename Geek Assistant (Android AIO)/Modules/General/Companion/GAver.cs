@@ -1,4 +1,4 @@
-﻿internal static partial class GA_Ver {
+﻿internal static partial class GAver {
     /// <summary>
     /// Create a customized version string accordingly or vX.x if not specified
     /// </summary>

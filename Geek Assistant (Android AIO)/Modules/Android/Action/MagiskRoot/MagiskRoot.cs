@@ -31,20 +31,20 @@ internal class MagiskRoot : MagiskRootCompanion {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00"; // Unlock Bootloader - Start
-        GA_Log.LogEvent(inf.workTitle, 2);
-        GA_Wait.Run(true);
+        Log.LogEvent(inf.workTitle, 2);
+        GAwait.Run(true);
 
         if (Home != null) Home.bar.Value = 0;
         try {
             //! template progress
-            GA_SetProgressText.Run("Clearing previous device information.", -1);
+            SetProgressText.Run("Clearing previous device information.", -1);
             inf.detail = ($"{workCode_init}-CD", inf.lvls.FatalError, inf.workTitle, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
 
 
 
             if (Home != null) Home.bar.Value = 100;
         } catch (Exception ex) {
-            GA_Wait.Run(false); // Close before error dialog 
+            GAwait.Run(false); // Close before error dialog 
             inf.detail.fullFatalError = ex.ToString();
             inf.Run();
             if (!Cancelled)

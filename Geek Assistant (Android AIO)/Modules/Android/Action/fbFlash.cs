@@ -16,8 +16,8 @@ internal static partial class FastbootFlash {
         inf.workTitle = "Fastboot Flash";
         c.Working = true;
         inf.detail.workCode = "fbF-00";
-        GA_Log.LogEvent(inf.workTitle, 2);
-        GA_Wait.Run(true);
+        Log.LogEvent(inf.workTitle, 2);
+        GAwait.Run(true);
         try {
             if (string.IsNullOrEmpty(img)) { // check zip string  
                 inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.workTitle, "File name is not set!", null);
@@ -43,13 +43,13 @@ internal static partial class FastbootFlash {
                               $"Please save your work then confirm the reboot.",
                             ("Reboot", "Cancel"))) {
                     dev.Reboot("bootloader");
-                    GA_SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
+                    SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
                     fbCMD.fbDo("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
                     inf.detail.workCode = "fbF-uX";
                     // ErrorInfo = (0, "You have cancelled the process.")
-                    GA_Log.LogEvent("Fastboot Flash Cancelled", 1);
+                    Log.LogEvent("Fastboot Flash Cancelled", 1);
                     throw new Exception();
                 }
             } else if (!(c.S.DeviceState == "Fastboot mode")) {
@@ -104,17 +104,17 @@ internal static partial class FastbootFlash {
                 throw new Exception();
             }
 
-            GA_Log.LogAppendText(fbCMD.fbOutput, -1);
+            Log.LogAppendText(fbCMD.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
             inf.detail.workCode = "fbF-rX";
         } catch (Exception ex) {
-            GA_Wait.Run(false); // Close before error dialog 
+            GAwait.Run(false); // Close before error dialog 
             inf.detail.fullFatalError = ex.ToString();
             inf.Run();
         }
 
-        GA_Wait.Run(false); // Close if Try was successful
+        GAwait.Run(false); // Close if Try was successful
         c.Working = false;
     }
 

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-internal static partial class GA_HideAllForms {
+internal static partial class HideAllForms {
 
     public static FormCollection HiddenForms;
     private static Form currentForm;

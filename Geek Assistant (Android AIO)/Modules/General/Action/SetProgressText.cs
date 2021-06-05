@@ -1,7 +1,7 @@
 ﻿using GeekAssistant.Forms;
 using System.Windows.Forms;
 
-internal static partial class GA_SetProgressText {
+internal static partial class SetProgressText {
 
 
     // Private t As String
@@ -38,7 +38,7 @@ internal static partial class GA_SetProgressText {
 
         Home.ProgressBarLabel.Text = text;
         if (c.S.VerboseLogging & ErrorLevel == -1) {
-            GA_Log.LogAppendText(Home.ProgressBarLabel.Text, 1);
+            Log.LogAppendText(Home.ProgressBarLabel.Text, 1);
         }
     }
 }

@@ -26,8 +26,8 @@ internal static partial class UnlockBL {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00"; // Unlock Bootloader - Start
-        GA_Log.LogEvent(inf.workTitle, 2);
-        GA_Wait.Run(true);
+        Log.LogEvent(inf.workTitle, 2);
+        GAwait.Run(true);
         try {
             Home.bar.Value = 0;
 
@@ -43,12 +43,12 @@ internal static partial class UnlockBL {
             }
 
             Home.bar.Value = 15;
-            GA_SetProgressText.Run("Checking bootloader unlock support status...", -1);
+            SetProgressText.Run("Checking bootloader unlock support status...", -1);
             if (!c.S.DeviceBootloaderUnlockSupported) {
                 Cancelled = true;
                 // ' cancel if not unlockable
-                inf.detail.workCode = $"{workCode}-BLX"; // Unlock Bootloader - Bootloader X (BLU is not supported)
-                                                         // ErrorInfo = (1, "Oh no... Bootloader unlock is not supported on your device.") 'you can enable with checkbox
+                inf.detail.workCode = $"{workCode_init}-BLX"; // Unlock Bootloader - Bootloader X (BLU is not supported)
+                                                              // ErrorInfo = (1, "Oh no... Bootloader unlock is not supported on your device.") 'you can enable with checkbox
                 throw new Exception();
             }
 
@@ -56,11 +56,11 @@ internal static partial class UnlockBL {
             Managed.Adb.Device dev = madb.GetListOfDevice().Result[0];
             Home.bar.Value = 25;
             // ' detected but not in fastboot
-            GA_SetProgressText.Run("Checking connection status...", -1);
+            SetProgressText.Run("Checking connection status...", -1);
             if (c.S.DeviceState == "Connected (ADB)") // '''''SUCCESS
             {
                 Home.bar.Value = 30;
-                GA_SetProgressText.Run("Device is connected (ADB).", -1);
+                SetProgressText.Run("Device is connected (ADB).", -1);
                 if (inf.Run(inf.lvls.Question, "Rebooting your device!",
                               $"We need to reboot your device to access fastboot mode and proceed with unlocking.\n\n" +
                               $"Please save your work then confirm the reboot.",
@@ -69,7 +69,7 @@ internal static partial class UnlockBL {
                     Home.bar.Value = 35;
                     dev.Reboot("bootloader");
                     Home.bar.Value = 40;
-                    GA_SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
+                    SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
                     fbCMD.fbDo("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     Home.bar.Value = 45;
                     goto DeviceInFastboot; // '''''SUCCESS
@@ -78,18 +78,18 @@ internal static partial class UnlockBL {
                     Cancelled = true;
                     inf.detail.workCode = $"{workCode_init}-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
                                                                  // ErrorInfo = (0, "You have cancelled the process.")
-                    GA_Log.LogEvent("Unlock Bootloader Cancelled", 1);
+                    Log.LogEvent("Unlock Bootloader Cancelled", 1);
                     throw new Exception();
                 }
             } else if (!(c.S.DeviceState == "Fastboot mode")) {
                 Home.bar.Value = 30;
                 Cancelled = true;
                 if (c.S.DeviceState == "Disconnected") { // failsafe   
-                    GA_SetProgressText.Run("Device is disconnected.", 0);
+                    SetProgressText.Run("Device is disconnected.", 0);
                     inf.detail.workCode = $"{workCode_init}-xX"; // Unlock Bootloader - x error X (device disconnected)
 
                 } else {// not adb and not fastboot and not disconnected  
-                    GA_SetProgressText.Run("Device is not in adb or fastboot mode.", 0);
+                    SetProgressText.Run("Device is not in adb or fastboot mode.", 0);
                     inf.detail.workCode = $"{workCode_init}-rX";
                 } // Unlock Bootloader - reboot X (Device is not in adb or fastboot (cant reboot to fastboot))
 
@@ -110,7 +110,7 @@ internal static partial class UnlockBL {
 
             Home.bar.Value = 46;
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
-            GA_SetProgressText.Run("Checking current bootloader state.", -1);
+            SetProgressText.Run("Checking current bootloader state.", -1);
             if (fbCMD.fbDo("oem device-info").Contains("Device unlocked: true")) {
                 Home.bar.Value = 100;
                 Cancelled = true;
@@ -121,12 +121,12 @@ internal static partial class UnlockBL {
 
             Home.bar.Value = 50;
             inf.detail.workCode = $"{workCode_init}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
-            GA_SetProgressText.Run("Attempting to unlock bootloader...", -1);
+            SetProgressText.Run("Attempting to unlock bootloader...", -1);
             fbCMD.fbDo($"flashing unlock");
             if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
                 Home.bar.Value = 52;
                 inf.detail.workCode = $"{workCode_init}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
-                GA_SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
+                SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
                 Home.bar.Value = 55;
                 fbCMD.fbDo($"oem unlock");
                 if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
@@ -137,12 +137,12 @@ internal static partial class UnlockBL {
             }
 
             Home.bar.Value = 80;
-            GA_Log.LogAppendText(fbCMD.fbOutput, -1);
-            GA_SetProgressText.Run("Process finished. Rebooting...", -1);
+            Log.LogAppendText(fbCMD.fbOutput, -1);
+            SetProgressText.Run("Process finished. Rebooting...", -1);
             Home.bar.Value = 100;
             fbCMD.fbDo("reboot");
         } catch (Exception ex) {
-            GA_Wait.Run(false); // Close before error dialog 
+            GAwait.Run(false); // Close before error dialog 
             inf.Run(inf.detail.lvl, inf.workTitle, inf.detail.msg, ex.ToString());
             if (!Cancelled)
                 if (c.S.DeviceState == "Connected (ADB)" | c.S.DeviceState == "Fastboot mode")
@@ -152,7 +152,7 @@ internal static partial class UnlockBL {
                         fbCMD.fbDo("reboot");
         }
 
-        GA_Wait.Run(false); // Close if Try was successful
+        GAwait.Run(false); // Close if Try was successful
         c.Working = false;
     }
 }

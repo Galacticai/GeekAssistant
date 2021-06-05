@@ -31,9 +31,9 @@ internal static partial class cmd {
             {
                 adbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "adb "
                 if (adbCMD.adbOutput == "") {
-                    GA_Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
+                    Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
                 } else {
-                    GA_Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{adbCMD.adbOutput}", 2);
+                    Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{adbCMD.adbOutput}", 2);
                 }
             } else {
                 invalidCMD(command); return;
@@ -46,9 +46,9 @@ internal static partial class cmd {
             {
                 fbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "fastboot "
                 if (fbCMD.fbOutput == "") {
-                    GA_Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
+                    Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
                 } else {
-                    GA_Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{fbCMD.fbOutput}", 2);
+                    Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{fbCMD.fbOutput}", 2);
                 }
             } else {
                 invalidCMD(command); return;
@@ -74,7 +74,7 @@ internal static partial class cmd {
 
         Skip_commandContains:;
 
-        GA_Log.LogAppendText(invalid_text, 2);
+        Log.LogAppendText(invalid_text, 2);
     }
     private static string adbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-adb-cmd";

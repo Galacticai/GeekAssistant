@@ -1,14 +1,16 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
+    private static string workCode_init => "BB";
+    private static string workTitle => "Initialize Busybox";
     public static void Run(bool silent) {
         if (c.Working) { //dont change inf.workTitle while working
-            inf.Run(inf.lvls.Error, "Initialize Busybox", prop.strings.WaitForCurrentProcess);
+            inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess);
             return;
         }
-        inf.workTitle = "Initialize Busybox";
+        inf.workTitle = workTitle;
         c.Working = true;
-        inf.detail.workCode = "BI-00";
+        inf.detail.workCode = $"{workCode_init}-00";
         if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
                        "This is not finished. Go?",
                      ("Go", "Cancel"))) {
@@ -22,28 +24,28 @@ internal static partial class InitializeBusybox {
             goto Finish_madb_InstallBusyboxReady;
 
 
-        if (!File.Exists($@"{c.GA_tools}\busybox"))
-            GA_PrepareAppdata.Run();
+        if (!File.Exists($"{c.GA_tools}\\busybox"))
+            PrepareAppdata.Run();
 
 
         adbCMD.adbDo("shell mkdir /data/busybox");
-        GA_Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
+        Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
         if (adbCMD.adbOutput.ToLower().Contains("denied")) {
             adbCMD.adbDo("shell su -c 'mkdir /data/busybox'");
-            GA_Log.LogAppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
+            Log.LogAppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         } else if (adbCMD.adbOutput.ToLower().Contains("file exists")) {
             adbCMD.adbDo("shell su -c 'rm -rf /data/busybox'");
-            GA_Log.LogAppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
+            Log.LogAppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         }
 
         adbCMD.adbDo($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
-        GA_Log.LogAppendText($@"<< push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox\n>>\n{adbCMD.adbOutput}", 1);
+        Log.LogAppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
-        GA_Log.LogAppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
+        Log.LogAppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c 'chmod 664 /data/busybox'");
-        GA_Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
+        Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         adbCMD.adbDo("shell su -c './data/busybox --install'");
-        GA_Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
+        Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
         if (dev.BusyBox.Available) MessageBox.Show("busybox available");
         else MessageBox.Show("busybox not installed");
 
