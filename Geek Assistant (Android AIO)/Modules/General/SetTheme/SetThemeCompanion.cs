@@ -1,8 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using GeekAssistant.Controls.Material;
 
 //namespace GeekAssistant.Theme {
-internal partial class Theming {
+internal partial class SetThemeCompanion {
 
     public static void SetControlsArrTheme(Control[] control) {
         foreach (var ctrl in control) SetControlTheme(ctrl);

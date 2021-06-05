@@ -40,7 +40,7 @@ namespace GeekAssistant.Forms {
                 Close();
                 Dispose(); //dispose before starting again
                 inf.Run(inf.lvls.FatalError, $"Where//s the error message??",
-                         "if ( you see this please contact the developer to fix this bug.\nPlease provide the log when reporting.",
+                         $"if ( you see this please contact the developer to fix this bug.{c.n}Please provide the log when reporting.",
                         (null, "Close"));
             }
 
@@ -184,7 +184,7 @@ namespace GeekAssistant.Forms {
         }
         private void Copy_Button_Click(object sender, EventArgs e) {
             CopyToClipboard_Timer.Enabled = false;
-            Clipboard.SetText($"{title_Label.Text}\n\n{msg_Textbox.Text}");
+            Clipboard.SetText($"{title_Label.Text}{c.n}{c.n}{msg_Textbox.Text}");
             Copy_Button.ForeColor = Color.DarkGreen;
             Copy_Button.Text = "Copied ";
             CopyToClipboard_Timer.Enabled = true;

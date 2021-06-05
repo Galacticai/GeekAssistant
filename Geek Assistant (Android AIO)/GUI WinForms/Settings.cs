@@ -15,9 +15,9 @@ namespace GeekAssistant.Forms {
         private readonly string PerformAnimation_SwitchButton_ToolTip = $"Perform theme and movement animations.{c.n}Recommended: Disable for old systems.";
 
         //private ToolTip tooltip = new ToolTip {};
-        public Settings() {
-            InitializeComponent();
-        }
+        public Settings()
+            => InitializeComponent();
+
         private void AssignEvents() {
             Close_Button.Click += new(Close_Button_Click);
 
@@ -97,7 +97,6 @@ namespace GeekAssistant.Forms {
             AssignEvents();
 
             CenterToHomeBounds.Run(this);
-
 
             SetTheme.Run(this);
 
@@ -189,9 +188,9 @@ namespace GeekAssistant.Forms {
 
 
         public static string willClear;
-        private string andstr = " and ";
-        private bool Data = false;
-        private bool logs = false;
+        private static string andstr = " and ";
+        private static bool Data = false;
+        private static bool logs = false;
         private void ResetGA_Settings_LogsOnly_CheckBox_CheckedChanged(object sender, EventArgs e) {
             //Directories = false
             Data = false;
@@ -206,9 +205,7 @@ namespace GeekAssistant.Forms {
             if (ResetGA_Settings_CheckBox.Checked) {
                 Data = true;
                 andstr = " and";
-                if (!ResetGA_LogsOnly_CheckBox.Checked) {
-                    andstr = "";
-                }
+                if (!ResetGA_LogsOnly_CheckBox.Checked) andstr = "";
                 willClear += andstr + " internal data";
             }
             //if ( ResetGA_Settings_CheckBox.Checked <> ResetGA_LogsOnly_CheckBox.Checked ) {
@@ -216,9 +213,8 @@ namespace GeekAssistant.Forms {
             //}
             //willClear += "?"
             SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", willClear);
-            if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked) {
+            if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked)
                 SetTooltipInfo.Run(ref tooltip, ResetGA, "Reset Geek Assistant", "First, select something of the above.");
-            }
         }
 
         ////ResetGA_Settings_CheckBox - Label
@@ -279,7 +275,6 @@ namespace GeekAssistant.Forms {
 
         ////PopupMessages_SwitchButton
         private void PopupMessages_SwitchButton_MouseDown(object sender, EventArgs e) {
-
             SwitchButton_Style.MouseDown(PopupMessages_SwitchButton);
         }
         private void PopupMessages_SwitchButton_MouseUp(object sender, EventArgs e) {
@@ -322,11 +317,9 @@ namespace GeekAssistant.Forms {
             if (c.S.VerboseLogging) {
                 if (c.S.VerboseLoggingPrompt) {
                     VerbousLoggingPrompt_SwitchButton.PerformClick();
-                    if (c.S.DarkTheme) {
+                    if (c.S.DarkTheme)
                         VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(64, 64, 64);
-                    } else {
-                        VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(191, 191, 191);
-                    }
+                    else VerbousLoggingPrompt_SwitchButton.BackColor = Color.FromArgb(191, 191, 191);
                 }
                 VerbousLoggingPrompt_SwitchButton.Enabled = false;
             } else {

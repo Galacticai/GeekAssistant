@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Interfaces;
 
-internal partial class SetTheme : Theming {
+internal partial class SetTheme : SetThemeCompanion {
     public static bool Running = false;
 
     private static bool initiatingbool = false;

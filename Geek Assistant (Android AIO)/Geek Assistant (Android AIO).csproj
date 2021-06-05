@@ -97,40 +97,40 @@
     <Compile Update="Modules\CustomObjects\FlatButton.cs">
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\CenterToHomeBounds.cs">
+    <Compile Update="Modules\General\CenterToHomeBounds.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\FeatureUnavailable.cs">
+    <Compile Update="Modules\General\FeatureUnavailable.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\HideAllForms.cs">
+    <Compile Update="Modules\General\HideAllForms.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Log.cs">
+    <Compile Update="Modules\General\Log.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GAwait.cs">
+    <Compile Update="Modules\General\GAwait.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\PrepareAppdata.cs">
+    <Compile Update="Modules\General\PrepareAppdata.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\GAreset.cs">
+    <Compile Update="Modules\General\GAreset.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\SetProgressText.cs">
+    <Compile Update="Modules\General\SetProgressText.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\SetTooltipInfo.cs">
+    <Compile Update="Modules\General\SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Style\Theming.cs">
+    <Compile Update="Modules\General\SetTheme\SetThemeCompanion.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\Style\SetTheme.cs">
+    <Compile Update="Modules\General\SetTheme\SetTheme.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Action\inf.cs">
+    <Compile Update="Modules\General\inf.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\CustomObjects\SwitchButton.cs">

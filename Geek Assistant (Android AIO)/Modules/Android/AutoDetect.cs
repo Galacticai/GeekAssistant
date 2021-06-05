@@ -50,11 +50,11 @@ internal class AutoDetect {
             switch (madb.GetDeviceCount().Result) {
                 case 0:
                     Home.DeviceState_Label.Text = "Disconnected";
-                    inf.detail = ($"{workCode_init}-D0", inf.lvls.Warn, inf.workTitle, $"We haven't found any device.\n{prop.strings.TroubleshootConnection}", null); // Auto Detect - Device 0 (0 devices connected)
+                    inf.detail = ($"{workCode_init}-D0", inf.lvls.Warn, inf.workTitle, $"We haven't found any device.{c.n}{prop.strings.TroubleshootConnection}", null); // Auto Detect - Device 0 (0 devices connected)
                     throw new Exception();
                 case > 1:
                     Home.DeviceState_Label.Text = "Multiple";
-                    inf.detail = ($"{workCode_init}-DX", inf.lvls.Warn, inf.workTitle, $"Oh there are several devices.\nWould you mind keeping 1 and disconnecting the rest please?", null); // Auto Detect - Device X-number (More than 1 connected)
+                    inf.detail = ($"{workCode_init}-DX", inf.lvls.Warn, inf.workTitle, $"Oh there are several devices.{c.n}Would you mind keeping 1 and disconnecting the rest please?", null); // Auto Detect - Device X-number (More than 1 connected)
                     throw new Exception();
             }
 

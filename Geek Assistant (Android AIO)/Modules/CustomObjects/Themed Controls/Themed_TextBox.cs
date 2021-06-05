@@ -18,12 +18,12 @@ namespace GeekAssistant.Controls.Themed {
         //    }
         //}
         protected override void OnPaint(PaintEventArgs pevent) {
-            Theming.SetControlTheme(this);
+            SetThemeCompanion.SetControlTheme(this);
             base.OnPaint(pevent);
         }
 
         protected override void OnCreateControl() {
-            Theming.SetControlTheme(this);
+            SetThemeCompanion.SetControlTheme(this);
             base.OnCreateControl();
         }
     }
