@@ -193,7 +193,6 @@ internal class AutoDetect {
                     if (!Silent) Log.LogAppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
 
                     home.bar.Value = 35;
-
                     inf.detail = ($"{workCode_init}-D-b", inf.lvls.Error, inf.workTitle, "Failed to check your device battery level.", null); // Auto Detect - Device - battery
                     if (!Silent) SetProgressText.Run("Fetching battery level...", -1);
 
@@ -205,7 +204,6 @@ internal class AutoDetect {
                     } else {
                         c.S.DeviceBatteryLevel = -1; // no level. Not present
                         if (!Silent) SetProgressText.Run("Battery not present!", -1);
-
                         batteryString = "❌";
                     }
                     c.S.Save();

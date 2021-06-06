@@ -9,7 +9,7 @@ internal static partial class madb {
     /// <param name="forceNewBridge">Kill previous server if true</param>
     /// <returns>Managed.Adb.AndroidDebugBridge</returns>
     public static async Task<Managed.Adb.AndroidDebugBridge> madbBridge(bool forceNewBridge = false)
-        => await Task.Run(() => Managed.Adb.AndroidDebugBridge.CreateBridge($"{c.GA_tools}\\adb.exe", forceNewBridge)); // .Start()
+        => await Task.Run(() => Managed.Adb.AndroidDebugBridge.CreateBridge($@"{c.GA_tools}\adb.exe", forceNewBridge)); // .Start()
 
     /// <summary>
     /// Start adb server at $"{GA_tools}\adb.exe"
