@@ -1,6 +1,7 @@
 ﻿using GeekAssistant.Forms;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GeekAssistant {
@@ -45,6 +46,17 @@ namespace GeekAssistant {
             Application.Run();
 
             //AssignEvents();
+        }
+    }
+    public static class SingleInstance {
+        static Mutex mutex;
+        public static bool Start(string applicationIdentifier) {
+            bool isSingleInstance = false;
+            mutex = new Mutex(true, applicationIdentifier, out isSingleInstance);
+            return isSingleInstance;
+        }
+        public static void Stop() {
+            mutex.ReleaseMutex();
         }
     }
 }
