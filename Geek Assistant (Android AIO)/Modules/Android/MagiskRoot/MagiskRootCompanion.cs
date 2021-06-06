@@ -27,7 +27,7 @@ internal class MagiskRootCompanion : LatestMagiskAsset {
                 (IMagiskBranch branch = IMagiskBranch.stable) {
 
         WebClient webClient = new();
-        LatestMagiskAsset magisk = new LatestMagiskAsset().Instance(webClient, branch);
+        LatestMagiskAsset magisk = new LatestMagiskAsset().Instance(branch, webClient);
 
         string apk = @$"{c.GA_tools}\Magisk-v{magisk.version}.apk",
            apkPart = apk + ".part";

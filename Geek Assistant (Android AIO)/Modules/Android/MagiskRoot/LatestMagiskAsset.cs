@@ -90,7 +90,7 @@ internal class LatestMagiskAsset {
     /// <item> 2 canary: "master/canary"</item>
     /// </list> </param>
     /// <returns>Create and return an instance of <see cref="MagiskAsset"/></returns>
-    public LatestMagiskAsset Instance(WebClient webClient = null, IMagiskBranch branch = IMagiskBranch.stable)
+    public LatestMagiskAsset Instance(IMagiskBranch branch = IMagiskBranch.stable, WebClient webClient = null)
         => new() {
             json = Update_json(branch), //init First to Update all
             version = Update_version(branch),

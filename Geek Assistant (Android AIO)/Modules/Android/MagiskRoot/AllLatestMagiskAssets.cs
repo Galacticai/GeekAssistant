@@ -10,8 +10,8 @@ internal class AllMagiskAssets : LatestMagiskAsset {
     public LatestMagiskAsset canary { get; private set; }
     public static AllMagiskAssets GetAllBranches(WebClient webClient = null)
         => new() {
-            stable = new LatestMagiskAsset().Instance(webClient ?? new(), IMagiskBranch.stable),
-            beta = new LatestMagiskAsset().Instance(webClient ?? new(), IMagiskBranch.beta),
-            canary = new LatestMagiskAsset().Instance(webClient ?? new(), IMagiskBranch.canary)
+            stable = new LatestMagiskAsset().Instance(IMagiskBranch.stable, webClient ?? new()),
+            beta = new LatestMagiskAsset().Instance(IMagiskBranch.beta, webClient ?? new()),
+            canary = new LatestMagiskAsset().Instance(IMagiskBranch.canary, webClient ?? new())
         };
 }

@@ -80,6 +80,10 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\CustomObjects\SwitchButton.Placeholder.cs">
+      <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\CustomObjects\Themed Controls\Themed_TextBox.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
@@ -133,7 +137,7 @@
     <Compile Update="Modules\General\inf.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\SwitchButton.cs">
+    <Compile Update="Modules\CustomObjects\SwitchButton.Placeholder.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>

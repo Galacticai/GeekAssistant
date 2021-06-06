@@ -163,10 +163,8 @@ namespace GeekAssistant.Forms {
             Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
         }
         private void Home_GotFocus(object sender, EventArgs e) {
-            bool waiting = false;
-            foreach (Form w in Application.OpenForms)
-                if (w is Wait) waiting = true;
-            if (!finishedLoading) new Wait().BringToFront();
+            bool waiting = ((Wait)Application.OpenForms[nameof(Wait)] != null);
+            if (!finishedLoading) ((Wait)Application.OpenForms[nameof(Wait)]).BringToFront();
         }
         //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
         private void Home_Move(object sender, EventArgs e) {
@@ -469,11 +467,12 @@ namespace GeekAssistant.Forms {
             Log.LogAppendText("ran madbStop()", 1);
         }
         private void MetroButton3_Click(object sender, EventArgs e) {//MetroButton3.Click
-            var i = madb.GetDeviceState();
+            var state = madb.GetDeviceState();
+            var state_i = Convert.ToInt32(state);
+            var state_s = state.ToString();
             Log.LogAppendText("ran madb_GetDeviceState()", 1);
-            var i_s = madb.Convert_DeviceState_IntToString();
             Log.LogAppendText("ran madb_Convert_DeviceState_IntToString()", 1);
-            Log.LogAppendText($"State: {i} - {i_s}", 1);
+            Log.LogAppendText($"State: {state_i} - {state_s}", 1);
         }
 
         private void MetroButton4_Click(object sender, EventArgs e) {

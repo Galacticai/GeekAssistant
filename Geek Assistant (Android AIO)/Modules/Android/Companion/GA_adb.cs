@@ -245,18 +245,14 @@ internal static partial class GA_adb {
         }
 
 
-        //Refresh current Home instance
-        Home Home = null;
-        foreach (Form home in Application.OpenForms)
-            if (home.GetType() == typeof(Home))
-                Home = (Home)home;
-        {
-            Home.Manufacturer_ComboBox.SelectedIndex = -1;
-            Home.AndroidVersion_ComboBox.SelectedIndex = -1;
-            Home.BootloaderUnlockable_CheckBox.Checked = false;
-            Home.Rooted_Checkbox.Checked = false;
-            Home.CustomROM_CheckBox.Checked = false;
-            Home.CustomRecovery_CheckBox.Checked = false;
+        //Refresh current home instance 
+        using (var home = (Home)Application.OpenForms[nameof(Home)]) {
+            home.Manufacturer_ComboBox.SelectedIndex = -1;
+            home.AndroidVersion_ComboBox.SelectedIndex = -1;
+            home.BootloaderUnlockable_CheckBox.Checked = false;
+            home.Rooted_Checkbox.Checked = false;
+            home.CustomROM_CheckBox.Checked = false;
+            home.CustomRecovery_CheckBox.Checked = false;
         }
     }
 

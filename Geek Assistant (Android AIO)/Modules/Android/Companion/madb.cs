@@ -18,15 +18,11 @@ internal static partial class madb {
     public static async void madbBridgeStart(bool forceNewBridge = false)
         => await Task.Run(() => madbBridge(forceNewBridge).Start());
 
-    /// <summary>
-    /// Terminate madb
-    /// </summary>
+    /// <summary>  Terminate madb </summary>
     public static void madbStop()
         => Managed.Adb.AndroidDebugBridge.Terminate();
 
-    /// <summary>
-    /// Count how many devices are currently connected
-    /// </summary>
+    /// <summary> Count how many devices are currently connected </summary>
     /// <returns>Get the count of madb_DeviceList() </returns>
     public static async Task<int> GetDeviceCount() {
         await madbBridge(); // Failsafe 
@@ -57,24 +53,24 @@ internal static partial class madb {
     /// Get the state of the first device connected
     /// </summary>
     /// <returns>(Integer): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
-    public static async Task<int> GetDeviceState() {
+    public static async Task<Managed.Adb.DeviceState> GetDeviceState() {
         await madbBridge(); // Failsafe
-        return (int)GetListOfDevice().Result[0].State;
+        return GetListOfDevice().Result[0].State;
     }
-    /// <summary>
-    /// Converts madb_GetDeviceState() to the corresponding string
-    /// </summary>
-    /// <returns>(String): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
-    public static Task<string> Convert_DeviceState_IntToString()
-        => Task.Run(() => (GetDeviceState().Result) switch {
-            0 => "recovery",
-            1 => "bootloader",
-            2 => "offline",
-            3 => "online",
-            4 => "download",
-            5 => "unknown",
-            _ => "unknown"
-        });
+    ///// <summary>
+    ///// Converts madb_GetDeviceState() to the corresponding string
+    ///// </summary>
+    ///// <returns>(String): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
+    //public static Task<string> Convert_DeviceState_IntToString( )
+    //    => Task.Run(() => (GetDeviceState().Result) switch {
+    //        0 => "recovery",
+    //        1 => "bootloader",
+    //        2 => "offline",
+    //        3 => "online",
+    //        4 => "download",
+    //        5 => "unknown",
+    //        _ => "unknown"
+    //    });
 
     /// <returns>True if Device is can SU</returns>
     public static bool madb_IsRooted() {
