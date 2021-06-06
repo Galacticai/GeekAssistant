@@ -1,13 +1,27 @@
 ﻿using System;
+using System.ComponentModel;
 
 internal static partial class FastbootFlash {
-    // 0 boot 
-    // 1 bootloader 
-    // 2 radio 
-    // 3 recovery
-    // 4 system 
-    // 5 vendor   
-    public static void Run(string img, int type) {
+
+    /// <returns>Type of .img file as <see cref="string"/>
+    /// <list type="bullet"> 
+    /// <item><paramref name="type"/> 0  boot </item>
+    /// <item><paramref name="type"/> 1  bootloader </item>
+    /// <item><paramref name="type"/> 2  radio </item>
+    /// <item><paramref name="type"/> 3  recovery</item>
+    /// <item><paramref name="type"/> 4  system </item>
+    /// <item><paramref name="type"/> 5  vendor </item>
+    /// </list></returns> 
+    public enum imgType {
+        [Description("Type of .img file")]
+        boot = 0,
+        bootlaoder = 1,
+        radio = 2,
+        recovery = 3,
+        system = 4,
+        vendor = 5
+    }
+    public static void Run(string img, imgType imgtype) {
         if (c.Working) {
             inf.Run(inf.lvls.Error, "Fastboot Flash", "We need to wait the other process to finish first...");
             return;
@@ -23,16 +37,10 @@ internal static partial class FastbootFlash {
                 inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.workTitle, "File name is not set!", null);
                 throw new Exception();
             }
-            if (type < 0 | type > 5) {
-                inf.detail = ("fbF-T0", inf.lvls.FatalError, inf.workTitle, "Type is out of range!", null);
-                throw new Exception();
-            }
 
             // ' check if fb compatible 
-            if (!devConnection.fbIsCompatible()) //inf.detail is already set inside this
-{
-                throw new Exception();
-            }
+            if (!devConnection.fbIsCompatible()) throw new Exception(); //inf.detail is already set inside this 
+
 
             Managed.Adb.Device dev = madb.GetListOfDevice().Result[0];
 
@@ -44,7 +52,7 @@ internal static partial class FastbootFlash {
                             ("Reboot", "Cancel"))) {
                     dev.Reboot("bootloader");
                     SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
-                    fbCMD.fbDo("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    fbCMD.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
                     inf.detail.workCode = "fbF-uX";
@@ -88,7 +96,7 @@ internal static partial class FastbootFlash {
             // End If
 
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
-            fbCMD.fbDo("oem device-info");
+            fbCMD.Run("oem device-info");
             if (!fbCMD.fbOutput.Contains("Device unlocked: true")) {
                 inf.detail.workCode = "fbF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
@@ -97,7 +105,7 @@ internal static partial class FastbootFlash {
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
             inf.detail.workCode = "fbF-F";
-            fbCMD.fbDo($"flash {TypeToString(type)} \"{img}\"");
+            fbCMD.Run($"flash {imgtype} \"{img}\"");
             if (fbCMD.fbOutput.Contains("error")) {
                 inf.detail.workCode = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first.")
@@ -118,27 +126,5 @@ internal static partial class FastbootFlash {
         c.Working = false;
     }
 
-    /// <returns><list type="bullet">
-    /// <item><paramref name="type"/> 0 = boot </item>
-    /// <item><paramref name="type"/> 1 = bootloader </item>
-    /// <item><paramref name="type"/> 2 = radio </item>
-    /// <item><paramref name="type"/> 3 = recovery</item>
-    /// <item><paramref name="type"/> 4 = system </item>
-    /// <item><paramref name="type"/> 5 = vendor </item>
-    /// </list></returns>
-    private static string TypeToString(int type) {
-        if (!math.Arithmatics.IsInRange(type, 0, 5)) {
-            inf.detail.workCode = $"{txt.GA_current_workCode}-FtX";
-            throw new Exception();
-        }
-        return type switch {
-            0 => "boot",
-            1 => "bootloader",
-            2 => "radio",
-            3 => "recovery",
-            4 => "system",
-            5 => "vendor",
-            _ => "" //cant reach this line anyway because of the check above
-        };
-    }
+
 }

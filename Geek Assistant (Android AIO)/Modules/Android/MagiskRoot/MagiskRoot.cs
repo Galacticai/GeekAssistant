@@ -52,7 +52,7 @@ internal class MagiskRoot : MagiskRootCompanion {
                 if (inf.Run(inf.lvls.Question, inf.workTitle,
                               "We are sorry... Seems like we failed.\nDo you want to reboot your device?",
                             ("Reboot", "Cancel"))) {
-                    //fbCMD.fbDo("reboot");
+                    //fbCMD.Run("reboot");
                 }
 
         }

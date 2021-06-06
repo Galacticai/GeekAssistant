@@ -70,7 +70,7 @@ internal static partial class cmd {
 
     private static string fbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-fb-cmd";
-        return fbCMD.fbDo(command);
+        return fbCMD.Run(command);
     }
 }
 // |========================== OLD CODE ==========================|'
