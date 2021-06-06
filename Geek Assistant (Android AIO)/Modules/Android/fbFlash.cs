@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 
-internal static partial class FastbootFlash {
+internal static partial class fbFlash {
+    private const string workCode_init = "fbF";
+    private const string workTitle = "Fastboot Flash";
 
     /// <returns>Type of .img file as <see cref="string"/>
     /// <list type="bullet"> 
@@ -23,18 +25,18 @@ internal static partial class FastbootFlash {
     }
     public static void Run(string img, imgType imgtype) {
         if (c.Working) {
-            inf.Run(inf.lvls.Error, "Fastboot Flash", "We need to wait the other process to finish first...");
+            inf.Run(inf.lvls.Error, workTitle, "We need to wait the other process to finish first...");
             return;
         }
 
-        inf.workTitle = "Fastboot Flash";
+        inf.workTitle = workTitle;
         c.Working = true;
-        inf.detail.workCode = "fbF-00";
+        inf.detail.workCode = $"{workCode_init}-00";
         Log.LogEvent(inf.workTitle, 2);
         GAwait.Run(true);
         try {
             if (string.IsNullOrEmpty(img)) { // check zip string  
-                inf.detail = ("fbF-F0", inf.lvls.FatalError, inf.workTitle, "File name is not set!", null);
+                inf.detail = ($"{workCode_init}-F0", inf.lvls.FatalError, inf.workTitle, "File name is not set!", null);
                 throw new Exception();
             }
 
@@ -55,7 +57,7 @@ internal static partial class FastbootFlash {
                     fbCMD.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
-                    inf.detail.workCode = "fbF-uX";
+                    inf.detail.workCode = $"{workCode_init}-uX";
                     // ErrorInfo = (0, "You have cancelled the process.")
                     Log.LogEvent("Fastboot Flash Cancelled", 1);
                     throw new Exception();
@@ -63,12 +65,12 @@ internal static partial class FastbootFlash {
             } else if (!(c.S.DeviceState == "Fastboot mode")) {
                 if (c.S.DeviceState == "Disconnected") // failsafe
                 {
-                    inf.detail.workCode = "fbF-xX";
+                    inf.detail.workCode = $"{workCode_init}-xX";
                 }
                 // ErrorInfo = (1, $"We lost contact with your device!\n" & My.R.TroubleshootConnection)
                 else // not adb and not fastboot and not disconnected
                 {
-                    inf.detail.workCode = "fbF-rX";
+                    inf.detail.workCode = $"{workCode_init}-rX";
                     // ErrorInfo = (0, $"We cannot reboot into fastboot while your device is in {S.DeviceState}.\n" & My.R.TroubleshootConnection)
                 }
 
@@ -83,7 +85,7 @@ internal static partial class FastbootFlash {
             ;
             if (!c.S.DeviceBootloaderUnlockSupported) {
                 // ' cancel if not unlockable
-                inf.detail.workCode = "fbF-BLX";
+                inf.detail.workCode = $"{workCode_init}-BLX";
                 // ErrorInfo = (1, "Bootloader unlock is not supported.") 'you can enable with checkbox
                 throw new Exception();
             }
@@ -98,13 +100,13 @@ internal static partial class FastbootFlash {
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
             fbCMD.Run("oem device-info");
             if (!fbCMD.fbOutput.Contains("Device unlocked: true")) {
-                inf.detail.workCode = "fbF-BLuX";
+                inf.detail.workCode = $"{workCode_init}-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
                 throw new Exception();
             }
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
-            inf.detail.workCode = "fbF-F";
+            inf.detail.workCode = $"{workCode_init}-F";
             fbCMD.Run($"flash {imgtype} \"{img}\"");
             if (fbCMD.fbOutput.Contains("error")) {
                 inf.detail.workCode = "FF-BLuX";
@@ -115,7 +117,7 @@ internal static partial class FastbootFlash {
             Log.LogAppendText(fbCMD.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
-            inf.detail.workCode = "fbF-rX";
+            inf.detail.workCode = $"{workCode_init}-rX";
         } catch (Exception ex) {
             GAwait.Run(false); // Close before error dialog 
             inf.detail.fullFatalError = ex.ToString();

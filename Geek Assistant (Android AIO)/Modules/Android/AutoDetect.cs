@@ -13,8 +13,8 @@ using System.Windows.Forms;
 //             >> 0 or 1
 
 internal class AutoDetect {
-    private static string workCode_init => "AD";
-    private static string workTitle => "Auto Detect";
+    private const string workCode_init = "AD";
+    private const string workTitle = "Auto Detect";
 
     private static bool RunningInBetween = false;
     public static async void Run(bool Silent = false) {

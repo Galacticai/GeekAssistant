@@ -4,8 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 internal static partial class UnlockBL {
-    private static string workCode_init => "UB";
-    private static string workTitle => "Unlock Bootloader";
+    private const string workCode_init = "UB";
+    private const string workTitle = "Unlock Bootloader";
 
     // Private ErrorInfo As (lvl As Integer, msg As String) 
     // ' https://source.android.com/devices/bootloader/locking_unlocking

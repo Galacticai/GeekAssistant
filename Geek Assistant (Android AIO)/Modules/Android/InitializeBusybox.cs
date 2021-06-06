@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 internal static partial class InitializeBusybox {
-    private static string workCode_init => "BB";
-    private static string workTitle => "Initialize Busybox";
+    private const string workCode_init = "BB";
+    private const string workTitle = "Initialize Busybox";
     public static void Run(bool silent) {
         if (c.Working) { //dont change inf.workTitle while working
             inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess);

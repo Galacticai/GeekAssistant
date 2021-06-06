@@ -5,8 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 internal class MagiskRoot : MagiskRootCompanion {
-    private static string workCode_init => "MR";
-    private static string workTitle => "Magisk Root";
+    private const string workCode_init = "MR";
+    private const string workTitle = "Magisk Root";
     public static async void Run() {
         bool Cancelled = false;
         if (c.Working) {
