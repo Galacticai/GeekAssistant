@@ -10,14 +10,14 @@ internal static partial class fbCMD {
     /// </summary>
     /// <param name="arguments">fastboot command arguments</param>
     /// <returns>Output of a fastboot command As String + fbOutput public string (to avoid repeating command for the same output)</returns>
-    public static string fbDo(string arguments) {
+    public static string Run(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
             inf.detail.workCode = $"{inf.detail.workCode}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
             inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the fastboot command.");
         }
 
-        if (!ConnectionIsCompatible.fbIsReady()) {
+        if (!devConnection.fbIsReady()) {
             inf.detail.workCode = $"{inf.detail.workCode}-fbD0"; // error code (last process) - adb device 0 (no device)
             inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
         }

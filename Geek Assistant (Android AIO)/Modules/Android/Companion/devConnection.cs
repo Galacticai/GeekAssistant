@@ -1,7 +1,7 @@
 ﻿
 using System.Threading.Tasks;
 
-internal static partial class ConnectionIsCompatible {
+internal static partial class devConnection {
 
     /// <returns>True if the device is ready for adb commands</returns>
     public static bool adbIsReady() {

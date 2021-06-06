@@ -33,7 +33,7 @@ internal static partial class UnlockBL {
 
             // check if fb compatible 
             Home.bar.Value = 10;
-            if (!ConnectionIsCompatible.fbIsCompatible()) {
+            if (!devConnection.fbIsCompatible()) {
                 Cancelled = true;
                 if (inf.detail.workCode.Contains("-DS"))
                     inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n"

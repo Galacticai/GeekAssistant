@@ -1,37 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using GeekAssistant.Forms;
 
 internal static partial class GA_adb {
 
 
     public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
-        if (DeviceSerial != null) {
-            c.S.DeviceSerial = DeviceSerial;
-        }
+        if (DeviceSerial != null) c.S.DeviceSerial = DeviceSerial;
 
-        if (DeviceState != null) {
-            c.S.DeviceState = DeviceState;
-        }
+        if (DeviceState != null) c.S.DeviceState = DeviceState;
 
-        if (DeviceManufacturer != null) {
-            c.S.DeviceManufacturer = DeviceManufacturer;
-        }
+        if (DeviceManufacturer != null) c.S.DeviceManufacturer = DeviceManufacturer;
 
-        if (DeviceAPILevel > 0) {
-            c.S.DeviceAPILevel = DeviceAPILevel;
-        }
+        if (DeviceAPILevel > 0) c.S.DeviceAPILevel = DeviceAPILevel;
 
-        if (DeviceUnlockedBootloader != default) {
-            c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
-        }
+        if (DeviceUnlockedBootloader != default) c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
 
-        if (DeviceUnlockedBootloader != default) {
-            c.S.DeviceCustomRecovery = DeviceCustomRecovery;
-        }
+        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomRecovery = DeviceCustomRecovery;
 
-        if (DeviceUnlockedBootloader != default) {
-            c.S.DeviceCustomROM = DeviceCustomRom;
-        }
+        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomROM = DeviceCustomRom;
 
         c.S.Save();
     }
@@ -44,10 +32,7 @@ internal static partial class GA_adb {
     public static string FixManufacturerString(string ManufacturerString) {
         string mStr = ManufacturerString.ToString();
         mStr = mStr.Substring(0, 1).ToUpper() + mStr.Substring(1).ToLower();
-        if (mStr == "Lge") {
-            mStr = "LG"; // Special case for LG 
-        }
-
+        if (mStr == "Lge") mStr = "LG"; // Special case for LG  
         return mStr;
     }
 
@@ -57,7 +42,7 @@ internal static partial class GA_adb {
     /// <param name="Wsource">Path(Folder\FileName) to push to Android</param>
     /// <param name="customAdestination">(Optional) Custom destination path(Folder/) on Android (Default: {/sdcard/0/GeekAssistant/}...)</param>
     public static void adb_Push(string Wsource, string customAdestination = "/sdcard/0/GeekAssistant/") {
-        adbCMD.adbDo($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
+        adbCMD.Run($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
     }
 
     /// <summary>
@@ -66,7 +51,7 @@ internal static partial class GA_adb {
     /// <param name="Asource">Source path(Folder/fileName) to pull from Android</param>
     /// <param name="Wdestination">Destination path(Folder\) on Windows </param>
     public static void adb_Pull(string Asource, string Wdestination) {
-        adbCMD.adbDo($"pull \"{Asource}\" \"{Wdestination}\"");
+        adbCMD.Run($"pull \"{Asource}\" \"{Wdestination}\"");
     }
 
     private static string AndroidVersion;
@@ -160,10 +145,7 @@ internal static partial class GA_adb {
 
     public static string[] ConvertAPILevelToAVer(int APIint, bool silent = false) {
         if (APIint <= 0) {
-            if (!silent) {
-                inf.Run(inf.lvls.FatalError, inf.workTitle, "Error while processing your device API level!");
-            }
-
+            if (!silent) inf.Run(inf.lvls.FatalError, inf.workTitle, "Error while processing your device API level!");
             return new[] { "❌", "❌" };
         }
         ApiToVer.TryGetValue(APIint, out string[] disposableDictionary);
@@ -262,7 +244,12 @@ internal static partial class GA_adb {
             c.S.DeviceState = "";
         }
 
-        GeekAssistant.Forms.Home Home = new GeekAssistant.Forms.Home();
+
+        //Refresh current Home instance
+        Home Home = null;
+        foreach (Form home in Application.OpenForms)
+            if (home.GetType() == typeof(Home))
+                Home = (Home)home;
         {
             Home.Manufacturer_ComboBox.SelectedIndex = -1;
             Home.AndroidVersion_ComboBox.SelectedIndex = -1;

@@ -10,7 +10,7 @@ internal static partial class adbCMD {
     /// </summary>
     /// <param name="arguments">adb command arguments</param>
     /// <returns>Output of a adb command As String + adbOutput public string (to avoid repeating command for the same output)</returns>
-    public static string adbDo(string arguments) {
+    public static string Run(string arguments) {
         // >Failsafe - Should never happen
         if (arguments.Length == 0) {
             inf.detail.workCode += "-adbDo0"; // error code (last process) - adbDo 0 (no arguments)

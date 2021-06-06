@@ -1,19 +1,15 @@
 ﻿using Managed.Adb;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 internal static partial class cmd {
-    public static string madbShell(Device dev, string cmd, bool sudo = false) {
-        if (ConnectionIsCompatible.adbIsReady()) {
-            inf.Run(inf.detail, ("Close", null));
-        }
+    public static async Task<string> madbShell(Device dev, string cmd, bool sudo = false) {
+        if (devConnection.adbIsReady()) inf.Run();
 
-        madb.madbBridge(); // failsafe
+        await madb.madbBridge(); // failsafe
         CommandResultReceiver crr = new();
-        if (sudo) {
-            dev.ExecuteRootShellCommand(cmd, crr);
-        } else {
-            dev.ExecuteShellCommand(cmd, crr);
-        }
+        if (sudo) dev.ExecuteRootShellCommand(cmd, crr);
+        else dev.ExecuteShellCommand(cmd, crr);
 
         return crr.Result;
     }
@@ -23,40 +19,31 @@ internal static partial class cmd {
 
 
         var cmdStart = command.Substring(0, command.IndexOf(" ")); // Get the first word of the command 
-        if (cmdStart == "adb") // command starting with "adb"
-        {
+        if (cmdStart == "adb") {// command starting with "adb" 
             // filter invalid commands using regex for adb
             var adbRegex = new Regex("adb (devices|shell|push|pull|logcat|install|install-multiple|uninstall|sync|emu|forward|reverse|jdwp|bugreport|backup|backup|restore|disable-verity|enable-verity|keygen|help|version|wait-for-device|start-server|kill-server|get-state|get-serialno|get-devpath|remount|reboot|reboot-bootloader|root|unroot|usb|tcpip|ppp)"); // Matching example: "adb devices"
-            if (adbRegex.Match(command).Success) // If command matching adbRegex
-            {
-                adbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "adb "
-                if (adbCMD.adbOutput == "") {
-                    Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
-                } else {
-                    Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{adbCMD.adbOutput}", 2);
-                }
-            } else {
-                invalidCMD(command); return;
-            }
-        } else if (cmdStart == "fastboot") // command starting with "fastboot"
-          {
+            if (adbRegex.Match(command).Success) { // If command matching adbRegex
+
+                adbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "adb " 
+                Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
+                                  $"{(adbCMD.adbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{adbCMD.adbOutput}")}", 2);
+
+            } else invalidCMD(command); return;
+        } else if (cmdStart == "fastboot") { // command starting with "fastboot"
+
             // filter invalid commands using regex for fastboot
             var fbRegex = new Regex("fastboot (devices|update|flashall|flash|flashing lock|flashing unlock|flashing lock_critical|flashing get_unlock_ability|erase|format|getvar|boot)"); // Matching example: "fastboot"
-            if (fbRegex.Match(command).Success) // If command matching fbRegex
-            {
-                fbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "fastboot "
-                if (fbCMD.fbOutput == "") {
-                    Log.LogAppendText($"⮜⮜ \"{command}\"\n  Process finished with no response.", 2);
-                } else {
-                    Log.LogAppendText($"⮜⮜ \"{command}\"\n⮞⮞\n{fbCMD.fbOutput}", 2);
-                }
-            } else {
-                invalidCMD(command); return;
-            }
-        } else {
-            invalidCMD(command); return;
+            if (fbRegex.Match(command).Success) { // If command matching fbRegex
 
-        }
+                fbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "fastboot "
+
+                Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
+                                  $"{(fbCMD.fbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{fbCMD.fbOutput}")}", 2);
+            } else invalidCMD(command); return;
+
+        } else invalidCMD(command); return;
+
+
     }
     private static void invalidCMD(string command) {
         System.Media.SystemSounds.Beep.Play();
@@ -78,7 +65,7 @@ internal static partial class cmd {
     }
     private static string adbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-adb-cmd";
-        return adbCMD.adbDo(command);
+        return adbCMD.Run(command);
     }
 
     private static string fbDo_WithTrack(string command) {

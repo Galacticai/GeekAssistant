@@ -28,23 +28,23 @@ internal static partial class InitializeBusybox {
             PrepareAppdata.Run();
 
 
-        adbCMD.adbDo("shell mkdir /data/busybox");
+        adbCMD.Run("shell mkdir /data/busybox");
         Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adbCMD.adbOutput}", 1);
         if (adbCMD.adbOutput.ToLower().Contains("denied")) {
-            adbCMD.adbDo("shell su -c 'mkdir /data/busybox'");
+            adbCMD.Run("shell su -c 'mkdir /data/busybox'");
             Log.LogAppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         } else if (adbCMD.adbOutput.ToLower().Contains("file exists")) {
-            adbCMD.adbDo("shell su -c 'rm -rf /data/busybox'");
+            adbCMD.Run("shell su -c 'rm -rf /data/busybox'");
             Log.LogAppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
         }
 
-        adbCMD.adbDo($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
+        adbCMD.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
         Log.LogAppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adbCMD.adbOutput}", 1);
-        adbCMD.adbDo($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
+        adbCMD.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
         Log.LogAppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
-        adbCMD.adbDo("shell su -c 'chmod 664 /data/busybox'");
+        adbCMD.Run("shell su -c 'chmod 664 /data/busybox'");
         Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbCMD.adbOutput}", 1);
-        adbCMD.adbDo("shell su -c './data/busybox --install'");
+        adbCMD.Run("shell su -c './data/busybox --install'");
         Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbCMD.adbOutput}", 1);
         if (dev.BusyBox.Available) MessageBox.Show("busybox available");
         else MessageBox.Show("busybox not installed");

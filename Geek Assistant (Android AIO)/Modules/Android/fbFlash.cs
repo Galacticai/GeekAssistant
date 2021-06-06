@@ -29,7 +29,7 @@ internal static partial class FastbootFlash {
             }
 
             // ' check if fb compatible 
-            if (!ConnectionIsCompatible.fbIsCompatible()) //inf.detail is already set inside this
+            if (!devConnection.fbIsCompatible()) //inf.detail is already set inside this
 {
                 throw new Exception();
             }
