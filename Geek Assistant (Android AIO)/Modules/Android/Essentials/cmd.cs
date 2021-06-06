@@ -26,7 +26,7 @@ internal static partial class cmd {
 
                 adbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "adb " 
                 Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
-                                  $"{(adbCMD.adbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{adbCMD.adbOutput}")}", 2);
+                                  $"{(adb.adbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{adb.adbOutput}")}", 2);
 
             } else invalidCMD(command); return;
         } else if (cmdStart == "fastboot") { // command starting with "fastboot"
@@ -38,7 +38,7 @@ internal static partial class cmd {
                 fbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "fastboot "
 
                 Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
-                                  $"{(fbCMD.fbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{fbCMD.fbOutput}")}", 2);
+                                  $"{(fastboot.fbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{fastboot.fbOutput}")}", 2);
             } else invalidCMD(command); return;
 
         } else invalidCMD(command); return;
@@ -65,12 +65,12 @@ internal static partial class cmd {
     }
     private static string adbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-adb-cmd";
-        return adbCMD.Run(command);
+        return adb.Run(command);
     }
 
     private static string fbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-fb-cmd";
-        return fbCMD.Run(command);
+        return fastboot.Run(command);
     }
 }
 // |========================== OLD CODE ==========================|'

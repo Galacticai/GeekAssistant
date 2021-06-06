@@ -13,8 +13,7 @@ using System.Windows.Forms;
 //             >> 0 or 1
 
 internal class AutoDetect {
-    private const string workCode_init = "AD";
-    private const string workTitle = "Auto Detect";
+    private const string workCode_init = "AD", workTitle = "Auto Detect";
 
     private static bool RunningInBetween = false;
     public static async void Run(bool Silent = false) {
@@ -128,13 +127,12 @@ internal class AutoDetect {
                     Home.bar.Value = 15;
                     c.S.DeviceManufacturer =
                         GA_adb.FixManufacturerString(
-                            cmd.madbShell(dev, "getprop ro.product.manufacturer"));
+                            cmd.madbShell(dev, "getprop ro.product.manufacturer").Result);
                     c.S.Save();
                     Home.Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
 
                     inf.detail = ($"{workCode_init}-D-mc", inf.lvls.Error, inf.workTitle, "Failed to check your device model or codename.", null);// Auto Detect - Device - model codename
-                    if (!Silent)
-                        Log.LogAppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
+                    if (!Silent) Log.LogAppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
 
                     Home.bar.Value = 17;
 
@@ -144,8 +142,7 @@ internal class AutoDetect {
 
                     c.S.DeviceSerial = dev.SerialNumber;
                     c.S.Save();
-                    if (!Silent)
-                        Log.LogAppendText($" | Serial: {c.S.DeviceSerial}", 1);
+                    if (!Silent) Log.LogAppendText($" | Serial: {c.S.DeviceSerial}", 1);
 
                     Home.bar.Value = 20;
 
@@ -174,12 +171,11 @@ internal class AutoDetect {
 
                     Home.bar.Value = 26;
                     c.S.DeviceBootloaderUnlockSupported =
-                         convert.String.ToBool(cmd.madbShell(dev, "getprop ro.oem_unlock_supported"));
+                         convert.String.ToBool(cmd.madbShell(dev, "getprop ro.oem_unlock_supported").Result);
                     c.S.Save();
                     Home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
                     Home.bar.Value = 27;
-                    if (!Silent)
-                        Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                    if (!Silent) Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
 
                     Home.bar.Value = 30;
 

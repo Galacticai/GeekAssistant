@@ -42,7 +42,7 @@ internal static partial class GA_adb {
     /// <param name="Wsource">Path(Folder\FileName) to push to Android</param>
     /// <param name="customAdestination">(Optional) Custom destination path(Folder/) on Android (Default: {/sdcard/0/GeekAssistant/}...)</param>
     public static void adb_Push(string Wsource, string customAdestination = "/sdcard/0/GeekAssistant/") {
-        adbCMD.Run($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
+        adb.Run($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ internal static partial class GA_adb {
     /// <param name="Asource">Source path(Folder/fileName) to pull from Android</param>
     /// <param name="Wdestination">Destination path(Folder\) on Windows </param>
     public static void adb_Pull(string Asource, string Wdestination) {
-        adbCMD.Run($"pull \"{Asource}\" \"{Wdestination}\"");
+        adb.Run($"pull \"{Asource}\" \"{Wdestination}\"");
     }
 
     private static string AndroidVersion;

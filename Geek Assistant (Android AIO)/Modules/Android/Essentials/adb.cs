@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 
-internal static partial class adbCMD {
-    private readonly static Process adb_process = new Process();
+internal static partial class adb {
     public static string adbOutput;
     /// <summary> 
     /// Sends a command to $"{GA_tools}\adb.exe" and waits for process output
@@ -10,9 +9,10 @@ internal static partial class adbCMD {
     /// </summary>
     /// <param name="arguments">adb command arguments</param>
     /// <returns>Output of a adb command As String + adbOutput public string (to avoid repeating command for the same output)</returns>
-    public static string Run(string arguments) {
+    public static string Run(string arguments, Process adbProcess = null) {
+        adbProcess ??= new();
         // >Failsafe - Should never happen
-        if (arguments.Length == 0) {
+        if (string.IsNullOrEmpty(arguments)) {
             inf.detail.workCode += "-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
             inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the adb command.");
         }
@@ -22,12 +22,12 @@ internal static partial class adbCMD {
         // DoMsg(ErrorInfo.lvl, ErrorInfo.msg, 2)
         // End If
         // Inform if not running  
-        if (Process.GetProcessesByName("adb").Count() == 0)
+        if (Process.GetProcessesByName("adb").Length == 0)
             SetProgressText.Run(txt.RandomWorkText, -1);
 
         // <Failsafe
         {
-            var adbPstartInfo = adb_process.StartInfo;
+            var adbPstartInfo = adbProcess.StartInfo;
             adbPstartInfo.FileName = $@"{c.GA_tools}\adb.exe";
             adbPstartInfo.Arguments = arguments;
             adbPstartInfo.UseShellExecute = false;
@@ -37,13 +37,9 @@ internal static partial class adbCMD {
             adbPstartInfo.RedirectStandardError = true;
         }
         // Start
-        adb_process.Start();
-        adb_process.WaitForExit();
-
-        // Return output
-        // '''Return as global string (Use to avoid repeating command for output)
-        adbOutput = adb_process.StandardOutput.ReadToEnd();
-        // '''Return as function (repeat command to return output)
-        return adbOutput;
+        adbProcess.Start();
+        adbProcess.WaitForExit();
+        // Return as global string (avoid repeating command for output) 
+        return adbOutput = adbProcess.StandardOutput.ReadToEnd();
     }
 }

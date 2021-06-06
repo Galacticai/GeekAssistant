@@ -2,8 +2,7 @@
 using System.ComponentModel;
 
 internal static partial class fbFlash {
-    private const string workCode_init = "fbF";
-    private const string workTitle = "Fastboot Flash";
+    private const string workCode_init = "fbF", workTitle = "Fastboot Flash";
 
     /// <returns>Type of .img file as <see cref="string"/>
     /// <list type="bullet"> 
@@ -54,7 +53,7 @@ internal static partial class fbFlash {
                             ("Reboot", "Cancel"))) {
                     dev.Reboot("bootloader");
                     SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
-                    fbCMD.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    fastboot.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     goto DeviceInFastboot;
                 } else {
                     inf.detail.workCode = $"{workCode_init}-uX";
@@ -98,8 +97,8 @@ internal static partial class fbFlash {
             // End If
 
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
-            fbCMD.Run("oem device-info");
-            if (!fbCMD.fbOutput.Contains("Device unlocked: true")) {
+            fastboot.Run("oem device-info");
+            if (!fastboot.fbOutput.Contains("Device unlocked: true")) {
                 inf.detail.workCode = $"{workCode_init}-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
                 throw new Exception();
@@ -107,14 +106,14 @@ internal static partial class fbFlash {
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
             inf.detail.workCode = $"{workCode_init}-F";
-            fbCMD.Run($"flash {imgtype} \"{img}\"");
-            if (fbCMD.fbOutput.Contains("error")) {
+            fastboot.Run($"flash {imgtype} \"{img}\"");
+            if (fastboot.fbOutput.Contains("error")) {
                 inf.detail.workCode = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first.")
                 throw new Exception();
             }
 
-            Log.LogAppendText(fbCMD.fbOutput, -1);
+            Log.LogAppendText(fastboot.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
             inf.detail.workCode = $"{workCode_init}-rX";

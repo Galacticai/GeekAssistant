@@ -4,8 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 internal static partial class UnlockBL {
-    private const string workCode_init = "UB";
-    private const string workTitle = "Unlock Bootloader";
+    private const string workCode_init = "UB", workTitle = "Unlock Bootloader";
 
     // Private ErrorInfo As (lvl As Integer, msg As String) 
     // ' https://source.android.com/devices/bootloader/locking_unlocking
@@ -70,7 +69,7 @@ internal static partial class UnlockBL {
                     dev.Reboot("bootloader");
                     Home.bar.Value = 40;
                     SetProgressText.Run("Waiting for your device to enter fastboot...", -1);
-                    fbCMD.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    fastboot.Run("wait-for-device"); // ''''''''''''''''''''''''''''''''''''''''''''''''''''''
                     Home.bar.Value = 45;
                     goto DeviceInFastboot; // '''''SUCCESS
                 } else {
@@ -111,7 +110,7 @@ internal static partial class UnlockBL {
             Home.bar.Value = 46;
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
             SetProgressText.Run("Checking current bootloader state.", -1);
-            if (fbCMD.Run("oem device-info").Contains("Device unlocked: true")) {
+            if (fastboot.Run("oem device-info").Contains("Device unlocked: true")) {
                 Home.bar.Value = 100;
                 Cancelled = true;
                 inf.detail.workCode = $"{workCode_init}-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
@@ -122,25 +121,25 @@ internal static partial class UnlockBL {
             Home.bar.Value = 50;
             inf.detail.workCode = $"{workCode_init}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
             SetProgressText.Run("Attempting to unlock bootloader...", -1);
-            fbCMD.Run($"flashing unlock");
-            if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
+            fastboot.Run($"flashing unlock");
+            if (fastboot.fbOutput.ToLower().Contains("err") | fastboot.fbOutput.ToLower().Contains("fail")) {
                 Home.bar.Value = 52;
                 inf.detail.workCode = $"{workCode_init}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
                 SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
                 Home.bar.Value = 55;
-                fbCMD.Run($"oem unlock");
-                if (fbCMD.fbOutput.ToLower().Contains("err") | fbCMD.fbOutput.ToLower().Contains("fail")) {
+                fastboot.Run($"oem unlock");
+                if (fastboot.fbOutput.ToLower().Contains("err") | fastboot.fbOutput.ToLower().Contains("fail")) {
                     Home.bar.Value = 57;
                     // ErrorInfo = (10, $"Failed to unlock your device bootloader.")
-                    throw new Exception(fbCMD.fbOutput);
+                    throw new Exception(fastboot.fbOutput);
                 }
             }
 
             Home.bar.Value = 80;
-            Log.LogAppendText(fbCMD.fbOutput, -1);
+            Log.LogAppendText(fastboot.fbOutput, -1);
             SetProgressText.Run("Process finished. Rebooting...", -1);
             Home.bar.Value = 100;
-            fbCMD.Run("reboot");
+            fastboot.Run("reboot");
         } catch (Exception ex) {
             GAwait.Run(false); // Close before error dialog 
             inf.Run(inf.detail.lvl, inf.workTitle, inf.detail.msg, ex.ToString());
@@ -149,7 +148,7 @@ internal static partial class UnlockBL {
                     if (inf.Run(inf.lvls.Question, inf.workTitle,
                                   "We are sorry... Seems like we failed.\nDo you want to reboot your device?",
                                 ("Reboot", "Do Nothing")))
-                        fbCMD.Run("reboot");
+                        fastboot.Run("reboot");
         }
 
         GAwait.Run(false); // Close if Try was successful
