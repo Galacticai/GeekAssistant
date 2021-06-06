@@ -1,2 +1,3 @@
 ## Geek Assistant (Android AIO)
-A software than can solve all your Androidy problems.
+AIO tool for Android phones.
+©2021 Geek Assistant By NHKomaiha
