@@ -5,25 +5,6 @@ using GeekAssistant.Forms;
 
 internal static partial class GA_adb {
 
-
-    public static void DeviceInfoSave_Deprecated(string DeviceSerial, string DeviceState, string DeviceManufacturer, int DeviceAPILevel, bool DeviceUnlockedBootloader, bool DeviceCustomRecovery, bool DeviceCustomRom) {
-        if (DeviceSerial != null) c.S.DeviceSerial = DeviceSerial;
-
-        if (DeviceState != null) c.S.DeviceState = DeviceState;
-
-        if (DeviceManufacturer != null) c.S.DeviceManufacturer = DeviceManufacturer;
-
-        if (DeviceAPILevel > 0) c.S.DeviceAPILevel = DeviceAPILevel;
-
-        if (DeviceUnlockedBootloader != default) c.S.DeviceBootloaderUnlockSupported = DeviceUnlockedBootloader;
-
-        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomRecovery = DeviceCustomRecovery;
-
-        if (DeviceUnlockedBootloader != default) c.S.DeviceCustomROM = DeviceCustomRom;
-
-        c.S.Save();
-    }
-
     /// <summary>
     /// Capitalize the first letter. And "lge" becomes "LG"
     /// </summary>
@@ -51,52 +32,57 @@ internal static partial class GA_adb {
     /// <param name="Asource">Source path(Folder/fileName) to pull from Android</param>
     /// <param name="Wdestination">Destination path(Folder\) on Windows </param>
     public static void adb_Pull(string Asource, string Wdestination) {
-        adb.Run($"pull \"{Asource}\" \"{Wdestination}\"");
+        adb.Run($@"pull ""{Asource}"" ""{Wdestination}""");
     }
 
     private static string AndroidVersion;
-    private static Dictionary<int, string[]> ApiToVer = new Dictionary<int, string[]>();
-    public static void PrepareAndroidDictionary() {
-        ApiToVer.Clear();
-        string K_ = "KitKat 4.4 (And Below)";
-        string L_ = "Lollipop 5.x";
-        string M_ = "Marshmallow 6.x";
-        string N_ = "Nougat 7.x";
-        string O_ = "Oreo 8.x";
-        string P_ = "Pie 9.x";
-        string Q_ = "Android 10 Q";
-        string R_ = "Android 11 R (And Above)";
-        {
-            var av = ApiToVer;
-            av.Add(1, new[] { "1.0", K_ });
-            av.Add(2, new[] { "1.1", K_ });
-            av.Add(3, new[] { "Cupcake 1.5", K_ });
-            av.Add(4, new[] { "Donut 1.6", K_ });
-            av.Add(5, new[] { "Eclair 2.0", K_ });
-            av.Add(6, new[] { "Eclair 2.0", K_ });
-            av.Add(7, new[] { "Eclair 2.1", K_ });
-            av.Add(8, new[] { "Froyo 2.2", K_ });
-            av.Add(9, new[] { "Gingerbread 2.3", K_ });
-            av.Add(10, new[] { "Gingerbread 2.3", K_ });
-            av.Add(11, new[] { "Honeycomb 3.0", K_ });
-            av.Add(12, new[] { "Honeycomb 3.1", K_ });
-            av.Add(13, new[] { "Honeycomb 3.2", K_ });
-            av.Add(14, new[] { "ICS 4.0", K_ });
-            av.Add(15, new[] { "ICS 4.0", K_ });
-            av.Add(16, new[] { "Jelly Bean 4.1", K_ });
-            av.Add(17, new[] { "Jelly Bean 4.2", K_ });
-            av.Add(18, new[] { "Jelly Bean 4.3", K_ });
-            av.Add(19, new[] { "KitKat 4.4", K_ });
-            av.Add(21, new[] { "Lollipop 5.0", L_ });
-            av.Add(22, new[] { "Lollipop 5.1", L_ });
-            av.Add(23, new[] { "Marshmallow 6.0", M_ });
-            av.Add(24, new[] { "Nougat 7.0", N_ });
-            av.Add(25, new[] { "Nougat 7.1", N_ });
-            av.Add(26, new[] { "Oreo 8.0", O_ });
-            av.Add(27, new[] { "Oreo 8.1", O_ });
-            av.Add(28, new[] { P_, P_ });
-            av.Add(29, new[] { Q_, Q_ });
-            av.Add(30, new[] { R_, R_ });
+    private static Dictionary<int, string[]> _ApiToVer;
+    public static Dictionary<int, string[]> ApiToVer {
+        get {
+            if (_ApiToVer.Count > 0) return _ApiToVer;
+
+            _ApiToVer.Clear();
+            string K_ = "KitKat 4.4 (And Below)",
+                   L_ = "Lollipop 5.x",
+                   M_ = "Marshmallow 6.x",
+                   N_ = "Nougat 7.x",
+                   O_ = "Oreo 8.x",
+                   P_ = "Pie 9.x",
+                   Q_ = "Android 10 Q",
+                   R_ = "Android 11 R (And Above)";
+            {
+                var av = _ApiToVer;
+                av.Add(1, new[] { "1.0", K_ });
+                av.Add(2, new[] { "1.1", K_ });
+                av.Add(3, new[] { "Cupcake 1.5", K_ });
+                av.Add(4, new[] { "Donut 1.6", K_ });
+                av.Add(5, new[] { "Eclair 2.0", K_ });
+                av.Add(6, new[] { "Eclair 2.0", K_ });
+                av.Add(7, new[] { "Eclair 2.1", K_ });
+                av.Add(8, new[] { "Froyo 2.2", K_ });
+                av.Add(9, new[] { "Gingerbread 2.3", K_ });
+                av.Add(10, new[] { "Gingerbread 2.3", K_ });
+                av.Add(11, new[] { "Honeycomb 3.0", K_ });
+                av.Add(12, new[] { "Honeycomb 3.1", K_ });
+                av.Add(13, new[] { "Honeycomb 3.2", K_ });
+                av.Add(14, new[] { "ICS 4.0", K_ });
+                av.Add(15, new[] { "ICS 4.0", K_ });
+                av.Add(16, new[] { "Jelly Bean 4.1", K_ });
+                av.Add(17, new[] { "Jelly Bean 4.2", K_ });
+                av.Add(18, new[] { "Jelly Bean 4.3", K_ });
+                av.Add(19, new[] { "KitKat 4.4", K_ });
+                av.Add(21, new[] { "Lollipop 5.0", L_ });
+                av.Add(22, new[] { "Lollipop 5.1", L_ });
+                av.Add(23, new[] { "Marshmallow 6.0", M_ });
+                av.Add(24, new[] { "Nougat 7.0", N_ });
+                av.Add(25, new[] { "Nougat 7.1", N_ });
+                av.Add(26, new[] { "Oreo 8.0", O_ });
+                av.Add(27, new[] { "Oreo 8.1", O_ });
+                av.Add(28, new[] { P_, P_ });
+                av.Add(29, new[] { Q_, Q_ });
+                av.Add(30, new[] { R_, R_ });
+            }
+            return _ApiToVer;
         }
     }
     // Public Sub PrepareDeviceInfo(APIlevel As Integer, Manufacturer As Boolean, Count As Boolean)
@@ -243,17 +229,15 @@ internal static partial class GA_adb {
             c.S.DeviceSerial = "";
             c.S.DeviceState = "";
         }
-
-
         //Refresh current home instance 
-        using (var home = (Home)Application.OpenForms[nameof(Home)]) {
-            home.Manufacturer_ComboBox.SelectedIndex = -1;
-            home.AndroidVersion_ComboBox.SelectedIndex = -1;
-            home.BootloaderUnlockable_CheckBox.Checked = false;
-            home.Rooted_Checkbox.Checked = false;
-            home.CustomROM_CheckBox.Checked = false;
-            home.CustomRecovery_CheckBox.Checked = false;
-        }
+        using var home = (Home)Application.OpenForms[nameof(Home)];
+        home.Manufacturer_ComboBox.SelectedIndex = -1;
+        home.AndroidVersion_ComboBox.SelectedIndex = -1;
+        home.BootloaderUnlockable_CheckBox.Checked = false;
+        home.Rooted_Checkbox.Checked = false;
+        home.CustomROM_CheckBox.Checked = false;
+        home.CustomRecovery_CheckBox.Checked = false;
+
     }
 
     public static string HotReboot(string ErrorCode_init) {

@@ -203,7 +203,6 @@ namespace GeekAssistant.Forms {
 
                 if (c.S.AutoClearLogs) Log.ClearIf30days();
                 PrepareAppdata.Run();
-                GA_adb.PrepareAndroidDictionary();
                 GA_adb.ResetDeviceInfo();
 
                 AutoDetect.Run(true);
