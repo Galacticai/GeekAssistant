@@ -40,9 +40,6 @@ namespace GeekAssistant.Forms {
             start_expert.MouseLeave += new(start_expert_MouseLeave);
         }
 
-        private void AppMode_Closed(object sender, EventArgs e) {
-            c.S.Save();
-        }
         private void AppMode_GotFocus(object sender, EventArgs e) {
             start_newbie.ForeColor = Color.Green;
             start_default.ForeColor = SystemColors.Highlight;

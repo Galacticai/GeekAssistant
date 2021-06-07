@@ -18,13 +18,14 @@ namespace GeekAssistant {
                     System.Media.SystemSounds.Beep.Play();
                     return;
                 }
+
                 if (HideAllForms.HiddenForms != null) return; //Cancel if hiding all forms
+
                 try { // try to prevent crash when closed before starting Home
                     Log.LogEvent("End", 3);
                     Log.CreateLog();
-                } catch {
-                    Environment.ExitCode = (int)GA_ExitCode.Warn;
-                }
+                } catch { Environment.ExitCode = (int)GA_ExitCode.Warn; }
+
                 c.S.Save();
                 Environment.Exit(Environment.ExitCode); // Quit all threads  
                 Process.GetCurrentProcess().Kill(); // Double hit...

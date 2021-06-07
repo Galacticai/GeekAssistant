@@ -5,18 +5,15 @@ using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
     public partial class Donate : Form {
-        public Donate() {
-            InitializeComponent();
-        }
+        public Donate() => InitializeComponent();
         private void AssignEvents() {
-            FormClosing += new(RunGeekAssistant.All_FormClosed);
+            FormClosing += new(Donate_FormClosing);
 
             Close_Button.Click += new(Close_Button_Click);
 
             GooglePayEmail.Click += new(GooglePay_Click); GooglePayIcon.Click += new(GooglePay_Click);
             GooglePayTitle.Click += new(GooglePay_Click); GooglePay_ClickableBG.Click += new(GooglePay_Click);
 
-            GooglePayClick_Timer.Tick += new(GooglePayClick_Timer_Tick);
 
             GooglePayEmail.DoubleClick += new(GooglePay_DoubleClick); GooglePayIcon.DoubleClick += new(GooglePay_DoubleClick);
             GooglePayTitle.DoubleClick += new(GooglePay_DoubleClick); GooglePay_ClickableBG.DoubleClick += new(GooglePay_DoubleClick);
@@ -31,7 +28,6 @@ namespace GeekAssistant.Forms {
             BitcoinIcon.Click += new(Bitcoin_Click); BitcoinNote.Click += new(Bitcoin_Click);
             BitcoinTitle.Click += new(Bitcoin_Click); Bitcoin_ClickableBG.Click += new(Bitcoin_Click);
 
-            BitcoinClick_Timer.Tick += new(BitcoinClick_Timer_Tick);
 
             BitcoinAddress.DoubleClick += new(Bitcoin_DoubleClick); BitcoinAddressQR.DoubleClick += new(Bitcoin_DoubleClick);
             BitcoinIcon.DoubleClick += new(Bitcoin_DoubleClick); BitcoinNote.DoubleClick += new(Bitcoin_DoubleClick);
@@ -39,62 +35,57 @@ namespace GeekAssistant.Forms {
 
         }
 
-        private static Home home = null;
-        private static Home Update_Home()
-           => home = (Home)Application.OpenForms["Home"];
-
-        private void Donate_FormClosing(object sender, EventArgs e) {
-            Update_Home().BringToFront();
+        private void Donate_FormClosing(object sender, EventArgs ev) {
+            RunGeekAssistant.All_FormClosed(sender, ev);
+            c.Home().BringToFront();
         }
-        private void Donate_Load(object sender, EventArgs e) {
+        private void Donate_Load(object sender, EventArgs ev) {
             AssignEvents();
 
             CenterToHomeBounds.Run(this);
             SetTheme.Run(this, true);
         }
 
-        private void Close_Button_Click(object sender, EventArgs e) {
-            Close();
-        }
+        private void Close_Button_Click(object sender, EventArgs ev) => Close();
 
-        private Timer GooglePayClick_Timer = new() { Interval = 1500 };
-        private void GooglePay_Click(object sender, EventArgs e) {
+        private void GooglePay_Click(object sender, EventArgs ev) {
             Clipboard.SetText("nhkomaiha@gmail.com");
             GooglePayEmail.Text = "Copied... Double click for help.";
-            GooglePayClick_Timer.Enabled = true;
+
+            Timer GooglePayClick_Timer = new() { Interval = 1500 };
+            GooglePayClick_Timer.Tick += (sender, ev) => {
+                GooglePayEmail.Text = "nhkomaiha@gmail.com";
+                GooglePayClick_Timer.Stop();
+            };
+            GooglePayClick_Timer.Start();
+
         }
-        private void GooglePayClick_Timer_Tick(object sender, EventArgs e) {
-            GooglePayEmail.Text = "nhkomaiha@gmail.com";
-            GooglePayClick_Timer.Enabled = false;
-        }
-        private void GooglePay_DoubleClick(object sender, EventArgs e) {
+        private void GooglePay_DoubleClick(object sender, EventArgs ev) {
             Process.Start(new ProcessStartInfo("https://support.google.com/pay/answer/7643913") { UseShellExecute = true, Verb = "open" });
         }
-        private void GooglePayLink_Click(object sender, EventArgs e) {
+        private void GooglePayLink_Click(object sender, EventArgs ev) {
             Process.Start(new ProcessStartInfo("https://pay.google.com") { UseShellExecute = true, Verb = "open" });
         }
         private Image current_GooglePayLink_Image;
-        private void GooglePayLink_MouseDown(object sender, EventArgs e) {
+        private void GooglePayLink_MouseDown(object sender, EventArgs ev) {
             current_GooglePayLink_Image = GooglePayLink.Image;
             GooglePayLink.Image = prop.x16.linkIcon_gray75_16;
         }
-        private void GooglePayLink_MouseUp(object sender, EventArgs e) {
+        private void GooglePayLink_MouseUp(object sender, EventArgs ev) {
             GooglePayLink.Image = current_GooglePayLink_Image;
         }
-
-        private Timer BitcoinClick_Timer = new Timer { Interval = 1500 };
-        private void Bitcoin_Click(object sender, EventArgs e) {
+        private void Bitcoin_Click(object sender, EventArgs ev) {
             Clipboard.SetText(prop.strings.BTCaddress);
             BitcoinAddress.Text = "Copied... Double click for help.";
-            BitcoinClick_Timer.Enabled = true;
-        }
 
-        private void BitcoinClick_Timer_Tick(object sender, EventArgs e) {
-            BitcoinAddress.Text = prop.strings.BTCaddress;
-            BitcoinClick_Timer.Enabled = false;
+            Timer BitcoinClick_Timer = new() { Interval = 1500 };
+            BitcoinClick_Timer.Tick += (sender, ev) => {
+                BitcoinAddress.Text = prop.strings.BTCaddress;
+                BitcoinClick_Timer.Stop();
+            };
+            BitcoinClick_Timer.Start();
         }
-
-        private void Bitcoin_DoubleClick(object sender, EventArgs e) {
+        private void Bitcoin_DoubleClick(object sender, EventArgs ev) {
             Process.Start(new ProcessStartInfo("https://bitcoin.org/en/how-it-works") { UseShellExecute = true, Verb = "open" });
         }
     }
