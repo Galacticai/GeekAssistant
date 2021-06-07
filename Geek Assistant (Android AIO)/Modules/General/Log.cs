@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 internal static partial class Log {
@@ -14,9 +15,7 @@ internal static partial class Log {
     //        if (h.GetType() == typeof(Home))
     //            Home = (Home)h;
     //}
-    public static void CreateLog() {
-        //RefresHome();
-
+    public static void Create() {
         if (!Directory.Exists(c.GA)) Directory.CreateDirectory(c.GA);
         if (!Directory.Exists($@"{c.GA}\log")) Directory.CreateDirectory($@"{c.GA}\log");
 
@@ -28,21 +27,19 @@ internal static partial class Log {
         swriter.Close();
     }
 
-    public static void LogEvent(string EventName, int lines) {
-        LogAppendText($"// {DateTime.Now:hhh:mm:ss.ff} // {EventName} //", lines);
-    }
+    public static void Event(string EventName, int lines)
+            => AppendText($"// {DateTime.Now:hhh:mm:ss.ff} // {EventName} //", lines);
+
 
     public static void ResetLog() {
-        //RefresHome();
-
-        LogEvent("Log Cleared", 3);
-        CreateLog();
-        Home.log.Text = GAver.Run("log");
-        LogAppendText($"// Previous log saved //  {latestLogName}  //", 1);
-        LogEvent("Continue", 1);
+        Event("Log Cleared", 3);
+        Create();
+        Home.log.Text = GAver.Run(GAver.VerType.log);
+        AppendText($"// Previous log saved //  {latestLogName}  //", 1);
+        Event("Continue", 1);
     }
 
-    public static void LogAppendText(string logText, int lines) {
+    public static void AppendText(string logText, int lines) {
         //RefresHome();
 
         // Dim StringLines As String() = logText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
@@ -61,8 +58,6 @@ internal static partial class Log {
     }
 
     public static void StopNotifyIfLogSeen() {
-        //RefresHome();
-
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
             Home.ShowLog_ErrorBlink_Timer.Stop();
             Home.ShowLog_InfoBlink_Timer.Stop();
@@ -72,9 +67,13 @@ internal static partial class Log {
     }
 
     public static void ClearIf30days() {
-        if (!Directory.Exists(c.GA_logs)) return; // Exit if doesn't exist 
-        foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles("*.txt"))
-            if ((DateTime.Now - file.CreationTime).Days > 30)
+        if (!Directory.Exists(c.GA_logs)) return;
+
+        //   file name:  GA-log_(yyyy.MM.dd)-hh.mm.ss.log
+        //     example:  GA-log_(2018.04.24)-12.00.00.log
+        Regex filenameRegex = new(@"GA-log_\(\d\d\d\d\.\d\d\.\d\d\)-\d\d\.\d\d\.\d\d\.log");
+        foreach (FileInfo file in new DirectoryInfo(c.GA_logs).GetFiles())
+            if (filenameRegex.Match($"{file.Name}.{file.Extension}").Success & (DateTime.Now - file.CreationTime).Days > 30)
                 file.Delete();
     }
 }

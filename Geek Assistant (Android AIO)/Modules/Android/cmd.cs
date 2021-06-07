@@ -21,23 +21,23 @@ internal static partial class cmd {
         var cmdStart = command.Substring(0, command.IndexOf(" ")); // Get the first word of the command 
         if (cmdStart == "adb") {// command starting with "adb" 
             // filter invalid commands using regex for adb
-            var adbRegex = new Regex("adb (devices|shell|push|pull|logcat|install|install-multiple|uninstall|sync|emu|forward|reverse|jdwp|bugreport|backup|backup|restore|disable-verity|enable-verity|keygen|help|version|wait-for-device|start-server|kill-server|get-state|get-serialno|get-devpath|remount|reboot|reboot-bootloader|root|unroot|usb|tcpip|ppp)"); // Matching example: "adb devices"
+            Regex adbRegex = new("adb (devices|shell|push|pull|logcat|install|install-multiple|uninstall|sync|emu|forward|reverse|jdwp|bugreport|backup|backup|restore|disable-verity|enable-verity|keygen|help|version|wait-for-device|start-server|kill-server|get-state|get-serialno|get-devpath|remount|reboot|reboot-bootloader|root|unroot|usb|tcpip|ppp)"); // Matching example: "adb devices"
             if (adbRegex.Match(command).Success) { // If command matching adbRegex
 
                 adbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "adb " 
-                Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
+                Log.AppendText($"⮜⮜ \"{command}\"\n" +
                                   $"{(adb.adbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{adb.adbOutput}")}", 2);
 
             } else invalidCMD(command); return;
         } else if (cmdStart == "fastboot") { // command starting with "fastboot"
 
             // filter invalid commands using regex for fastboot
-            var fbRegex = new Regex("fastboot (devices|update|flashall|flash|flashing lock|flashing unlock|flashing lock_critical|flashing get_unlock_ability|erase|format|getvar|boot)"); // Matching example: "fastboot"
+            Regex fbRegex = new("fastboot (devices|update|flashall|flash|flashing lock|flashing unlock|flashing lock_critical|flashing get_unlock_ability|erase|format|getvar|boot)"); // Matching example: "fastboot"
             if (fbRegex.Match(command).Success) { // If command matching fbRegex
 
                 fbDo_WithTrack(command.Substring(command.IndexOf(" ") + 1)); // run command without "fastboot "
 
-                Log.LogAppendText($"⮜⮜ \"{command}\"\n" +
+                Log.AppendText($"⮜⮜ \"{command}\"\n" +
                                   $"{(fastboot.fbOutput == "" ? "  Process finished with no response." : $"⮞⮞\n{fastboot.fbOutput}")}", 2);
             } else invalidCMD(command); return;
 
@@ -53,14 +53,14 @@ internal static partial class cmd {
             goto Skip_commandContains;
         }
 
-        if (command.Contains("adb"))  
+        if (command.Contains("adb"))
             invalid_text = $"⮜⮜ {command}\n⮞⮞ ⚠  Invalid adb command.\n" + $"Allowed adb arguments:\n" + "devices | shell | push | pull | logcat | install | install-multiple | uninstall | sync | emu | forward | reverse | jdwp | bugreport | backup | backup | restore | disable-verity | enable-verity | keygen | help | version | wait-for-device | start-server | kill-server | get-state | get-serialno | get-devpath | remount | reboot | reboot-bootloader | root | unroot | usb | tcpip | ppp";
-        else if (command.Contains("fastboot"))  
+        else if (command.Contains("fastboot"))
             invalid_text = $"⮜⮜ {command}\n⮞⮞ ⚠  Invalid fastboot command.\n" + $"Allowed fastboot arguments:\n" + "update | flashall | flash | flashing lock | flashing unlock | flashing lock_critical | flashing get_unlock_ability | erase | format | getvar | boot";
-         
+
         Skip_commandContains:;
 
-        Log.LogAppendText(invalid_text, 2);
+        Log.AppendText(invalid_text, 2);
     }
     private static string adbDo_WithTrack(string command) {
         inf.detail.workCode = $"{txt.GA_current_workCode}-adb-cmd";
@@ -85,13 +85,13 @@ internal static partial class cmd {
 // "get-serialno", "get-devpath", "remount", "reboot", "reboot-bootloader",
 // "root", "unroot", "usb", "tcpip", "ppp", ""}
 // If Not adbAllowedCommandsList.Contains(LCase(command)) Then
-// LogAppendText("⮜⮜ ""adb " & command & """" & vbCrLf & "⮞⮞ (X) Invalid argument." & vbCrLf & "Please refer to adb documentation to see the possible commands" & vbCrLf & "Example: ""shell su""", 2)
+// AppendText("⮜⮜ ""adb " & command & """" & vbCrLf & "⮞⮞ (X) Invalid argument." & vbCrLf & "Please refer to adb documentation to see the possible commands" & vbCrLf & "Example: ""shell su""", 2)
 // Exit Sub
 // End If
 // End Try
 // 'Select Case adbManualCMD_TextBox.Text.Substring(0, adbManualCMD_TextBox.Text.IndexOf(" "))
 // '    Case <> "shell", "push", "pull", "logcat", "install"
-// '        LogAppendText("<< "" adb " & adbManualCMD_TextBox.Text & """" & vbCrLf & ">> Application Response:" & vbCrLf & "Invalid argument." & vbCrLf & "Allowed commands: shell, push, pull, logcat, install" & vbCrLf & "Example: ""shell su""", 1)
+// '        AppendText("<< "" adb " & adbManualCMD_TextBox.Text & """" & vbCrLf & ">> Application Response:" & vbCrLf & "Invalid argument." & vbCrLf & "Allowed commands: shell, push, pull, logcat, install" & vbCrLf & "Example: ""shell su""", 1)
 // '        Exit Sub
 // 'End Select
 
@@ -101,19 +101,19 @@ internal static partial class cmd {
 
 // Select Case Main.adbManualCMD_TextBox.Text.Substring(0, Main.adbManualCMD_TextBox.Text.IndexOf(" "))
 // Case <> "shell", "push", "pull", "logcat", "install"
-// LogAppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> Application Response:" & vbCrLf & "Invalid argument." & vbCrLf & "Allowed commands: shell, push, pull, logcat, install" & vbCrLf & "Example: ""shell su""", 1)
+// AppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> Application Response:" & vbCrLf & "Invalid argument." & vbCrLf & "Allowed commands: shell, push, pull, logcat, install" & vbCrLf & "Example: ""shell su""", 1)
 // Exit Sub
 // End Select
 
 // Main.adbCommand_Previous = Main.adbManualCMD_TextBox.Text
 // SetProgressText.Run("Running adb command...", 0)
 // adbDoThread(Main.adbManualCMD_TextBox.Text)
-// 'LogEvent("Manual ADB Command", 2)
+// 'Event("Manual ADB Command", 2)
 // If adb_output = "" Then
-// LogAppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> (i) No output.", 1)
+// AppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> (i) No output.", 1)
 // 'DoError("(i) No ADB Response!" & vbCrLf & "Please check your command and try again.", 1, False)
 // Else
-// LogAppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> ADB Response:" & vbCrLf & adb_output, 1)
+// AppendText("<< ""adb " & Main.adbManualCMD_TextBox.Text & """" & vbCrLf & ">> ADB Response:" & vbCrLf & adb_output, 1)
 // End If
 // Main.adbManualCMD_TextBox.Text = ""
 // Main.ShowLog_InfoBlink_Timer.Start()

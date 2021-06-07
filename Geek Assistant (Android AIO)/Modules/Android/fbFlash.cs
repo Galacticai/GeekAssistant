@@ -31,7 +31,7 @@ internal static partial class fbFlash {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00";
-        Log.LogEvent(inf.workTitle, 2);
+        Log.Event(inf.workTitle, 2);
         GAwait.Run(true);
         try {
             if (string.IsNullOrEmpty(img)) { // check zip string  
@@ -58,7 +58,7 @@ internal static partial class fbFlash {
                 } else {
                     inf.detail.workCode = $"{workCode_init}-uX";
                     // ErrorInfo = (0, "You have cancelled the process.")
-                    Log.LogEvent("Fastboot Flash Cancelled", 1);
+                    Log.Event("Fastboot Flash Cancelled", 1);
                     throw new Exception();
                 }
             } else if (!(c.S.DeviceState == "Fastboot mode")) {
@@ -113,7 +113,7 @@ internal static partial class fbFlash {
                 throw new Exception();
             }
 
-            Log.LogAppendText(fastboot.fbOutput, -1);
+            Log.AppendText(fastboot.fbOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
             inf.detail.workCode = $"{workCode_init}-rX";

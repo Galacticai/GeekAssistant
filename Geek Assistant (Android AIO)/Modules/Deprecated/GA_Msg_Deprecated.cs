@@ -53,7 +53,7 @@ internal static partial class GA_Msg_Deprecated {
                 $"————— #Verbose Logging# End —————";
         } else if (level == 10)
             msg += $"\n > {prop.strings.EnableVerboseLogging}";
-        GA_Log.LogAppendText($"{msgIcon} ❰{inf.detail.workCode}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
+        GA_Log.AppendText($"{msgIcon} ❰{inf.detail.workCode}❱ {msgTitle}\n{txt.CutFirstLine(msg)}", lines);
         if (c.S.PopupMessages) {
             c.S.info_Msg = txt.CutFirstLine(msg);
             c.S.info_MsgTitle = msgTitle;

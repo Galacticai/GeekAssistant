@@ -14,19 +14,19 @@
 '    '    adbWorker.RunWorkerAsync() 'Start Async adb 
 '    'End Sub
 
-'    'Private SetProgressText_text, LogEvent_EventName, LogAppendText_text As String
-'    'Private SetProgressText_level, LogEvent_lines, LogAppendText_lines As Integer
-'    'Private Do_SetProgressText, Do_LogEvent, Do_LogAppendText As Boolean
+'    'Private SetProgressText_text, Event_EventName, AppendText_text As String
+'    'Private SetProgressText_level, Event_lines, AppendText_lines As Integer
+'    'Private Do_SetProgressText, Do_Event, Do_AppendText As Boolean
 '    'Private Sub adbWorker_ProgressChanged(sender As Object, ev As ProgressChangedEventArgs) Handles adbWorker.ProgressChanged
 '    '    Main.ProgressBar.Value = ev.ProgressPercentage
 '    '    'Update 
 '    '    'If Do_SetProgressText Then SetProgressText.Run(SetProgressText_text, SetProgressText_level)
-'    '    'If Do_LogEvent Then LogEvent(LogEvent_EventName, LogEvent_lines)
-'    '    'If Do_LogAppendText Then LogAppendText(LogAppendText_text, LogAppendText_lines)
+'    '    'If Do_Event Then Event(Event_EventName, Event_lines)
+'    '    'If Do_AppendText Then AppendText(AppendText_text, AppendText_lines)
 '    '    ''Reset flags to false
 '    '    'Do_SetProgressText = False
-'    '    'Do_LogEvent = False
-'    '    'Do_LogAppendText = False
+'    '    'Do_Event = False
+'    '    'Do_AppendText = False
 '    'End Sub
 '    Public Sub adbDetect(adbStopOnError As Boolean, adbItems As String()) 'adbDetect_start(sender As Object, e As DoWorkEventArgs)
 
@@ -48,17 +48,17 @@
 '        'Do_SetProgressText = True
 '        'SetProgressText_text = "Starting Detection..."
 '        'SetProgressText_level = 0
-'        'Do_LogEvent = True
-'        'LogEvent_EventName = "Auto Detect Device Information"
-'        'LogEvent_lines = 2
-'        'Do_LogAppendText = True
-'        'LogAppendText_text = " ⚠  You can manually set all of the paremeters if you think the auto system is wrong."
-'        'LogAppendText_lines = 1
+'        'Do_Event = True
+'        'Event_EventName = "Auto Detect Device Information"
+'        'Event_lines = 2
+'        'Do_AppendText = True
+'        'AppendText_text = " ⚠  You can manually set all of the paremeters if you think the auto system is wrong."
+'        'AppendText_lines = 1
 '        'adbWorker.ReportProgress(0)
 '        Main.ProgressBar.Value = 0
 '        GA_SetProgressText.Run("Starting Detection...", -1)
-'        LogEvent("Auto Detect Device Information", 2)
-'        LogAppendText(" >  Please select the real info if you have modded your system info.", 1)
+'        Event("Auto Detect Device Information", 2)
+'        AppendText(" >  Please select the real info if you have modded your system info.", 1)
 
 '        'Start adb if not running
 '        Main.ProgressBar.Value = 5
@@ -93,11 +93,11 @@
 
 '                If S.adbDeviceCount <> 0 Then
 '                    If S.VerboseLogging Then lines = 2 Else lines = 1
-'                    'Do_LogAppendText = True
-'                    'LogAppendText_text = "~ Connected devices: " & S.DevicesCount.ToString
-'                    'LogAppendText_lines = lines
+'                    'Do_AppendText = True
+'                    'AppendText_text = "~ Connected devices: " & S.DevicesCount.ToString
+'                    'AppendText_lines = lines
 '                    'adbWorker.ReportProgress(Main.ProgressBar.Value)
-'                    LogAppendText("~ Connected devices: " & S.adbDeviceCount.ToString, lines)
+'                    AppendText("~ Connected devices: " & S.adbDeviceCount.ToString, lines)
 '                    Main.DeviceCount.Value = S.adbDeviceCount
 '                End If
 '                'Do_SetProgressText = True
@@ -150,7 +150,7 @@
 '                GA_SetProgressText.Run("Detecting device serial number.", -1)
 '                adbDo("get-serialno")
 '                DeviceInfoSave(adb_output, -1, "", 0, "", "", "")
-'                LogAppendText("~ Serial #: " & S.DeviceSerial, 1)
+'                AppendText("~ Serial #: " & S.DeviceSerial, 1)
 '                GA_Wait.Run(False)
 
 '            Catch ex As Exception
@@ -171,7 +171,7 @@
 '                adbDo("shell getprop ro.product.manufacturer")
 '                GA_SetProgressText.Run("Saving aquired information...", -1)
 '                If adb_output.Length = 0 Then ''Error detected. fixing automatically... 
-'                    LogAppendText(" >  Manually set device count problem detected. Restarting with 0 count", 2)
+'                    AppendText(" >  Manually set device count problem detected. Restarting with 0 count", 2)
 '                    Dim tempString As String = Main.log.Text
 '                    Main.DeviceCount.Value = 0
 '                    Main.log.Text = tempString
@@ -180,7 +180,7 @@
 '                FixManufacturerString(adb_output)
 '                DeviceInfoSave("", -1, ManufacturerString_Fixed, 0, "", "", "")
 '                If S.VerboseLogging Then lines = 1 Else lines = 0
-'                LogAppendText("~ Manufacturer: " & ManufacturerString_Fixed, lines)
+'                AppendText("~ Manufacturer: " & ManufacturerString_Fixed, lines)
 '                Main.Manufacturer_ComboBox.Text = ManufacturerString_Fixed
 '                Main.ProgressBar.Value = 50
 '                GA_SetProgressText.Run("Manufacturer information aquired.", -1)
@@ -207,7 +207,7 @@
 
 '                GA_SetProgressText.Run("Saving aquired information...", -1)
 '                DeviceInfoSave("", -1, "", Convert.ToInt32(adb_output), "", "", "")
-'                LogAppendText("~ Android API Level: " & adb_output, lines)
+'                AppendText("~ Android API Level: " & adb_output, lines)
 '                'adbWorker.ReportProgress(60)
 '                Main.ProgressBar.Value = 60
 
@@ -216,7 +216,7 @@
 '                'adbWorker.ReportProgress(80)
 '                Main.ProgressBar.Value = 80
 
-'                LogAppendText("~ Android Version: " & AndroidVersion, lines)
+'                AppendText("~ Android Version: " & AndroidVersion, lines)
 '                DetermineVersionFromSDK(Convert.ToInt32(adb_output), False)
 '                'adbWorker.ReportProgress(100)
 '                Main.ProgressBar.Value = 100

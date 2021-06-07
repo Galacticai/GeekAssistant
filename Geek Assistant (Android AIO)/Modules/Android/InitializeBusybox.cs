@@ -28,23 +28,23 @@ internal static partial class InitializeBusybox {
 
 
         adb.Run("shell mkdir /data/busybox");
-        Log.LogAppendText($"<< shell mkdir /data/busybox\n>>\n{adb.adbOutput}", 1);
+        Log.AppendText($"<< shell mkdir /data/busybox\n>>\n{adb.adbOutput}", 1);
         if (adb.adbOutput.ToLower().Contains("denied")) {
             adb.Run("shell su -c 'mkdir /data/busybox'");
-            Log.LogAppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adb.adbOutput}", 1);
+            Log.AppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adb.adbOutput}", 1);
         } else if (adb.adbOutput.ToLower().Contains("file exists")) {
             adb.Run("shell su -c 'rm -rf /data/busybox'");
-            Log.LogAppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adb.adbOutput}", 1);
+            Log.AppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adb.adbOutput}", 1);
         }
 
         adb.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
-        Log.LogAppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adb.adbOutput}", 1);
+        Log.AppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adb.adbOutput}", 1);
         adb.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
-        Log.LogAppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adb.adbOutput}", 1);
+        Log.AppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adb.adbOutput}", 1);
         adb.Run("shell su -c 'chmod 664 /data/busybox'");
-        Log.LogAppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adb.adbOutput}", 1);
+        Log.AppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adb.adbOutput}", 1);
         adb.Run("shell su -c './data/busybox --install'");
-        Log.LogAppendText($"<< shell su -c './data/busybox --install'\n>>\n{adb.adbOutput}", 1);
+        Log.AppendText($"<< shell su -c './data/busybox --install'\n>>\n{adb.adbOutput}", 1);
         if (dev.BusyBox.Available) MessageBox.Show("busybox available");
         else MessageBox.Show("busybox not installed");
 

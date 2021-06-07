@@ -36,7 +36,7 @@ internal static partial class SetProgressText {
 
         Home.ProgressBarLabel.Text = text;
         if (c.S.VerboseLogging & ErrorLevel == -1) {
-            Log.LogAppendText(Home.ProgressBarLabel.Text, 1);
+            Log.AppendText(Home.ProgressBarLabel.Text, 1);
         }
     }
 }

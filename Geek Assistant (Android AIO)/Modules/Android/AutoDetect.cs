@@ -27,7 +27,7 @@ internal class AutoDetect {
         if (!RunningInBetween) inf.workTitle = workTitle;
         inf.detail.workCode =
             $"{(RunningInBetween ? $"{inf.detail.workCode}-" : "")}" + $"{workCode_init}-00"; // (RunningInBetween? {workCode_init} -) Auto Detect - Begin
-        if (!Silent) Log.LogEvent(workTitle, 2);
+        if (!Silent) Log.Event(workTitle, 2);
 
         try {
             home.bar.Value = 0;
@@ -132,7 +132,7 @@ internal class AutoDetect {
                     home.Manufacturer_ComboBox.Text = c.S.DeviceManufacturer;
 
                     inf.detail = ($"{workCode_init}-D-mc", inf.lvls.Error, inf.workTitle, "Failed to check your device model or codename.", null);// Auto Detect - Device - model codename
-                    if (!Silent) Log.LogAppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
+                    if (!Silent) Log.AppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1);
 
                     home.bar.Value = 17;
 
@@ -142,7 +142,7 @@ internal class AutoDetect {
 
                     c.S.DeviceSerial = dev.SerialNumber;
                     c.S.Save();
-                    if (!Silent) Log.LogAppendText($" | Serial: {c.S.DeviceSerial}", 1);
+                    if (!Silent) Log.AppendText($" | Serial: {c.S.DeviceSerial}", 1);
 
                     home.bar.Value = 20;
 
@@ -153,7 +153,7 @@ internal class AutoDetect {
                     c.S.DeviceRooted = dev.CanSU();
                     c.S.Save();
                     home.Rooted_Checkbox.Checked = c.S.DeviceRooted;
-                    if (!Silent) Log.LogAppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
+                    if (!Silent) Log.AppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
 
                     home.bar.Value = 23;
 
@@ -162,7 +162,7 @@ internal class AutoDetect {
 
                     c.S.DeviceBusyBoxReady = dev.BusyBox.Available;
                     c.S.Save();
-                    if (!Silent) Log.LogAppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
+                    if (!Silent) Log.AppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
 
                     home.bar.Value = 25;
 
@@ -175,7 +175,7 @@ internal class AutoDetect {
                     c.S.Save();
                     home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
                     home.bar.Value = 27;
-                    if (!Silent) Log.LogAppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                    if (!Silent) Log.AppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
 
                     home.bar.Value = 30;
 
@@ -190,7 +190,7 @@ internal class AutoDetect {
                     if (!Silent) SetProgressText.Run("Converting API level to Android name...", -1);
 
                     home.bar.Value = 33;
-                    if (!Silent) Log.LogAppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
+                    if (!Silent) Log.AppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
 
                     home.bar.Value = 35;
                     inf.detail = ($"{workCode_init}-D-b", inf.lvls.Error, inf.workTitle, "Failed to check your device battery level.", null); // Auto Detect - Device - battery
@@ -208,7 +208,7 @@ internal class AutoDetect {
                     }
                     c.S.Save();
                     home.bar.Value = 38;
-                    if (!Silent) Log.LogAppendText($" | Battery: {batteryString}", 1);
+                    if (!Silent) Log.AppendText($" | Battery: {batteryString}", 1);
 
                     home.bar.Value = 40;
                     if (!Silent) SetProgressText.Run(DeviceState_String, -1); // This is after retrieving info to stay written in Progress Text

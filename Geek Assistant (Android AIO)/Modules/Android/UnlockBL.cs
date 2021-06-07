@@ -23,7 +23,7 @@ internal static partial class UnlockBL {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00"; // Unlock Bootloader - Start
-        Log.LogEvent(inf.workTitle, 2);
+        Log.Event(inf.workTitle, 2);
         GAwait.Run(true);
         try {
             home.bar.Value = 0;
@@ -75,7 +75,7 @@ internal static partial class UnlockBL {
                     Cancelled = true;
                     inf.detail.workCode = $"{workCode_init}-uX"; // Unlock Bootloader - Unlock X (BLU cancelled)
                                                                  // ErrorInfo = (0, "You have cancelled the process.")
-                    Log.LogEvent("Unlock Bootloader Cancelled", 1);
+                    Log.Event("Unlock Bootloader Cancelled", 1);
                     throw new Exception();
                 }
             } else if (!(c.S.DeviceState == "Fastboot mode")) {
@@ -134,7 +134,7 @@ internal static partial class UnlockBL {
             }
 
             home.bar.Value = 80;
-            Log.LogAppendText(fastboot.fbOutput, -1);
+            Log.AppendText(fastboot.fbOutput, -1);
             SetProgressText.Run("Process finished. Rebooting...", -1);
             home.bar.Value = 100;
             fastboot.Run("reboot");

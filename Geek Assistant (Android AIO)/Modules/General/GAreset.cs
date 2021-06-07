@@ -6,15 +6,15 @@ using System.Windows.Forms;
 internal static partial class GAreset {
     public static void Run(bool Data, bool logs) {
         inf.detail.workCode = "GAr-00";
-        Log.LogEvent("Reset Geek Assistant", 2);
+        Log.Event("Reset Geek Assistant", 2);
         if (!inf.Run(inf.lvls.Question, "Reset Geek Assistant",
                        $"Are you sure you want to {Settings.willClear}?",
                      ("Yes", "Cancel"))) {
-            Log.LogAppendText("Reset Geek Assistant Cancelled.", 1);
+            Log.AppendText("Reset Geek Assistant Cancelled.", 1);
             return;
         }
 
-        Log.LogAppendText($"Resetting Geek Assistant... \n({Settings.willClear})", 1);
+        Log.AppendText($"Resetting Geek Assistant... \n({Settings.willClear})", 1);
         try {
             string notify = "Process Complete. ";
             if (Data) {
@@ -37,7 +37,7 @@ internal static partial class GAreset {
                 }
             }
 
-            Log.LogAppendText(notify, 1);
+            Log.AppendText(notify, 1);
             if (Data) {
                 c.S.VerboseLoggingPrompt = false; // disable to avoid asking on exit
                 if (inf.Run(inf.lvls.Question, "Reset Geek Assistant", notify,

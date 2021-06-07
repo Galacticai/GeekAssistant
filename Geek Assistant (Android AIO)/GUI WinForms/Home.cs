@@ -145,7 +145,7 @@ namespace GeekAssistant.Forms {
 
             bar.Invoke(new Action(() => {
                 AutoDetect.Run(true);
-                Log.LogEvent(DeviceState_Label.Text, 1);
+                Log.Event(DeviceState_Label.Text, 1);
             }));
         }
 
@@ -171,9 +171,9 @@ namespace GeekAssistant.Forms {
             Width = 690; //Set width to avoid using the width selected while developing
 
 
-            Text = GAver.Run("MainTitle");
-            GA_About_Label.Text = GAver.Run("Main");
-            log.Text = GAver.Run("log");
+            Text = GAver.Run(GAver.VerType.HomeTitle);
+            GA_About_Label.Text = GAver.Run(GAver.VerType.Home);
+            log.Text = GAver.Run(GAver.VerType.log);
             GAwait.Run(true);
 
             Timer HomeLoad_Delay_Timer = new() { Interval = 200, Enabled = true };
@@ -193,7 +193,7 @@ namespace GeekAssistant.Forms {
 
                 AutoDetect.Run(true);
                 if (DeviceState_Label.Text != "Disconnected")
-                    Log.LogEvent(DeviceState_Label.Text, 1);
+                    Log.Event(DeviceState_Label.Text, 1);
 
                 DoNeutral();
                 AutoDetectDeviceInfo_Button.Select();
@@ -202,7 +202,7 @@ namespace GeekAssistant.Forms {
                 if (c.V.Revision == 3) debuggingBox.Visible = true;
                 //###################################################
 
-                Log.LogEvent("Start", 1);
+                Log.Event("Start", 1);
 
                 finishedLoading = true;
                 Enabled = true; //Enable when done with everything
@@ -322,7 +322,7 @@ namespace GeekAssistant.Forms {
 
         private void FlashZip_ChooseFile_Button_Click(object sender, EventArgs e) {
             if (FlashZip_OpenFileDialog.ShowDialog() == DialogResult.OK) {
-                Log.LogAppendText($"// Flash ZIP //\nSelected file: {FlashZip_OpenFileDialog.FileName}", 2);
+                Log.AppendText($"// Flash ZIP //\nSelected file: {FlashZip_OpenFileDialog.FileName}", 2);
                 //FlashZip_ChooseFile_TextBox.Text = FlashZip_OpenFileDialog.FileName;
             }
         }
@@ -402,10 +402,10 @@ namespace GeekAssistant.Forms {
                 inf.Run();
                 return;
             }
-            Log.LogEvent("Hot Reboot", 2);
+            Log.Event("Hot Reboot", 2);
             SetProgressText.Run("Attempting hot reboot...", -1);
             var hr = GA_adb.HotReboot("HR");
-            if (!string.IsNullOrEmpty(hr)) Log.LogAppendText(hr, 1);
+            if (!string.IsNullOrEmpty(hr)) Log.AppendText(hr, 1);
         }
 
         private void InstallBusybox_Button_Click(object sender, EventArgs e) {
@@ -428,40 +428,40 @@ namespace GeekAssistant.Forms {
         #region #Debug#
         private void MetroButton1_Click(object sender, EventArgs e) {//MetroButton1.Click
             madb.madbBridgeStart(true);
-            Log.LogAppendText("ran madbCreateBridge(true)", 1);
+            Log.AppendText("ran madbCreateBridge(true)", 1);
         }
         private void MetroButton11_Click(object sender, EventArgs e) {//MetroButton11.Click
             madb.madbBridgeStart(false);
-            Log.LogAppendText("ran madbCreateBridge(false)", 1);
+            Log.AppendText("ran madbCreateBridge(false)", 1);
         }
         private void MetroButton2_Click(object sender, EventArgs e) {//MetroButton2.Click
             var i = madb.GetDeviceCount();
-            Log.LogAppendText("ran madb_GetDeviceCount()", 1);
-            Log.LogAppendText($"Count: {i}", 1);
+            Log.AppendText("ran madb_GetDeviceCount()", 1);
+            Log.AppendText($"Count: {i}", 1);
         }
         private void MetroButton6_Click(object sender, EventArgs e) {//MetroButton6.Click
             madb.madbBridgeStart(true);
-            Log.LogAppendText("ran madbCreateBridge_Return(true).Start()", 1);
+            Log.AppendText("ran madbCreateBridge_Return(true).Start()", 1);
         }
         private void MetroButton7_Click(object sender, EventArgs e) {//MetroButton7.Click
             madb.madbBridgeStart(false);
-            Log.LogAppendText("ran madbBridgeStart(false)", 1);
+            Log.AppendText("ran madbBridgeStart(false)", 1);
         }
         private void MetroButton8_Click(object sender, EventArgs e) {//MetroButton8.Click
             madb.madbStop();
-            Log.LogAppendText("ran madbStop()", 1);
+            Log.AppendText("ran madbStop()", 1);
         }
         private void MetroButton3_Click(object sender, EventArgs e) {//MetroButton3.Click
             var state = madb.GetDeviceState();
             var state_i = Convert.ToInt32(state);
             var state_s = state.ToString();
-            Log.LogAppendText("ran madb_GetDeviceState()", 1);
-            Log.LogAppendText("ran madb_Convert_DeviceState_IntToString()", 1);
-            Log.LogAppendText($"State: {state_i} - {state_s}", 1);
+            Log.AppendText("ran madb_GetDeviceState()", 1);
+            Log.AppendText("ran madb_Convert_DeviceState_IntToString()", 1);
+            Log.AppendText($"State: {state_i} - {state_s}", 1);
         }
 
         private void MetroButton4_Click(object sender, EventArgs e) {
-            Log.LogAppendText("## Test", 1);
+            Log.AppendText("## Test", 1);
             //WebBrowser1.DocumentText &= "test" & "<br/>" & "> text"
         }
 
@@ -604,7 +604,7 @@ namespace GeekAssistant.Forms {
             CopyLogToClipboard.Image = prop.x24.Copy_B_24;
         }
         private void CopyLogToClipboard_Click(object sender, EventArgs e) {
-            Log.LogEvent("Copied log to clipboard.", 2);
+            Log.Event("Copied log to clipboard.", 2);
             Clipboard.SetText(log.Text);
         }
 
@@ -658,7 +658,7 @@ namespace GeekAssistant.Forms {
                 cmd_Previous = manualCMD_TextBox.Text;
                 GA_SetProgressText.Run("Running adb command...", -1);
                 //adbDo(manualCMD_TextBox.Text)
-                ////GA_Log.LogEvent("Manual ADB Command", 2)
+                ////GA_Log.Event("Manual ADB Command", 2)
                 manualCMD_TextBox.Text = "";
                 ShowLog_InfoBlink_Timer.Start();
 

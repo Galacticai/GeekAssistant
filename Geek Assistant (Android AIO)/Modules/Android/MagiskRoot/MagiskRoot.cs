@@ -20,7 +20,7 @@ internal class MagiskRoot : MagiskRootCompanion {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00"; // Unlock Bootloader - Start
-        Log.LogEvent(inf.workTitle, 2);
+        Log.Event(inf.workTitle, 2);
         GAwait.Run(true);
 
         home.bar.Value = 0;

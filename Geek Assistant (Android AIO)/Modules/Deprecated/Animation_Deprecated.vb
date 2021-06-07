@@ -46,7 +46,7 @@
 '        'End While
 
 '        '#DEBUG#
-'        LogAppendText("#DEBUG# : " & time.ToString & " " & posElement.ToString, 1)
+'        AppendText("#DEBUG# : " & time.ToString & " " & posElement.ToString, 1)
 
 '        Dim lastFrameTime As Integer
 '        Dim FPSTarget As Integer

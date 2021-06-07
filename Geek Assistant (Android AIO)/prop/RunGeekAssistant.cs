@@ -8,7 +8,12 @@ using System.Linq;
 
 namespace GeekAssistant {
     static class RunGeekAssistant {
-        public enum GA_ExitCode { Neutral = -1, Warn = 0, Error = 1, FatalError = 10 }
+        public enum GA_ExitCode {
+            Neutral = -1,
+            Warn = 0,
+            Error = 1,
+            FatalError = 10
+        }
 
         public static void All_FormClosed(object sender, EventArgs e) {
             Environment.ExitCode = (int)GA_ExitCode.Neutral;
@@ -22,8 +27,8 @@ namespace GeekAssistant {
                 if (HideAllForms.HiddenForms != null) return; //Cancel if hiding all forms
 
                 try { // try to prevent crash when closed before starting Home
-                    Log.LogEvent("End", 3);
-                    Log.CreateLog();
+                    Log.Event("End", 3);
+                    Log.Create();
                 } catch { Environment.ExitCode = (int)GA_ExitCode.Warn; }
 
                 c.S.Save();
@@ -41,7 +46,8 @@ namespace GeekAssistant {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new ToU().Show();
+            ToU ToU = new();
+            ToU.Show();
             Application.Run();
         }
     }
