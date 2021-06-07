@@ -8,22 +8,26 @@ using System.Linq;
 
 namespace GeekAssistant {
     static class RunGeekAssistant {
+        public enum GA_ExitCode { Neutral = -1, Warn = 0, Error = 1, FatalError = 10 }
 
         public static void All_FormClosed(object sender, EventArgs e) {
-            //>>>>> IF YOU STOP AT THIS then it worked
+            Environment.ExitCode = (int)GA_ExitCode.Neutral;
+
             if (Application.OpenForms.Count == 0) {
                 if (Application.OpenForms.OfType<Wait>().Any()) { //Cancel if a process by GA is currently running
                     System.Media.SystemSounds.Beep.Play();
                     return;
                 }
-                if (HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
-                try {
+                if (HideAllForms.HiddenForms != null) return; //Cancel if hiding all forms
+                try { // try to prevent crash when closed before starting Home
                     Log.LogEvent("End", 3);
                     Log.CreateLog();
-                } catch { }
+                } catch {
+                    Environment.ExitCode = (int)GA_ExitCode.Warn;
+                }
                 c.S.Save();
-                Environment.Exit(Environment.ExitCode);   //Quit all threads while closing
-                Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
+                Environment.Exit(Environment.ExitCode); // Quit all threads  
+                Process.GetCurrentProcess().Kill(); // Double hit...
             }
         }
 
