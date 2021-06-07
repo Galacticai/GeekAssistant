@@ -11,7 +11,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void AssignEvents() {
-            FormClosed += new(AppMode_Closed);
+            FormClosing += new(RunGeekAssistant.All_FormClosed);
             GotFocus += new(AppMode_GotFocus);
             GotFocus += new(AppMode_GotFocus);
             LostFocus += new(AppMode_GotFocus);
