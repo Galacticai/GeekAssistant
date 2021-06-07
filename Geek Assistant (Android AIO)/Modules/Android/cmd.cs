@@ -53,12 +53,11 @@ internal static partial class cmd {
             goto Skip_commandContains;
         }
 
-        if (command.Contains("adb")) {
+        if (command.Contains("adb"))  
             invalid_text = $"⮜⮜ {command}\n⮞⮞ ⚠  Invalid adb command.\n" + $"Allowed adb arguments:\n" + "devices | shell | push | pull | logcat | install | install-multiple | uninstall | sync | emu | forward | reverse | jdwp | bugreport | backup | backup | restore | disable-verity | enable-verity | keygen | help | version | wait-for-device | start-server | kill-server | get-state | get-serialno | get-devpath | remount | reboot | reboot-bootloader | root | unroot | usb | tcpip | ppp";
-        } else if (command.Contains("fastboot")) {
+        else if (command.Contains("fastboot"))  
             invalid_text = $"⮜⮜ {command}\n⮞⮞ ⚠  Invalid fastboot command.\n" + $"Allowed fastboot arguments:\n" + "update | flashall | flash | flashing lock | flashing unlock | flashing lock_critical | flashing get_unlock_ability | erase | format | getvar | boot";
-        }
-
+         
         Skip_commandContains:;
 
         Log.LogAppendText(invalid_text, 2);

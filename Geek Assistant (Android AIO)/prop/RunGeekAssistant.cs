@@ -1,8 +1,8 @@
-﻿using GeekAssistant.Forms;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.Runtime.ExceptionServices;
+using GeekAssistant.Forms;
 
 namespace GeekAssistant {
     static class RunGeekAssistant {
@@ -32,17 +32,15 @@ namespace GeekAssistant {
         //}
 
         [STAThread]
-        [System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptions]
+        [HandleProcessCorruptedStateExceptions]
         private static void Main() {
-            //Single Instance 
-            if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1) {
+            //Single Instance  
+            if (!SingleInstance.Start($"{Application.ProductName}-{Application.ProductVersion}-{Application.CompanyName}"))
                 return;
-            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ToU ToU = new ToU();
-            ToU.Show();
+            new ToU().Show();
             Application.Run();
 
             //AssignEvents();
@@ -51,12 +49,10 @@ namespace GeekAssistant {
     public static class SingleInstance {
         static Mutex mutex;
         public static bool Start(string applicationIdentifier) {
-            bool isSingleInstance = false;
-            mutex = new Mutex(true, applicationIdentifier, out isSingleInstance);
+            mutex = new(true, applicationIdentifier, out bool isSingleInstance);
             return isSingleInstance;
         }
-        public static void Stop() {
-            mutex.ReleaseMutex();
-        }
+        public static void Stop() => mutex.ReleaseMutex();
+
     }
 }
