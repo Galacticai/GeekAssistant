@@ -37,7 +37,7 @@ namespace GeekAssistant.Forms {
 
         private void Donate_FormClosing(object sender, EventArgs ev) {
             RunGeekAssistant.All_FormClosed(sender, ev);
-            c.Home().BringToFront();
+            c.Home.BringToFront();
         }
         private void Donate_Load(object sender, EventArgs ev) {
             AssignEvents();

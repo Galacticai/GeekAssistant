@@ -6,11 +6,11 @@ using System.Windows.Forms;
 internal static partial class CenterToHomeBounds {
     public static void Run(Form f) {
         int[] xy;
-        Home h = null;
+        Home h = c.Home;
 
-        foreach (Form home in Application.OpenForms)
-            if (home.GetType() == typeof(Home))
-                h = (Home)home;
+        //foreach (Form home in Application.OpenForms)
+        //    if (home.GetType() == typeof(Home))
+        //        h = (Home)home;
 
         //   _______________________                   
         //  |      |         |      |  <= Home

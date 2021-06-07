@@ -15,26 +15,21 @@ internal static partial class HideAllForms {
         currentForm = Form.ActiveForm; // Set before hiding to save
         if (Hide) {
             HiddenForms = Application.OpenForms;
-            foreach (Form formname in Application.OpenForms) // Save all forms to HiddenFormsList then hide
-{
+            foreach (Form formname in Application.OpenForms) // Save all forms to HiddenFormsList then hide 
                 formname.Hide();
-            }
+
         } else {
             if (HiddenForms.Count == 0) { // failsafe
                 inf.detail.workCode += "-HF0";
                 inf.Run(inf.lvls.FatalError, "Something went wrong.", "We failed to revive hidden windows.");
                 if (inf.Run(inf.lvls.Question, "Refresh Geek Assistant?",
                               "Refreshing will relaunch Geek Assistant to get back to working order. This will terminate any ongoing progress!",
-                            ("Refresh", "No"))) {
+                            ("Refresh", "No")))
                     Application.Restart();
-                }
-
                 return;
             }
-            foreach (Form formname in HiddenForms) // Show all forms saved in list
-{
+            foreach (Form formname in HiddenForms)  // Show all forms saved in list
                 formname.Show();
-            }
 
             HiddenForms = null; //reset
             currentForm.BringToFront();

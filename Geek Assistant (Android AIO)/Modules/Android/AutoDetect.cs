@@ -19,7 +19,7 @@ internal class AutoDetect {
     private static bool RunningInBetween = false;
     public static async void Run(bool Silent = false) {
         //Refresh current home instance
-        using var home = (Home)Application.OpenForms[nameof(Home)];
+        using var home = c.Home;
 
         RunningInBetween = c.Working; //true if auto detecting while running another process
         c.Working = true;

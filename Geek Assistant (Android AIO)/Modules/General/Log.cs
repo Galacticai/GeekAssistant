@@ -8,14 +8,14 @@ internal static partial class Log {
     private static string latestLogName;
     private static string latestLogPath;
 
-    private static Home Home = null;
-    private static void RefresHome() {
-        foreach (Form h in Application.OpenForms)
-            if (h.GetType() == typeof(Home))
-                Home = (Home)h;
-    }
+    private static Home Home => c.Home;
+    //private static void RefresHome() {
+    //    foreach (Form h in Application.OpenForms)
+    //        if (h.GetType() == typeof(Home))
+    //            Home = (Home)h;
+    //}
     public static void CreateLog() {
-        RefresHome();
+        //RefresHome();
 
         if (!Directory.Exists(c.GA)) Directory.CreateDirectory(c.GA);
         if (!Directory.Exists($@"{c.GA}\log")) Directory.CreateDirectory($@"{c.GA}\log");
@@ -33,7 +33,7 @@ internal static partial class Log {
     }
 
     public static void ResetLog() {
-        RefresHome();
+        //RefresHome();
 
         LogEvent("Log Cleared", 3);
         CreateLog();
@@ -43,7 +43,7 @@ internal static partial class Log {
     }
 
     public static void LogAppendText(string logText, int lines) {
-        RefresHome();
+        //RefresHome();
 
         // Dim StringLines As String() = logText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
 
@@ -61,7 +61,7 @@ internal static partial class Log {
     }
 
     public static void StopNotifyIfLogSeen() {
-        RefresHome();
+        //RefresHome();
 
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
             Home.ShowLog_ErrorBlink_Timer.Stop();

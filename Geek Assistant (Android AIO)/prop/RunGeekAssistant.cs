@@ -14,7 +14,7 @@ namespace GeekAssistant {
             Environment.ExitCode = (int)GA_ExitCode.Neutral;
 
             if (Application.OpenForms.Count == 0) {
-                if (Application.OpenForms.OfType<Wait>().Any()) { //Cancel if a process by GA is currently running
+                if (c.FormisRunning<Wait>()) { //Cancel if a process by GA is currently running
                     System.Media.SystemSounds.Beep.Play();
                     return;
                 }

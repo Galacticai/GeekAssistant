@@ -5,9 +5,7 @@ using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
     public partial class Wait : Form {
-        public Wait() {
-            InitializeComponent();
-        }
+        public Wait() => InitializeComponent();
 
         private void AssignEvents() {
             FormClosing += new(Wait_FormClosing);
@@ -16,12 +14,12 @@ namespace GeekAssistant.Forms {
         }
 
         private void Wait_MainEnabled(bool b) {
-            Home Home = null;
-            foreach (Form home in Application.OpenForms) {
-                if (home.GetType() == typeof(Home)) {
-                    Home = (Home)home;
-                }
-            }
+            Home Home = c.Home;
+            //foreach (Form home in Application.OpenForms) {
+            //    if (home.GetType() == typeof(Home)) {
+            //        Home = (Home)home;
+            //    }
+            //}
 
             if (Home == null) {
                 inf.Run(($"{inf.detail.workCode}-W-HX", /* (code) - Wait - Home null*/
@@ -54,7 +52,7 @@ namespace GeekAssistant.Forms {
         private void Wait_Load(object sender, EventArgs e) {
             AssignEvents();
             SetTheme.Run(this);
-            Home h = (Home)Application.OpenForms["Home"];
+            Home h = c.Home;
             //24, 97    
             var titleHeight = h.RectangleToScreen(h.ClientRectangle).Top - h.Top;
             SetBounds(h.Location.X + 24, h.Location.Y + 97 + titleHeight, Width, Height);

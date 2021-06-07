@@ -9,12 +9,12 @@ internal class MagiskRoot : MagiskRootCompanion {
     public static async void Run() {
         bool Cancelled = false;
         if (c.Working) {
-            if (!Application.OpenForms.OfType<Info>().Any())
+            if (!c.FormisRunning<Info>())
                 inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess, null);
             return;
         }
         //Refresh current home instance
-        using var home = (Home)Application.OpenForms[nameof(Home)];
+        using var home = c.Home;
 
         home.bar.Value = 0;
         inf.workTitle = workTitle;

@@ -1,4 +1,5 @@
 ﻿
+using GeekAssistant.Controls.Material;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
@@ -27,9 +28,9 @@ namespace GeekAssistant.Forms {
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.start_expert = new System.Windows.Forms.Button();
-            this.start_default = new System.Windows.Forms.Button();
-            this.start_newbie = new System.Windows.Forms.Button();
+            this.start_expert = new GeekAssistant.Controls.Material.FlatButton();
+            this.start_default = new GeekAssistant.Controls.Material.FlatButton();
+            this.start_newbie = new GeekAssistant.Controls.Material.FlatButton();
             this.startup_info = new System.Windows.Forms.Label();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.Unavalable_Tooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -44,51 +45,69 @@ namespace GeekAssistant.Forms {
             // 
             this.start_expert.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.start_expert.BackColor = System.Drawing.Color.Transparent;
+            this.start_expert.Depth = 0;
             this.start_expert.FlatAppearance.BorderSize = 0;
             this.start_expert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.start_expert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.OrangeRed;
             this.start_expert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_expert.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.start_expert.ForeColor = System.Drawing.Color.Firebrick;
+            this.start_expert.Icon = null;
             this.start_expert.Location = new System.Drawing.Point(292, 132);
+            this.start_expert.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.start_expert.MouseState = MaterialSkin.MouseState.HOVER;
             this.start_expert.Name = "start_expert";
+            this.start_expert.Primary = false;
             this.start_expert.Size = new System.Drawing.Size(132, 35);
             this.start_expert.TabIndex = 8;
-            this.start_expert.Text = "&Expert";
+            this.start_expert.Text = "Expert";
+            this.start_expert.TextAlignment = System.Drawing.StringAlignment.Near;
             this.start_expert.UseVisualStyleBackColor = false;
             // 
             // start_default
             // 
             this.start_default.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.start_default.BackColor = System.Drawing.Color.Transparent;
+            this.start_default.Depth = 0;
             this.start_default.FlatAppearance.BorderSize = 0;
             this.start_default.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.start_default.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.start_default.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_default.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.start_default.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.start_default.Icon = null;
             this.start_default.Location = new System.Drawing.Point(159, 132);
+            this.start_default.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.start_default.MouseState = MaterialSkin.MouseState.HOVER;
             this.start_default.Name = "start_default";
+            this.start_default.Primary = false;
             this.start_default.Size = new System.Drawing.Size(133, 35);
             this.start_default.TabIndex = 7;
-            this.start_default.Text = "&Default";
+            this.start_default.Text = "Default";
+            this.start_default.TextAlignment = System.Drawing.StringAlignment.Near;
             this.start_default.UseVisualStyleBackColor = false;
             // 
             // start_newbie
             // 
             this.start_newbie.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.start_newbie.BackColor = System.Drawing.Color.Transparent;
+            this.start_newbie.Depth = 0;
             this.start_newbie.FlatAppearance.BorderSize = 0;
             this.start_newbie.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.start_newbie.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SeaGreen;
             this.start_newbie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_newbie.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.start_newbie.ForeColor = System.Drawing.Color.Green;
+            this.start_newbie.Icon = null;
             this.start_newbie.Location = new System.Drawing.Point(27, 132);
+            this.start_newbie.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.start_newbie.MouseState = MaterialSkin.MouseState.HOVER;
             this.start_newbie.Name = "start_newbie";
+            this.start_newbie.Primary = false;
             this.start_newbie.Size = new System.Drawing.Size(132, 35);
             this.start_newbie.TabIndex = 6;
-            this.start_newbie.Text = "&Newbie";
+            this.start_newbie.Text = "Newbie";
+            this.start_newbie.TextAlignment = System.Drawing.StringAlignment.Near;
             this.Unavalable_Tooltip.SetToolTip(this.start_newbie, "Still in development...");
             this.start_newbie.UseVisualStyleBackColor = false;
             // 
@@ -161,7 +180,7 @@ namespace GeekAssistant.Forms {
             this.startup_dontShow.Text = "&Remember && Don\'t Ask Again";
             this.startup_dontShow.UseVisualStyleBackColor = false;
             // 
-            // AppMode()
+            // AppMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,7 +200,7 @@ namespace GeekAssistant.Forms {
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "AppMode()";
+            this.Name = "AppMode";
             this.Padding = new System.Windows.Forms.Padding(23);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application Mode — Geek Assistant";
@@ -192,9 +211,9 @@ namespace GeekAssistant.Forms {
             this.ResumeLayout(false);
 
         }
-        public Button start_expert;
-        public Button start_default;
-        public Button start_newbie;
+        public FlatButton start_expert;
+        public FlatButton start_default;
+        public FlatButton start_newbie;
         public Label startup_info;
         public PictureBox PictureBox1;
         public ToolTip Unavalable_Tooltip;

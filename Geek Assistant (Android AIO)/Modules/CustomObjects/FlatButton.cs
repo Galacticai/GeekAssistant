@@ -37,7 +37,7 @@ namespace GeekAssistant.Controls.Material {
         }
 
         public override Color BackColor {
-            get => base.BackColor;
+            get => Color.Transparent;//base.BackColor;
             set {
                 base.BackColor = value;
                 Invalidate();

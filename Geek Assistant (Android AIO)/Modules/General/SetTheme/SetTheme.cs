@@ -11,14 +11,14 @@ internal partial class SetTheme : SetThemeCompanion {
 
     private static bool dark => c.S.DarkTheme;
 
-    private static Wait pw = null;
-    private static Preparing p = null;
-    private static AppMode am = null;
-    private static Donate d = null;
-    private static Info i = null;
-    private static Home h = null;
-    private static Settings s = null;
-    private static ToU t = null;
+    private static Wait pw => c.Wait;
+    private static Preparing p => c.Preparing;
+    private static AppMode am => c.AppMode;
+    private static Donate d => c.Donate;
+    private static Info i => c.Info;
+    private static Home h => c.Home;
+    private static Settings s => c.Settings;
+    private static ToU t => c.ToU;
     public static void Run(Form f, bool initiating = false) {
         Running = true;
         initiatingbool = initiating;
@@ -28,44 +28,44 @@ internal partial class SetTheme : SetThemeCompanion {
 
         switch (f) {
             case Wait:
-                pw = (Wait)f;
+                //pw = (Wait)f;
                 Wait_Theme();
                 break;
 
             case Preparing:
-                p = (Preparing)f;
+                //p = (Preparing)f;
                 p.Preparing_Label.ForeColor = colors.UI.fg();
                 p.BackColor = colors.UI.bg();
                 break;
 
             case AppMode:
-                am = (AppMode)f;
+                //am = (AppMode)f;
                 //Control am = AppMode;
                 SetControlTheme(am);
                 am.startup_dontShow.ForeColor = colors.UI.fg();
                 break;
 
             case Donate:
-                d = (Donate)f;
+                //d = (Donate)f;
                 Donate_Theme();
                 break;
 
             case Info:
-                i = (Info)f;
+                //i = (Info)f;
                 Info_Theme();
                 break;
             case Home:
-                h = (Home)f;
+                //h = (Home)f;
                 Home_Theme();
                 break;
 
             case Settings:
-                s = (Settings)f;
+                //s = (Settings)f;
                 Settings_Theme();
                 break;
 
             case ToU:
-                t = (ToU)f;
+                //t = (ToU)f;
                 ToU_Theme();
                 break;
         }

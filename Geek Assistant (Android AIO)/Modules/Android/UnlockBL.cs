@@ -12,13 +12,13 @@ internal static partial class UnlockBL {
     public static void Run() {
         bool Cancelled = false;
         if (c.Working) {
-            if (!Application.OpenForms.OfType<Info>().Any()) //failsafe
+            if (!c.FormisRunning<Info>()) //failsafe
                 inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess, null);
             return;
         }
 
         //Refresh current home instance
-        using var home = (Home)Application.OpenForms[nameof(Home)];
+        using var home = c.Home;
 
         inf.workTitle = workTitle;
         c.Working = true;

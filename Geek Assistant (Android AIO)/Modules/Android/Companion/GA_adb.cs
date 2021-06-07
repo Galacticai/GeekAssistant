@@ -230,7 +230,7 @@ internal static partial class GA_adb {
             c.S.DeviceState = "";
         }
         //Refresh current home instance 
-        using var home = (Home)Application.OpenForms[nameof(Home)];
+        using var home = c.Home;
         home.Manufacturer_ComboBox.SelectedIndex = -1;
         home.AndroidVersion_ComboBox.SelectedIndex = -1;
         home.BootloaderUnlockable_CheckBox.Checked = false;

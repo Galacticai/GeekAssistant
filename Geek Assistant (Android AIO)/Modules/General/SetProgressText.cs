@@ -9,7 +9,7 @@ internal static partial class SetProgressText {
 
     // Delegate Sub SetLabelTextInvoker(text As String, level As Integer)
     public static void Run(string text, int ErrorLevel) {
-        Home Home = (Home)Application.OpenForms["Home"];
+        Home Home = c.Home;
         c.S.LastProgress = text;
         switch (ErrorLevel) {
             case -1: {
@@ -31,10 +31,8 @@ internal static partial class SetProgressText {
             }
         }
 
-        if ((Wait)Application.OpenForms["Wait"] != null) { //failsafe (avoid if no Wait)
-            Wait Wait = (Wait)Application.OpenForms["Wait"];
-            Wait.Wait_ProgressText.Text = text;
-        }
+        if (c.FormisRunning<Wait>())  //failsafe (avoid if no Wait) 
+            c.Wait.Wait_ProgressText.Text = text;
 
         Home.ProgressBarLabel.Text = text;
         if (c.S.VerboseLogging & ErrorLevel == -1) {

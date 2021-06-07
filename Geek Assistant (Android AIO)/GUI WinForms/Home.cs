@@ -150,10 +150,9 @@ namespace GeekAssistant.Forms {
         }
 
         private void Home_GotFocus(object sender, EventArgs e) {
-            bool waiting = ((Wait)Application.OpenForms[nameof(Wait)] != null);
-            if (!finishedLoading) ((Wait)Application.OpenForms[nameof(Wait)]).BringToFront();
+            if (!finishedLoading | c.FormisRunning<Wait>()) c.Wait.BringToFront();
         }
-        //public static Wait Wait = null; //Set in GA_Wait.cs to retain the current instance
+
         private void Home_Move(object sender, EventArgs e) {
             //24, 97   
             var titleHeight = RectangleToScreen(ClientRectangle).Top - Top;
@@ -559,11 +558,12 @@ namespace GeekAssistant.Forms {
             ToU.ShowDialog();
         }
         private void Donate_Button_Click(object sender, EventArgs e) {
-            foreach (Form d in Application.OpenForms) {
-                if (d.GetType() == typeof(Donate)) {
-                    d.Close();
-                }
-            }
+            c.Donate.Close();
+            //foreach (Form d in Application.OpenForms) {
+            //    if (d.GetType() == typeof(Donate)) {
+            //        d.Close();
+            //    }
+            //}
 
             new Donate().Show();
         }
