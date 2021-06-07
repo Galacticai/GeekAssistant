@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public partial class Wait : Form {
+    public class Wait : Form {
         public Wait() => InitializeComponent();
 
         private void AssignEvents() {

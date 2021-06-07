@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public partial class Donate : Form {
+    public class Donate : Form {
         public Donate() => InitializeComponent();
         private void AssignEvents() {
             FormClosing += new(Donate_FormClosing);

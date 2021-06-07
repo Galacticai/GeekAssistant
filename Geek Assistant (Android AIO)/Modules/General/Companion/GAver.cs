@@ -1,4 +1,4 @@
-﻿internal static partial class GAver {
+﻿internal static class GAver {
 
     public enum VerType { log, Home, HomeTitle, ToU }
 

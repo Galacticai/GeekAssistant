@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-internal static partial class Log {
+internal static class Log {
     private static string latestLogName;
     private static string latestLogPath;
 
@@ -40,21 +40,9 @@ internal static partial class Log {
     }
 
     public static void AppendText(string logText, int lines) {
-        //RefresHome();
-
-        // Dim StringLines As String() = logText.Split(New String() {Environment.NewLine}, StringSplitOptions.None)
-
-        for (int newline = 1, loopTo = lines; newline <= loopTo; newline++) {
-            // Main.htmlLog.DocumentText &= br
+        for (int newline = 1, loopTo = lines; newline <= loopTo; newline++)
             Home.log.Text += c.n;
-        }
         Home.log.Text += logText;
-        // For Each item In StringLines
-        // Main.htmlLog.DocumentText &= Markdown.ToHtml(StringLines(item))
-        // If StringLines.Count - 1 <> item Then Main.htmlLog.DocumentText &= br 'new line if not finished
-        // Next
-
-        // Main.htmlLog.DocumentText &= logText 'Markdown.ToHtml(logText)
     }
 
     public static void StopNotifyIfLogSeen() {

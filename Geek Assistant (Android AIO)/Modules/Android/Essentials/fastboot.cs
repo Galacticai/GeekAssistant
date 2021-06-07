@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-internal static partial class fastboot {
-    public static string fbOutput;
+internal static class fastboot {
     /// <summary>
     /// Sends a command to $"{GA_tools}\fastboot.exe" and waits for process output
     /// Do not include "fastboot" in the arguments parameter
@@ -15,7 +14,7 @@ internal static partial class fastboot {
 
         // >Failsafe - Should never happen
         if (string.IsNullOrEmpty(arguments)) {
-            inf.detail.workCode = $"{inf.detail.workCode}-fbDo0"; // error code (last process) - fbDo 0 (no arguments)
+            inf.detail.workCode += "-fbA0"; // (current workCode) - fastboot Arguments 0 (no arguments)
             inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the fastboot command.");
         }
 
@@ -44,6 +43,6 @@ internal static partial class fastboot {
         fbProcess.Start();
         fbProcess.WaitForExit();
         // Return as global string (avoid repeating command for output) 
-        return fbOutput = fbProcess.StandardOutput.ReadToEnd();
+        return fbProcess.StandardOutput.ReadToEnd();
     }
 }

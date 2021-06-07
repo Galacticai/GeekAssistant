@@ -3,7 +3,7 @@ using System.Drawing;
 /// <summary>
 /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
 /// </summary>
-internal static partial class inf { //inform
+internal static class inf { //inform
 
     #region Info
 

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-internal static partial class UnlockBL {
+internal static class UnlockBL {
     private const string workCode_init = "UB", workTitle = "Unlock Bootloader";
 
     // Private ErrorInfo As (lvl As Integer, msg As String) 

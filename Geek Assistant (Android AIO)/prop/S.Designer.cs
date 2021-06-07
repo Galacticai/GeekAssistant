@@ -13,7 +13,7 @@ namespace prop {
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
-    internal sealed partial class S : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed class S : global::System.Configuration.ApplicationSettingsBase {
 
         private static S defaultInstance = ((S)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new S())));
 

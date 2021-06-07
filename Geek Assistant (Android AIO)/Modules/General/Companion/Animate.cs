@@ -2,7 +2,7 @@
 //using Transitions;
 using FluentTransitions;
 using System;
-internal static partial class Animate {
+internal static class Animate {
     /// <summary>
     /// Animate a property of an object with critical damping
     /// </summary>

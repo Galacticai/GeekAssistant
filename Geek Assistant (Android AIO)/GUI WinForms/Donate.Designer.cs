@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    partial class Donate : System.Windows.Forms.Form {
+    class Donate : System.Windows.Forms.Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>

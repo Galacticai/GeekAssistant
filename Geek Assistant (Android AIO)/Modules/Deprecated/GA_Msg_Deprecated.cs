@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using GeekAssistant.Forms;
 
-internal static partial class GA_Msg_Deprecated {
+internal static class GA_Msg_Deprecated {
 
     // Private ErrorCode As String
 

@@ -1,7 +1,7 @@
 ﻿using GeekAssistant.Forms;
 using System.Windows.Forms;
 
-internal static partial class SetProgressText {
+internal static class SetProgressText {
 
 
     // Private t As String

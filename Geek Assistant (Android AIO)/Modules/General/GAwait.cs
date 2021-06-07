@@ -1,6 +1,6 @@
 ﻿using GeekAssistant.Forms;
 
-internal static partial class GAwait {
+internal static class GAwait {
     public static Wait Wait = null;
     public static void Run(bool Enable) {
         if (Enable) {

@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-internal static partial class txt {
+internal static class txt {
 
     /// <summary>
     /// Remove everything except the first line of a string

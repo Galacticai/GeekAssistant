@@ -2,7 +2,7 @@
 
 using System;
 
-internal static partial class convert {
+internal static class convert {
     public struct Bool {
         /// <param name="value">Input</param>
         /// <returns>1 if true, else 0</returns>

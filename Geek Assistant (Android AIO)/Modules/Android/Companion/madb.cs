@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-internal static partial class madb {
+internal static class madb {
 
     /// <summary>
     /// Get adb server at $"{GA_tools}\adb.exe"

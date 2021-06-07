@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    partial class Settings : System.Windows.Forms.Form {
+    class Settings : System.Windows.Forms.Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>

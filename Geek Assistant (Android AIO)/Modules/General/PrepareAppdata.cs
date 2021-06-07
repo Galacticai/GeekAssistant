@@ -1,5 +1,5 @@
 ﻿using System.IO;
-internal static partial class PrepareAppdata {
+internal static class PrepareAppdata {
     public static void Run() {
         if (!Directory.Exists(c.GA))
             Directory.CreateDirectory(c.GA);

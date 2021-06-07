@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using GeekAssistant.Forms;
 
-internal static partial class GA_adb {
+internal static class GA_adb {
 
     /// <summary>
     /// Capitalize the first letter. And "lge" becomes "LG"

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-internal static partial class GAreset {
+internal static class GAreset {
     public static void Run(bool Data, bool logs) {
         inf.detail.workCode = "GAr-00";
         Log.Event("Reset Geek Assistant", 2);

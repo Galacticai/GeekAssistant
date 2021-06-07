@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    partial class ToU : Form {
+    class ToU : Form {
         /// <summary>
         ///  Required designer variable.
         /// </summary>

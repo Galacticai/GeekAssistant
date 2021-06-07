@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public partial class ToU : Form {
+    public class ToU : Form {
         //private void Main(object sender, EventArgs e) { Show(); }
         public ToU() {
             InitializeComponent();

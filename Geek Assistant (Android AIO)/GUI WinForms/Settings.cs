@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public partial class Settings : Form {
+    public class Settings : Form {
         private readonly string PopupMessages_SwitchButton_ToolTip = "View a window for messages like errors and info... etc";
         private readonly string VerbousLogging_SwitchButton_ToolTip = $"Add more details to logs like current ongoing actions{c.n}and behind the scenes actions that may not be interesting";
         private readonly string VerbousLoggingPrompt_Tooltip = "Ask to enable verbous logging when an error occurs";

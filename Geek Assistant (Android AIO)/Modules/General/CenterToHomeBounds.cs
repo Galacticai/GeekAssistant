@@ -3,7 +3,7 @@
 using GeekAssistant.Forms;
 using System.Windows.Forms;
 
-internal static partial class CenterToHomeBounds {
+internal static class CenterToHomeBounds {
     public static void Run(Form f) {
         int[] xy;
         Home h = c.Home;

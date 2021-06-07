@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 
-internal static partial class adb {
-    public static string adbOutput;
+internal static class adb {
     /// <summary> 
     /// Sends a command to $"{GA_tools}\adb.exe" and waits for process output
     /// Do not include "adb" in the arguments parameter
@@ -13,7 +12,7 @@ internal static partial class adb {
         adbProcess ??= new();
         // >Failsafe - Should never happen
         if (string.IsNullOrEmpty(arguments)) {
-            inf.detail.workCode += "-adbDo0"; // error code (last process) - adbDo 0 (no arguments)
+            inf.detail.workCode += "-adbA0"; // (current workCode) - adb Arguments 0 (no arguments)
             inf.Run(inf.lvls.FatalError, inf.workTitle, "Unable to run the adb command.");
         }
 
@@ -40,6 +39,6 @@ internal static partial class adb {
         adbProcess.Start();
         adbProcess.WaitForExit();
         // Return as global string (avoid repeating command for output) 
-        return adbOutput = adbProcess.StandardOutput.ReadToEnd();
+        return adbProcess.StandardOutput.ReadToEnd();
     }
 }

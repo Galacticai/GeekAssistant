@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-internal static partial class InitializeBusybox {
+internal static class InitializeBusybox {
     private const string workCode_init = "BB", workTitle = "Initialize Busybox";
     public static void Run(bool silent) {
         if (c.Working) { //dont change inf.workTitle while working

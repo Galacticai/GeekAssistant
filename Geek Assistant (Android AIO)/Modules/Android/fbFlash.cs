@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-internal static partial class fbFlash {
+internal static class fbFlash {
     private const string workCode_init = "fbF", workTitle = "Fastboot Flash";
 
     /// <returns>Type of .img file as <see cref="string"/>
