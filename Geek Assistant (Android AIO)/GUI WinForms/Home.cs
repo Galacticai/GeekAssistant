@@ -12,7 +12,7 @@ namespace GeekAssistant.Forms {
 
         private void AssignEvents() {
 
-            FormClosing += new(Home_FormClosing);
+            FormClosing += new(RunGeekAssistant.All_FormClosed);
             Move += new(Home_Move);
             GotFocus += new(Home_GotFocus);
             MouseMove += new(Main_MouseMove);
@@ -149,19 +149,6 @@ namespace GeekAssistant.Forms {
             }));
         }
 
-        private void Home_FormClosing(object sender, EventArgs e) {
-            if (Application.OpenForms.OfType<Wait>().Any()) { //Cancel if a process by GA is currently running
-                System.Media.SystemSounds.Beep.Play();
-                return;
-            }
-            if (HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
-
-            Log.LogEvent("End", 3);
-            Log.CreateLog();
-            c.S.Save();
-            //Environment.Exit(Environment.ExitCode)   //Quit all threads while closing
-            Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
-        }
         private void Home_GotFocus(object sender, EventArgs e) {
             bool waiting = ((Wait)Application.OpenForms[nameof(Wait)] != null);
             if (!finishedLoading) ((Wait)Application.OpenForms[nameof(Wait)]).BringToFront();

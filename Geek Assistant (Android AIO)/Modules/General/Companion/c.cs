@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GeekAssistant.Forms;
+using System;
+using System.Windows.Forms;
 
 internal static partial class c {
 
@@ -12,19 +14,33 @@ internal static partial class c {
     #endregion
 
 
+    #region Forms 
+
+    private static Preparing _Preparing;
+    private static Wait _Wait;
+    private static AppMode _AppMode;
+    private static Donate _Donate;
+    private static Home _Home;
+    private static Info _Info;
+    private static Settings _Settings;
+    private static ToU _ToU;
+    public static Preparing Preparing(bool getAgain = true) => (getAgain | _Preparing == null) ? _Preparing = (Preparing)Application.OpenForms[nameof(Preparing)] : _Preparing;
+    public static Wait Wait(bool getAgain = true) => (getAgain | _Wait == null) ? _Wait = (Wait)Application.OpenForms[nameof(Wait)] : _Wait;
+    public static AppMode AppMode(bool getAgain = true) => (getAgain | _AppMode == null) ? _AppMode = (AppMode)Application.OpenForms[nameof(AppMode)] : _AppMode;
+    public static Donate Donate(bool getAgain = true) => (getAgain | _Donate == null) ? _Donate = (Donate)Application.OpenForms[nameof(Donate)] : _Donate;
+    public static Home Home(bool getAgain = true) => (getAgain | _Home == null) ? _Home = (Home)Application.OpenForms[nameof(Home)] : _Home;
+    public static Info Info(bool getAgain = true) => (getAgain | _Info == null) ? _Info = (Info)Application.OpenForms[nameof(Info)] : _Info;
+    public static Settings Settings(bool getAgain = true) => (getAgain | _Settings == null) ? _Settings = (Settings)Application.OpenForms[nameof(Settings)] : _Settings;
+    public static ToU ToU(bool getAgain = true) => (getAgain | _ToU == null) ? _ToU = (ToU)Application.OpenForms[nameof(ToU)] : _ToU;
+
+    #endregion
+
+
     #region prop 
 
-    public static prop.S S = new();
+    private static prop.S _S;
+    public static prop.S S => _S ?? new();
     public static bool theme(bool anti = false) => anti ? !S.DarkTheme : S.DarkTheme;
-
-    public static readonly prop.GA RGA = new prop.GA();
-    public static readonly prop.strings Pstrings = new prop.strings();
-    public static readonly prop.layout Playout = new prop.layout();
-    public static readonly prop.tools Ptools = new prop.tools();
-    public static readonly prop.x64 Px64 = new prop.x64();
-    public static readonly prop.x24 Px24 = new prop.x24();
-    public static readonly prop.x16 Px16 = new prop.x16();
-    public static readonly prop.xXX PxXX = new prop.xXX();
 
     #endregion
 

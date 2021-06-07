@@ -3,33 +3,29 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.ExceptionServices;
 using GeekAssistant.Forms;
+using System.Diagnostics;
+using System.Linq;
 
 namespace GeekAssistant {
     static class RunGeekAssistant {
-        private static void AssignEvents() {
-            //FormClosed event for all forms
-            //FormClosedEventHandler ev_FormClosed = new(ev_FormClosed_Run);
-            //EventHandler ev_Load = new(ev_Load_Run);
-            //c.Wait.FormClosed += new(ev_FormClosed_Run);
-            //c.Preparing.FormClosed += new(ev_FormClosed_Run);
-            //c.AppMode.FormClosed += new(ev_FormClosed_Run);
-            //c.Donate.FormClosed += new(ev_FormClosed_Run);
-            //c.Home.FormClosed += new(ev_FormClosed_Run);
-            //c.Info.FormClosed += new(ev_FormClosed_Run);
-            //c.Settings.FormClosed += new(ev_FormClosed_Run);
-            //c.ToU.FormClosed += new(ev_FormClosed_Run);
-            //foreach (var f in c.AllForms) {
-            //    f.FormClosed += ev_FormClosed;
-            //    f.Load += ev_Load;
-            //}
+
+        public static void All_FormClosed(object sender, EventArgs e) {
+            //>>>>> IF YOU STOP AT THIS then it worked
+            if (Application.OpenForms.Count == 0) {
+                if (Application.OpenForms.OfType<Wait>().Any()) { //Cancel if a process by GA is currently running
+                    System.Media.SystemSounds.Beep.Play();
+                    return;
+                }
+                if (HideAllForms.HiddenForms != null) return; //Stop if hiding all forms
+                try {
+                    Log.LogEvent("End", 3);
+                    Log.CreateLog();
+                } catch { }
+                c.S.Save();
+                Environment.Exit(Environment.ExitCode);   //Quit all threads while closing
+                Process.GetCurrentProcess().Kill(); //Kill Geek Assistant completely in case any thread was locking Environment.Exit
+            }
         }
-        //private static void ev_FormClosed_Run(object sender, EventArgs e) {
-        //    //>>>>> IF YOU STOP AT THIS then it worked
-        //    if (Application.OpenForms.Count == 0) Environment.Exit(0);  //Ensure GA exits when all forms have closed
-        //}
-        //private static void ev_Load_Run(object sender, EventArgs e) {
-        //    //forgot why i made this
-        //}
 
         [STAThread]
         [HandleProcessCorruptedStateExceptions]
@@ -42,8 +38,6 @@ namespace GeekAssistant {
             Application.SetCompatibleTextRenderingDefault(false);
             new ToU().Show();
             Application.Run();
-
-            //AssignEvents();
         }
     }
     public static class SingleInstance {

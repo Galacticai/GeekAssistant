@@ -9,7 +9,7 @@ namespace GeekAssistant.Forms {
             InitializeComponent();
         }
         private void AssignEvents() {
-            FormClosing += new(Donate_FormClosing);
+            FormClosing += new(RunGeekAssistant.All_FormClosed);
 
             Close_Button.Click += new(Close_Button_Click);
 
@@ -39,18 +39,12 @@ namespace GeekAssistant.Forms {
 
         }
 
-        private static Home Home = null;
-        private static void RefresHome() {
-            foreach (Form h in Application.OpenForms) {
-                if (h.GetType() == typeof(Home)) {
-                    Home = (Home)h;
-                }
-            }
-        }
+        private static Home home = null;
+        private static Home Update_Home()
+           => home = (Home)Application.OpenForms["Home"];
 
         private void Donate_FormClosing(object sender, EventArgs e) {
-            RefresHome();
-            Home.BringToFront();
+            Update_Home().BringToFront();
         }
         private void Donate_Load(object sender, EventArgs e) {
             AssignEvents();
