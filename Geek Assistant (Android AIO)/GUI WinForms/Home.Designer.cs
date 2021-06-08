@@ -5,7 +5,7 @@ using GeekAssistant.Controls;
 using System.Drawing;
 
 namespace GeekAssistant.Forms {
-    class Home : Form {
+    partial class Home : Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>

@@ -19,15 +19,16 @@ internal static class fastboot {
         }
 
         if (!devConnection.fbIsReady()) {
-            inf.detail.workCode = $"{inf.detail.workCode}-fbD0"; // error code (last process) - adb device 0 (no device)
+            inf.detail.workCode += "-fbD0"; // error code (last process) - adb device 0 (no device)
             inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
         }
 
         // kill all fastboot instances before starting a new one
-        var processes = Process.GetProcessesByName("fastboot");
-        if (processes.Length > 0)
-            foreach (Process p in processes) p.Kill();
-
+        {
+            Process[] processes = Process.GetProcessesByName("fastboot");
+            if (processes.Length > 0)
+                foreach (Process p in processes) p.Kill();
+        }
         // <Failsafe
         var fb_p = fbProcess.StartInfo;
         {

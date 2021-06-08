@@ -18,6 +18,7 @@ internal class AutoDetect {
 
     private static bool RunningInBetween = false;
     public static async void Run(bool Silent = false) {
+        return;
         //Refresh current home instance
         using var home = c.Home;
 

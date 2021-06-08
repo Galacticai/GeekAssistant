@@ -3,7 +3,7 @@ using GeekAssistant.Controls.Material;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    class AppMode : System.Windows.Forms.Form {
+    partial class AppMode : System.Windows.Forms.Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>
