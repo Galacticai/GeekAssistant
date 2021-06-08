@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    class Wait : System.Windows.Forms.Form {
+    partial class Wait : System.Windows.Forms.Form {
         /// <summary>
         /// Required designer variable.
         /// </summary>
