@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
 
-    public class Info : Form {
+    public partial class Info : Form {
         public Info() {
             InitializeComponent();
         }

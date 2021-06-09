@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public class AppMode : Form {
+    public partial class AppMode : Form {
         private static string workCode_init => "AM";
         private static string workTitle => "App Mode";
         public AppMode() {

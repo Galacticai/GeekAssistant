@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using GeekAssistant.Controls.Material;
 
 namespace GeekAssistant.Forms {
-    public class Home : Form {
+    public partial class Home : Form {
         public Home() => InitializeComponent();
 
         private void AssignEvents() {

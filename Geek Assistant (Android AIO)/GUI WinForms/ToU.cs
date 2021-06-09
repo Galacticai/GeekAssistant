@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public class ToU : Form {
+    public partial class ToU : Form {
         //private void Main(object sender, EventArgs e) { Show(); }
         public ToU() {
             InitializeComponent();
@@ -47,13 +47,13 @@ namespace GeekAssistant.Forms {
 
             SetTheme.Run(this);
 
-            Copyright_Label.Text = GAver.Run("ToU()");
+            Copyright_Label.Text = GAver.Run(GAver.VerType.ToU);
 
             Load_ToU_rtf();
 
             ToU_Reject.Select();
 
-            Home Home = new Home();
+            Home Home = c.Home;
 
             //Accept || xy // Size xy: 337, 405 // 173, 46
             //Reject || xy // Size xy: 204, 405 // 133, 46

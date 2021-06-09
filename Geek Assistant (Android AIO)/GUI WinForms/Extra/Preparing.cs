@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace GeekAssistant.Forms {
-    public class Preparing : Form {
+    public partial class Preparing : Form {
         public Preparing() {
             InitializeComponent();
         }

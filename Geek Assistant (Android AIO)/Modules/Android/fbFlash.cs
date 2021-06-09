@@ -97,8 +97,8 @@ internal static class fbFlash {
             // End If
 
             // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
-            fastboot.Run("oem device-info");
-            if (!fastboot.fbOutput.Contains("Device unlocked: true")) {
+
+            if (!fastboot.Run("oem device-info").Contains("Device unlocked: true")) {
                 inf.detail.workCode = $"{workCode_init}-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first or you will brick your device.")
                 throw new Exception();
@@ -106,14 +106,14 @@ internal static class fbFlash {
 
             // ' push zip to /sdcard/0/GeekAssistant tmp dir
             inf.detail.workCode = $"{workCode_init}-F";
-            fastboot.Run($"flash {imgtype} \"{img}\"");
-            if (fastboot.fbOutput.Contains("error")) {
+            string fbFlashOutput = fastboot.Run($"flash {imgtype} \"{img}\"");
+            if (fbFlashOutput.Contains("error")) {
                 inf.detail.workCode = "FF-BLuX";
                 // ErrorInfo = (1, $"Your device bootloader is locked.\nYou have to unlock the bootloader first.")
                 throw new Exception();
             }
 
-            Log.AppendText(fastboot.fbOutput, -1);
+            Log.AppendText(fbFlashOutput, -1);
             // Push(zip)
             // Dim zipInAndroid = $"/sdcard/0/GeekAssistant/{IO.Path.GetFileName(zip)}"
             inf.detail.workCode = $"{workCode_init}-rX";

@@ -10,14 +10,11 @@ internal static class InitializeBusybox {
         inf.workTitle = workTitle;
         c.Working = true;
         inf.detail.workCode = $"{workCode_init}-00";
-        if (!inf.Run(inf.lvls.Question, "madb_MakeBusyboxReady",
-                       "This is not finished. Go?",
-                     ("Go", "Cancel"))) {
-            return;
-        }
 
         inf.Run(inf.lvls.Error, "(Disabled) " + inf.workTitle,
                 "This has been disabled by the developer");
+        return;
+
         var dev = madb.GetListOfDevice().Result[0];
         if (dev.BusyBox.Available)
             goto Finish_madb_InstallBusyboxReady;
@@ -26,25 +23,25 @@ internal static class InitializeBusybox {
         if (!File.Exists($"{c.GA_tools}\\busybox"))
             PrepareAppdata.Run();
 
-
-        adb.Run("shell mkdir /data/busybox");
-        Log.AppendText($"<< shell mkdir /data/busybox\n>>\n{adb.adbOutput}", 1);
-        if (adb.adbOutput.ToLower().Contains("denied")) {
+        string adbOut;
+        adbOut = adb.Run("shell mkdir /data/busybox");
+        Log.AppendText($"<< shell mkdir /data/busybox\n>>\n{adbOut}", 1);
+        if (adbOut.ToLower().Contains("denied")) {
             adb.Run("shell su -c 'mkdir /data/busybox'");
-            Log.AppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adb.adbOutput}", 1);
-        } else if (adb.adbOutput.ToLower().Contains("file exists")) {
+            Log.AppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adbOut}", 1);
+        } else if (adbOut.ToLower().Contains("file exists")) {
             adb.Run("shell su -c 'rm -rf /data/busybox'");
-            Log.AppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adb.adbOutput}", 1);
+            Log.AppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbOut}", 1);
         }
 
-        adb.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
-        Log.AppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adb.adbOutput}", 1);
-        adb.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
-        Log.AppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adb.adbOutput}", 1);
-        adb.Run("shell su -c 'chmod 664 /data/busybox'");
-        Log.AppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adb.adbOutput}", 1);
-        adb.Run("shell su -c './data/busybox --install'");
-        Log.AppendText($"<< shell su -c './data/busybox --install'\n>>\n{adb.adbOutput}", 1);
+        adbOut = adb.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
+        Log.AppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adbOut}", 1);
+        adbOut = adb.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
+        Log.AppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbOut}", 1);
+        adbOut = adb.Run("shell su -c 'chmod 664 /data/busybox'");
+        Log.AppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbOut}", 1);
+        adbOut = adb.Run("shell su -c './data/busybox --install'");
+        Log.AppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbOut}", 1);
         if (dev.BusyBox.Available) MessageBox.Show("busybox available");
         else MessageBox.Show("busybox not installed");
 

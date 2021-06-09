@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace GeekAssistant {
-    static class RunGeekAssistant {
+    class RunGeekAssistant {
         public enum GA_ExitCode {
             Neutral = -1,
             Warn = 0,
@@ -18,7 +18,7 @@ namespace GeekAssistant {
         public static void All_FormClosed(object sender, EventArgs e) {
             Environment.ExitCode = (int)GA_ExitCode.Neutral;
 
-            if (Application.OpenForms.Count == 0) {
+            if (Application.OpenForms.Count <= 1) { // 1 form closing or none remaining
                 if (c.FormisRunning<Wait>()) { //Cancel if a process by GA is currently running
                     System.Media.SystemSounds.Beep.Play();
                     return;

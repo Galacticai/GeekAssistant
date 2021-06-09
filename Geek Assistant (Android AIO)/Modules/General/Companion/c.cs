@@ -17,18 +17,25 @@ internal class c {
 
 
     #region Forms 
-    public static bool FormisRunning<form>() where form : Form
+    public static bool FormisRunning<form>()
         => Application.OpenForms.OfType<form>().Any();
-    private static form Forms<form>() where form : Form
-        => Application.OpenForms.OfType<form>().FirstOrDefault();
-    public static Preparing Preparing => Forms<Preparing>() ?? new();
-    public static Wait Wait => Forms<Wait>() ?? new();
-    public static AppMode AppMode => Forms<AppMode>() ?? new();
-    public static Donate Donate => Forms<Donate>() ?? new();
-    public static Home Home => Forms<Home>() ?? new();
-    public static Info Info => Forms<Info>() ?? new();
-    public static Settings Settings => Forms<Settings>() ?? new();
-    public static ToU ToU => Forms<ToU>() ?? new();
+    private static Form Forms<wantedForm>() {
+        foreach (Form f in Application.OpenForms)
+            if (f.GetType() is wantedForm)
+                return f;
+        return null;
+    }
+    public static Preparing Preparing => (Preparing)Forms<Preparing>() ?? new();
+    public static Wait Wait => (Wait)Forms<Wait>() ?? new();
+    public static AppMode AppMode => (AppMode)Forms<AppMode>() ?? new();
+    public static Donate Donate => (Donate)Forms<Donate>() ?? new();
+
+    private static Home _Home; // Save to improve performance
+    public static Home Home => ((Home)Forms<Home>() ?? new());
+
+    public static Info Info => (Info)Forms<Info>() ?? new();
+    public static Settings Settings => (Settings)Forms<Settings>() ?? new();
+    public static ToU ToU => (ToU)Forms<ToU>() ?? new();
 
     #endregion
 

@@ -119,22 +119,23 @@ internal static class UnlockBL {
             home.bar.Value = 50;
             inf.detail.workCode = $"{workCode_init}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
             SetProgressText.Run("Attempting to unlock bootloader...", -1);
-            fastboot.Run($"flashing unlock");
-            if (fastboot.fbOutput.ToLower().Contains("err") | fastboot.fbOutput.ToLower().Contains("fail")) {
+            string fbOut;
+            fbOut = fastboot.Run($"flashing unlock");
+            if (fbOut.ToLower().Contains("err") | fbOut.ToLower().Contains("fail")) {
                 home.bar.Value = 52;
                 inf.detail.workCode = $"{workCode_init}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
                 SetProgressText.Run("New unlock method failed... Attempting old method...", -1);
                 home.bar.Value = 55;
-                fastboot.Run($"oem unlock");
-                if (fastboot.fbOutput.ToLower().Contains("err") | fastboot.fbOutput.ToLower().Contains("fail")) {
+                fbOut = fastboot.Run($"oem unlock");
+                if (fbOut.ToLower().Contains("err") | fbOut.ToLower().Contains("fail")) {
                     home.bar.Value = 57;
                     // ErrorInfo = (10, $"Failed to unlock your device bootloader.")
-                    throw new Exception(fastboot.fbOutput);
+                    throw new Exception(fbOut);
                 }
             }
 
             home.bar.Value = 80;
-            Log.AppendText(fastboot.fbOutput, -1);
+            Log.AppendText(fbOut, -1);
             SetProgressText.Run("Process finished. Rebooting...", -1);
             home.bar.Value = 100;
             fastboot.Run("reboot");
