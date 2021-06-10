@@ -19,20 +19,19 @@ internal class c {
     #region Forms 
     public static bool FormisRunning<form>()
         => Application.OpenForms.OfType<form>().Any();
+
     private static Form Forms<wantedForm>() {
         foreach (Form f in Application.OpenForms)
             if (f.GetType() is wantedForm)
                 return f;
         return null;
     }
+
     public static Preparing Preparing => (Preparing)Forms<Preparing>() ?? new();
     public static Wait Wait => (Wait)Forms<Wait>() ?? new();
     public static AppMode AppMode => (AppMode)Forms<AppMode>() ?? new();
     public static Donate Donate => (Donate)Forms<Donate>() ?? new();
-
-    private static Home _Home; // Save to improve performance
-    public static Home Home => ((Home)Forms<Home>() ?? new());
-
+    public static Home Home => (Home)Forms<Home>() ?? new();
     public static Info Info => (Info)Forms<Info>() ?? new();
     public static Settings Settings => (Settings)Forms<Settings>() ?? new();
     public static ToU ToU => (ToU)Forms<ToU>() ?? new();
@@ -79,3 +78,34 @@ internal class c {
     #endregion
 
 }
+/*internal class Forms {
+    public static Preparing Preparing { get; private set; }
+    public static Wait Wait { get; private set; }
+    public static AppMode AppMode { get; private set; }
+    public static Donate Donate { get; private set; }
+    public static Home Home { get; private set; }
+    public static Info Info { get; private set; }
+    public static Settings Settings { get; private set; }
+    public static ToU ToU { get; private set; }
+
+    private FormCollection savedForms = new(new System.Collections.Generic.Dictionary<string, Microsoft.Extensions.Primitives.StringValues> {
+        { "Preparing", Preparing },
+        { "Preparing", Wait },
+        { "Preparing", Wait }
+    }
+private FormCollection form = new FormCollection {
+    {"WeekList", weekfilter},
+    {"PracticeList", practicefitler}
+}
+    public static bool FormisRunning<form>()
+        => Application.OpenForms.OfType<form>().Any();
+    private static Form getForm<wantedForm>() {
+        foreach (Form f in Application.OpenForms)
+            if (f.GetType() is wantedForm)
+                return f;
+        return null;
+    }
+    public static Forms get<form>() {
+        return getForm<form>();
+    }
+}*/

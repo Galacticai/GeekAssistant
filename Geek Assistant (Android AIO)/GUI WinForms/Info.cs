@@ -66,7 +66,7 @@ namespace GeekAssistant.Forms {
             }
 
 
-            info_PictureBox.Image = icons.x64.inf.From_inflvls(inf.detail.lvl);
+            info_PictureBox.Image = images.x64.inf.From_inflvls(inf.detail.lvl);
             title_Label.ForeColor = colors.inf.From_inflvls(inf.detail.lvl);
             if (inf.theme.icon != null) {
                 switch (inf.theme.icon.Length) {

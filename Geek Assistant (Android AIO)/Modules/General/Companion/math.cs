@@ -44,6 +44,14 @@ internal static class math {
         /// <returns>true if input is in [<paramref name="min"/>, <paramref name="max"/>] range. Else false</returns>
         public static bool IsInRange(double input, double min, double max)
             => input <= max & input >= min;
+
+        public static type[] AddElementToArr<type>(type[] array, type element) {
+            type[] expandedArray = new type[array.Length + 1]; // set expandedArray size to "length" (bigger by 1)
+            for (int i = 0; i < array.Length; i++)
+                expandedArray[i] = array[i]; // copy all elements from array to expandedArray
+            expandedArray[array.Length] = element; // add the final element
+            return expandedArray;
+        }
     }
 
     /// <summary> Predefined functions </summary>
@@ -188,6 +196,41 @@ internal static class math {
                 CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
             return bmp;
         }
+
+        public static Bitmap Gradient(Size size, Color color1, Color color2, Color color3) {
+            Image topHalf = Gradient(size, color1, color2);
+            Image bottomHalf = Gradient(size, color2, color3);
+            TextureBrush topG = new(topHalf);
+            TextureBrush bottomG = new(bottomHalf);
+            //  https://stackoverflow.com/questions/465172/merging-two-images-in-c-net
+            return null;
+
+        }
+        public static Bitmap Gradient(Size size, Color color1, Color color2) {
+            using (Bitmap bitmap = new(size.Width, size.Height))
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            using (LinearGradientBrush brush = new(
+                        new Rectangle(new Point(0, 0), size),
+                        color1, color2,
+                        LinearGradientMode.Vertical)) {
+                brush.SetSigmaBellShape(.5f);
+                graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), size));
+                return bitmap;
+            }
+        }
+
+        public static Bitmap ChangeOpacity(Image img, float opacityvalue) {
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
+            Graphics graphics__1 = Graphics.FromImage(bmp);
+            ColorMatrix colormatrix = new();
+            colormatrix.Matrix33 = opacityvalue;
+            ImageAttributes imgAttribute = new ImageAttributes();
+            imgAttribute.SetColorMatrix(colormatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+            graphics__1.DrawImage(img, new Rectangle(0, 0, bmp.Width, bmp.Height), 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, imgAttribute);
+            graphics__1.Dispose();
+            return bmp;
+        }
+
     }
 
     public struct Geometry {

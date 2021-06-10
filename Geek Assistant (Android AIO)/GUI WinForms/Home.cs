@@ -243,14 +243,14 @@ namespace GeekAssistant.Forms {
                                   "Let Geek Assistant automatically detect your device//s information");
         }
         private void AutoDetectDeviceInfo_Button_MouseDown(object sender, EventArgs e) {
-            AutoDetectDeviceInfo_Button.Image = icons.x64.AutoDetect(true);
+            AutoDetectDeviceInfo_Button.Image = images.x64.AutoDetect(true);
             if (c.S.DarkTheme)
                 AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
             else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
 
         }
         private void AutoDetectDeviceInfo_Button_MouseUp(object sender, EventArgs e) {
-            AutoDetectDeviceInfo_Button.Image = icons.x64.AutoDetect();
+            AutoDetectDeviceInfo_Button.Image = images.x64.AutoDetect();
             if (c.S.DarkTheme)
                 AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
             else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
@@ -294,10 +294,10 @@ namespace GeekAssistant.Forms {
             using (FlatButton slb = ShowLog_Button) {
                 if ((string)slb.Tag == " ") {
                     slb.Tag = "  ";
-                    slb.Icon = icons.x24.inf.Error();
+                    slb.Icon = images.x24.inf.Error();
                 } else {
                     slb.Tag = " ";
-                    slb.Icon = icons.x24.inf.Error(true);
+                    slb.Icon = images.x24.inf.Error(true);
                 }
             }
         }
@@ -307,10 +307,10 @@ namespace GeekAssistant.Forms {
                 using (FlatButton slb = ShowLog_Button) {
                     if ((string)slb.Tag == " ") {
                         slb.Tag = "  ";
-                        slb.Icon = icons.x24.inf.Information();
+                        slb.Icon = images.x24.inf.Information();
                     } else {
                         slb.Tag = " ";
-                        slb.Icon = icons.x24.inf.Information(true);
+                        slb.Icon = images.x24.inf.Information(true);
                     }
                 }
             }
@@ -381,7 +381,7 @@ namespace GeekAssistant.Forms {
         public void DoNeutral() {
             ShowLog_InfoBlink_Timer.Enabled = false;
             ShowLog_ErrorBlink_Timer.Enabled = false;
-            ShowLog_Button.Icon = icons.x24.Commands();
+            ShowLog_Button.Icon = images.x24.Commands();
 
             bar.Style = MetroFramework.MetroColorStyle.Green;
             bar.Value = 0;
@@ -453,7 +453,7 @@ namespace GeekAssistant.Forms {
         }
         private void MetroButton3_Click(object sender, EventArgs e) {//MetroButton3.Click
             var state = madb.GetDeviceState();
-            var state_i = Convert.ToInt32(state);
+            var state_i = Convert.ToInt32(state.ToString());
             var state_s = state.ToString();
             Log.AppendText("ran madb_GetDeviceState()", 1);
             Log.AppendText("ran madb_Convert_DeviceState_IntToString()", 1);

@@ -3,8 +3,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.ExceptionServices;
 using GeekAssistant.Forms;
-using System.Diagnostics;
-using System.Linq;
 
 namespace GeekAssistant {
     class RunGeekAssistant {
@@ -19,8 +17,9 @@ namespace GeekAssistant {
             Environment.ExitCode = (int)GA_ExitCode.Neutral;
 
             if (Application.OpenForms.Count <= 1) { // 1 form closing or none remaining
-                if (c.FormisRunning<Wait>()) { //Cancel if a process by GA is currently running
+                if (c.FormisRunning<Wait>()) { // Cancel if a process by GA is currently running
                     System.Media.SystemSounds.Beep.Play();
+                    //todo: gui action in Wait.cs ?
                     return;
                 }
 
@@ -33,7 +32,7 @@ namespace GeekAssistant {
 
                 c.S.Save();
                 Environment.Exit(Environment.ExitCode); // Quit all threads  
-                Process.GetCurrentProcess().Kill(); // Double hit...
+                //Process.GetCurrentProcess().Kill(); // Double hit... (is this really needed?...)
             }
         }
 
@@ -41,7 +40,7 @@ namespace GeekAssistant {
         [HandleProcessCorruptedStateExceptions]
         private static void Main() {
             //Single Instance  
-            if (!SingleInstance.Start($"{Application.ProductName}-{Application.ProductVersion}-{Application.CompanyName}"))
+            if (!OneInstance.Start($"{Application.ProductName}-{Application.ProductVersion}-{Application.CompanyName}"))
                 return;
 
             Application.EnableVisualStyles();
@@ -51,13 +50,12 @@ namespace GeekAssistant {
             Application.Run();
         }
     }
-    public static class SingleInstance {
+    public static class OneInstance {
         static Mutex mutex;
+        public static void Stop() => mutex.ReleaseMutex();
         public static bool Start(string applicationIdentifier) {
             mutex = new(true, applicationIdentifier, out bool isSingleInstance);
             return isSingleInstance;
         }
-        public static void Stop() => mutex.ReleaseMutex();
-
     }
 }

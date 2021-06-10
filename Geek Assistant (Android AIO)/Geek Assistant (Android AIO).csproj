@@ -125,6 +125,9 @@
     <Compile Update="Modules\General\SetProgressText.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
+    <Compile Update="Modules\General\SetTheme\SetTheme_PresetAnimation.cs">
+      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
+    </Compile>
     <Compile Update="Modules\General\SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>

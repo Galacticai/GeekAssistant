@@ -49,7 +49,7 @@ internal static class Log {
         if (Home.log.Visible & (Home.ShowLog_ErrorBlink_Timer.Enabled | Home.ShowLog_InfoBlink_Timer.Enabled)) {
             Home.ShowLog_ErrorBlink_Timer.Stop();
             Home.ShowLog_InfoBlink_Timer.Stop();
-            Home.ShowLog_Button.Icon = icons.x24.Commands();
+            Home.ShowLog_Button.Icon = images.x24.Commands();
             Home.ProgressBarLabel.ForeColor = colors.UI.fg();
         }
     }

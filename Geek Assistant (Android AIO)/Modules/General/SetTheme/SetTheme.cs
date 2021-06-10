@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Interfaces;
+using System.Drawing.Drawing2D;
 
 internal class SetTheme : SetThemeCompanion {
     public static bool Running = false;
@@ -11,14 +12,14 @@ internal class SetTheme : SetThemeCompanion {
 
     private static bool dark => c.S.DarkTheme;
 
-    private static Wait pw = null;
-    private static Preparing p = null;
-    private static AppMode am = null;
-    private static Donate d = null;
-    private static Info i = null;
-    private static Home h = null;
-    private static Settings s = null;
-    private static ToU t = null;
+    public static Wait pw { get; private set; }
+    public static Preparing p { get; private set; }
+    public static AppMode am { get; private set; }
+    public static Donate d { get; private set; }
+    public static Info i { get; private set; }
+    public static Home h { get; private set; }
+    public static Settings s { get; private set; }
+    public static ToU t { get; private set; }
     public static void Run(Form f, bool initiating = false) {
         Running = true;
         initiatingbool = initiating;
@@ -31,25 +32,21 @@ internal class SetTheme : SetThemeCompanion {
                 pw = (Wait)f;
                 Wait_Theme();
                 break;
-
             case Preparing:
                 p = (Preparing)f;
                 p.Preparing_Label.ForeColor = colors.UI.fg();
                 p.BackColor = colors.UI.bg();
                 break;
-
             case AppMode:
                 am = (AppMode)f;
                 //Control am = AppMode;
                 SetControlTheme(am);
                 am.startup_dontShow.ForeColor = colors.UI.fg();
                 break;
-
             case Donate:
                 d = (Donate)f;
                 Donate_Theme();
                 break;
-
             case Info:
                 i = (Info)f;
                 Info_Theme();
@@ -58,12 +55,10 @@ internal class SetTheme : SetThemeCompanion {
                 h = (Home)f;
                 Home_Theme();
                 break;
-
             case Settings:
                 s = (Settings)f;
                 Settings_Theme();
                 break;
-
             case ToU:
                 t = (ToU)f;
                 ToU_Theme();
@@ -117,29 +112,18 @@ internal class SetTheme : SetThemeCompanion {
 
     #region Home 
     private static void Home_Theme() {
-
-        if (!initiatingbool & c.S.PerformAnimations)
-            if (dark) {
-                h.SwitchTheme_Back_UI.Top = -h.SwitchTheme_Back_UI.Height;
-                Animate.Run(h.SwitchTheme_Back_UI, "Top", new Home().Height, 1000);
-            } else {
-                h.SwitchTheme_Back_UI.Top = new Home().Height;
-                Animate.Run(h.SwitchTheme_Back_UI, "Top", -h.SwitchTheme_Back_UI.Height, 1000);
-            }
-
+        if (!initiatingbool & c.S.PerformAnimations) {
+            SetTheme_PresetAnimation.Swoosh_Full(); SetTheme_PresetAnimation.LightDark_Icon_Center();
+        }
         Timer HomeTheme_delayTimer = new() { Interval = 100 };
         HomeTheme_delayTimer.Start();
         HomeTheme_delayTimer.Tick += (sender, ev) => {
 
             Control[] Controls_array = new Control[] {
                     h,
-                    //h.log,
+                     h.log,
                     h.ManualInfo_GroupBox,
                     h.ProgressFakeBG_UI,
-                    h.Main_Tabs_old,
-                    h.PrepareYourDevice_Tab_old,
-                    h.FlashImg_Tab_old,
-                    h.MoreTools_Tab_old,
                     h.BootloaderUnlockable_CheckBox,
                     h.CustomROM_CheckBox,
                     h.UnlockBL_Button,
@@ -147,9 +131,10 @@ internal class SetTheme : SetThemeCompanion {
                     h.FlashZip_Button,
                     h.CustomRecovery_CheckBox,
                     h.ProgressBarLabel,
-                    h.GA_About_Label,
-                    h.UnlockBL_Label,
-                    h.MagiskRoot_Label
+                    h.GA_About_Label, h.UnlockBL_Label, h.MagiskRoot_Label,
+                    h.Home_Tabs,h.Prepare_Tab,h.Flash_Tab,h.More_Tab,
+                    h.SwitchTheme_Back_UI,h.SwitchTheme_Light_UI_Icon,h.SwitchTheme_Dark_UI_Icon
+
             };
             IMetroControl[] MetroControls_array = new IMetroControl[] {
                     h.Main_Tabs_old,
@@ -181,7 +166,6 @@ internal class SetTheme : SetThemeCompanion {
                     h_add_b.BackColor = Color.FromArgb(64, 64, 64);
                     h_add_b.FlatAppearance.MouseDownBackColor = Color.Honeydew;
                     h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
-                    h_add_b.Image = prop.x64.AutoDetect_dark_64;
                 }
             } else { // Light Theme 
                 // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(0, 20, 0)
@@ -192,28 +176,31 @@ internal class SetTheme : SetThemeCompanion {
                     h_add_b.BackColor = Color.Honeydew;
                     h_add_b.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 64, 64);
                     h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(230, 245, 230);
-                    h_add_b.Image = prop.x64.AutoDetect_64;
                 }
             }
+            h_add_b.Image = images.x64.AutoDetect();
+
+            h.GeekAssistant.Image = images.GA.GeekAssistant();
+
             h.SwitchTheme_Button.ForeColor = colors.Iconcolors.SwitchTheme();
             h.Feedback_Button.ForeColor = colors.Iconcolors.Smile();
             h.About_Button.ForeColor = colors.Iconcolors.ToU();
             h.Settings_Button.ForeColor = colors.Iconcolors.Settings();
             h.Donate_Button.ForeColor = colors.Iconcolors.Donate();
-            h.ShowLog_Button.Icon = icons.x24.Commands();
+            h.ShowLog_Button.Icon = images.x24.Commands();
 
-            h.SwitchTheme_Button.Icon = icons.x24.SwitchTheme();
-            h.Feedback_Button.Icon = icons.x24.Smile();
-            h.About_Button.Icon = icons.x24.ToU();
-            h.Settings_Button.Icon = icons.x24.Settings();
-            h.Donate_Button.Icon = icons.x24.Donate();
+            h.SwitchTheme_Button.Icon = images.x24.SwitchTheme();
+            h.Feedback_Button.Icon = images.x24.Smile();
+            h.About_Button.Icon = images.x24.ToU();
+            h.Settings_Button.Icon = images.x24.Settings();
+            h.Donate_Button.Icon = images.x24.Donate();
             h.ShowLog_Button.ForeColor = colors.Iconcolors.Commands();
 
             h_add_b.ForeColor = colors.Misc.Green();
             h.Toggle_ManualDeviceInfo_Button.ForeColor = h_add_b.ForeColor;
 
             h.DeviceState_Label_TextChanged(h.DeviceState_Label, EventArgs.Empty);
-            HomeTheme_delayTimer.Enabled = false;
+            HomeTheme_delayTimer.Stop();
         };
 
     }
@@ -279,7 +266,7 @@ internal class SetTheme : SetThemeCompanion {
         s.ButtonsBG_UI.BackColor = colors.UI.Buttons.BarBG();
         s_rsa.FlatAppearance.MouseOverBackColor = colors.UI.Buttons.FlatAppearance.MouseOverBackColor();
         s.Close_Button.FlatAppearance.MouseOverBackColor = colors.UI.Buttons.FlatAppearance.MouseOverBackColor();
-        s.SettingsIcon_PictureBox.Image = icons.x64.Settings();
+        s.SettingsIcon_PictureBox.Image = images.x64.Settings();
         s.SettingsTitle_Label.ForeColor = colors.Iconcolors.Settings();
         s.ResetGA.BackColor = s.ButtonsBG_UI.BackColor;
         s.ResetGA_SelectAll.BackColor = s.ButtonsBG_UI.BackColor;
@@ -296,7 +283,7 @@ internal class SetTheme : SetThemeCompanion {
 
         // Do this hell 
         t.ButtonsBG_UI.BackColor = colors.UI.Buttons.BarBG();
-        t.Icon_PictureBox.Image = icons.x64.ToU();
+        t.Icon_PictureBox.Image = images.x64.ToU();
         t.ToUTitle_Label.ForeColor = colors.Iconcolors.ToU();
         t.AcceptCheck_ToU.ForeColor = t.ToUTitle_Label.ForeColor;
         t.Copyright_Label.ForeColor = t.ToUTitle_Label.ForeColor;

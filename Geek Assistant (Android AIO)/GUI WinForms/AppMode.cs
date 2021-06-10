@@ -51,43 +51,40 @@ namespace GeekAssistant.Forms {
             AssignEvents();
 
             if (c.S.AppMode_dontshow) {
-                if (c.S.AppMode_newbie) {
-                    AppMode_Do(0);
-                } else if (c.S.AppMode_moderate) {
-                    AppMode_Do(1);
-                }
-
+                AppMode_Do((AppModelvls)c.S.AppMode_Current);
                 Close();
             }
             SetTheme.Run(this);
         }
 
-        private void AppMode_Do(int StartupLevel) {
-            switch (StartupLevel) {
-                case 0:
+        public enum AppModelvls { Newbie, Default, Expert }
+        private void AppMode_Do(AppModelvls AppModelvl = AppModelvls.Default) {
+            switch (AppModelvl) {
+                case AppModelvls.Newbie:
                     //common.S.startup_newbie = true
                     //common.S.startup_moderate = false
-                    inf.detail.workCode = $"{workCode_init}-00";
+                    inf.detail.workCode = $"{workCode_init}-n"; // (current) - newbie
                     FeatureUnavailable.Run("Newbie Mode");
                     break;
-                case 1:
-                    c.S.AppMode_newbie = false;
-                    c.S.AppMode_moderate = true;
-                    Home Home = new Home();
-                    Home.Show();
+                case AppModelvls.Default:
+                    c.Home.Show();
                     Close();
                     break;
-                case 2:
+                case AppModelvls.Expert:
                     System.Media.SystemSounds.Beep.Play();
+                    inf.detail.workCode = $"{workCode_init}-e"; // (current) - expert
                     inf.Run(inf.lvls.Error, "Expert Mode",
-                              "Come on.. Experts don't need assitance.",
+                              "Experts don't need assitance...",
                              ("OK", null));
+                    inf.detail.workCode = $"{workCode_init}-eGd"; // (current) - expert Go default
                     inf.Run(inf.lvls.Information, "Expert Mode",
                              "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.",
                            ("Continue", null));
+                    AppModelvl = AppModelvls.Default;
                     start_default.PerformClick();
                     break;
             }
+            c.S.AppMode_Current = (int)AppModelvl;
         }
 
         private void startup_dontShow_MouseEnter(object sender, EventArgs e) {
@@ -95,12 +92,7 @@ namespace GeekAssistant.Forms {
                 startup_dontShow.BackColor = Color.FromArgb(0, 130, 0);
                 startup_dontShow.ForeColor = Color.White;
             } else {
-                if (c.S.DarkTheme) {
-                    startup_dontShow.BackColor = Color.FromArgb(0, 120, 0);
-                } else {
-                    startup_dontShow.BackColor = Color.Honeydew;
-                }
-
+                startup_dontShow.BackColor = colors.Misc.Green();
                 startup_dontShow.ForeColor = SystemColors.ControlText;
             }
         }
@@ -154,7 +146,7 @@ namespace GeekAssistant.Forms {
 
         #region "start_default"
         private void start_default_Click(object sender, EventArgs e) {
-            AppMode_Do(1);
+            AppMode_Do(AppModelvls.Default);
         }
         private void start_default_MouseEnter_MouseUp(object sender, EventArgs e) {
             start_newbie.ForeColor = Color.Green;
@@ -175,7 +167,7 @@ namespace GeekAssistant.Forms {
 
         #region "start_expert"
         private void start_expert_Click(object sender, EventArgs e) {
-            AppMode_Do(2);
+            AppMode_Do(AppModelvls.Expert);
         }
         private void start_expert_MouseEnter_MouseUp(object sender, EventArgs e) {
             start_newbie.ForeColor = Color.Green;

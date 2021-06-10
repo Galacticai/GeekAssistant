@@ -69,7 +69,9 @@ internal static class colors {
 
     public struct Iconcolors {
         /// <returns>#665200 &gt; #bfcdff</returns>
-        public static Color SwitchTheme(bool anti = false) => c.theme(anti) ? constColors.Iconcolors.Theme_Dark : constColors.Iconcolors.SwitchTheme;
+        public static Color SwitchTheme(bool anti = false) => c.theme(anti) ? constColors.Iconcolors.SwitchTheme_Dark : constColors.Iconcolors.SwitchTheme;
+        /// <returns>#FFF4BF &gt; #293666</returns>
+        public static Color SwitchTheme_bg(bool anti = false) => c.theme(anti) ? constColors.Iconcolors.SwitchTheme_Dark_bg : constColors.Iconcolors.SwitchTheme_bg;
         /// <returns>#006647 &gt; #BFFFBF</returns>
         public static Color Smile(bool anti = false) => c.theme(anti) ? constColors.Iconcolors.Smile_Dark : constColors.Iconcolors.Smile;
         /// <returns>#006A80 &gt; #BFF4FF</returns>
@@ -140,9 +142,13 @@ internal static class colors {
 
         public struct Iconcolors {
             /// <summary> #bfcdff </summary>
-            public static Color Theme_Dark { get => ColorTranslator.FromHtml("#bfcdff"); }
+            public static Color SwitchTheme_Dark { get => ColorTranslator.FromHtml("#bfcdff"); }
+            /// <summary> #293666 </summary>
+            public static Color SwitchTheme_Dark_bg { get => ColorTranslator.FromHtml("#293666"); }
             /// <summary> #665200 </summary>
             public static Color SwitchTheme { get => ColorTranslator.FromHtml("#665200"); }
+            /// <summary> #FFF4BF </summary>
+            public static Color SwitchTheme_bg { get => ColorTranslator.FromHtml("#FFF4BF"); }
 
             /// <summary> #BFFFBF </summary>
             public static Color Smile_Dark { get => ColorTranslator.FromHtml("#BFFFBF"); }
