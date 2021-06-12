@@ -62,8 +62,6 @@ namespace GeekAssistant.Forms {
             InstallBusybox_Button.Click += new(InstallBusybox_Button_Click);
             GA_About_Label.Click += new(GA_About_Label_Click); GeekAssistant.Click += new(GA_About_Label_Click); GeekAssistant_Icon.Click += new(GA_About_Label_Click);
 
-            GA_About_Label_Click_Timer.Tick += new(GA_About_Label_Click_Timer_Tick);
-
 
             #region #Debug#
 
@@ -287,11 +285,13 @@ namespace GeekAssistant.Forms {
             SetTooltipInfo.Run(ref Main_ToolTip, ShowLog_Button, "Show log", "Click to show/hide the log");
             log.StopNotifyIfLogSeen();
         }
+
+        private readonly int homeWidth0 = 690, homeWidth1 = 1190;
+
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_InfoBlink_Timer.Stop();
-            int[] HomeWidth = { 690, 1190 };
-            Animate.Run(this, nameof(Width), HomeWidth[Width == HomeWidth[0] ? 1 : 0]);
+            Animate.Run(this, nameof(Width), ((Width == homeWidth0) ? homeWidth1 : homeWidth0));
 
         }
 
@@ -308,17 +308,17 @@ namespace GeekAssistant.Forms {
         }
 
         private void ShowLog_InfoBlink_Timer_Tick(object sender, EventArgs e) {
-            if (!ShowLog_ErrorBlink_Timer.Enabled) {
-                using (FlatButton slb = ShowLog_Button) {
-                    if ((string)slb.Tag == " ") {
-                        slb.Tag = "  ";
-                        slb.Icon = images.x24.inf.Information();
-                    } else {
-                        slb.Tag = " ";
-                        slb.Icon = images.x24.inf.Information(true);
-                    }
+            if (ShowLog_ErrorBlink_Timer.Enabled) return;
+            using (FlatButton slb = ShowLog_Button) {
+                if ((string)slb.Tag == " ") {
+                    slb.Tag = "  ";
+                    slb.Icon = images.x24.inf.Information();
+                } else {
+                    slb.Tag = " ";
+                    slb.Icon = images.x24.inf.Information(true);
                 }
             }
+
         }
 
         private void SettingsSave_Timer_Tick(object sender, EventArgs e) {
@@ -345,7 +345,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void log_TextChanged(object sender, EventArgs e) {
-            if (log_TextBox.Visible) return; -// TODO Update this to use .Top or a better way
+            if (Width == homeWidth1) return;
             if (!ShowLog_ErrorBlink_Timer.Enabled) ShowLog_InfoBlink_Timer.Start();
         }
         //Already Done above 
@@ -384,12 +384,9 @@ namespace GeekAssistant.Forms {
         }
 
         public void DoNeutral() {
-            ShowLog_InfoBlink_Timer.Enabled = false;
-            ShowLog_ErrorBlink_Timer.Enabled = false;
+            ShowLog_InfoBlink_Timer.Stop(); ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_Button.Icon = images.x24.Commands();
-
-            bar.Style = MetroFramework.MetroColorStyle.Green;
-            bar.Value = 0;
+            bar.Value = 0; bar.Style = MetroFramework.MetroColorStyle.Green;
             ProgressBarLabel.Text = "Current process information will be written here. Click for more information >>";
         }
 
@@ -417,17 +414,17 @@ namespace GeekAssistant.Forms {
             InitializeBusybox.Run(false);
         }
 
-        private Timer GA_About_Label_Click_Timer = new() { Interval = 1500 };
-        private string saved_GA_About_Label_Text;
         private void GA_About_Label_Click(object sender, EventArgs e) {
-            Clipboard.SetText("Geek Assistant " + GA_About_Label.Text.Substring(0, GA_About_Label.Text.IndexOf("By") - 1));
-            saved_GA_About_Label_Text = GA_About_Label.Text;
+            Clipboard.SetText("Geek Assistant " + GA_About_Label.Text[..(GA_About_Label.Text.IndexOf("By") - 1)]);
+
+            string saved_GA_About_Label_Text = GA_About_Label.Text;
             GA_About_Label.Text = "Copied version information...";
-            GA_About_Label_Click_Timer.Enabled = true;
-        }
-        private void GA_About_Label_Click_Timer_Tick(object sender, EventArgs e) {
-            GA_About_Label_Click_Timer.Enabled = false;
-            GA_About_Label.Text = saved_GA_About_Label_Text;
+            Timer GA_About_Label_Click_Timer = new() { Interval = 1500 };
+            GA_About_Label_Click_Timer.Tick += (sender, ev) => {
+                GA_About_Label_Click_Timer.Stop();
+                GA_About_Label.Text = saved_GA_About_Label_Text;
+            };
+            GA_About_Label_Click_Timer.Start();
         }
 
         #region #Debug#
@@ -591,7 +588,7 @@ namespace GeekAssistant.Forms {
         }
         #endregion
 
-        #region "log area"
+        #region log area
         private void CopyLogToClipboard_MouseEnter(object sender, EventArgs e) {
             SetTooltipInfo.Run(ref Main_ToolTip, CopyLogToClipboard, "Copy log", "Copy the current log contents to clipboard");
         }
