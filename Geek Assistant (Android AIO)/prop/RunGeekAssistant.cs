@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.ExceptionServices;
 using GeekAssistant.Forms;
+using GeekAssistant.Modules.Global;
 
 namespace GeekAssistant {
     class RunGeekAssistant {
@@ -26,8 +27,8 @@ namespace GeekAssistant {
                 if (HideAllForms.HiddenForms != null) return; //Cancel if hiding all forms
 
                 try { // try to prevent crash when closed before starting Home
-                    Log.Event("End", 3);
-                    Log.Create();
+                    log.Event("End", 3);
+                    log.Create();
                 } catch { Environment.ExitCode = (int)GA_ExitCode.Warn; }
 
                 c.S.Save();

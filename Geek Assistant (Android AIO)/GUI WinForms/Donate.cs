@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.Global.SetTheme;
 
 namespace GeekAssistant.Forms {
     public partial class Donate : Form {

@@ -55,7 +55,7 @@ namespace GeekAssistant.Forms {
             this.GeekAssistant = new System.Windows.Forms.PictureBox();
             this.FlashZip_ChooseFile_Button = new System.Windows.Forms.Button();
             this.ShowLog_Button = new GeekAssistant.Controls.Material.FlatButton();
-            this.log = new System.Windows.Forms.TextBox();
+            this.log_TextBox = new System.Windows.Forms.TextBox();
             this.ProgressBarLabel = new System.Windows.Forms.Label();
             this.SwitchTheme_Button = new GeekAssistant.Controls.Material.FlatButton();
             this.Donate_Button = new GeekAssistant.Controls.Material.FlatButton();
@@ -518,21 +518,21 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.log_TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.log.BackColor = System.Drawing.Color.White;
-            this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.log.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.log.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.log.Location = new System.Drawing.Point(683, 22);
-            this.log.Margin = new System.Windows.Forms.Padding(5);
-            this.log.Multiline = true;
-            this.log.Name = "log";
-            this.log.ReadOnly = true;
-            this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(508, 525);
-            this.log.TabIndex = 85590;
-            this.log.Text = "Geek Assistant vX.x #Phase ©2021 By NHKomaiha.\r\n// hh:mm:ss.ff // Start //";
+            this.log_TextBox.BackColor = System.Drawing.Color.White;
+            this.log_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.log_TextBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.log_TextBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.log_TextBox.Location = new System.Drawing.Point(683, 22);
+            this.log_TextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.log_TextBox.Multiline = true;
+            this.log_TextBox.Name = "log";
+            this.log_TextBox.ReadOnly = true;
+            this.log_TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.log_TextBox.Size = new System.Drawing.Size(508, 525);
+            this.log_TextBox.TabIndex = 85590;
+            this.log_TextBox.Text = "Geek Assistant vX.x #Phase ©2021 By NHKomaiha.\r\n// hh:mm:ss.ff // Start //";
             // 
             // ProgressBarLabel
             // 
@@ -1450,7 +1450,7 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.OpenLogFolder);
             this.Controls.Add(this.CopyLogToClipboard);
             this.Controls.Add(this.ClearLog_Button);
-            this.Controls.Add(this.log);
+            this.Controls.Add(this.log_TextBox);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1505,7 +1505,7 @@ namespace GeekAssistant.Forms {
         public Label FlashZip_Title;
         public Button CopyLogToClipboard;
         public PictureBox GeekAssistant;
-        public TextBox log;
+        public TextBox log_TextBox;
         public GeekAssistant.Controls.Material.FlatButton Feedback_Button;
         public Button Settings;
         public PictureBox MainLayout_PictureBox;

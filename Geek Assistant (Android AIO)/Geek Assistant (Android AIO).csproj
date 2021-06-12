@@ -80,95 +80,95 @@
     <Compile Update="GUI WinForms\ToU.cs">
       <CustomToolNamespace>GeekAssistant.Forms</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\SwitchButton.Placeholder.cs">
+    <Compile Update="Controls\SwitchButton.Placeholder.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\Themed Controls\Themed_TextBox.cs">
-      <SubType>Component</SubType>
-      <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
-    </Compile>
-    <Compile Update="Modules\CustomObjects\Themed Controls\Themed_Label.cs">
+    <Compile Update="Controls\Themed Controls\Themed_TextBox.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\TabSelector.cs">
+    <Compile Update="Controls\Themed Controls\Themed_Label.cs">
+      <SubType>Component</SubType>
+      <CustomToolNamespace>GeekAssistant.Controls</CustomToolNamespace>
+    </Compile>
+    <Compile Update="Controls\Material\TabSelector.cs">
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\MaterialTextBox.cs">
+    <Compile Update="Controls\Material\MaterialTextBox.cs">
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\FlatButton.cs">
+    <Compile Update="Controls\Material\FlatButton.cs">
       <CustomToolNamespace>GeekAssistant.Controls.Material</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\CenterToHomeBounds.cs">
+    <Compile Update="Modules\Global\CenterToHomeBounds.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\FeatureUnavailable.cs">
+    <Compile Update="Modules\Global\FeatureUnavailable.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\HideAllForms.cs">
+    <Compile Update="Modules\Global\HideAllForms.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Log.cs">
+    <Compile Update="Modules\Global\log.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\GAwait.cs">
+    <Compile Update="Modules\Global\wait.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\PrepareAppdata.cs">
+    <Compile Update="Modules\Global\PrepareAppdata.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\GAreset.cs">
+    <Compile Update="Modules\Global\reset.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\SetProgressText.cs">
+    <Compile Update="Modules\Global\SetProgressText.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\SetTheme\SetTheme_PresetAnimation.cs">
+    <Compile Update="Modules\Global\SetTheme\SetTheme_PresetAnimation.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\SetTooltipInfo.cs">
+    <Compile Update="Modules\Global\SetTooltipInfo.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\SetTheme\SetThemeCompanion.cs">
+    <Compile Update="Modules\Global\SetTheme\SetThemeCompanion.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\SetTheme\SetTheme.cs">
+    <Compile Update="Modules\Global\SetTheme\SetTheme.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\inf.cs">
+    <Compile Update="Modules\Global\inf.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\SwitchButton.Placeholder.cs">
+    <Compile Update="Controls\SwitchButton.Placeholder.cs">
       <SubType>Component</SubType>
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="Modules\CustomObjects\TestingTextBox.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\Scheduler.cs">
+    <Compile Update="Modules\Global\Companion\Scheduler.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\Animate.cs">
+    <Compile Update="Modules\Global\Companion\Animate.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\c.cs">
+    <Compile Update="Modules\Global\Companion\c.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\CustomObjects\SwitchButton_Style.cs">
+    <Compile Update="Controls\SwitchButton_Style.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\GAver.cs">
+    <Compile Update="Modules\Global\Companion\ver.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\math.cs">
+    <Compile Update="Modules\Global\Companion\math.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\convert.cs">
+    <Compile Update="Modules\Global\Companion\convert.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\General\Companion\txt.cs">
+    <Compile Update="Modules\Global\Companion\txt.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
     <Compile Update="prop\RunGeekAssistant.cs">

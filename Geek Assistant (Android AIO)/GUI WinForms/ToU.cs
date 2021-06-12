@@ -2,6 +2,10 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.Global.SetTheme;
+using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.Global.Companion.Style;
 
 namespace GeekAssistant.Forms {
     public partial class ToU : Form {
@@ -47,7 +51,7 @@ namespace GeekAssistant.Forms {
 
             SetTheme.Run(this);
 
-            Copyright_Label.Text = GAver.Run(GAver.VerType.ToU);
+            Copyright_Label.Text = ver.Run(ver.VerType.ToU);
 
             Load_ToU_rtf();
 
@@ -127,14 +131,14 @@ namespace GeekAssistant.Forms {
         }
 
         private void ToU_Reject_Click(object sender, EventArgs e) {
-            inf.detail.workCode = "ToU()-R-H"; // ToU() Rejected Hide
+            inf.detail.code = "ToU()-R-H"; // ToU() Rejected Hide
             HideAllForms.Run(true);
             if (inf.Run(inf.lvls.Question, "Rejected the terms of use",
                                  "Sorry for any inconvenience. You could contact the developer for further discussion.",
                                ("Exit", "Back"))) {
                 Application.Exit();
             } else {
-                inf.detail.workCode = "ToU()-R-S";
+                inf.detail.code = "ToU()-R-S";
                 HideAllForms.Run(false);
             }
         }

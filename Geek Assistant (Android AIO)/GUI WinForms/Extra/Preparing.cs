@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.Global.SetTheme;
 
 namespace GeekAssistant.Forms {
     public partial class Preparing : Form {

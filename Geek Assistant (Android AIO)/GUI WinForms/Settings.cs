@@ -2,6 +2,10 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.Global.SetTheme;
+using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Controls;
 
 namespace GeekAssistant.Forms {
     public partial class Settings : Form {
@@ -115,14 +119,14 @@ namespace GeekAssistant.Forms {
         #region ResetGA
         private Timer ResetGA_NoItems_Timer = new Timer { Interval = 1500 };
         private void ResetGA_Click(object sender, EventArgs e) {
-            inf.detail.workCode = "GAr-00";
+            inf.detail.code = "GAr-00";
             if (!ResetGA_LogsOnly_CheckBox.Checked && !ResetGA_Settings_CheckBox.Checked) {
                 ResetGA.Text = "⠀⠀⠀⠀⠀ Select something ...";
                 ResetGA_NoItems_Timer.Start();
                 ResetGA_NoItems_Timer.Tick += ResetGA_NoItems_Timer_Tick;
                 return;
             }
-            GAreset.Run(Data, logs);
+            reset.Run(Data, logs);
         }
         private void ResetGA_NoItems_Timer_Tick(object sender, EventArgs e) {
             ResetGA.Text = "⠀⠀⠀⠀⠀ &Reset Geek Assistant";

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.Global.SetTheme;
+using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Controls;
 
 namespace GeekAssistant.Forms {
     public partial class AppMode : Form {
@@ -62,7 +66,7 @@ namespace GeekAssistant.Forms {
                 case AppModelvls.Newbie:
                     //common.S.startup_newbie = true
                     //common.S.startup_moderate = false
-                    inf.detail.workCode = $"{workCode_init}-n"; // (current) - newbie
+                    inf.detail.code = $"{workCode_init}-n"; // (current) - newbie
                     FeatureUnavailable.Run("Newbie Mode");
                     break;
                 case AppModelvls.Default:
@@ -71,11 +75,11 @@ namespace GeekAssistant.Forms {
                     break;
                 case AppModelvls.Expert:
                     System.Media.SystemSounds.Beep.Play();
-                    inf.detail.workCode = $"{workCode_init}-e"; // (current) - expert
+                    inf.detail.code = $"{workCode_init}-e"; // (current) - expert
                     inf.Run(inf.lvls.Error, "Expert Mode",
                               "Experts don't need assitance...",
                              ("OK", null));
-                    inf.detail.workCode = $"{workCode_init}-eGd"; // (current) - expert Go default
+                    inf.detail.code = $"{workCode_init}-eGd"; // (current) - expert Go default
                     inf.Run(inf.lvls.Information, "Expert Mode",
                              "Okay... There's no \"Expert Mode\". You will be redirected to the default mode.",
                            ("Continue", null));
