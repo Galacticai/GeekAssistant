@@ -33,13 +33,22 @@ internal static class inf { //inform
 
     #endregion
 
+    private static string detailcode => string.IsNullOrEmpty(detail.workCode) ? detail.title : $"❰{detail.workCode}❱";
+    public static string WindowTitle
+        => detail.lvl switch {
+            lvls.Warn => $" ⚠  Warn: {detailcode} — Geek Assistant", // 0
+            lvls.Error => $" ❌  Error: {detailcode} — Geek Assistant", // 1 // 10
+            lvls.FatalError => $" ❌  Fatal Error: {detailcode} — Geek Assistant",
+            _ => $"{detail.title} — Geek Assistant"  // -1 and 2
+        };
+
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary> 
     /// <param name="YesNoButtons">Text of the Left(true) and right(false) buttons(YesButton, NoButton)</param>
     /// <returns>True if YesButton was clicked or False if NoButton was clicked</returns>
     public static bool Run((string YesButton, string NoButton) YesNoButtons = default)
-        => Run(detail);
+            => Run(detail);
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color
     /// </summary>
@@ -49,13 +58,7 @@ internal static class inf { //inform
     public static bool Run((string workCode, lvls lvl, string title, string msg, string fullFatalError) infDetail,
                            (string YesButton, string NoButton) YesNoButtons = default) {
 
-        if (!string.IsNullOrEmpty(detail.workCode)) {
-            detail.workCode = infDetail.workCode;
-        }
-
-        if (!string.IsNullOrEmpty(detail.fullFatalError)) {
-            detail.fullFatalError = infDetail.fullFatalError;
-        }
+        if (!string.IsNullOrEmpty(infDetail.workCode)) detail.workCode = infDetail.workCode;
 
         return Run(infDetail.lvl, infDetail.title, infDetail.msg, YesNoButtons, default, infDetail.fullFatalError);
     }
@@ -77,12 +80,7 @@ internal static class inf { //inform
                            (Image[] icon, Color[] color) _theme = default,
                            string _fullFatalError = null) {
 
-        infoAnswer = false; //reset
-        ////default do we even need this at all
-        //detail = (detail.code, lvls.Information, null, null, null);
-        //YesNoButtons = (null, null);
-        //theme = (null, null);
-
+        infoAnswer = false; //reset 
         //set
         detail = (detail.workCode, _lvl, _title, _msg, _fullFatalError);
         YesNoButtons = _YesNoButtons;
@@ -91,14 +89,6 @@ internal static class inf { //inform
         new Info().ShowDialog();
         return infoAnswer;
     }
-    private static string detailcode => string.IsNullOrEmpty(detail.workCode) ? $"{detail.title}" : $"❰{detail.workCode}❱";
-    public static string WindowTitle
-        => detail.lvl switch {
-            lvls.Warn => $" ⚠  Warn: {detailcode} — Geek Assistant", // 0
-            lvls.Error => $" ❌  Error: {detailcode} — Geek Assistant", // 1 // 10
-            lvls.FatalError => $" ❌  Fatal Error: {detailcode} — Geek Assistant",
-            _ => $"{detail.title} — Geek Assistant"  // -1 and 2
-        };
 
 
 
