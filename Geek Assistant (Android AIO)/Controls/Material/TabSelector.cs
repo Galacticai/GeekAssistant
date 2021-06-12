@@ -8,6 +8,7 @@ using System.Drawing.Text;
 using System.Windows.Forms;
 using GeekAssistant.Modules.Global.Companion;
 using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.Global.Companion.GAmath;
 
 namespace GeekAssistant.Controls.Material {
     public class TabSelector : MaterialTabSelector, IMaterialControl {
@@ -171,7 +172,7 @@ namespace GeekAssistant.Controls.Material {
                     if (!animating) {
                         if (ThemeChanged | saved_ForeColor == Color.Empty)
                             saved_ForeColor = ForeColor;
-                        Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA60, colors.UI.bg()).GetBrightness() > 0.5f
+                        Animate.Run(this, nameof(ForeColor), Vision.BlendColors(ForeColorA60, colors.UI.bg()).GetBrightness() > 0.5f
                                                              ? colors.constColors.UI.fg : colors.constColors.UI.bg); //flip to current anti-bg color on hover  
                     }
                     Invalidate();

@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using GeekAssistant.Controls;
+using GeekAssistant.Modules.Global.Companion.GAmath;
 
 namespace GeekAssistant.Modules.Global.Companion {
     internal static class txt {
@@ -58,7 +59,7 @@ namespace GeekAssistant.Modules.Global.Companion {
         }
         /// <returns>Random string from a preset String() (open to edit preset array)</returns>
         public static string RandomWorkText
-            => (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
+            => (string)mathMisc.Random.RandomObjectFromArr(new[] {
             "Hold on... We're doing magic!",
             "Stuff... Please be patient...",
             "Wait a second... Magic ongoing...",
@@ -78,7 +79,7 @@ namespace GeekAssistant.Modules.Global.Companion {
 
         /// <returns>Random string from a preset String() (open to edit preset array)</returns>
         public static string RandomFactText
-            => (string)math.Arithmatics.Random.RandomObjectFromArr(new[] {
+            => (string)mathMisc.Random.RandomObjectFromArr(new[] {
             "The first oranges weren’t orange.",
             "Samsung uses a butt-shaped robot to test phone durability.",
             "Peanuts aren’t technically nuts.",

@@ -79,8 +79,8 @@ namespace GeekAssistant.Modules.Android.Companion {
         public static bool madb_IsRooted() {
             var dev = GetListOfDevice().Result[0];
             if (!dev.CanSU()) {
-                inf.detail = ($"{txt.GA_current_workCode }-Xsu",
-                              inf.lvls.Error, inf.detail.title, $"Your device is not rooted.\n > Process aborted.", null); // No su (Device cannot run su)
+                inf.detail = ($"{txt.GA_current_workCode }-Xsu", // No su (Device cannot run su)
+                              inf.lvls.Error, inf.detail.title, $"Your device is not rooted.\n > Process aborted.", null);
                 return false;
             }
             return true;

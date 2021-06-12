@@ -44,7 +44,7 @@ namespace GeekAssistant.Modules.Android {
                 if (!Silent) SetProgressText.Run("c.Preparing the environment... Please be patient.", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-PE", inf.lvls.FatalError, inf.detail.title, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
-                await Task.Run(() => madb.madbBridge());
+                await Task.Run(() => madb.madbBridge().Result);
 
 
                 home.bar.Value = 5;
@@ -227,8 +227,7 @@ namespace GeekAssistant.Modules.Android {
                 if (!Silent) {
                     inf.detail.fullFatalError = ex.ToString();
                     inf.Run();
-                } else
-                    home.DoNeutral();
+                } else  home.DoNeutral();
             }
 
             c.S.DeviceState = home.DeviceState_Label.Text;

@@ -162,9 +162,6 @@
     <Compile Update="Modules\Global\Companion\ver.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>
-    <Compile Update="Modules\Global\Companion\math.cs">
-      <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
-    </Compile>
     <Compile Update="Modules\Global\Companion\convert.cs">
       <CustomToolNamespace>GeekAssistant</CustomToolNamespace>
     </Compile>

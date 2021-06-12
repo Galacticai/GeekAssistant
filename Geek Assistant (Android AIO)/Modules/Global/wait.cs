@@ -6,20 +6,10 @@ namespace GeekAssistant.Modules.Global {
         public static void Run(bool Enable) {
             if (Enable) {
                 if (Wait != null) //dispose if exists and is not disposed
-    {
-                    if (!Wait.IsDisposed) {
-                        Wait.Dispose();
-                    }
-                }
-
-                Wait = new(); //! create new ( Always create new() : Don't merge with null check above )
-                              //Home.Wait = Wait;
-                Wait.Show();
+                    if (!Wait.IsDisposed) Wait.Dispose();
+                (Wait = new()).Show(); //! create new ( Always create new() : Don't merge with null check above ) 
             } else {
-                if (Wait == null) {
-                    return; // cancel if no instance saved 
-                }
-
+                if (Wait == null) return; // cancel if no instance saved 
                 Wait.UserClosing = false; //unflag or it won't close
                 Wait.Close();
             }

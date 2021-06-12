@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.Global.Companion.GAmath;
 
 namespace GeekAssistant.Modules.Android.MagiskRoot {
     internal class MagiskRootCompanion : LatestMagiskAsset {
@@ -21,7 +21,7 @@ namespace GeekAssistant.Modules.Android.MagiskRoot {
         public static long Download_MagiskAPK_Progress {
             get => _Download_MagiskAPK_Progress;
             set {
-                value = (long)math.Arithmatics.ForcedInRange(value, 0, 100);
+                value = (long)mathMisc.ForcedInRange(value, 0, 100);
                 _Download_MagiskAPK_Progress = value;
             }
         }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using GeekAssistant.Modules.Global.SetTheme;
 using GeekAssistant.Modules.Global.Companion;
 using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.Global.Companion.GAmath;
 
 namespace GeekAssistant.Controls.Material {
     public class FlatButton : MaterialFlatButton, IMaterialControl {
@@ -23,7 +24,7 @@ namespace GeekAssistant.Controls.Material {
         [DefaultValue(0)]
         public int Radius {
             get => _Radius;
-            set => _Radius = (int)math.Arithmatics.ForcedInRange(value, 0, ClientRectangle.Height / 2);
+            set => _Radius = (int)mathMisc.ForcedInRange(value, 0, ClientRectangle.Height / 2);
         }
 
 
@@ -139,12 +140,12 @@ namespace GeekAssistant.Controls.Material {
             Rectangle FxRect = ClientRectangle; FxRect.Inflate(-1, -1);
             GraphicsPath fxPath;
             if (string.IsNullOrEmpty(Text) & Icon != null) // Circle
-                fxPath = math.Geometry.Circle(
+                fxPath = Vision.Geometry.Circle(
                                     ClientRectangle.Width / 2 - .5f,
                                     ClientRectangle.Height / 2 - .5f,
                                     ClientRectangle.Height / 2 - 2  //-1 offset left-right top-bottom 
                                     );
-            else fxPath = math.Geometry.RoundedRect(FxRect, Radius); //Rect or RoundedRect
+            else fxPath = Vision.Geometry.RoundedRect(FxRect, Radius); //Rect or RoundedRect
 
             #region BackColor support
             //using (Brush b = new SolidBrush(
@@ -163,10 +164,10 @@ namespace GeekAssistant.Controls.Material {
             //Ripple 
             if (_animationManager.IsAnimating()) {
                 Color Blend_hover_back = BackColor != Color.Empty | BackColor != Color.Transparent
-                                         ? hoverColor : math.Vision.BlendColors(hoverColor, BackColor);
-                Color Blend_hover_back_UIback = math.Vision.BlendColors(Blend_hover_back, colors.UI.bg());
+                                         ? hoverColor : Vision.BlendColors(hoverColor, BackColor);
+                Color Blend_hover_back_UIback = Vision.BlendColors(Blend_hover_back, colors.UI.bg());
 
-                RippleColor = math.Vision.BlendColors(
+                RippleColor = Vision.BlendColors(
                                          Blend_hover_back_UIback.GetBrightness() > .5f
                                           ? colors.constColors.UI.fg : colors.constColors.UI.bg,
                                          hoverColor, .5f);
@@ -180,7 +181,7 @@ namespace GeekAssistant.Controls.Material {
                     if (SetThemeRunning) return; //recheck becuase this takes time to end 
                     int rippleSize = (int)(animationValue(i) * Width * 2);
                     rippleRect = new(animationSource(i).X - rippleSize / 2, animationSource(i).Y - rippleSize / 2, rippleSize, rippleSize);
-                    fxRipple = math.Geometry.EllipseInRect(rippleRect);
+                    fxRipple = Vision.Geometry.EllipseInRect(rippleRect);
                     fxIntersect.Intersect(fxRipple); // update ( = ripple /\ hover )
                                                      //fxIntersect.GetRegionScans(regionToPathMatrix);
                     using (b = new SolidBrush(Color.FromArgb((int)((101 - (animationValue(i) * 100)) * 2), RippleColor)))
@@ -245,7 +246,7 @@ namespace GeekAssistant.Controls.Material {
                     if (SetThemeRunning | saved_ForeColor == Color.Empty)
                         saved_ForeColor = ForeColor;
                     //flip to current anti-bg color on hover  
-                    Animate.Run(this, nameof(ForeColor), math.Vision.BlendColors(ForeColorA64, colors.UI.bg()).GetBrightness() > 0.5f
+                    Animate.Run(this, nameof(ForeColor), Vision.BlendColors(ForeColorA64, colors.UI.bg()).GetBrightness() > 0.5f
                                                          ? colors.constColors.UI.fg : colors.constColors.UI.bg);
                 }
                 Invalidate();

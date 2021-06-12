@@ -247,10 +247,7 @@ namespace GeekAssistant.Forms {
         }
         private void AutoDetectDeviceInfo_Button_MouseDown(object sender, EventArgs e) {
             AutoDetectDeviceInfo_Button.Image = images.x64.AutoDetect(true);
-            if (c.S.DarkTheme)
-                AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
-            else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
-
+            colors.Misc.Green(true);
         }
         private void AutoDetectDeviceInfo_Button_MouseUp(object sender, EventArgs e) {
             AutoDetectDeviceInfo_Button.Image = images.x64.AutoDetect();
@@ -261,13 +258,14 @@ namespace GeekAssistant.Forms {
         }
         private void AutoDetectDeviceInfo_Button_Click(object sender, EventArgs e) {
             wait.Run(true);
+            //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
             Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
             if (ShowWaitThenAutoDetect_Timer.Enabled) return; //cancel if already running
-            ShowWaitThenAutoDetect_Timer.Start(); //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
             ShowWaitThenAutoDetect_Timer.Tick += (sender, ev) => {
                 ShowWaitThenAutoDetect_Timer.Stop();
                 AutoDetect.Run();
             };
+            ShowWaitThenAutoDetect_Timer.Start();
         }
 
         //private void AutoDetectFlash_Timer_Tick(object sender, EventArgs e) { AutoDetectFlash_Timer_Deprecated.Tick
@@ -291,7 +289,7 @@ namespace GeekAssistant.Forms {
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_InfoBlink_Timer.Stop();
-            Animate.Run(this, nameof(Width), ((Width == homeWidth0) ? homeWidth1 : homeWidth0));
+            Animate.Run(this, nameof(Width), (Width == homeWidth0) ? homeWidth1 : homeWidth0);
 
         }
 
@@ -363,18 +361,7 @@ namespace GeekAssistant.Forms {
             if (ProgressBarLabel.Text.Length > 80) ProgressBarLabel.Font = new Font("Segoe UI Semilight", 9.75f);
             else ProgressBarLabel.Font = new Font("Segoe UI", 9.75f);
         }
-        //private void ProgressBarLabel_Mousedown_KeyDown(object sender, EventArgs e) { ProgressBarLabel.MouseDown, ProgressBarLabel.KeyDown
-        //    With ProgressBarLabel
-        //        .BackColor = Color.FromArgb(77, 104, 124)
-        //        .ForeColor = Color.White
-        //    End With
-        //}
-        //private void ProgressBarLabel_MouseUp_KeyUp(object sender, EventArgs e) { ProgressBarLabel.MouseUp, ProgressBarLabel.KeyUp
-        //    With ProgressBarLabel
-        //        .BackColor = Color.White
-        //        .ForeColor = SystemColors.ControlText
-        //    End With
-        //}
+
         private void Manufacturer_ComboBox_MouseEnter(object sender, EventArgs e) {
             SetTooltipInfo.Run(ref Main_ToolTip, Manufacturer_ComboBox, "Manufacturer", "(Required) Select your device//s manufacturer");
         }
