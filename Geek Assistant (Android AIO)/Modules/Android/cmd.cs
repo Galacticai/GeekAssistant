@@ -14,34 +14,30 @@ internal static class cmd {
         return crr.Result;
     }
     public static void Run(string command) {
-        //return;
-        if (command.IndexOf(" ") != -1) { invalidCMD(command); return; } // If command has no arguments: cancel (invalidCMD)
+        // If command has no arguments: cancel (invalidCMD)
+        if (command.IndexOf(" ") != -1) { invalidCMD(command); return; }
 
-        var cmdStart = command.Substring(0, command.IndexOf(" ")); // Get the first word of the command 
-        if (cmdStart == "adb") {// command starting with "adb" 
-            // filter invalid commands using regex for adb
-            Regex adbRegex = new("adb (devices|shell|push|pull|logcat|install|install-multiple|uninstall|sync|emu|forward|reverse|jdwp|bugreport|backup|backup|restore|disable-verity|enable-verity|keygen|help|version|wait-for-device|start-server|kill-server|get-state|get-serialno|get-devpath|remount|reboot|reboot-bootloader|root|unroot|usb|tcpip|ppp)"); // Matching example: "adb devices"
-            if (adbRegex.Match(command).Success) { // If command matching adbRegex
+        // Matching example: "adb devices"
+        Regex adbRegex = new("adb (help|devices|shell|push|pull|logcat|install|install-multiple|uninstall|sync|emu"
+                             + "|forward|reverse|jdwp|bugreport|backup|backup|restore|disable-verity|enable-verity|keygen|help|version"
+                             + "|wait-for-device|start-server|kill-server|get-state|get-serialno|get-devpath|remount|reboot|reboot-bootloader|root|unroot|usb|tcpip|ppp)"),
+               // Matching example: "fastboot devices" 
+               fbRegex = new("fastboot (help|devices|update|flashall|flash|flashing lock|flashing unlock|flashing lock_critical"
+                             + "|flashing get_unlock_ability|erase|format|getvar|boot)");
 
-                string adbOut = adbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "adb " 
-                Log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
-                                  $"{(string.IsNullOrEmpty(adbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{adbOut}")}", 2);
 
-            } else invalidCMD(command); return;
-        } else if (cmdStart == "fastboot") { // command starting with "fastboot"
+        if (adbRegex.Match(command).Success) { // If command matching adbRegex 
+            string adbOut = adbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "adb " 
+            Log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
+                              $"{(string.IsNullOrEmpty(adbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{adbOut}")}", 2);
 
-            // filter invalid commands using regex for fastboot
-            Regex fbRegex = new("fastboot (devices|update|flashall|flash|flashing lock|flashing unlock|flashing lock_critical|flashing get_unlock_ability|erase|format|getvar|boot)"); // Matching example: "fastboot"
-            if (fbRegex.Match(command).Success) { // If command matching fbRegex
+        } else if (fbRegex.Match(command).Success) { // If command matching fbRegex
 
-                string fbOut = fbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "fastboot "
+            string fbOut = fbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "fastboot "
 
-                Log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
-                                  $"{(string.IsNullOrEmpty(fbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{fbOut}")}", 2);
-            } else invalidCMD(command); return;
-
-        } else invalidCMD(command); return;
-
+            Log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
+                              $"{(string.IsNullOrEmpty(fbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{fbOut}")}", 2);
+        } else invalidCMD(command);
 
     }
     private static void invalidCMD(string command) {
@@ -53,9 +49,9 @@ internal static class cmd {
         }
 
         if (command.Contains("adb"))
-            invalid_text = $"⮜⮜ {command}{c.n}⮞⮞ ⚠  Invalid adb command.{c.n}" + $"Allowed adb arguments:{c.n}" + "devices | shell | push | pull | logcat | install | install-multiple | uninstall | sync | emu | forward | reverse | jdwp | bugreport | backup | backup | restore | disable-verity | enable-verity | keygen | help | version | wait-for-device | start-server | kill-server | get-state | get-serialno | get-devpath | remount | reboot | reboot-bootloader | root | unroot | usb | tcpip | ppp";
+            invalid_text = $"⮜⮜ {command}{c.n}⮞⮞ ⚠  Invalid adb command.{c.n}" + $"Allowed adb arguments:{c.n}" + "help | devices | shell | push | pull | logcat | install | install-multiple | uninstall | sync | emu | forward | reverse | jdwp | bugreport | backup | backup | restore | disable-verity | enable-verity | keygen | help | version | wait-for-device | start-server | kill-server | get-state | get-serialno | get-devpath | remount | reboot | reboot-bootloader | root | unroot | usb | tcpip | ppp";
         else if (command.Contains("fastboot"))
-            invalid_text = $"⮜⮜ {command}{c.n}⮞⮞ ⚠  Invalid fastboot command.{c.n}" + $"Allowed fastboot arguments:{c.n}" + "update | flashall | flash | flashing lock | flashing unlock | flashing lock_critical | flashing get_unlock_ability | erase | format | getvar | boot";
+            invalid_text = $"⮜⮜ {command}{c.n}⮞⮞ ⚠  Invalid fastboot command.{c.n}" + $"Allowed fastboot arguments:{c.n}" + "help | update | flashall | flash | flashing lock | flashing unlock | flashing lock_critical | flashing get_unlock_ability | erase | format | getvar | boot";
 
         Skip_commandContains:;
 

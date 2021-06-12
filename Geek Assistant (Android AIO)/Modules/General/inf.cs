@@ -88,8 +88,7 @@ internal static class inf { //inform
         YesNoButtons = _YesNoButtons;
         theme = _theme;
 
-        Info Info = new();
-        Info.ShowDialog();
+        new Info().ShowDialog();
         return infoAnswer;
     }
     private static string detailcode => string.IsNullOrEmpty(detail.workCode) ? $"{detail.title}" : $"❰{detail.workCode}❱";

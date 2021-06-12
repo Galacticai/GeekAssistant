@@ -1,15 +1,17 @@
 ﻿
 
 using GeekAssistant.Forms;
+using System.Drawing;
 using System.Windows.Forms;
 
 internal static class CenterToHomeBounds {
     public static void Run(Form f) {
-        int[] xy;
+        Point xy;
 
-        //foreach (Form home in Application.OpenForms)
-        //    if (home.GetType() == typeof(Home))
-        //        h = (Home)home;
+        Home home = c.Home;
+        //foreach (Form h in Application.OpenForms)
+        //    if (h is Home foundHome)
+        //        home = foundHome;
 
         /*   _______________________                   
           *  |      |         |      |  <= Home
@@ -18,9 +20,8 @@ internal static class CenterToHomeBounds {
           *  |                       |
           *  |_______________________|
           */
-        if (!c.FormisRunning<Home>())
-            xy = new[] { (c.Home.Width / 2) - (f.Width / 2) + c.Home.Location.X,
-                         c.Home.Top };
+        if (c.FormisRunning<Home>())
+            xy = new((home.Width / 2) - (f.Width / 2) + home.Location.X, home.Top);
         /*   _______________________                   
           *  |       _________       |  <= Screen
           *  |      |         | <= f |
@@ -30,10 +31,10 @@ internal static class CenterToHomeBounds {
           */
         else {
             var currentScreenRect = Screen.FromControl(f).WorkingArea;
-            xy = new[] { (currentScreenRect.Width / 2) - (f.Width / 2) + currentScreenRect.Location.X,
-                         (currentScreenRect.Height / 2) - (f.Height / 2) };
+            xy = new((currentScreenRect.Width / 2) - (f.Width / 2) + currentScreenRect.Location.X,
+                  (currentScreenRect.Height / 2) - (f.Height / 2));
         }
 
-        f.SetBounds(xy[0], xy[1], f.Width, f.Height);
+        f.SetBounds(xy.X, xy.Y, f.Width, f.Height);
     }
 }

@@ -40,8 +40,7 @@ namespace GeekAssistant.Forms {
                 Close();
                 Dispose(); //dispose before starting again
                 inf.Run(inf.lvls.FatalError, $"Where//s the error message??",
-                         $"if ( you see this please contact the developer to fix this bug.{c.n}Please provide the log when reporting.",
-                        (null, "Close"));
+                         $"if ( you see this please contact the developer to fix this bug.{c.n}Please provide the log when reporting.");
             }
 
             bool yButton = !string.IsNullOrEmpty(inf.YesNoButtons.YesButton),
@@ -84,17 +83,12 @@ namespace GeekAssistant.Forms {
             if (inf.theme.color != null) {
                 switch (inf.theme.color.Length) {
                     case 2:
-                        if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) // 3rd failsafe
-{
+                        if (inf.theme.color[0] != Color.Empty & inf.theme.color[1] != Color.Empty) // 3rd failsafe 
                             title_Label.ForeColor = inf.theme.color[Convert.ToInt32(c.S.DarkTheme)];
-                        }
-
                         break;
                     case 1:
-                        if (inf.theme.color[0] != Color.Empty) {
+                        if (inf.theme.color[0] != Color.Empty)
                             title_Label.ForeColor = inf.theme.color[0];   //set first icon if 1 item
-                        }
-
                         break;
                 }
             }
@@ -128,19 +122,17 @@ namespace GeekAssistant.Forms {
         }
 
         private void Yes_Button_Mousedown(object sender, EventArgs e) {
-            if (Yes_Button.ForeColor.GetBrightness() >= .5) {
+            if (Yes_Button.ForeColor.GetBrightness() >= .5)
                 Yes_Button.ForeColor = Color.Black;
-            } else {
-                Yes_Button.ForeColor = Color.White;
-            }
+            else Yes_Button.ForeColor = Color.White;
+
         }
         private void Yes_Button_MouseUp(object sender, EventArgs e) {
             Yes_Button.ForeColor = title_Label.ForeColor;
         }
         private void Yes_Button_Click(object sender, EventArgs e) {
-            if (inf.detail.lvl == inf.lvls.Question) {
+            if (inf.detail.lvl == inf.lvls.Question)
                 inf.infoAnswer = true;
-            }
 
             Close();
             Home Home = new();
@@ -155,8 +147,7 @@ namespace GeekAssistant.Forms {
         //}
         private void No_Button_Click(object sender, EventArgs e) {
             if (!c.S.VerboseLogging & c.S.VerboseLoggingPrompt
-            & inf.detail.lvl != inf.lvls.Question) { //&& ! title_Label.Text = "Enable Verbose Logging?" && ! title_Label.Text = "Send Feedback" ) {
-                                                     //Close();
+                & inf.detail.lvl != inf.lvls.Question) {
                 Dispose();
                 if (inf.Run(inf.lvls.Question,
                             "Enable Verbose Logging?",
@@ -165,9 +156,8 @@ namespace GeekAssistant.Forms {
 
                 c.S.VerboseLoggingPrompt = false;
             }
-            if (inf.detail.lvl == inf.lvls.Question) {
+            if (inf.detail.lvl == inf.lvls.Question)
                 inf.infoAnswer = false;
-            }
 
             Close();
             Home Home = new();
@@ -197,20 +187,16 @@ namespace GeekAssistant.Forms {
         }
 
         private void title_Label_TextChanged(object sender, EventArgs e) {
-            if (title_Label.Text.Length < 25) {
+            if (title_Label.Text.Length < 25)
                 title_Label.Font = new Font("Segoe UI", 15.75f);
-            } else {
-                title_Label.Font = new Font("Segoe UI", 12.0f);
-            }
+            else title_Label.Font = new Font("Segoe UI", 12.0f);
         }
 
         private Timer title_Label_Click_Timer = new() { Interval = 1500 };
         private string savedTitle;
         private string CopiedText = "Copied information...";
         private void title_Label_Click(object sender, EventArgs e) {
-            if (title_Label.Text == CopiedText) {
-                return;
-            }
+            if (title_Label.Text == CopiedText) return;
 
             if (inf.detail.lvl != inf.lvls.Question) {
                 savedTitle = title_Label.Text;

@@ -121,7 +121,7 @@ internal class SetTheme : SetThemeCompanion {
 
             Control[] Controls_array = new Control[] {
                     h,
-                     h.log,
+                    h.log,
                     h.ManualInfo_GroupBox,
                     h.ProgressFakeBG_UI,
                     h.BootloaderUnlockable_CheckBox,
@@ -133,14 +133,9 @@ internal class SetTheme : SetThemeCompanion {
                     h.ProgressBarLabel,
                     h.GA_About_Label, h.UnlockBL_Label, h.MagiskRoot_Label,
                     h.Home_Tabs,h.Prepare_Tab,h.Flash_Tab,h.More_Tab,
-                    h.SwitchTheme_Back_UI,h.SwitchTheme_Light_UI_Icon,h.SwitchTheme_Dark_UI_Icon
-
+                    h.SwitchTheme_UI,h.SwitchTheme_Light_UI_Icon,h.SwitchTheme_Dark_UI_Icon
             };
             IMetroControl[] MetroControls_array = new IMetroControl[] {
-                    h.Main_Tabs_old,
-                    h.PrepareYourDevice_Tab_old,
-                    h.FlashImg_Tab_old,
-                    h.MoreTools_Tab_old,
                     h.Manufacturer_ComboBox,
                     h.AndroidVersion_ComboBox,
                     h.bar,
@@ -158,8 +153,6 @@ internal class SetTheme : SetThemeCompanion {
 
             using var h_add_b = h.AutoDetectDeviceInfo_Button;
             if (dark) {
-                // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(235, 245, 235)
-                // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(0, 20, 0), New TransitionType_CriticalDamping(1000))
                 h.Main_ToolTip.BackColor = SystemColors.InfoText;
                 h.Main_ToolTip.ForeColor = SystemColors.Info;
                 {
@@ -167,9 +160,7 @@ internal class SetTheme : SetThemeCompanion {
                     h_add_b.FlatAppearance.MouseDownBackColor = Color.Honeydew;
                     h_add_b.FlatAppearance.MouseOverBackColor = Color.FromArgb(74, 74, 74);
                 }
-            } else { // Light Theme 
-                // Main.SwitchTheme_Mid_UI.BackColor = Color.FromArgb(0, 20, 0)
-                // Transition.run(Main.SwitchTheme_Mid_UI, "BackColor", Color.FromArgb(235, 245, 235), New TransitionType_CriticalDamping(1000))
+            } else { // Light Theme  
                 h.Main_ToolTip.BackColor = SystemColors.Info;
                 h.Main_ToolTip.ForeColor = SystemColors.InfoText;
                 {

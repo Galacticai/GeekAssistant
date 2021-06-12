@@ -132,9 +132,9 @@ namespace GeekAssistant.Forms {
             OpenLogFolder.MouseUp += new(OpenLogFolder_MouseUp); OpenLogFolder.KeyUp += new(OpenLogFolder_MouseUp);
             OpenLogFolder.Click += new(OpenLogFolder_Click);
 
-            //manualCMD_TextBox.MouseEnter += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.MouseLeave += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged; manualCMD_TextBox.TextChanged += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged;
-            //manualCMD_TextBox.KeyDown += new(manualCMD_TextBox_KeyDown;
-            //manualCMD_TextBox.KeyUp += new(manualCMD_TextBox_KeyUp;
+            manualCMD_TextBox.MouseEnter += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged); manualCMD_TextBox.MouseLeave += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged); manualCMD_TextBox.TextChanged += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged);
+            manualCMD_TextBox.KeyDown += new(manualCMD_TextBox_KeyDown);
+            manualCMD_TextBox.KeyUp += new(manualCMD_TextBox_KeyUp);
 
             #endregion
         }
@@ -559,12 +559,6 @@ namespace GeekAssistant.Forms {
         }
         private void Donate_Button_Click(object sender, EventArgs e) {
             c.Donate.Close();
-            //foreach (Form d in Application.OpenForms) {
-            //    if (d.GetType() == typeof(Donate)) {
-            //        d.Close();
-            //    }
-            //}
-
             new Donate().Show();
         }
         private void Donate_Button_MouseEnter(object sender, EventArgs e) {
@@ -580,9 +574,8 @@ namespace GeekAssistant.Forms {
                           $"Redirecting you to Geek Assistant issues section on github...\n\nDo you want To Continue?",
                         ("Continue", "Close"),
                         (new Image[2] { prop.x64.Smile_64, prop.x64.Smile_dark_64 },
-                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) }))) {
+                        new Color[2] { Color.FromArgb(0, 102, 71), Color.FromArgb(191, 255, 191) })))
                 Process.Start(new ProcessStartInfo("https://github.com/NHKomaiha/Geek-Assistant/issues") { UseShellExecute = true, Verb = "open" });
-            }
         }
         private void SwitchTheme_Button_Click(object sender, EventArgs e) {
             SetTheme.Run(this);
@@ -638,9 +631,10 @@ namespace GeekAssistant.Forms {
         private void manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged(object sender, EventArgs e) {
             DoNeutral();
         }
+
         //TODO: DO NOT DELETE THIS REGION
         #region manual cmd
-        /*private string cmd_Previous, cmd_Current;
+        private string cmd_Previous, cmd_Current;
         private void manualCMD_TextBox_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter)
                 manualCMD_TextBox.BackColor = Color.LightBlue;
@@ -650,54 +644,51 @@ namespace GeekAssistant.Forms {
 
             var mcmd = manualCMD_TextBox;
             switch (e.KeyCode) {
-            case Keys.Enter:  //And adbManualCMD_TextBox.Text != ""
-                manualCMD_TextBox.BackColor = Color.White;
-                common.ErrorInfo.code = "manualCmd";
-                cmd.Run(manualCMD_TextBox.Text);
+                case Keys.Enter:  //And adbManualCMD_TextBox.Text != ""
+                    manualCMD_TextBox.BackColor = Color.White;
+                    inf.detail.workCode = "mCMD"; // manual CMD
+                    cmd.Run(manualCMD_TextBox.Text);
 
-                cmd_Previous = manualCMD_TextBox.Text;
-                GA_SetProgressText.Run("Running adb command...", -1);
-                //adbDo(manualCMD_TextBox.Text)
-                ////GA_Log.Event("Manual ADB Command", 2)
-                manualCMD_TextBox.Text = "";
-                ShowLog_InfoBlink_Timer.Start();
-
-                break;
-            case Keys.Up:
-                if (cmd_Current != manualCMD_TextBox.Text)
-                    cmd_Current = manualCMD_TextBox.Text;
-                if (manualCMD_TextBox.Text != cmd_Previous) {
-                    mcmd.Text = cmd_Previous;
+                    cmd_Previous = manualCMD_TextBox.Text;
+                    SetProgressText.Run("Running adb command...", -1);
+                    manualCMD_TextBox.Text = "";
+                    ShowLog_InfoBlink_Timer.Start();
+                    break;
+                case Keys.Up:
+                    if (cmd_Current != manualCMD_TextBox.Text)
+                        cmd_Current = manualCMD_TextBox.Text;
+                    if (manualCMD_TextBox.Text != cmd_Previous) {
+                        mcmd.Text = cmd_Previous;
+                        mcmd.SelectionStart = manualCMD_TextBox.Text.Length + 99;
+                        mcmd.SelectionLength = 0;
+                    }
+                    break;
+                case Keys.Down:
+                    mcmd.Text = cmd_Current;
                     mcmd.SelectionStart = manualCMD_TextBox.Text.Length + 99;
                     mcmd.SelectionLength = 0;
-                }
-                break;
-            case Keys.Down:
-                mcmd.Text = cmd_Current;
-                mcmd.SelectionStart = manualCMD_TextBox.Text.Length + 99;
-                mcmd.SelectionLength = 0;
-                break;
+                    break;
             }
-        }*/
-        //} else if ( e.KeyCode = Keys.Control Or e.KeyCode = Keys.Back ) {
-        //    SendKeys.SendWait("^+{LEFT}{BACKSPACE}") //Wait for LCtrl+Back combination
-        //    //Dim spaceCount As int = 0
-        //    //For Each c As Char In manualCMD_TextBox.Text
-        //    //    if ( c = " " ) {
-        //    //        spaceCount += 1
-        //    //    }
-        //    //Next
-        //    //if ( spaceCount = 0 ) { return;
+        }
+        //} else if (e.KeyCode = Keys.Control Or e.KeyCode = Keys.Back ) {
+        //        SendKeys.SendWait("^+{LEFT}{BACKSPACE}") //Wait for LCtrl+Back combination
+        //        //Dim spaceCount As int = 0
+        //        //For Each c As Char In manualCMD_TextBox.Text
+        //        //    if ( c = " " ) {
+        //        //        spaceCount += 1
+        //        //    }
+        //        //Next
+        //        //if ( spaceCount = 0 ) { return;
 
-        //    Dim pos As int = manualCMD_TextBox.Text.LastIndexOf("\")
-        //    if ( pos != -1 ) { manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, pos)
-        //    //manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, manualCMD_TextBox.Text.LastIndexOf(" "))
-        //}
+        //        Dim pos As int = manualCMD_TextBox.Text.LastIndexOf("\")
+        //        if (pos != -1 ) { manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, pos)
+        //        //manualCMD_TextBox.Text = manualCMD_TextBox.Text.Substring(0, manualCMD_TextBox.Text.LastIndexOf(" "))
+        //    }
+        //    #endregion
+        //}}
+
+        #endregion
+
         #endregion
     }
-
-    #endregion
-
-
 }
-

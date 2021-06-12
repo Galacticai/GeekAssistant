@@ -85,7 +85,7 @@ namespace GeekAssistant.Controls.Material {
             _baseTextBox.Location = new Point(0, 0);
             _baseTextBox.Width = Width;
 
-            Height = _baseTextBox.Height + 5;
+            //Height = _baseTextBox.Height + 5;
         }
 
         protected override void OnCreateControl() {

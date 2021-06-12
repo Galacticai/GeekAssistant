@@ -230,14 +230,13 @@ internal static class GA_adb {
             c.S.DeviceState = "";
         }
         //Refresh current home instance 
-        using var home = c.Home;
+        var home = c.Home;
         home.Manufacturer_ComboBox.SelectedIndex = -1;
         home.AndroidVersion_ComboBox.SelectedIndex = -1;
         home.BootloaderUnlockable_CheckBox.Checked = false;
         home.Rooted_Checkbox.Checked = false;
         home.CustomROM_CheckBox.Checked = false;
         home.CustomRecovery_CheckBox.Checked = false;
-
     }
 
     public static string HotReboot(string ErrorCode_init) {

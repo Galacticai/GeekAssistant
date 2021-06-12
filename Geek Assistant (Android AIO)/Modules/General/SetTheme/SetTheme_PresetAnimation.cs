@@ -6,10 +6,10 @@ internal class SetTheme_PresetAnimation : SetTheme {
     private static bool dark => c.S.DarkTheme;
 
     public static void Swoosh_Full() {
-        SetTheme.h.SwitchTheme_Back_UI.Width = h.Width;
-        h.SwitchTheme_Back_UI.Left = (h.Width - h.SwitchTheme_Back_UI.Width) / 2;
-        h.SwitchTheme_Back_UI.Top = dark ? -h.SwitchTheme_Back_UI.Height : h.Height;
-        Animate.Run(h.SwitchTheme_Back_UI, nameof(h.SwitchTheme_Back_UI.Top), dark ? h.Height : -h.SwitchTheme_Back_UI.Height, 1000);
+        SetTheme.h.SwitchTheme_UI.Width = h.Width;
+        h.SwitchTheme_UI.Left = (h.Width - h.SwitchTheme_UI.Width) / 2;
+        h.SwitchTheme_UI.Top = dark ? -h.SwitchTheme_UI.Height : h.Height;
+        Animate.Run(h.SwitchTheme_UI, nameof(h.SwitchTheme_UI.Top), dark ? h.Height : -h.SwitchTheme_UI.Height, 1000);
     }
     private static float _Icons_Opacity = 0;
     private static float Icons_Opacity {

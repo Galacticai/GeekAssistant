@@ -61,7 +61,4 @@ internal static class images {
         public static Image ToU(bool anti = false) => theme(anti) ? prop.x64.ToU_dark_64 : prop.x64.ToU_64;
         //public static Image Commands(bool anti = false) => theme(anti) ? prop.x64.Commands_dark_64 : prop.x64.Commands_64;
     }
-
-
-
 }

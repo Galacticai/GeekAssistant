@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MetroFramework.Controls;
 using GeekAssistant.Controls;
 using System.Drawing;
+using GeekAssistant.Controls.Material;
 
 namespace GeekAssistant.Forms {
     partial class Home : Form {
@@ -88,10 +89,8 @@ namespace GeekAssistant.Forms {
             this.HotReboot_Button = new MetroFramework.Controls.MetroButton();
             this.GA_About_Label = new System.Windows.Forms.Label();
             this.PictureBox4 = new System.Windows.Forms.PictureBox();
-            this.SwitchTheme_Back_UI = new System.Windows.Forms.PictureBox();
+            this.SwitchTheme_UI = new System.Windows.Forms.PictureBox();
             this.GeekAssistant_Icon = new System.Windows.Forms.PictureBox();
-            this.SwitchTheme_Mid_UI = new System.Windows.Forms.PictureBox();
-            this.SwitchTheme_Fore_UI = new System.Windows.Forms.PictureBox();
             this.bar = new MetroFramework.Controls.MetroProgressBar();
             this.ShowLog_ErrorBlink_Timer = new System.Windows.Forms.Timer(this.components);
             this.ShowLog_InfoBlink_Timer = new System.Windows.Forms.Timer(this.components);
@@ -129,6 +128,7 @@ namespace GeekAssistant.Forms {
             this.materialTabSelector1 = new GeekAssistant.Controls.Material.TabSelector();
             this.SwitchTheme_Light_UI_Icon = new System.Windows.Forms.PictureBox();
             this.SwitchTheme_Dark_UI_Icon = new System.Windows.Forms.PictureBox();
+            this.manualCMD_TextBox = new GeekAssistant.Controls.Material.MaterialTextBox();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -139,10 +139,8 @@ namespace GeekAssistant.Forms {
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Back_UI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_UI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.Home_Tabs.SuspendLayout();
             this.Prepare_Tab.SuspendLayout();
@@ -212,7 +210,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -520,7 +518,7 @@ namespace GeekAssistant.Forms {
             // 
             // log
             // 
-            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log.BackColor = System.Drawing.Color.White;
             this.log.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -589,7 +587,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -611,7 +609,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs_old
             // 
-            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs_old.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs_old.Controls.Add(this.MoreTools_Tab_old);
@@ -963,7 +961,7 @@ namespace GeekAssistant.Forms {
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 0);
@@ -972,15 +970,15 @@ namespace GeekAssistant.Forms {
             this.PictureBox4.TabIndex = 85613;
             this.PictureBox4.TabStop = false;
             // 
-            // SwitchTheme_Back_UI
+            // SwitchTheme_UI
             // 
-            this.SwitchTheme_Back_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Back_UI.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.SwitchTheme_Back_UI.Location = new System.Drawing.Point(-6, 601);
-            this.SwitchTheme_Back_UI.Name = "SwitchTheme_Back_UI";
-            this.SwitchTheme_Back_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Back_UI.TabIndex = 85614;
-            this.SwitchTheme_Back_UI.TabStop = false;
+            this.SwitchTheme_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SwitchTheme_UI.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.SwitchTheme_UI.Location = new System.Drawing.Point(-6, 601);
+            this.SwitchTheme_UI.Name = "SwitchTheme_UI";
+            this.SwitchTheme_UI.Size = new System.Drawing.Size(1184, 929);
+            this.SwitchTheme_UI.TabIndex = 85614;
+            this.SwitchTheme_UI.TabStop = false;
             // 
             // GeekAssistant_Icon
             // 
@@ -991,30 +989,6 @@ namespace GeekAssistant.Forms {
             this.GeekAssistant_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.GeekAssistant_Icon.TabIndex = 85615;
             this.GeekAssistant_Icon.TabStop = false;
-            // 
-            // SwitchTheme_Mid_UI
-            // 
-            this.SwitchTheme_Mid_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Mid_UI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
-            this.SwitchTheme_Mid_UI.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.SwitchTheme_Mid_UI.Location = new System.Drawing.Point(-6, 602);
-            this.SwitchTheme_Mid_UI.Name = "SwitchTheme_Mid_UI";
-            this.SwitchTheme_Mid_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Mid_UI.TabIndex = 85616;
-            this.SwitchTheme_Mid_UI.TabStop = false;
-            this.SwitchTheme_Mid_UI.Visible = false;
-            // 
-            // SwitchTheme_Fore_UI
-            // 
-            this.SwitchTheme_Fore_UI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SwitchTheme_Fore_UI.BackColor = System.Drawing.Color.Transparent;
-            this.SwitchTheme_Fore_UI.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.SwitchTheme_Fore_UI.Location = new System.Drawing.Point(-6, 602);
-            this.SwitchTheme_Fore_UI.Name = "SwitchTheme_Fore_UI";
-            this.SwitchTheme_Fore_UI.Size = new System.Drawing.Size(1184, 929);
-            this.SwitchTheme_Fore_UI.TabIndex = 85617;
-            this.SwitchTheme_Fore_UI.TabStop = false;
-            this.SwitchTheme_Fore_UI.Visible = false;
             // 
             // bar
             // 
@@ -1289,7 +1263,7 @@ namespace GeekAssistant.Forms {
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -1309,7 +1283,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
@@ -1320,7 +1294,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
@@ -1341,7 +1315,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
@@ -1362,7 +1336,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
@@ -1373,7 +1347,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
@@ -1384,7 +1358,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
@@ -1407,7 +1381,7 @@ namespace GeekAssistant.Forms {
             // SwitchTheme_Light_UI_Icon
             // 
             this.SwitchTheme_Light_UI_Icon.Image = global::prop.x64.Theme_light_64;
-            this.SwitchTheme_Light_UI_Icon.Location = new System.Drawing.Point(723, 535);
+            this.SwitchTheme_Light_UI_Icon.Location = new System.Drawing.Point(738, 601);
             this.SwitchTheme_Light_UI_Icon.Margin = new System.Windows.Forms.Padding(0);
             this.SwitchTheme_Light_UI_Icon.Name = "SwitchTheme_Light_UI_Icon";
             this.SwitchTheme_Light_UI_Icon.Size = new System.Drawing.Size(64, 64);
@@ -1417,12 +1391,29 @@ namespace GeekAssistant.Forms {
             // SwitchTheme_Dark_UI_Icon
             // 
             this.SwitchTheme_Dark_UI_Icon.Image = global::prop.x64.Theme_dark_64;
-            this.SwitchTheme_Dark_UI_Icon.Location = new System.Drawing.Point(761, 535);
+            this.SwitchTheme_Dark_UI_Icon.Location = new System.Drawing.Point(776, 601);
             this.SwitchTheme_Dark_UI_Icon.Margin = new System.Windows.Forms.Padding(0);
             this.SwitchTheme_Dark_UI_Icon.Name = "SwitchTheme_Dark_UI_Icon";
             this.SwitchTheme_Dark_UI_Icon.Size = new System.Drawing.Size(64, 64);
             this.SwitchTheme_Dark_UI_Icon.TabIndex = 85622;
             this.SwitchTheme_Dark_UI_Icon.TabStop = false;
+            // 
+            // manualCMD_TextBox
+            // 
+            this.manualCMD_TextBox.Depth = 0;
+            this.manualCMD_TextBox.Hint = "Type your own adb or fastboot command here";
+            this.manualCMD_TextBox.Location = new System.Drawing.Point(689, 557);
+            this.manualCMD_TextBox.MaxLength = 32767;
+            this.manualCMD_TextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.manualCMD_TextBox.Name = "manualCMD_TextBox";
+            this.manualCMD_TextBox.PasswordChar = '\0';
+            this.manualCMD_TextBox.SelectedText = "";
+            this.manualCMD_TextBox.SelectionLength = 0;
+            this.manualCMD_TextBox.SelectionStart = 0;
+            this.manualCMD_TextBox.Size = new System.Drawing.Size(383, 23);
+            this.manualCMD_TextBox.TabIndex = 85623;
+            this.manualCMD_TextBox.TabStop = false;
+            this.manualCMD_TextBox.UseSystemPasswordChar = false;
             // 
             // Home
             // 
@@ -1433,9 +1424,9 @@ namespace GeekAssistant.Forms {
             this.ClientSize = new System.Drawing.Size(1174, 599);
             this.Controls.Add(this.SwitchTheme_Light_UI_Icon);
             this.Controls.Add(this.SwitchTheme_Dark_UI_Icon);
-            this.Controls.Add(this.SwitchTheme_Fore_UI);
-            this.Controls.Add(this.SwitchTheme_Mid_UI);
-            this.Controls.Add(this.SwitchTheme_Back_UI);
+            this.Controls.Add(this.SwitchTheme_UI);
+            this.Controls.Add(this.AutoDetectDeviceInfo_Button);
+            this.Controls.Add(this.manualCMD_TextBox);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.Home_Tabs);
             this.Controls.Add(this.Toggle_ManualDeviceInfo_Button);
@@ -1453,7 +1444,6 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.SwitchTheme_Button);
             this.Controls.Add(this.Feedback_Button);
             this.Controls.Add(this.Settings_Button);
-            this.Controls.Add(this.AutoDetectDeviceInfo_Button);
             this.Controls.Add(this.GeekAssistant);
             this.Controls.Add(this.MainLayout_PictureBox);
             this.Controls.Add(this.PictureBox4);
@@ -1486,10 +1476,8 @@ namespace GeekAssistant.Forms {
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Back_UI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_UI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant_Icon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Mid_UI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Fore_UI)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.Home_Tabs.ResumeLayout(false);
             this.Prepare_Tab.ResumeLayout(false);
@@ -1549,13 +1537,11 @@ namespace GeekAssistant.Forms {
         public PictureBox PictureBox3;
         public MetroProgressBar ProgressBar;
         public PictureBox PictureBox4;
-        public PictureBox SwitchTheme_Back_UI;
         public GeekAssistant.Controls.Material.FlatButton SwitchTheme_Button;
         public Button FlashZip_ChooseFile_Button;
         public Label DeviceState_Label;
         public PictureBox GeekAssistant_Icon;
-        public PictureBox SwitchTheme_Mid_UI;
-        public PictureBox SwitchTheme_Fore_UI;
+        public PictureBox SwitchTheme_UI;
         public CheckBox Rooted_Checkbox;
         public GeekAssistant.Controls.Material.FlatButton Donate_Button;
         public MetroButton HotReboot_Button;
@@ -1576,26 +1562,25 @@ namespace GeekAssistant.Forms {
         public Timer Wait_PostDelay_adbDetect;
         public Timer SettingsSave_Timer;
         public ToolTip Unavalable_Tooltip;
-        private TextBox textBox1;
-        private GroupBox groupBox1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Label Manufacturer_Title_Label;
-        private Label Manufacturer_Label;
-        private Label AndroidVersion_Title_Label;
-        private Label AndroidVersion_Label;
-        private Label BootloaderUnlockable_Title_Label;
-        private Label BootloaderUnlockable_Label;
-        private Label Rooted_Title_Label;
-        private Label Rooted_Label;
-        private Label CustomRecovery_Label;
-        private Label CustomROM_Title_Label;
-        private Label CustomROM_Label;
-        private Label CustomRecovery_Title_Label;
-        private GeekAssistant.Controls.Material.MaterialTextBox manualCMD_TextBox;
+        public TextBox textBox1;
+        public GroupBox groupBox1;
+        public TextBox textBox5;
+        public TextBox textBox4;
+        public TextBox textBox3;
+        public TextBox textBox2;
+        public TableLayoutPanel tableLayoutPanel1;
+        public Label Manufacturer_Title_Label;
+        public Label Manufacturer_Label;
+        public Label AndroidVersion_Title_Label;
+        public Label AndroidVersion_Label;
+        public Label BootloaderUnlockable_Title_Label;
+        public Label BootloaderUnlockable_Label;
+        public Label Rooted_Title_Label;
+        public Label Rooted_Label;
+        public Label CustomRecovery_Label;
+        public Label CustomROM_Title_Label;
+        public Label CustomROM_Label;
+        public Label CustomRecovery_Title_Label;
         public GroupBox debuggingBox;
         public MetroButton MetroButton4;
         public MetroButton MetroButton8;
@@ -1612,5 +1597,6 @@ namespace GeekAssistant.Forms {
         public TabPage More_Tab;
         public PictureBox SwitchTheme_Light_UI_Icon;
         public PictureBox SwitchTheme_Dark_UI_Icon;
+        private Controls.Material.MaterialTextBox manualCMD_TextBox;
     }
 }
