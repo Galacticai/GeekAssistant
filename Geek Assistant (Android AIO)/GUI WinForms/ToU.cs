@@ -80,7 +80,7 @@ namespace GeekAssistant.Forms {
                 return;
             }
 
-            if (c.V.Revision < 3) {
+            if (c.version.Revision < 3) {
                 ToURead_Timer.Enabled = true;
             } else { ////Skip the 6sec timer for #Dev version 
                 ToU_Accept.BackColor = BackColor;

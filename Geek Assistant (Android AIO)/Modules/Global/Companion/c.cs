@@ -17,7 +17,6 @@ internal class c {
     #endregion
 
 
-
     #region Public variables
 
     /// <summary> <list>
@@ -32,37 +31,35 @@ internal class c {
     #region Forms  
     /// <typeparam name="form"><see cref="Form"/> to check</typeparam>
     /// <returns>True if <typeparamref name="form"/> is currently open</returns>
-    public static bool FormisRunning<form>()
-        => Application.OpenForms.OfType<form>().Any();
+    public static bool FormisRunning<form>() => Application.OpenForms.OfType<form>().Any();
 
     /// <typeparam name="form"><see cref="Form"/> to check</typeparam>
-    /// <returns>Current instance of <typeparamref name="form"/> or null if not found</returns>
-    private static form Forms<form>() {
+    /// <returns>Current instance of <typeparamref name="form"/>  |  null if disposed or not found</returns>
+    private static form Forms<form>() where form : Form {
         try {
-            return Application.OpenForms.OfType<form>().First();
-        } catch { return default; }
-
-        //    foreach (Form f in Application.OpenForms)
-        //        if (f is form)
-        //            return f;
-        //return null;
+            form f = Application.OpenForms.OfType<form>().First();
+            if (f.IsDisposed) throw new ObjectDisposedException(f.Name);
+            return f;
+        } catch {
+            return default;
+        }
     }
 
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Preparing"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Preparing"/>  |  new instance if disposed or not found</returns>
     public static Preparing Preparing => Forms<Preparing>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Wait"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Wait"/>  |  new instance if disposed or not found</returns>
     public static Wait Wait => Forms<Wait>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.AppMode"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.AppMode"/>  |  new instance if disposed or not found</returns>
     public static AppMode AppMode => Forms<AppMode>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Donate"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Donate"/>  |  new instance if disposed or not found</returns>
     public static Donate Donate => Forms<Donate>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Home"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Home"/>  |  new instance if disposed or not found</returns>
     public static Home Home => Forms<Home>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Info"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Info"/>  |  new instance if disposed or not found</returns>
     public static Info Info => Forms<Info>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Settings"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.Settings"/>  |  new instance if disposed or not found</returns>
     public static Settings Settings => Forms<Settings>() ?? new();
-    /// <returns>Current instance of <see cref="GeekAssistant.Forms.ToU"/> or new instance if not found</returns>
+    /// <returns>Current instance of <see cref="GeekAssistant.Forms.ToU"/>  |  new instance if disposed or not found</returns>
     public static ToU ToU => Forms<ToU>() ?? new();
 
     #endregion
@@ -80,11 +77,11 @@ internal class c {
     #region Public Abbreviations 
 
     /// <summary> Get current copyright string </summary>
-    public static readonly string C = System.Diagnostics.FileVersionInfo.GetVersionInfo(
+    public static readonly string copyright = System.Diagnostics.FileVersionInfo.GetVersionInfo(
                                           System.Reflection.Assembly.GetExecutingAssembly().Location
                                       ).LegalCopyright;
     /// <summary> Get current version field </summary>
-    public static readonly Version V = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+    public static readonly Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
     /// <summary> Simple .NET new line (Environment.NewLine) </summary>
     public static readonly string n = Environment.NewLine;
     /// <summary> Simple html new line (&lt;br/&gt;) </summary>

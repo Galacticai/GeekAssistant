@@ -202,7 +202,7 @@ namespace GeekAssistant.Forms {
                 AutoDetectDeviceInfo_Button.Select();
 
                 //####### DEBUG #####################################
-                if (c.V.Revision == 3) debuggingBox.Visible = true;
+                if (c.version.Revision == 3) debuggingBox.Visible = true;
                 //###################################################
 
                 log.Event("Start", 1);

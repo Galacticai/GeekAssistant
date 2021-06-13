@@ -3,7 +3,7 @@ namespace GeekAssistant.Modules.Global {
     internal static class FeatureUnavailable {
         public static void Run(string title) {
             string state = "cooking progress";
-            switch (c.V.Revision) {
+            switch (c.version.Revision) {
                 case 1:
                     state = "beta phase"; break;
                 case 2:

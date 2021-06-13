@@ -18,8 +18,8 @@ namespace GeekAssistant.Modules.Global.Companion {
         /// </returns>
         public static string Run(VerType verType) {
             string cDateByNHKomaiha = "©2021 By NHKomaiha";
-            string result = $"v{c.V.Major}.{c.V.Minor}";
-            switch (c.V.Revision) {
+            string result = $"v{c.version.Major}.{c.version.Minor}";
+            switch (c.version.Revision) {
                 case 1: result += " #Beta"; break;
                 case 2: result += " #Test"; break;
                 case 3: result += " #Dev"; break;
@@ -28,7 +28,7 @@ namespace GeekAssistant.Modules.Global.Companion {
                 case VerType.log: result = $"Geek Assistant {result} {cDateByNHKomaiha}."; break;
                 case VerType.Home: result += $" {cDateByNHKomaiha}."; break;
                 case VerType.HomeTitle: result = $"Geek Assistant — {result}"; break;
-                case VerType.ToU: result = $"{c.C}. {result}"; break;
+                case VerType.ToU: result = $"{c.copyright}. {result}"; break;
             }
             return result;
         }

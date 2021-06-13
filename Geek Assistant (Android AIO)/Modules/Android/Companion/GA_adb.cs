@@ -36,7 +36,6 @@ namespace GeekAssistant.Modules.Android.Companion {
             adb.Run($@"pull ""{Asource}"" ""{Wdestination}""");
         }
 
-        private static string AndroidVersion;
         private static Dictionary<int, string[]> _ApiToVer;
         public static Dictionary<int, string[]> ApiToVer {
             get {
@@ -240,11 +239,11 @@ namespace GeekAssistant.Modules.Android.Companion {
             home.CustomRecovery_CheckBox.Checked = false;
         }
 
-        public static string HotReboot(string ErrorCode_init) {
+        public static string HotReboot() {
             var scr = new Managed.Adb.CommandResultReceiver();
             var dev = madb.GetListOfDevice().Result[0];
             if (!madb.madb_IsRooted()) {
-                inf.Run(inf.detail.lvl, inf.detail.title, inf.detail.msg);
+                inf.Run();
                 return "";
             }
             if (!dev.BusyBox.Available) InitializeBusybox.Run(true);
