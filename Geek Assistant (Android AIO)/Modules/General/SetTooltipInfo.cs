@@ -1,7 +1,7 @@
 ﻿
 using System.Windows.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class SetTooltipInfo {
         public static void Run(ref ToolTip ToolTipName, Control control, string ToolTipTitle, string ToolTipText) {
             if (c.S.ShowToolTips) {

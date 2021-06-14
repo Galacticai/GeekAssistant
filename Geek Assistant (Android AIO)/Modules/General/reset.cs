@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class reset {
         public static void Run(bool Data, bool logs) {
             inf.detail.code = "GAr-00";

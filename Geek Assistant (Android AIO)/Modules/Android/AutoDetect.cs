@@ -2,8 +2,8 @@
 using Managed.Adb;
 using System;
 using System.Threading.Tasks;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
 using GeekAssistant.Modules.Android.Companion;
 
 namespace GeekAssistant.Modules.Android {

@@ -2,7 +2,7 @@
 
 using System;
 
-namespace GeekAssistant.Modules.Global.Companion.GAmath {
+namespace GeekAssistant.Modules.General.Companion.GAmath {
     /// <summary> Predefined functions </summary>
     internal class Functions {
 

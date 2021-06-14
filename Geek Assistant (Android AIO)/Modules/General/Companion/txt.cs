@@ -2,9 +2,9 @@
 using System;
 using System.Windows.Forms;
 using GeekAssistant.Controls;
-using GeekAssistant.Modules.Global.Companion.GAmath;
+using GeekAssistant.Modules.General.Companion.GAmath;
 
-namespace GeekAssistant.Modules.Global.Companion {
+namespace GeekAssistant.Modules.General.Companion {
     internal static class txt {
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using GeekAssistant.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class wait {
         public static Wait Wait = null;
         public static void Run(bool Enable) {

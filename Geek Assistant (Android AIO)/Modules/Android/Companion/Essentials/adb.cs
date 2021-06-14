@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
 
 namespace GeekAssistant.Modules.Android.Companion.Essentials {
     internal static class adb {

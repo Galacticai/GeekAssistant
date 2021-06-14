@@ -3,9 +3,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Interfaces;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General.Companion.Style;
 
-namespace GeekAssistant.Modules.Global.SetTheme {
+namespace GeekAssistant.Modules.General.SetTheme {
     internal class SetTheme : SetThemeCompanion {
         public static bool Running = false;
 

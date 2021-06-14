@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General.Companion.Style;
 
 namespace GeekAssistant.Controls.Themed {
     public class Themed_Label : Label {

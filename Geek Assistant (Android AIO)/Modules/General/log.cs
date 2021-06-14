@@ -2,11 +2,11 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.Style;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class log {
         private static string latestLogName;
         private static string latestLogPath;

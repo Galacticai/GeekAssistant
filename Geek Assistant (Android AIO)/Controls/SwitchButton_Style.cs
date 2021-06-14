@@ -1,8 +1,8 @@
 ﻿
 using System.Drawing;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.Style;
 
 namespace GeekAssistant.Controls {
     internal static class SwitchButton_Style {

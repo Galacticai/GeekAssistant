@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.Style;
-using GeekAssistant.Modules.Global.Companion.GAmath;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.Style;
+using GeekAssistant.Modules.General.Companion.GAmath;
 
 namespace GeekAssistant.Controls.Material {
     public class TabSelector : MaterialTabSelector, IMaterialControl {

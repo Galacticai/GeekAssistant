@@ -1,7 +1,7 @@
 ﻿using GeekAssistant.Forms;
 using System.Windows.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class SetProgressText {
 
         // Private t As String

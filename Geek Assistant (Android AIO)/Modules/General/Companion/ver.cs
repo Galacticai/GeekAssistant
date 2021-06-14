@@ -1,5 +1,5 @@
 ﻿
-namespace GeekAssistant.Modules.Global.Companion {
+namespace GeekAssistant.Modules.General.Companion {
     internal static class ver {
         public enum VerType { log, Home, HomeTitle, ToU }
 

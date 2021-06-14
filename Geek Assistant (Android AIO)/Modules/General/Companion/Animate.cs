@@ -3,7 +3,7 @@
 using FluentTransitions;
 using System;
 
-namespace GeekAssistant.Modules.Global.Companion {
+namespace GeekAssistant.Modules.General.Companion {
     internal static class Animate {
         /// <summary>
         /// Animate a property of an object with critical damping

@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.SetTheme;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.SetTheme;
+using GeekAssistant.Modules.General.Companion;
 
 namespace GeekAssistant.Forms {
     public partial class Wait : Form {

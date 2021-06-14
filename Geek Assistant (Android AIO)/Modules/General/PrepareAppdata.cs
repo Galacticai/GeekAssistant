@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class PrepareAppdata {
         public static void Run() {
             if (!Directory.Exists(c.GA))

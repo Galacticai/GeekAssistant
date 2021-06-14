@@ -10,12 +10,12 @@ internal static class images {
     }
     public struct x24 {
         public struct inf {
-            public static Image From_inflvls(GeekAssistant.Modules.Global.inf.lvls lvls)
+            public static Image From_inflvls(GeekAssistant.Modules.General.inf.lvls lvls)
                 => lvls switch {
-                    GeekAssistant.Modules.Global.inf.lvls.Warn => Warn(), // 0
-                    GeekAssistant.Modules.Global.inf.lvls.Error => Error(), // 1 
-                    GeekAssistant.Modules.Global.inf.lvls.FatalError => Error(), // 10
-                    GeekAssistant.Modules.Global.inf.lvls.Question => Question(), // 2
+                    GeekAssistant.Modules.General.inf.lvls.Warn => Warn(), // 0
+                    GeekAssistant.Modules.General.inf.lvls.Error => Error(), // 1 
+                    GeekAssistant.Modules.General.inf.lvls.FatalError => Error(), // 10
+                    GeekAssistant.Modules.General.inf.lvls.Question => Question(), // 2
                     _ => Information()  // -1
                 };
 
@@ -36,12 +36,12 @@ internal static class images {
 
     public struct x64 {
         public struct inf {
-            public static Image From_inflvls(GeekAssistant.Modules.Global.inf.lvls lvls)
+            public static Image From_inflvls(GeekAssistant.Modules.General.inf.lvls lvls)
                 => lvls switch {
-                    GeekAssistant.Modules.Global.inf.lvls.Warn => Warn(), // 0
-                    GeekAssistant.Modules.Global.inf.lvls.Error => Error(), // 1 
-                    GeekAssistant.Modules.Global.inf.lvls.FatalError => Error(), // 10
-                    GeekAssistant.Modules.Global.inf.lvls.Question => Question(), // 2
+                    GeekAssistant.Modules.General.inf.lvls.Warn => Warn(), // 0
+                    GeekAssistant.Modules.General.inf.lvls.Error => Error(), // 1 
+                    GeekAssistant.Modules.General.inf.lvls.FatalError => Error(), // 10
+                    GeekAssistant.Modules.General.inf.lvls.Question => Question(), // 2
                     _ => Information()  // -1
                 };
 

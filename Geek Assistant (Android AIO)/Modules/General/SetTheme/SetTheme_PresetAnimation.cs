@@ -1,9 +1,9 @@
 ﻿
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.GAmath;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.GAmath;
 
-namespace GeekAssistant.Modules.Global.SetTheme {
+namespace GeekAssistant.Modules.General.SetTheme {
     internal class SetTheme_PresetAnimation : SetTheme {
         private static bool dark => c.S.DarkTheme;
 

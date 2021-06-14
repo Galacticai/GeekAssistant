@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.SetTheme;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.SetTheme;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.Style;
 
 namespace GeekAssistant.Forms {
     public partial class ToU : Form {

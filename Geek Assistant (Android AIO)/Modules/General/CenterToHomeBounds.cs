@@ -4,7 +4,7 @@ using GeekAssistant.Forms;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class CenterToHomeBounds {
         public static void Run(Form f) {
             Point xy;

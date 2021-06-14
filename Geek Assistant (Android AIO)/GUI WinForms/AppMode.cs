@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.SetTheme;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.SetTheme;
+using GeekAssistant.Modules.General.Companion.Style;
 using GeekAssistant.Controls;
 
 namespace GeekAssistant.Forms {
@@ -65,9 +65,8 @@ namespace GeekAssistant.Forms {
             switch (AppModelvl) {
                 case AppModelvls.Newbie:
                     //common.S.startup_newbie = true
-                    //common.S.startup_moderate = false
-                    inf.detail.code = $"{workCode_init}-n"; // (current) - newbie
-                    FeatureUnavailable.Run("Newbie Mode");
+                    //common.S.startup_moderate = false 
+                    FeatureUnavailable.Run($"{workCode_init}-n", "Newbie Mode"); // (current) - newbie
                     break;
                 case AppModelvls.Default:
                     c.Home.Show();

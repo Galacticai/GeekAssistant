@@ -2,8 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion.GAmath;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion.GAmath;
 
 namespace GeekAssistant.Modules.Android.MagiskRoot {
     internal class MagiskRootCompanion : LatestMagiskAsset {

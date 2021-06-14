@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.ExceptionServices;
 using GeekAssistant.Forms;
-using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.General;
 
 namespace GeekAssistant {
     class RunGeekAssistant {

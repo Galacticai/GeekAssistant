@@ -2,7 +2,7 @@
 
 using System;
 
-namespace GeekAssistant.Modules.Global.Companion {
+namespace GeekAssistant.Modules.General.Companion {
     internal static class convert {
         public struct Bool {
             /// <param name="value">Input</param>

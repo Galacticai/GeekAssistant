@@ -1,8 +1,8 @@
 ﻿using GeekAssistant.Forms;
 using System;
 using System.Linq;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android.Companion.Essentials;
 

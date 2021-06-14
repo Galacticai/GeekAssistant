@@ -1,6 +1,8 @@
 ﻿
 
-namespace GeekAssistant.Modules.Global.Companion.GAmath {
+using System.Linq;
+
+namespace GeekAssistant.Modules.General.Companion.GAmath {
     /// <summary> Manipulate numbers and misc stuff </summary>
     internal class mathMisc {
         /// <summary> Random manipulation </summary>
@@ -42,11 +44,12 @@ namespace GeekAssistant.Modules.Global.Companion.GAmath {
             => input <= max & input >= min;
 
         public static type[] AddElementToArr<type>(type[] array, type element) {
-            type[] expandedArray = new type[array.Length + 1]; // set expandedArray size to "length" (bigger by 1)
-            for (int i = 0; i < array.Length; i++)
-                expandedArray[i] = array[i]; // copy all elements from array to expandedArray
-            expandedArray[array.Length] = element; // add the final element
-            return expandedArray;
+            return array.Concat(new type[] { element }).ToArray();
+            //type[] expandedArray = new type[array.Length + 1]; // set expandedArray size to "length" (bigger by 1)
+            //for (int i = 0; i < array.Length; i++)
+            //    expandedArray[i] = array[i]; // copy all elements from array to expandedArray
+            //expandedArray[array.Length] = element; // add the final element
+            //return expandedArray;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android.Companion.Essentials;
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.Android.Companion.Essentials;
 
 namespace GeekAssistant.Modules.Android.Companion {

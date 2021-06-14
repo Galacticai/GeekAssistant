@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
     internal static class HideAllForms {
 
         public static FormCollection HiddenForms;

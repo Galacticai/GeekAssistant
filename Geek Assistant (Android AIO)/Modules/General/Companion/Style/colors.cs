@@ -1,7 +1,7 @@
 ﻿using MetroFramework;
 using System.Drawing;
 
-namespace GeekAssistant.Modules.Global.Companion.Style {
+namespace GeekAssistant.Modules.General.Companion.Style {
     /// <summary> Dynamically selected colors according to global Light/Dark c.S.DarkTheme & !instance.inverseTheme </summary>  
     internal static class colors {
 
@@ -50,12 +50,12 @@ namespace GeekAssistant.Modules.Global.Companion.Style {
             /// <item>10 = <see cref="global::inf.lvls.FatalError"/> = <see cref="errRed"/> = #9a0000 &gt; #ffbfbf</item>
             /// <item>2 = <see cref="global::inf.lvls.Question"/> = <see cref="questBlue"/> = #406d80 &gt; #bfdfff</item>
             /// </list></returns>
-            public static Color From_inflvls(Global.inf.lvls lvls)
+            public static Color From_inflvls(General.inf.lvls lvls)
                 => lvls switch {
-                    Global.inf.lvls.Warn => warnYellow(), // 0
-                    Global.inf.lvls.Error => errRed(), // 1
-                    Global.inf.lvls.FatalError => errRed(), // 10
-                    Global.inf.lvls.Question => questBlue(), // 2
+                    General.inf.lvls.Warn => warnYellow(), // 0
+                    General.inf.lvls.Error => errRed(), // 1
+                    General.inf.lvls.FatalError => errRed(), // 10
+                    General.inf.lvls.Question => questBlue(), // 2
                     _ => infBlue()  // -1
                 };
             /// <returns>#005073 &gt; #bfecff</returns>

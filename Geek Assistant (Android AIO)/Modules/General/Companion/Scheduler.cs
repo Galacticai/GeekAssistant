@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 
 
-namespace GeekAssistant.Modules.Global.Companion {
+namespace GeekAssistant.Modules.General.Companion {
     public class Scheduler {
         private readonly ConcurrentDictionary<Action, ScheduledTask> _scheduledTasks = new();
 

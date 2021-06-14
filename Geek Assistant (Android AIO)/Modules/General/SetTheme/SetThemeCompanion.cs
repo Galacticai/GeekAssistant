@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeekAssistant.Controls.Material;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.Companion.Style;
 
-namespace GeekAssistant.Modules.Global.SetTheme {
+namespace GeekAssistant.Modules.General.SetTheme {
     internal class SetThemeCompanion {
 
         public static void SetControlsArrTheme(Control[] control) {

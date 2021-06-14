@@ -1,8 +1,8 @@
 ﻿using Managed.Adb;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android.Companion.Essentials;
 
@@ -33,14 +33,14 @@ namespace GeekAssistant.Modules.Android {
 
             if (adbRegex.Match(command).Success) { // If command matching adbRegex 
                 string adbOut = adbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "adb " 
-                GeekAssistant.Modules.Global.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
+                GeekAssistant.Modules.General.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
                                   $"{(string.IsNullOrEmpty(adbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{adbOut}")}", 2);
 
             } else if (fbRegex.Match(command).Success) { // If command matching fbRegex
 
                 string fbOut = fbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "fastboot "
 
-                GeekAssistant.Modules.Global.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
+                GeekAssistant.Modules.General.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
                                   $"{(string.IsNullOrEmpty(fbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{fbOut}")}", 2);
             } else invalidCMD(command);
 
@@ -60,7 +60,7 @@ namespace GeekAssistant.Modules.Android {
 
             Skip_commandContains:;
 
-            GeekAssistant.Modules.Global.log.AppendText(invalid_text, 2);
+            GeekAssistant.Modules.General.log.AppendText(invalid_text, 2);
         }
         private static string adbDo_WithTrack(string command) {
             inf.detail.code = $"{txt.GA_current_workCode}-adb-cmd"; // (workCode) - adb - cmd

@@ -1,6 +1,6 @@
 ﻿
 using System.Diagnostics;
-using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.General;
 
 namespace GeekAssistant.Modules.Android.Companion.Essentials {
     internal static class fastboot {

@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using GeekAssistant.Controls.Material;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
-using GeekAssistant.Modules.Global.SetTheme;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
+using GeekAssistant.Modules.General.SetTheme;
+using GeekAssistant.Modules.General.Companion.Style;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android;
 
@@ -382,8 +382,7 @@ namespace GeekAssistant.Forms {
         }
 
         private void MagiskRoot_Button_Click(object sender, EventArgs e) {
-            inf.detail.code = "MR-00";
-            FeatureUnavailable.Run("Root with magisk");
+            FeatureUnavailable.Run("MR", "Root with magisk");
         }
 
         private void HotReboot_Button_Click(object sender, EventArgs e) {
@@ -393,7 +392,7 @@ namespace GeekAssistant.Forms {
             }
             log.Event("Hot Reboot", 2);
             SetProgressText.Run("Attempting hot reboot...", inf.lvls.Information);
-            var hr = GA_adb.HotReboot("HR");
+            var hr = GA_adb.HotReboot();
             if (!string.IsNullOrEmpty(hr)) log.AppendText(hr, 1);
         }
 

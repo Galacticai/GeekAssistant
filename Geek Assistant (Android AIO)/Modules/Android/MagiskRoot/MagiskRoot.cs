@@ -1,7 +1,7 @@
 ﻿
 using GeekAssistant.Forms;
 using System;
-using GeekAssistant.Modules.Global;
+using GeekAssistant.Modules.General;
 
 namespace GeekAssistant.Modules.Android.MagiskRoot {
 

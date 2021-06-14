@@ -1,7 +1,7 @@
 ﻿using GeekAssistant.Forms;
 using System.Drawing;
 
-namespace GeekAssistant.Modules.Global {
+namespace GeekAssistant.Modules.General {
 
     /// <summary>
     /// Inform the user using Info() form by pulling info from inf + implicitly or explicity determining the icon/color

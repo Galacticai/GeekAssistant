@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace GeekAssistant.Modules.Global.Companion.GAmath {
+namespace GeekAssistant.Modules.General.Companion.GAmath {
     /// <summary> Visual math </summary>
     internal class Vision {
         /// <summary>  Blends the specified colors together. </summary>

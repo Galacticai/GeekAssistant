@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.SetTheme;
-using GeekAssistant.Modules.Global.Companion.Style;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.SetTheme;
+using GeekAssistant.Modules.General.Companion.Style;
 
 namespace GeekAssistant.Forms {
 

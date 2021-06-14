@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using GeekAssistant.Modules.Global;
-using GeekAssistant.Modules.Global.Companion;
+using GeekAssistant.Modules.General;
+using GeekAssistant.Modules.General.Companion;
 
 namespace GeekAssistant.Modules.Android.Companion {
     internal static class madb {
