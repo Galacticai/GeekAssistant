@@ -59,7 +59,7 @@ namespace GeekAssistant.Modules.General.Companion {
         }
         /// <returns>Random string from a preset String() (open to edit preset array)</returns>
         public static string RandomWorkText
-            => (string)mathMisc.Random.RandomObjectFromArr(new[] {
+            => mathMisc.Random.FromArray(new[] {
             "Hold on... We're doing magic!",
             "Stuff... Please be patient...",
             "Wait a second... Magic ongoing...",
@@ -79,7 +79,7 @@ namespace GeekAssistant.Modules.General.Companion {
 
         /// <returns>Random string from a preset String() (open to edit preset array)</returns>
         public static string RandomFactText
-            => (string)mathMisc.Random.RandomObjectFromArr(new[] {
+            => mathMisc.Random.FromArray(new[] {
             "The first oranges weren’t orange.",
             "Samsung uses a butt-shaped robot to test phone durability.",
             "Peanuts aren’t technically nuts.",

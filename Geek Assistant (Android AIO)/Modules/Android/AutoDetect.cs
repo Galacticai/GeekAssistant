@@ -21,7 +21,7 @@ namespace GeekAssistant.Modules.Android {
         private const string workCode_init = "AD", workTitle = "Auto Detect";
 
         private static bool RunningInBetween = false;
-        public static async void Run(bool Silent = false) {
+        public static async Task Run(bool Silent = false) {
 
             //Refresh current home instance
             var home = c.Home;
@@ -31,7 +31,7 @@ namespace GeekAssistant.Modules.Android {
 
             if (!RunningInBetween) inf.detail.title = workTitle;
             inf.detail.code =
-                $"{(RunningInBetween ? $"{inf.detail.code}-" : "")}" + $"{workCode_init}-00"; // (RunningInBetween? {workCode_init} -) Auto Detect - Begin
+                $"{(RunningInBetween ? $"{inf.detail.code}-" : string.Empty)}{workCode_init}-00"; // (RunningInBetween? {workCode_init} -) Auto Detect - Begin
             if (!Silent) log.Event(workTitle, 2);
 
             try {
@@ -51,7 +51,7 @@ namespace GeekAssistant.Modules.Android {
                 if (!Silent) SetProgressText.Run("Counting the connected devices...", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-Dc", inf.lvls.FatalError, inf.detail.title, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
-                switch (madb.GetDeviceCount().Result) {
+                switch (await Task.Run(() => madb.GetDeviceCount().Result)) {
                     case 0:
                         home.DeviceState_Label.Text = "Disconnected";
                         inf.detail = ($"{workCode_init}-D0", inf.lvls.Warn, inf.detail.title, $"We haven't found any device.{c.n}{prop.strings.TroubleshootConnection}", null); // Auto Detect - Device 0 (0 devices connected)
@@ -70,22 +70,22 @@ namespace GeekAssistant.Modules.Android {
                 switch (madb.GetDeviceState().Result) {
                     case DeviceState.Unknown: // unknown 
                         home.DeviceState_Label.Text = "Unknown";
-                        DeviceState_String += $"in an unknown state...\n{prop.strings.TroubleshootConnection}";
+                        DeviceState_String += $"in an unknown state...{c.n}{prop.strings.TroubleshootConnection}";
                         inf.detail = ($"{workCode_init}-DU", inf.lvls.Information, inf.detail.title, DeviceState_String, null); // Auto Detect - Device 0 (No devices connected)
                         throw new Exception();
                     case DeviceState.Offline: // offline 
                         home.DeviceState_Label.Text = "Offline";
-                        DeviceState_String += $"offline. \n{prop.strings.TroubleshootConnection}";
+                        DeviceState_String += $"offline. {c.n}{prop.strings.TroubleshootConnection}";
                         inf.detail = ($"{workCode_init}-DO", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Offline (PC not allowed to debug device)
                         throw new Exception();
                     case DeviceState.Recovery: // recovery 
                         home.DeviceState_Label.Text = "Recovery mode";
-                        DeviceState_String += $"in recovery mode.\nPlease enter adb mode and try again."; // Please enter adb mode or reboot to system and try again."
+                        DeviceState_String += $"in recovery mode.{c.n}Please enter adb mode and try again."; // Please enter adb mode or reboot to system and try again."
                         inf.detail = ($"{workCode_init}-DR", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Recovery
                         throw new Exception();
                     case DeviceState.Download: // download 
                         home.DeviceState_Label.Text = "Download mode";
-                        DeviceState_String += $"in download mode.\nPlease enter adb mode and try again.";
+                        DeviceState_String += $"in download mode.{c.n}Please enter adb mode and try again.";
                         inf.detail = ($"{workCode_init}-DD", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Download
                         throw new Exception();
 
@@ -100,12 +100,12 @@ namespace GeekAssistant.Modules.Android {
                         if (!Silent) {
                             var DeviceInFastboot_ContinueAsk =
                                 inf.Run(inf.lvls.Question, $"{DeviceState_String}",
-                                          $"We cannot read much in this mode.\nDo you want to continue detection in fastboot mode?",
+                                          $"We cannot read much in this mode.{c.n}Do you want to continue detection in fastboot mode?",
                                         ("Continue", "Close"));
                             if (DeviceInFastboot_ContinueAsk) {
                                 inf.detail.lvl = inf.lvls.Error;
                                 inf.Run(inf.lvls.Error, inf.detail.title,
-                                       $"Oh no this is currently unavailable.\n{prop.strings.FeatureUnavailable}");
+                                       $"Oh no this is currently unavailable.{c.n}{prop.strings.FeatureUnavailable}");
                             }
                             // later maybe will be implemented
                             // ''''''''''''''''''''''''''''''''
@@ -227,7 +227,7 @@ namespace GeekAssistant.Modules.Android {
                 if (!Silent) {
                     inf.detail.fullFatalError = ex.ToString();
                     inf.Run();
-                } else  home.DoNeutral();
+                } else home.DoNeutral();
             }
 
             c.S.DeviceState = home.DeviceState_Label.Text;

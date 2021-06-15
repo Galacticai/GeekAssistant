@@ -114,7 +114,8 @@ namespace GeekAssistant.Modules.General.SetTheme {
         #region Home 
         private static void Home_Theme() {
             if (!initiatingbool & c.S.PerformAnimations) {
-                SetTheme_PresetAnimation.Swoosh_Full(); SetTheme_PresetAnimation.LightDark_Icon_Center();
+                SetTheme_PresetAnimation.Swoosh_Full();
+                SetTheme_PresetAnimation.LightDark_Icon_Center();
             }
             Timer HomeTheme_delayTimer = new() { Interval = 100 };
             HomeTheme_delayTimer.Start();

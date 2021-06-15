@@ -210,7 +210,7 @@ namespace GeekAssistant.Forms {
             // 
             // ManualInfo_GroupBox
             // 
-            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ManualInfo_GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ManualInfo_GroupBox.BackColor = System.Drawing.Color.Transparent;
             this.ManualInfo_GroupBox.Controls.Add(this.AndroidVersion_ComboBox);
@@ -516,9 +516,9 @@ namespace GeekAssistant.Forms {
             this.ShowLog_Button.TextAlignment = System.Drawing.StringAlignment.Near;
             this.ShowLog_Button.UseVisualStyleBackColor = true;
             // 
-            // log
+            // log_TextBox
             // 
-            this.log_TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.log_TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.log_TextBox.BackColor = System.Drawing.Color.White;
             this.log_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -527,7 +527,7 @@ namespace GeekAssistant.Forms {
             this.log_TextBox.Location = new System.Drawing.Point(683, 22);
             this.log_TextBox.Margin = new System.Windows.Forms.Padding(5);
             this.log_TextBox.Multiline = true;
-            this.log_TextBox.Name = "log";
+            this.log_TextBox.Name = "log_TextBox";
             this.log_TextBox.ReadOnly = true;
             this.log_TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.log_TextBox.Size = new System.Drawing.Size(508, 525);
@@ -587,7 +587,7 @@ namespace GeekAssistant.Forms {
             // 
             // MainLayout_PictureBox
             // 
-            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.MainLayout_PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MainLayout_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.MainLayout_PictureBox.Image = global::prop.layout.Layout_3DLine_toRight;
@@ -609,7 +609,7 @@ namespace GeekAssistant.Forms {
             // 
             // Main_Tabs_old
             // 
-            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.Main_Tabs_old.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Main_Tabs_old.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.Main_Tabs_old.Controls.Add(this.MoreTools_Tab_old);
@@ -961,7 +961,7 @@ namespace GeekAssistant.Forms {
             // 
             // PictureBox4
             // 
-            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox4.Location = new System.Drawing.Point(0, 0);
@@ -1263,7 +1263,7 @@ namespace GeekAssistant.Forms {
             // 
             // debuggingBox
             // 
-            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.debuggingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.debuggingBox.BackColor = System.Drawing.Color.Transparent;
             this.debuggingBox.Controls.Add(this.MetroButton4);
@@ -1283,7 +1283,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton4
             // 
-            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton4.Location = new System.Drawing.Point(6, 203);
             this.MetroButton4.Name = "MetroButton4";
@@ -1294,7 +1294,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton8
             // 
-            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton8.Location = new System.Drawing.Point(6, 84);
             this.MetroButton8.Name = "MetroButton8";
@@ -1315,7 +1315,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton6
             // 
-            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton6.Location = new System.Drawing.Point(6, 52);
             this.MetroButton6.Name = "MetroButton6";
@@ -1336,7 +1336,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton3
             // 
-            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton3.Location = new System.Drawing.Point(6, 148);
             this.MetroButton3.Name = "MetroButton3";
@@ -1347,7 +1347,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton2
             // 
-            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton2.Location = new System.Drawing.Point(6, 116);
             this.MetroButton2.Name = "MetroButton2";
@@ -1358,7 +1358,7 @@ namespace GeekAssistant.Forms {
             // 
             // MetroButton1
             // 
-            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MetroButton1.Location = new System.Drawing.Point(6, 20);
             this.MetroButton1.Name = "MetroButton1";
@@ -1426,7 +1426,6 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.SwitchTheme_Dark_UI_Icon);
             this.Controls.Add(this.SwitchTheme_UI);
             this.Controls.Add(this.AutoDetectDeviceInfo_Button);
-            this.Controls.Add(this.manualCMD_TextBox);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.Home_Tabs);
             this.Controls.Add(this.Toggle_ManualDeviceInfo_Button);
@@ -1451,6 +1450,7 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.CopyLogToClipboard);
             this.Controls.Add(this.ClearLog_Button);
             this.Controls.Add(this.log_TextBox);
+            this.Controls.Add(this.manualCMD_TextBox);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlText;

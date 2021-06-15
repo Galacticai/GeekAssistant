@@ -89,32 +89,32 @@ namespace GeekAssistant.Modules.General.Companion.Style {
         /// <summary> Constant colors not affected by themes or anything </summary>
         public struct constColors {
             public struct UI {
-                /// <summary> #ffffff </summary>
-                public static Color bg { get => ColorTranslator.FromHtml("#ffffff"); }
-                /// <summary> #111111 </summary>
-                public static Color bg_Dark { get => ColorTranslator.FromHtml("#111111"); }
+                /// <summary> #fdfffd </summary>
+                public static Color bg { get => ColorTranslator.FromHtml("#fdfffd"); }
+                /// <summary> #0f110f </summary>
+                public static Color bg_Dark { get => ColorTranslator.FromHtml("#0f110f"); }
 
-                /// <summary> #000000 </summary>
-                public static Color fg { get => ColorTranslator.FromHtml("#000000"); }
+                /// <summary> #051005 </summary>
+                public static Color fg { get => ColorTranslator.FromHtml("#051005"); }
                 /// <summary> #ffffff </summary>
                 public static Color fg_Dark { get => ColorTranslator.FromHtml("#ffffff"); }
 
                 public struct Buttons {
-                    /// <summary> #F5F5F5 </summary>
-                    public static Color BarBG { get => ColorTranslator.FromHtml("#F5F5F5"); }
-                    /// <summary> #202020 </summary>
-                    public static Color BarBG_Dark { get => ColorTranslator.FromHtml("#202020"); }
+                    /// <summary> #f0F5f0 </summary>
+                    public static Color BarBG { get => ColorTranslator.FromHtml("#f0F5f0"); }
+                    /// <summary> #1f221f </summary>
+                    public static Color BarBG_Dark { get => ColorTranslator.FromHtml("#1f221f"); }
 
                     public struct FlatAppearance {
                         /// <summary> #C0C0C0 </summary>
                         public static Color MouseOverBackColor { get => ColorTranslator.FromHtml("#C0C0C0"); }
-                        /// <summary> #404040 </summary>
-                        public static Color MouseOverBackColor_Dark { get => ColorTranslator.FromHtml("#404040"); }
+                        /// <summary> #2f332f </summary>
+                        public static Color MouseOverBackColor_Dark { get => ColorTranslator.FromHtml("#2f332f"); }
 
-                        /// <summary> #404040 </summary>
-                        public static Color MouseDownBackColor { get => ColorTranslator.FromHtml("#404040"); }
-                        /// <summary> #646464 </summary>
-                        public static Color MouseDownBackColor_Dark { get => ColorTranslator.FromHtml("#646464"); }
+                        /// <summary> #1f221f </summary>
+                        public static Color MouseDownBackColor { get => ColorTranslator.FromHtml("#1f221f"); }
+                        /// <summary> #596459 </summary>
+                        public static Color MouseDownBackColor_Dark { get => ColorTranslator.FromHtml("#596459"); }
                     }
                 }
             }

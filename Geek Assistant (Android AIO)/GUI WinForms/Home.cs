@@ -10,6 +10,7 @@ using GeekAssistant.Modules.General.SetTheme;
 using GeekAssistant.Modules.General.Companion.Style;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android;
+using System.Threading.Tasks;
 
 namespace GeekAssistant.Forms {
     public partial class Home : Form {
@@ -146,8 +147,8 @@ namespace GeekAssistant.Forms {
         private void madb_devChanged(object sender, EventArgs e) {
             if (!finishedLoading) return; //Cancel while loading Home
 
-            bar.Invoke(new Action(() => {
-                AutoDetect.Run(true);
+            bar.Invoke(new Action(async () => {
+                await AutoDetect.Run(true);
                 log.Event(DeviceState_Label.Text, 1);
             }));
         }
@@ -181,7 +182,7 @@ namespace GeekAssistant.Forms {
 
             Timer HomeLoad_Delay_Timer = new() { Interval = 200, Enabled = true };
             bool OneTimebool_HomeLoad_Delay_Timer_Tick = true;
-            HomeLoad_Delay_Timer.Tick += (sender, ev) => {
+            HomeLoad_Delay_Timer.Tick += async (sender, ev) => {
                 SetTheme.Run(this, true);
                 if (OneTimebool_HomeLoad_Delay_Timer_Tick) {
                     OneTimebool_HomeLoad_Delay_Timer_Tick = false;
@@ -194,7 +195,7 @@ namespace GeekAssistant.Forms {
                 PrepareAppdata.Run();
                 GA_adb.ResetDeviceInfo();
 
-                AutoDetect.Run(true);
+                await AutoDetect.Run(true);
                 if (DeviceState_Label.Text != "Disconnected")
                     log.Event(DeviceState_Label.Text, 1);
 
@@ -251,9 +252,7 @@ namespace GeekAssistant.Forms {
         }
         private void AutoDetectDeviceInfo_Button_MouseUp(object sender, EventArgs e) {
             AutoDetectDeviceInfo_Button.Image = images.x64.AutoDetect();
-            if (c.S.DarkTheme)
-                AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(95, 191, 119);
-            else AutoDetectDeviceInfo_Button.ForeColor = Color.FromArgb(0, 128, 32);
+            AutoDetectDeviceInfo_Button.ForeColor = c.S.DarkTheme ? Color.FromArgb(95, 191, 119) : Color.FromArgb(0, 128, 32);
 
         }
         private void AutoDetectDeviceInfo_Button_Click(object sender, EventArgs e) {
@@ -261,9 +260,9 @@ namespace GeekAssistant.Forms {
             //delay to let Wait() completely render before it closes (looks like a glitch without a delay)
             Timer ShowWaitThenAutoDetect_Timer = new() { Interval = 100 };
             if (ShowWaitThenAutoDetect_Timer.Enabled) return; //cancel if already running
-            ShowWaitThenAutoDetect_Timer.Tick += (sender, ev) => {
+            ShowWaitThenAutoDetect_Timer.Tick += async (sender, ev) => {
                 ShowWaitThenAutoDetect_Timer.Stop();
-                AutoDetect.Run();
+                await AutoDetect.Run();
             };
             ShowWaitThenAutoDetect_Timer.Start();
         }
@@ -307,16 +306,14 @@ namespace GeekAssistant.Forms {
 
         private void ShowLog_InfoBlink_Timer_Tick(object sender, EventArgs e) {
             if (ShowLog_ErrorBlink_Timer.Enabled) return;
-            using (FlatButton slb = ShowLog_Button) {
-                if ((string)slb.Tag == " ") {
-                    slb.Tag = "  ";
-                    slb.Icon = images.x24.inf.Information();
-                } else {
-                    slb.Tag = " ";
-                    slb.Icon = images.x24.inf.Information(true);
-                }
+            using FlatButton slb = ShowLog_Button;
+            if ((string)slb.Tag == " ") {
+                slb.Tag = "  ";
+                slb.Icon = images.x24.inf.Information();
+            } else {
+                slb.Tag = " ";
+                slb.Icon = images.x24.inf.Information(true);
             }
-
         }
 
         private void SettingsSave_Timer_Tick(object sender, EventArgs e) {
@@ -325,7 +322,7 @@ namespace GeekAssistant.Forms {
 
         private void FlashZip_ChooseFile_Button_Click(object sender, EventArgs e) {
             if (FlashZip_OpenFileDialog.ShowDialog() == DialogResult.OK) {
-                log.AppendText($"// Flash ZIP //\nSelected file: {FlashZip_OpenFileDialog.FileName}", 2);
+                log.AppendText($"// Flash ZIP //{c.n}Selected file: {FlashZip_OpenFileDialog.FileName}", 2);
                 //FlashZip_ChooseFile_TextBox.Text = FlashZip_OpenFileDialog.FileName;
             }
         }

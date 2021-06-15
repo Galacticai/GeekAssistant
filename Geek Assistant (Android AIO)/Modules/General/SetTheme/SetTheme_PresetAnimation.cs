@@ -23,26 +23,23 @@ namespace GeekAssistant.Modules.General.SetTheme {
             }
         }
         public static void LightDark_Icon_Center() {
-            h.SwitchTheme_Dark_UI_Icon.Visible =
-                h.SwitchTheme_Light_UI_Icon.Visible = true;
-            h.SwitchTheme_Dark_UI_Icon.Left =
-               h.SwitchTheme_Light_UI_Icon.Left = (h.Width - 64) / 2 + h.SwitchTheme_Button.Left;
-            h.SwitchTheme_Dark_UI_Icon.Top =
-                h.SwitchTheme_Light_UI_Icon.Top = (h.Height - 64) / 2 + h.SwitchTheme_Button.Top;
-            h.SwitchTheme_Light_UI_Icon.Height = dark ? 0 : 64;
-            Animate.Run(h.SwitchTheme_Light_UI_Icon, nameof(h.SwitchTheme_Light_UI_Icon.Height), dark ? 64 : 0);
+            PictureBox l = h.SwitchTheme_Light_UI_Icon, d = h.SwitchTheme_Dark_UI_Icon;
+            l.Visible = d.Visible = true;
+            l.Left = d.Left = (h.Width - 64) / 2;
+            l.Top = d.Top = (h.Height - 64) / 2;
+            l.Height = dark ? 0 : 64;
+            Animate.Run(l, nameof(l.Height), dark ? 64 : 0);
 
             bool Rewind = false;
-            float animFactor = .1f;
-            Timer Icons_Opacity_Timer = new() { Interval = 1 };
+            float animFactor = .125f;
+            Timer Icons_Opacity_Timer = new() { Interval = 2 };
             Icons_Opacity_Timer.Tick += (sender, ev) => {
-
                 Icons_Opacity += Rewind ? -animFactor : animFactor;
+                l.BackColor = d.BackColor = h.SwitchTheme_UI.BackColor;
                 if (Icons_Opacity != mathMisc.ForcedInRange(Icons_Opacity, 0, 1)) {
                     Icons_Opacity = (float)mathMisc.ForcedInRange(Icons_Opacity, 0, 1);
                     if (Rewind) {
-                        h.SwitchTheme_Dark_UI_Icon.Visible =
-                            h.SwitchTheme_Light_UI_Icon.Visible = false;
+                        l.Visible = d.Visible = false;
                         Icons_Opacity_Timer.Stop();
                     }
                     Rewind = true;

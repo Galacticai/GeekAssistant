@@ -1,6 +1,7 @@
 ﻿
 using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.General.Companion;
+using System.Threading.Tasks;
 
 namespace GeekAssistant.Modules.Android.Companion {
     internal static class devConnection {
@@ -15,7 +16,7 @@ namespace GeekAssistant.Modules.Android.Companion {
         /// <returns>True if the device is compatible with adb mode</returns>
         public static bool adbIsCompatible() {
             SetProgressText.Run("Checking adb compatibility...", inf.lvls.Information);
-            if (!IsConnected()) return false;
+            if (!IsConnected().Result) return false;
             return true;
         }
 
@@ -29,7 +30,7 @@ namespace GeekAssistant.Modules.Android.Companion {
         /// <returns>True if the device is compatible with fastboot mode</returns>
         public static bool fbIsCompatible() {
             SetProgressText.Run("Checking fastboot compatibility...", inf.lvls.Information);
-            if (!IsConnected()) return false;
+            if (!IsConnected().Result) return false;
 
             if (c.S.DeviceManufacturer == "Samsung") {
                 inf.detail = ($"{txt.GA_current_workCode}-DS{(c.S.DeviceAPILevel <= 25 ? "o" : "n")}",  // Unlock Bootloader - Device Samsung (Samsung is not supported) (api<=25? old | new)
@@ -41,11 +42,11 @@ namespace GeekAssistant.Modules.Android.Companion {
         }
 
         /// <returns>True if 1 device is connected</returns>
-        private static bool IsConnected() {
+        private async static Task<bool> IsConnected() {
             if (string.IsNullOrEmpty(c.S.DeviceState)) return false; // failsafe
 
             if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
-                AutoDetect.Run(true);
+                await AutoDetect.Run(true);
                 if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
                     inf.detail = ($"{txt.GA_current_workCode}-D0", inf.lvls.Warn, $"We haven't found any device.", $"{prop.strings.TroubleshootConnection}", null); // Unlock Bootloader - Device 0 (No device is connected)
                     return false;
