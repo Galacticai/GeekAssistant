@@ -2,6 +2,7 @@
 using System.IO;
 using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.Android.Companion.Essentials;
+using System.Threading.Tasks;
 
 namespace GeekAssistant.Modules.Android.Companion {
     internal static class GA_adb {
@@ -23,8 +24,8 @@ namespace GeekAssistant.Modules.Android.Companion {
         /// </summary>
         /// <param name="Wsource">Path(Folder\FileName) to push to Android</param>
         /// <param name="customAdestination">(Optional) Custom destination path(Folder/) on Android (Default: {/sdcard/0/GeekAssistant/}...)</param>
-        public static void adb_Push(string Wsource, string customAdestination = "/sdcard/0/GeekAssistant/") {
-            adb.Run($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
+        public static async Task adb_Push(string Wsource, string customAdestination = "/sdcard/0/GeekAssistant/") {
+            await adb.Run($"push \"{Wsource}\" \"{customAdestination}{Path.GetFileName(Wsource)}\"");
         }
 
         /// <summary>
@@ -32,8 +33,8 @@ namespace GeekAssistant.Modules.Android.Companion {
         /// </summary>
         /// <param name="Asource">Source path(Folder/fileName) to pull from Android</param>
         /// <param name="Wdestination">Destination path(Folder\) on Windows </param>
-        public static void adb_Pull(string Asource, string Wdestination) {
-            adb.Run($@"pull ""{Asource}"" ""{Wdestination}""");
+        public static async Task Adb_Pull(string Asource, string Wdestination) {
+            await adb.Run($@"pull ""{Asource}"" ""{Wdestination}""");
         }
 
         private static Dictionary<int, string[]> _ApiToVer;
@@ -239,16 +240,16 @@ namespace GeekAssistant.Modules.Android.Companion {
             home.CustomRecovery_CheckBox.Checked = false;
         }
 
-        public static string HotReboot() {
+        public static async Task<string> HotReboot() {
             var scr = new Managed.Adb.CommandResultReceiver();
             var dev = madb.GetListOfDevice().Result[0];
-            if (!madb.madb_IsRooted()) {
+            if (!(await madb.madb_IsRooted())) {
                 inf.Run();
                 return "";
             }
-            if (!dev.BusyBox.Available) InitializeBusybox.Run(true);
+            if (!dev.BusyBox.Available) await InitializeBusybox.Run(true);
 
-            dev.ExecuteRootShellCommand($"busybox killall system_server", scr);
+            await Task.Run(() => dev.ExecuteRootShellCommand($"busybox killall system_server", scr));
             return scr.Result;
         }
     }

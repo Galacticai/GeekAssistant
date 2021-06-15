@@ -284,23 +284,20 @@ namespace GeekAssistant.Forms {
         }
 
         private readonly int homeWidth0 = 690, homeWidth1 = 1190;
-
         private void ShowLog_Button_Click(object sender, EventArgs e) {
             ShowLog_ErrorBlink_Timer.Stop();
             ShowLog_InfoBlink_Timer.Stop();
             Animate.Run(this, nameof(Width), (Width == homeWidth0) ? homeWidth1 : homeWidth0);
-
         }
 
         private void ShowLog_ErrorBlink_Timer_Tick(object sender, EventArgs e) {
-            using (FlatButton slb = ShowLog_Button) {
-                if ((string)slb.Tag == " ") {
-                    slb.Tag = "  ";
-                    slb.Icon = images.x24.inf.Error();
-                } else {
-                    slb.Tag = " ";
-                    slb.Icon = images.x24.inf.Error(true);
-                }
+            using FlatButton slb = ShowLog_Button;
+            if ((string)slb.Tag == " ") {
+                slb.Tag = "  ";
+                slb.Icon = images.x24.inf.Error();
+            } else {
+                slb.Tag = " ";
+                slb.Icon = images.x24.inf.Error(true);
             }
         }
 
@@ -389,7 +386,7 @@ namespace GeekAssistant.Forms {
             }
             log.Event("Hot Reboot", 2);
             SetProgressText.Run("Attempting hot reboot...", inf.lvls.Information);
-            var hr = GA_adb.HotReboot();
+            var hr = await GA_adb.HotReboot();
             if (!string.IsNullOrEmpty(hr)) log.AppendText(hr, 1);
         }
 

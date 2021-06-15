@@ -29,7 +29,7 @@ namespace GeekAssistant.Modules.Android {
                 goto Finish_madb_InstallBusyboxReady;
 
 
-            if (!File.Exists($"{c.GA_tools}\\busybox"))
+            if (!File.Exists($@"{c.GA_tools}\busybox"))
                 PrepareAppdata.Run();
 
             string adbOut;
