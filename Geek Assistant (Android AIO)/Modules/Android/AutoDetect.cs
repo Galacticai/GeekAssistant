@@ -44,14 +44,14 @@ namespace GeekAssistant.Modules.Android {
                 if (!Silent) SetProgressText.Run("c.Preparing the environment... Please be patient.", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-PE", inf.lvls.FatalError, inf.detail.title, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
-                await Task.Run(() => madb.madbBridge().Result);
+                await madb.madbBridge();
 
 
                 home.bar.Value = 5;
                 if (!Silent) SetProgressText.Run("Counting the connected devices...", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-Dc", inf.lvls.FatalError, inf.detail.title, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
-                switch (await Task.Run(() => madb.GetDeviceCount().Result)) {
+                switch (await madb.GetDeviceCount()) {
                     case 0:
                         home.DeviceState_Label.Text = "Disconnected";
                         inf.detail = ($"{workCode_init}-D0", inf.lvls.Warn, inf.detail.title, $"We haven't found any device.{c.n}{prop.strings.TroubleshootConnection}", null); // Auto Detect - Device 0 (0 devices connected)
@@ -67,7 +67,7 @@ namespace GeekAssistant.Modules.Android {
 
                 inf.detail = ($"{workCode_init}-Ds", inf.lvls.Warn, inf.detail.title, "We have trouble reading your device.", null); // Auto Detect - Device count (failed to count devices)
                 string DeviceState_String = "Device is ";
-                switch (madb.GetDeviceState().Result) {
+                switch (await madb.GetDeviceState()) {
                     case DeviceState.Unknown: // unknown 
                         home.DeviceState_Label.Text = "Unknown";
                         DeviceState_String += $"in an unknown state...{c.n}{prop.strings.TroubleshootConnection}";
@@ -142,8 +142,7 @@ namespace GeekAssistant.Modules.Android {
                         home.bar.Value = 17;
 
                         inf.detail = ($"{workCode_init}-D-s", inf.lvls.Error, inf.detail.title, "Failed to check your device serial number.", null);// Auto Detect - Device - serial
-                        if (!Silent)
-                            SetProgressText.Run("Fetching device serial#...", inf.lvls.Information);
+                        if (!Silent) SetProgressText.Run("Fetching device serial#...", inf.lvls.Information);
 
                         c.S.DeviceSerial = dev.SerialNumber;
                         c.S.Save();
@@ -152,8 +151,7 @@ namespace GeekAssistant.Modules.Android {
                         home.bar.Value = 20;
 
                         inf.detail = ($"{workCode_init}-D-su", inf.lvls.Error, inf.detail.title, "Failed to check your device root status.", null);// Auto Detect - Device - su
-                        if (!Silent)
-                            SetProgressText.Run("Fetching root state...", inf.lvls.Information);
+                        if (!Silent) SetProgressText.Run("Fetching root state...", inf.lvls.Information);
 
                         c.S.DeviceRooted = dev.CanSU();
                         c.S.Save();

@@ -52,35 +52,19 @@ namespace GeekAssistant.Modules.Android.Companion {
             return default;
         }
 
-        /// <summary>
-        /// Get the state of the first device connected
-        /// </summary>
-        /// <returns>(Integer): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
+        /// <summary> Get the state of the first device connected  </summary>
+        /// <returns><see cref="Managed.Adb.DeviceState"/>: 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
         public static async Task<Managed.Adb.DeviceState> GetDeviceState() {
             await madbBridge(); // Failsafe
-            return GetListOfDevice().Result[0].State;
+            return (await GetListOfDevice())[0].State;
         }
-        ///// <summary>
-        ///// Converts madb_GetDeviceState() to the corresponding string
-        ///// </summary>
-        ///// <returns>(String): 0 recovery | 1 bootloader | 2 offline | 3 online | 4 download | 5 unknown</returns>
-        //public static Task<string> Convert_DeviceState_IntToString( )
-        //    => Task.Run(() => (GetDeviceState().Result) switch {
-        //        0 => "recovery",
-        //        1 => "bootloader",
-        //        2 => "offline",
-        //        3 => "online",
-        //        4 => "download",
-        //        5 => "unknown",
-        //        _ => "unknown"
-        //    });
 
         /// <returns>True if Device is can SU</returns>
-        public static bool madb_IsRooted() {
-            var dev = GetListOfDevice().Result[0];
+        public static async Task<bool> madb_IsRooted() {
+            Managed.Adb.Device dev = (await GetListOfDevice())[0];
             if (!dev.CanSU()) {
                 inf.detail = ($"{txt.GA_current_workCode }-Xsu", // No su (Device cannot run su)
-                              inf.lvls.Error, inf.detail.title, $"Your device is not rooted.\n > Process aborted.", null);
+                              inf.lvls.Error, inf.detail.title, $"Your device is not rooted.{c.n} > Process aborted.", null);
                 return false;
             }
             return true;
