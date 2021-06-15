@@ -7,30 +7,30 @@ namespace GeekAssistant.Modules.Android.Companion {
     internal static class devConnection {
 
         /// <returns>True if the device is ready for adb commands</returns>
-        public static bool adbIsReady() {
+        public static async Task<bool> adbIsReady() {
             SetProgressText.Run("Checking adb state...", inf.lvls.Information);
-            if (!adbIsCompatible()) return false; // connected 
+            if (!(await adbIsCompatible())) return false; // connected 
             if ((int)madb.GetListOfDevice().Result[0].State != 3) return false; // online 
             return true;
         }
         /// <returns>True if the device is compatible with adb mode</returns>
-        public static bool adbIsCompatible() {
+        public static async Task<bool> adbIsCompatible() {
             SetProgressText.Run("Checking adb compatibility...", inf.lvls.Information);
-            if (!IsConnected().Result) return false;
+            if (!(await IsConnected())) return false;
             return true;
         }
 
         /// <returns>True if the device is ready for fastboot commands</returns>
-        public static bool fbIsReady() {
+        public static async Task<bool> fbIsReady() {
             SetProgressText.Run("Checking fastboot state...", inf.lvls.Information);
-            if (!fbIsCompatible()) return false;
+            if (!(await fbIsCompatible())) return false;
             if ((int)madb.GetListOfDevice().Result[0].State != 1) return false; // bootloader 
             return true;
         }
         /// <returns>True if the device is compatible with fastboot mode</returns>
-        public static bool fbIsCompatible() {
+        public static async Task<bool> fbIsCompatible() {
             SetProgressText.Run("Checking fastboot compatibility...", inf.lvls.Information);
-            if (!IsConnected().Result) return false;
+            if (!(await IsConnected())) return false;
 
             if (c.S.DeviceManufacturer == "Samsung") {
                 inf.detail = ($"{txt.GA_current_workCode}-DS{(c.S.DeviceAPILevel <= 25 ? "o" : "n")}",  // Unlock Bootloader - Device Samsung (Samsung is not supported) (api<=25? old | new)
@@ -42,7 +42,7 @@ namespace GeekAssistant.Modules.Android.Companion {
         }
 
         /// <returns>True if 1 device is connected</returns>
-        private async static Task<bool> IsConnected() {
+        private static async Task<bool> IsConnected() {
             if (string.IsNullOrEmpty(c.S.DeviceState)) return false; // failsafe
 
             if (c.S.DeviceState == "" | c.S.DeviceState == "Disconnected") {
