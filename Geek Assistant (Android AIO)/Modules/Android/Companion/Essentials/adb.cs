@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.General.Companion;
 
@@ -10,7 +11,7 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
         /// </summary>
         /// <param name="arguments">adb command arguments</param>
         /// <returns>Output of a adb command As String + adbOutput public string (to avoid repeating command for the same output)</returns>
-        public static string Run(string arguments, Process adbProcess = null) {
+        public static async Task<string> Run(string arguments, Process adbProcess = null) {
             adbProcess ??= new();
             // >Failsafe - Should never happen
             if (string.IsNullOrEmpty(arguments)) {
@@ -39,7 +40,7 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
             }
             // Start
             adbProcess.Start();
-            adbProcess.WaitForExit();
+            await Task.Run(() => adbProcess.WaitForExit());
             // Return as global string (avoid repeating command for output) 
             return adbProcess.StandardOutput.ReadToEnd();
         }

@@ -3,11 +3,12 @@ using System.Windows.Forms;
 using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android.Companion.Essentials;
+using System.Threading.Tasks;
 
 namespace GeekAssistant.Modules.Android {
     internal static class InitializeBusybox {
         private const string workCode_init = "BB", workTitle = "Initialize Busybox";
-        public static void Run(bool silent) {
+        public static async Task Run(bool silent) {
             if (c.Working) { //dont change inf.detail.title while working
                 inf.Run(inf.lvls.Error, workTitle, prop.strings.WaitForCurrentProcess);
                 return;
@@ -21,7 +22,9 @@ namespace GeekAssistant.Modules.Android {
                     "This has been disabled by the developer");
             return;
             //?/////////////////////////////////////////////////////////////
-            var dev = madb.GetListOfDevice().Result[0];
+
+
+            var dev = (await madb.GetListOfDevice())[0];
             if (dev.BusyBox.Available)
                 goto Finish_madb_InstallBusyboxReady;
 
@@ -30,23 +33,23 @@ namespace GeekAssistant.Modules.Android {
                 PrepareAppdata.Run();
 
             string adbOut;
-            adbOut = adb.Run("shell mkdir /data/busybox");
+            adbOut = await adb.Run("shell mkdir /data/busybox");
             log.AppendText($"<< shell mkdir /data/busybox\n>>\n{adbOut}", 1);
             if (adbOut.ToLower().Contains("denied")) {
-                adb.Run("shell su -c 'mkdir /data/busybox'");
+                adbOut = await adb.Run("shell su -c 'mkdir /data/busybox'");
                 log.AppendText($"<< shell su -c 'mkdir /data/busybox'\n>>\n{adbOut}", 1);
             } else if (adbOut.ToLower().Contains("file exists")) {
-                adb.Run("shell su -c 'rm -rf /data/busybox'");
+                adbOut = await adb.Run("shell su -c 'rm -rf /data/busybox'");
                 log.AppendText($"<< shell su -c 'rm -rf /data/busybox'\n>>\n{adbOut}", 1);
             }
 
-            adbOut = adb.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
+            adbOut = await adb.Run($@"push ""{c.GA_tools}\busybox"" /sdcard/0/GeekAssistant/busybox");
             log.AppendText($"<< push \"{c.GA_tools}\\busybox\" /sdcard/0/GeekAssistant/busybox\n>>\n{adbOut}", 1);
-            adbOut = adb.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
+            adbOut = await adb.Run($"shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'");
             log.AppendText($"<< shell su -c 'mv /sdcard/0/GeekAssistant/busybox /data/busybox'\n>>\n{adbOut}", 1);
-            adbOut = adb.Run("shell su -c 'chmod 664 /data/busybox'");
+            adbOut = await adb.Run("shell su -c 'chmod 664 /data/busybox'");
             log.AppendText($"<< shell su -c 'chmod 664 /data/busybox'\n>>\n{adbOut}", 1);
-            adbOut = adb.Run("shell su -c './data/busybox --install'");
+            adbOut = await adb.Run("shell su -c './data/busybox --install'");
             log.AppendText($"<< shell su -c './data/busybox --install'\n>>\n{adbOut}", 1);
             if (dev.BusyBox.Available) MessageBox.Show("busybox available");
             else MessageBox.Show("busybox not installed");

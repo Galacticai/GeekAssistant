@@ -382,8 +382,8 @@ namespace GeekAssistant.Forms {
             FeatureUnavailable.Run("MR", "Root with magisk");
         }
 
-        private void HotReboot_Button_Click(object sender, EventArgs e) {
-            if (!devConnection.adbIsCompatible()) { // Hot Reboot 
+        private async Task HotReboot_Button_Click(object sender, EventArgs e) {
+            if (!(await devConnection.adbIsCompatible())) { // Hot Reboot 
                 inf.Run();
                 return;
             }
@@ -393,8 +393,8 @@ namespace GeekAssistant.Forms {
             if (!string.IsNullOrEmpty(hr)) log.AppendText(hr, 1);
         }
 
-        private void InstallBusybox_Button_Click(object sender, EventArgs e) {
-            InitializeBusybox.Run(false);
+        private async void InstallBusybox_Button_Click(object sender, EventArgs e) {
+            await InitializeBusybox.Run(false);
         }
 
         private void GA_About_Label_Click(object sender, EventArgs e) {
