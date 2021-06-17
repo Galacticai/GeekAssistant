@@ -38,9 +38,11 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
                 adbPstartInfo.RedirectStandardInput = true;
                 adbPstartInfo.RedirectStandardError = true;
             }
-            // Start
-            adbProcess.Start();
-            await Task.Run(() => adbProcess.WaitForExit());
+            // Start 
+            await Task.Run(() => {
+                adbProcess.Start();
+                adbProcess.WaitForExit();
+            });
             // Return as global string (avoid repeating command for output) 
             return adbProcess.StandardOutput.ReadToEnd();
         }

@@ -9,7 +9,7 @@ using GeekAssistant.Modules.Android.Companion.Essentials;
 namespace GeekAssistant.Modules.Android {
     internal static class cmd {
         public static async Task<string> madbShell(Device dev, string cmd, bool sudo = false) {
-            if (devConnection.adbIsReady()) inf.Run();
+            if (await devConnection.adbIsReady()) inf.Run();
 
             await madb.madbBridge(); // failsafe
             CommandResultReceiver crr = new();
@@ -18,7 +18,7 @@ namespace GeekAssistant.Modules.Android {
 
             return crr.Result;
         }
-        public static void Run(string command) {
+        public static async Task Run(string command) {
             // If command has no arguments: cancel (invalidCMD)
             if (command.IndexOf(" ") != -1) { invalidCMD(command); return; }
 
@@ -32,13 +32,13 @@ namespace GeekAssistant.Modules.Android {
 
 
             if (adbRegex.Match(command).Success) { // If command matching adbRegex 
-                string adbOut = adbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "adb " 
+                string adbOut = await adbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "adb " 
                 GeekAssistant.Modules.General.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
                                   $"{(string.IsNullOrEmpty(adbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{adbOut}")}", 2);
 
             } else if (fbRegex.Match(command).Success) { // If command matching fbRegex
 
-                string fbOut = fbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "fastboot "
+                string fbOut = await fbDo_WithTrack(command[(command.IndexOf(" ") + 1)..]); // run command without "fastboot "
 
                 GeekAssistant.Modules.General.log.AppendText($"⮜⮜ \"{command}\"{c.n}" +
                                   $"{(string.IsNullOrEmpty(fbOut) ? "  Process finished with no response." : $"⮞⮞{c.n}{fbOut}")}", 2);
@@ -62,14 +62,14 @@ namespace GeekAssistant.Modules.Android {
 
             GeekAssistant.Modules.General.log.AppendText(invalid_text, 2);
         }
-        private static string adbDo_WithTrack(string command) {
+        private static async Task<string> adbDo_WithTrack(string command) {
             inf.detail.code = $"{txt.GA_current_workCode}-adb-cmd"; // (workCode) - adb - cmd
-            return adb.Run(command);
+            return await adb.Run(command);
         }
 
-        private static string fbDo_WithTrack(string command) {
+        private static async Task<string> fbDo_WithTrack(string command) {
             inf.detail.code = $"{txt.GA_current_workCode}-fb-cmd"; // (workCode) - fastboot - cmd
-            return fastboot.Run(command);
+            return await fastboot.Run(command);
         }
     }
 }

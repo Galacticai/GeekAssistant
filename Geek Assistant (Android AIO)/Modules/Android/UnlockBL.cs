@@ -5,6 +5,7 @@ using GeekAssistant.Modules.General;
 using GeekAssistant.Modules.General.Companion;
 using GeekAssistant.Modules.Android.Companion;
 using GeekAssistant.Modules.Android.Companion.Essentials;
+using System.Threading.Tasks;
 
 namespace GeekAssistant.Modules.Android {
     internal static class UnlockBL {
@@ -13,7 +14,7 @@ namespace GeekAssistant.Modules.Android {
         // Private ErrorInfo As (lvl As Integer, msg As String) 
         // ' https://source.android.com/devices/bootloader/locking_unlocking
 
-        public static void Run() {
+        public static async Task Run() {
             bool Cancelled = false;
             if (c.Working) {
                 if (!c.FormisRunning<Info>()) //failsafe
@@ -34,7 +35,7 @@ namespace GeekAssistant.Modules.Android {
 
                 // check if fb compatible 
                 home.bar.Value = 10;
-                if (!devConnection.fbIsCompatible()) {
+                if (!await devConnection.fbIsCompatible()) {
                     Cancelled = true;
                     if (inf.detail.code.Contains("-DS"))
                         inf.detail.msg = $"{txt.GetFirstLine(inf.detail.msg)}\n"
@@ -112,7 +113,7 @@ namespace GeekAssistant.Modules.Android {
                 home.bar.Value = 46;
                 // ' if unlockable  make sure it is unlocked ("fastboot oem device-info" -> "Device unlocked: true")
                 SetProgressText.Run("Checking current bootloader state.", inf.lvls.Information);
-                if (fastboot.Run("oem device-info").Contains("Device unlocked: true")) {
+                if ((await fastboot.Run("oem device-info")).Contains("Device unlocked: true")) {
                     home.bar.Value = 100;
                     Cancelled = true;
                     inf.detail.code = $"{workCode_init}-U1"; // Unlock Bootloader - Unlock 1 (BL Unlocked already)
@@ -124,13 +125,13 @@ namespace GeekAssistant.Modules.Android {
                 inf.detail.code = $"{workCode_init}-UXn"; // Unlock Bootloader - Unlock X new (Attempt BLU (new method))
                 SetProgressText.Run("Attempting to unlock bootloader...", inf.lvls.Information);
                 string fbOut;
-                fbOut = fastboot.Run($"flashing unlock");
+                fbOut = await fastboot.Run($"flashing unlock");
                 if (fbOut.ToLower().Contains("err") | fbOut.ToLower().Contains("fail")) {
                     home.bar.Value = 52;
                     inf.detail.code = $"{workCode_init}-UXo"; // Unlock Bootloader - Unlock X old (Attempt BLU (old method)) 
                     SetProgressText.Run("New unlock method failed... Attempting old method...", inf.lvls.Information);
                     home.bar.Value = 55;
-                    fbOut = fastboot.Run($"oem unlock");
+                    fbOut = await fastboot.Run($"oem unlock");
                     if (fbOut.ToLower().Contains("err") | fbOut.ToLower().Contains("fail")) {
                         home.bar.Value = 57;
                         // ErrorInfo = (10, $"Failed to unlock your device bootloader.")

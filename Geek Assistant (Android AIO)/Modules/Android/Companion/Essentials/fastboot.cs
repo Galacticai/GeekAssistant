@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using System.Threading.Tasks;
 using GeekAssistant.Modules.General;
 
 namespace GeekAssistant.Modules.Android.Companion.Essentials {
@@ -10,7 +11,7 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
         /// </summary>
         /// <param name="arguments">fastboot command arguments</param>
         /// <returns>Output of a fastboot command As String + fbOutput public string (to avoid repeating command for the same output)</returns>
-        public static string Run(string arguments, Process fbProcess = null) {
+        public static async Task<string> Run(string arguments, Process fbProcess = null) {
             fbProcess ??= new();
 
             // >Failsafe - Should never happen
@@ -19,7 +20,7 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
                 inf.Run(inf.lvls.FatalError, inf.detail.title, "Unable to run the fastboot command.");
             }
 
-            if (!devConnection.fbIsReady()) {
+            if (!(await devConnection.fbIsReady())) {
                 inf.detail.code += "-fbD0"; // error code (last process) - adb device 0 (no device)
                 inf.Run(inf.detail.lvl, "Fastboot command", inf.detail.msg);
             }
@@ -41,9 +42,11 @@ namespace GeekAssistant.Modules.Android.Companion.Essentials {
                 fb_p.RedirectStandardInput = true;
                 fb_p.RedirectStandardError = true;
             }
-            // Start
-            fbProcess.Start();
-            fbProcess.WaitForExit();
+            // Start 
+            await Task.Run(() => {
+                fbProcess.Start();
+                fbProcess.WaitForExit();
+            });
             // Return as global string (avoid repeating command for output) 
             return fbProcess.StandardOutput.ReadToEnd();
         }

@@ -129,6 +129,7 @@ namespace GeekAssistant.Forms {
             this.SwitchTheme_Light_UI_Icon = new System.Windows.Forms.PictureBox();
             this.SwitchTheme_Dark_UI_Icon = new System.Windows.Forms.PictureBox();
             this.manualCMD_TextBox = new GeekAssistant.Controls.Material.MaterialTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ManualInfo_GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GeekAssistant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainLayout_PictureBox)).BeginInit();
@@ -149,6 +150,7 @@ namespace GeekAssistant.Forms {
             this.debuggingBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Light_UI_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Dark_UI_Icon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // OpenLogFolder
@@ -1415,6 +1417,17 @@ namespace GeekAssistant.Forms {
             this.manualCMD_TextBox.TabStop = false;
             this.manualCMD_TextBox.UseSystemPasswordChar = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Location = new System.Drawing.Point(673, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(518, 599);
+            this.pictureBox1.TabIndex = 85613;
+            this.pictureBox1.TabStop = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1451,6 +1464,7 @@ namespace GeekAssistant.Forms {
             this.Controls.Add(this.ClearLog_Button);
             this.Controls.Add(this.log_TextBox);
             this.Controls.Add(this.manualCMD_TextBox);
+            this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1487,6 +1501,7 @@ namespace GeekAssistant.Forms {
             this.debuggingBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Light_UI_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SwitchTheme_Dark_UI_Icon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1598,5 +1613,6 @@ namespace GeekAssistant.Forms {
         public PictureBox SwitchTheme_Light_UI_Icon;
         public PictureBox SwitchTheme_Dark_UI_Icon;
         private Controls.Material.MaterialTextBox manualCMD_TextBox;
+        public PictureBox pictureBox1;
     }
 }

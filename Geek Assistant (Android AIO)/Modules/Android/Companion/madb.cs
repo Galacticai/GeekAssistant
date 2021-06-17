@@ -29,7 +29,7 @@ namespace GeekAssistant.Modules.Android.Companion {
         /// <returns>Get the count of madb_DeviceList() </returns>
         public static async Task<int> GetDeviceCount() {
             await madbBridge(); // Failsafe 
-            return GetListOfDevice().Result.Count;
+            return (await GetListOfDevice()).Count;
         }
 
         /// <returns>Get a list of the devices connected as List(Of Managed.Adb.Device)</returns>

@@ -1,4 +1,5 @@
-﻿using MaterialSkin;
+﻿using GeekAssistant.Modules.General.Companion.Style;
+using MaterialSkin;
 using MaterialSkin.Animations;
 using MaterialSkin.Controls;
 using System;
@@ -34,7 +35,7 @@ namespace GeekAssistant.Controls.Material {
             _baseTextBox = new BaseTextBox {
                 BorderStyle = BorderStyle.None,
                 Font = base.Font,//SkinManager.ROBOTO_REGULAR_11,
-                ForeColor = SkinManager.GetPrimaryTextColor(),
+                ForeColor = colors.UI.fg(),//SkinManager.GetPrimaryTextColor(),
                 Location = new Point(TextPadding, 0),//(0, 0),
                 Width = Width - TextPadding,
                 Height = Height - 5
@@ -48,7 +49,7 @@ namespace GeekAssistant.Controls.Material {
             _baseTextBox.LostFocus += (sender, args) => _animationManager.StartNewAnimation(AnimationDirection.Out);
             BackColorChanged += (sender, args) => {
                 _baseTextBox.BackColor = BackColor;
-                _baseTextBox.ForeColor = SkinManager.GetPrimaryTextColor();
+                _baseTextBox.ForeColor = colors.UI.fg();//SkinManager.GetPrimaryTextColor();
             };
 
             //Fix for tabstop
@@ -72,10 +73,18 @@ namespace GeekAssistant.Controls.Material {
                 int animationStart = _baseTextBox.Location.X + _baseTextBox.Width / 2;
 
                 //Unfocused background
-                g.FillRectangle(SkinManager.GetDividersBrush(), _baseTextBox.Location.X, lineY, _baseTextBox.Width, 1);
+                g.FillRectangle(
+                    new SolidBrush(colors.UI.Buttons.BarBG(true)),//SkinManager.GetDividersBrush(),
+                    _baseTextBox.Location.X,
+                    lineY,
+                    _baseTextBox.Width, 1);
 
                 //Animated focus transition
-                g.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, animationStart - halfAnimationWidth, lineY, animationWidth, 2);
+                g.FillRectangle(
+                    new SolidBrush(colors.UI.fg()), //SkinManager.ColorScheme.PrimaryBrush,
+                    animationStart - halfAnimationWidth,
+                    lineY, animationWidth,
+                    2);
             }
         }
 
@@ -92,7 +101,7 @@ namespace GeekAssistant.Controls.Material {
             base.OnCreateControl();
 
             _baseTextBox.BackColor = Parent.BackColor;
-            _baseTextBox.ForeColor = SkinManager.GetPrimaryTextColor();
+            _baseTextBox.ForeColor = colors.UI.fg();//SkinManager.GetPrimaryTextColor();
         }
 
         private class BaseTextBox : TextBox {
