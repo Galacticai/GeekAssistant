@@ -172,29 +172,17 @@ namespace GeekAssistant.Controls.Material {
 
             private void ContextMenuStripOnItemClickStart(object sender, ToolStripItemClickedEventArgs toolStripItemClickedEventArgs) {
                 switch (toolStripItemClickedEventArgs.ClickedItem.Text) {
-                    case "Undo":
-                        Undo();
-                        break;
-                    case "Cut":
-                        Cut();
-                        break;
-                    case "Copy":
-                        Copy();
-                        break;
-                    case "Paste":
-                        Paste();
-                        break;
-                    case "Delete":
-                        SelectedText = string.Empty;
-                        break;
-                    case "Select All":
-                        SelectAll();
-                        break;
+                    case "Undo": Undo(); break;
+                    case "Cut": Cut(); break;
+                    case "Copy": Copy(); break;
+                    case "Paste": Paste(); break;
+                    case "Delete": SelectedText = string.Empty; break;
+                    case "Select All": SelectAll(); break;
                 }
             }
 
             private void ContextMenuStripOnOpening(object sender, CancelEventArgs cancelEventArgs) {
-                var strip = sender as TextBoxContextMenuStrip;
+                using var strip = (TextBoxContextMenuStrip)sender;
                 if (strip != null) {
                     strip.Undo.Enabled = CanUndo;
                     strip.Cut.Enabled = !string.IsNullOrEmpty(SelectedText);

@@ -36,34 +36,34 @@ namespace GeekAssistant.Modules.Android {
             if (!Silent) log.Event(workTitle, 2);
 
             try {
-                home.Invoke(new Action(() => home.bar.Value = 0));
+                Update_GUI.progressBar(0);
                 if (!Silent) SetProgressText.Run("Clearing previous device information.", inf.lvls.Information);
                 inf.detail = ($"{workCode_init}-CD", inf.lvls.FatalError, inf.detail.title, "We had trouble while clearing previous device information.", null); // Auto Detect - Clear Device
                 GA_adb.ResetDeviceInfo();
 
-                home.Invoke(new Action(() => home.bar.Value = 2));
+                Update_GUI.progressBar(2);
                 if (!Silent) SetProgressText.Run("c.Preparing the environment... Please be patient.", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-PE", inf.lvls.FatalError, inf.detail.title, "Things didn't go as planned while preparing the environment.", null); // Auto Detect - Prepare Environment
                 await madb.madbBridge();
 
 
-                home.Invoke(new Action(() => home.bar.Value = 5));
+                Update_GUI.progressBar(5);
                 if (!Silent) SetProgressText.Run("Counting the connected devices...", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-Dc", inf.lvls.FatalError, inf.detail.title, "Math...oh no we couldn't count the devices.", null); // Auto Detect - Device count X
                 switch (await madb.GetDeviceCount()) {
                     case 0:
-                        home.DeviceState_Label.Text = "Disconnected";
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Disconnected");
                         inf.detail = ($"{workCode_init}-D0", inf.lvls.Warn, inf.detail.title, $"We haven't found any device.{c.n}{prop.strings.TroubleshootConnection}", null); // Auto Detect - Device 0 (0 devices connected)
                         throw new Exception();
                     case > 1:
-                        home.DeviceState_Label.Text = "Multiple";
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Multiple");
                         inf.detail = ($"{workCode_init}-DX", inf.lvls.Warn, inf.detail.title, $"Oh there are several devices.{c.n}Would you mind keeping 1 and disconnecting the rest please?", null); // Auto Detect - Device X-number (More than 1 connected)
                         throw new Exception();
                 }
 
-                home.Invoke(new Action(() => home.bar.Value = 7));
+                Update_GUI.progressBar(7);
                 if (!Silent) SetProgressText.Run("Communicating with your device...", inf.lvls.Information);
 
                 inf.detail = ($"{workCode_init}-Ds", inf.lvls.Warn, inf.detail.title, "We have trouble reading your device.", null); // Auto Detect - Device count (failed to count devices)
@@ -71,22 +71,22 @@ namespace GeekAssistant.Modules.Android {
                 switch (await madb.GetDeviceState()) {
                     case DeviceState.Unknown: // unknown 
 
-                        home.Invoke(new Action(() => home.DeviceState_Label.Text = "Unknown"));
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Unknown");
                         DeviceState_String += $"in an unknown state...{c.n}{prop.strings.TroubleshootConnection}";
                         inf.detail = ($"{workCode_init}-DU", inf.lvls.Information, inf.detail.title, DeviceState_String, null); // Auto Detect - Device 0 (No devices connected)
                         throw new Exception();
                     case DeviceState.Offline: // offline 
-                        home.Invoke(new Action(() => home.DeviceState_Label.Text = "Offline"));
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Offline");
                         DeviceState_String += $"offline. {c.n}{prop.strings.TroubleshootConnection}";
                         inf.detail = ($"{workCode_init}-DO", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Offline (PC not allowed to debug device)
                         throw new Exception();
                     case DeviceState.Recovery: // recovery 
-                        home.Invoke(new Action(() => home.DeviceState_Label.Text = "Recovery mode"));
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Recovery mode");
                         DeviceState_String += $"in recovery mode.{c.n}Please enter adb mode and try again."; // Please enter adb mode or reboot to system and try again."
                         inf.detail = ($"{workCode_init}-DR", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Recovery
                         throw new Exception();
                     case DeviceState.Download: // download 
-                        home.Invoke(new Action(() => home.DeviceState_Label.Text = "Download mode"));
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Download mode");
                         DeviceState_String += $"in download mode.{c.n}Please enter adb mode and try again.";
                         inf.detail = ($"{workCode_init}-DD", inf.lvls.Warn, inf.detail.title, DeviceState_String, null); // Auto Detect - Device Download
                         throw new Exception();
@@ -95,10 +95,10 @@ namespace GeekAssistant.Modules.Android {
                     // vv              All the below will continue code              vv
 
                     case DeviceState.BootLoader: // bootloader 
+                        Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Fastboot mode");
                         DeviceState_String += $"in fastboot mode.";
-                        home.Invoke(new Action(() => home.DeviceState_Label.Text = "Fastboot mode"));
                         inf.detail.code = $"{workCode_init}-DF"; // Auto Detect - Device Fastboot
-                        home.Invoke(new Action(() => home.bar.Value = 10));
+                        Update_GUI.progressBar(10);
                         if (!Silent) {
                             var DeviceInFastboot_ContinueAsk =
                                 inf.Run(inf.lvls.Question, $"{DeviceState_String}",
@@ -112,27 +112,26 @@ namespace GeekAssistant.Modules.Android {
                             // later maybe will be implemented
                             // ''''''''''''''''''''''''''''''''
                             else {
-                                SetProgressText.Run("Detection cancelled by user.", 0);
+                                Update_GUI.SetProgressText("Detection cancelled by user.", 0);
                             }
                         }
                         break;
 
                     case DeviceState.Online: // online 
-                        home.Invoke(new Action(() => home.bar.Value = 10));
+                        Update_GUI.progressBar(10);
                         inf.detail = ($"{workCode_init}-DlX", inf.lvls.Error, inf.detail.title, "Sorry we can't see your device anymore...", null);// Auto Detect - Device list X
-                        Device dev = madb.GetListOfDevice().Result[0]; // Set dev as first device
+                        Device dev = (await madb.GetListOfDevice())[0]; // Set dev as first device
                         DeviceState_String += $"in adb mode.";
                         home.Invoke(new Action(() => {
-                            home.DeviceState_Label.Text = "Connected (ADB)";
-                            home.bar.Value = 11;
+                            Update_GUI.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Connected (ADB)");
+                            Update_GUI.progressBar(11);
                         }));
 
                         inf.detail = ($"{workCode_init}-D-m", inf.lvls.Error, inf.detail.title, "Failed to check your device manufacturer information.", null); // Auto Detect - Device - manufacturer
                         if (!Silent) SetProgressText.Run("Fetching device manufacturer, model, and codename...", inf.lvls.Information);
+                        Update_GUI.progressBar(13);
 
-                        home.Invoke(new Action(() => home.bar.Value = 13));
-
-                        home.Invoke(new Action(() => home.bar.Value = 15));
+                        Update_GUI.progressBar(15);
                         c.S.DeviceManufacturer =
                             GA_adb.FixManufacturerString(
                                 cmd.madbShell(dev, "getprop ro.product.manufacturer").Result);
