@@ -622,33 +622,37 @@ namespace GeekAssistant.Forms {
                 manualCMD_TextBox.BackColor = Color.LightBlue;
         }
 
-        private void manualCMD_TextBox_KeyUp(object sender, KeyEventArgs e) {
+        private async void manualCMD_TextBox_KeyUp(object sender, KeyEventArgs e) {
 
             var mcmd = manualCMD_TextBox;
             switch (e.KeyCode) {
                 case Keys.Enter:  //And adbManualCMD_TextBox.Text != ""
-                    manualCMD_TextBox.BackColor = Color.White;
+                    guiUpdate.ObjectInForm(this, mcmd, nameof(mcmd.BackColor), colors.UI.bg());
                     inf.detail.code = "mCMD"; // manual CMD
-                    cmd.Run(manualCMD_TextBox.Text);
+                    await cmd.Run(mcmd.Text);
 
-                    cmd_Previous = manualCMD_TextBox.Text;
-                    SetProgressText.Run("Running adb command...", inf.lvls.Information);
-                    manualCMD_TextBox.Text = "";
+                    cmd_Previous = mcmd.Text;
+                    guiUpdate.SetProgressText("Running adb command...", inf.lvls.Information);
+                    guiUpdate.ObjectInForm(this, mcmd, nameof(mcmd.Text), string.Empty);
                     ShowLog_InfoBlink_Timer.Start();
                     break;
                 case Keys.Up:
-                    if (cmd_Current != manualCMD_TextBox.Text)
-                        cmd_Current = manualCMD_TextBox.Text;
-                    if (manualCMD_TextBox.Text != cmd_Previous) {
-                        mcmd.Text = cmd_Previous;
-                        mcmd.SelectionStart = manualCMD_TextBox.Text.Length + 99;
-                        mcmd.SelectionLength = 0;
+                    if (cmd_Current != mcmd.Text) cmd_Current = mcmd.Text;
+
+                    if (mcmd.Text != cmd_Previous) {
+                        guiUpdate.ActionInForm(this, new Action(() => {
+                            mcmd.Text = cmd_Previous;
+                            mcmd.SelectionStart = mcmd.Text.Length + 99;
+                            mcmd.SelectionLength = 0;
+                        }));
                     }
                     break;
                 case Keys.Down:
-                    mcmd.Text = cmd_Current;
-                    mcmd.SelectionStart = manualCMD_TextBox.Text.Length + 99;
-                    mcmd.SelectionLength = 0;
+                    guiUpdate.ActionInForm(this, new Action(() => {
+                        mcmd.Text = cmd_Current;
+                        mcmd.SelectionStart = mcmd.Text.Length + 99;
+                        mcmd.SelectionLength = 0;
+                    }));
                     break;
             }
         }
