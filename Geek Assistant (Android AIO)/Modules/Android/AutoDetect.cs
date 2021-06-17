@@ -122,10 +122,8 @@ namespace GeekAssistant.Modules.Android {
                         inf.detail = ($"{workCode_init}-DlX", inf.lvls.Error, inf.detail.title, "Sorry we can't see your device anymore...", null);// Auto Detect - Device list X
                         Device dev = (await madb.GetListOfDevice())[0]; // Set dev as first device
                         DeviceState_String += $"in adb mode.";
-                        home.Invoke(new Action(() => {
-                            guiUpdate.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Connected (ADB)");
-                            guiUpdate.progressBar(11);
-                        }));
+                        guiUpdate.ObjectInForm(home, home.DeviceState_Label, nameof(home.DeviceState_Label.Text), "Connected (ADB)");
+                        guiUpdate.progressBar(11);
 
                         inf.detail = ($"{workCode_init}-D-m", inf.lvls.Error, inf.detail.title, "Failed to check your device manufacturer information.", null); // Auto Detect - Device - manufacturer
                         if (!Silent) guiUpdate.SetProgressText("Fetching device manufacturer, model, and codename...", inf.lvls.Information);
@@ -136,72 +134,75 @@ namespace GeekAssistant.Modules.Android {
                             GA_adb.FixManufacturerString(
                                 cmd.madbShell(dev, "getprop ro.product.manufacturer").Result);
                         c.S.Save();
-                        guiUpdate.ActionInForm(home, new Action(() => home.Manufacturer_ComboBox.Text = c.S.DeviceManufacturer));
+                        guiUpdate.ObjectInForm(home, home.Manufacturer_ComboBox, nameof(home.Manufacturer_ComboBox.Text), c.S.DeviceManufacturer);
 
                         inf.detail = ($"{workCode_init}-D-mc", inf.lvls.Error, inf.detail.title, "Failed to check your device model or codename.", null);// Auto Detect - Device - model codename
                         if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" ❱ {c.S.DeviceManufacturer} {dev.Model} ({dev.Product})", 1)));
 
-                        home.bar.Value = 17;
+                        guiUpdate.progressBar(17);
 
                         inf.detail = ($"{workCode_init}-D-s", inf.lvls.Error, inf.detail.title, "Failed to check your device serial number.", null);// Auto Detect - Device - serial
                         if (!Silent) guiUpdate.SetProgressText("Fetching device serial#...", inf.lvls.Information);
 
                         c.S.DeviceSerial = dev.SerialNumber;
                         c.S.Save();
-                        if (!Silent) log.AppendText($" | Serial: {c.S.DeviceSerial}", 1);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Serial: {c.S.DeviceSerial}", 1)));
 
-                        home.bar.Value = 20;
+                        guiUpdate.progressBar(20);
 
                         inf.detail = ($"{workCode_init}-D-su", inf.lvls.Error, inf.detail.title, "Failed to check your device root status.", null);// Auto Detect - Device - su
                         if (!Silent) guiUpdate.SetProgressText("Fetching root state...", inf.lvls.Information);
 
                         c.S.DeviceRooted = dev.CanSU();
                         c.S.Save();
-                        home.Rooted_Checkbox.Checked = c.S.DeviceRooted;
-                        if (!Silent) log.AppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1);
+                        guiUpdate.ObjectInForm(home, home.Rooted_Checkbox, nameof(home.Rooted_Checkbox.Checked), c.S.DeviceRooted);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Rooted: {convert.Bool.ToYesNo(c.S.DeviceRooted)}", 1)));
 
-                        home.bar.Value = 23;
+                        guiUpdate.progressBar(23);
 
                         inf.detail = ($"{workCode_init}-D-bb", inf.lvls.Error, inf.detail.title, "Failed to check your device busybox availability.", null);// Auto Detect - Device - busybox
                         if (!Silent) guiUpdate.SetProgressText("Fetching busybox availability...", inf.lvls.Information);
 
                         c.S.DeviceBusyBoxReady = dev.BusyBox.Available;
                         c.S.Save();
-                        if (!Silent) log.AppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Busybox available: {convert.Bool.ToYesNo(c.S.DeviceBusyBoxReady)}", 1)));
 
-                        home.bar.Value = 25;
+                        guiUpdate.progressBar(25);
 
                         inf.detail = ($"{workCode_init}-D-blu", inf.lvls.Error, inf.detail.title, "Failed to check your device bootloader unlock support.", null); // Auto Detect - Device - bootloader unlock
                         if (!Silent) guiUpdate.SetProgressText("Fetching bootloader unlock support state...", inf.lvls.Information);
 
-                        home.bar.Value = 26;
+                        guiUpdate.progressBar(26);
                         c.S.DeviceBootloaderUnlockSupported =
                              convert.String.ToBool(cmd.madbShell(dev, "getprop ro.oem_unlock_supported").Result);
                         c.S.Save();
-                        home.BootloaderUnlockable_CheckBox.Checked = c.S.DeviceBootloaderUnlockSupported;
-                        home.bar.Value = 27;
-                        if (!Silent) log.AppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1);
+                        guiUpdate.ObjectInForm(home, home.BootloaderUnlockable_CheckBox, nameof(home.BootloaderUnlockable_CheckBox.Checked),
+                                               c.S.DeviceBootloaderUnlockSupported);
+                        guiUpdate.progressBar(27);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Bootloader unlock allowed: {convert.Bool.ToYesNo(c.S.DeviceBootloaderUnlockSupported)}", 1)));
 
-                        home.bar.Value = 30;
+                        guiUpdate.progressBar(30);
 
                         inf.detail = ($"{workCode_init}-D-al", inf.lvls.Error, inf.detail.title, "Failed to check your device API level.", null);// Auto Detect - Device - API level
                         if (!Silent) guiUpdate.SetProgressText("Fetching Android API level...", inf.lvls.Information);
 
-                        home.bar.Value = 32;
+                        guiUpdate.progressBar(32);
                         c.S.DeviceAPILevel = Convert.ToInt32(cmd.madbShell(dev, $"getprop {Device.PROP_BUILD_API_LEVEL}"));
                         c.S.Save();
                         inf.detail = ($"{workCode_init}-D-atv", inf.lvls.Error, inf.detail.title, "Failed to convert the API level to Android version.", null);// Auto Detect - Device - API level version
-                        home.AndroidVersion_ComboBox.Text = GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1];
+
+                        guiUpdate.ObjectInForm(home, home.AndroidVersion_ComboBox, nameof(home.AndroidVersion_ComboBox.Text),
+                                GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[1]);
                         if (!Silent) guiUpdate.SetProgressText("Converting API level to Android name...", inf.lvls.Information);
 
-                        home.bar.Value = 33;
-                        if (!Silent) log.AppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1);
+                        guiUpdate.progressBar(33);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Android version: {GA_adb.ConvertAPILevelToAVer(c.S.DeviceAPILevel)[0]} (API: {c.S.DeviceAPILevel})", 1)));
 
-                        home.bar.Value = 35;
+                        guiUpdate.progressBar(35);
                         inf.detail = ($"{workCode_init}-D-b", inf.lvls.Error, inf.detail.title, "Failed to check your device battery level.", null); // Auto Detect - Device - battery
                         if (!Silent) guiUpdate.SetProgressText("Fetching battery level...", inf.lvls.Information);
 
-                        home.bar.Value = 36;
+                        guiUpdate.progressBar(36);
                         string batteryString;
                         if (dev.GetBatteryInfo().Present) {
                             c.S.DeviceBatteryLevel = dev.GetBatteryInfo().Level;
@@ -212,22 +213,22 @@ namespace GeekAssistant.Modules.Android {
                             batteryString = "❌";
                         }
                         c.S.Save();
-                        home.bar.Value = 38;
-                        if (!Silent) log.AppendText($" | Battery: {batteryString}", 1);
+                        guiUpdate.progressBar(38);
+                        if (!Silent) guiUpdate.ActionInForm(home, new Action(() => log.AppendText($" | Battery: {batteryString}", 1)));
 
-                        home.bar.Value = 40;
+                        guiUpdate.progressBar(40);
                         if (!Silent) guiUpdate.SetProgressText(DeviceState_String, inf.lvls.Information); // This is after retrieving info to stay written in Progress Text
 
                         break;
                 }
 
-                home.bar.Value = 100;
+                guiUpdate.progressBar(100);
             } catch (Exception ex) {
                 if (!RunningInBetween) wait.Run(false); // Close before error dialog
                 if (!Silent) {
                     inf.detail.fullFatalError = ex.ToString();
                     inf.Run();
-                } else home.DoNeutral();
+                } else guiUpdate.ActionInForm(home, new Action(() => home.DoNeutral()));
             }
 
             c.S.DeviceState = home.DeviceState_Label.Text;
