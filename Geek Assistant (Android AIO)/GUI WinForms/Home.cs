@@ -138,7 +138,7 @@ namespace GeekAssistant.Forms {
 
             manualCMD_TextBox.MouseEnter += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged); manualCMD_TextBox.MouseLeave += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged); manualCMD_TextBox.TextChanged += new(manualCMD_TextBox_MouseEnter_MouseLeave_TextChanged);
             manualCMD_TextBox.KeyDown += new(manualCMD_TextBox_KeyDown);
-            manualCMD_TextBox.KeyUp += new(manualCMD_TextBox_KeyUp);
+            manualCMD_TextBox.KeyUp += new(async (sender, ev) => await manualCMD_TextBox_KeyUp(sender, ev));
 
             #endregion
         }
@@ -622,7 +622,7 @@ namespace GeekAssistant.Forms {
                 manualCMD_TextBox.BackColor = Color.LightBlue;
         }
 
-        private async void manualCMD_TextBox_KeyUp(object sender, KeyEventArgs e) {
+        private async Task manualCMD_TextBox_KeyUp(object sender, KeyEventArgs e) {
 
             var mcmd = manualCMD_TextBox;
             switch (e.KeyCode) {
