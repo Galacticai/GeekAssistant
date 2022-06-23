@@ -35,7 +35,7 @@
     <PackageReference Include="MaterialSkin.Updated" Version="0.2.2" />
     <PackageReference Include="MetroModernUI" Version="1.4.0" />
     <PackageReference Include="morelinq" Version="1.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="8.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Octokit" Version="0.50.0" />
     <PackageReference Include="OpenTK" Version="4.6.3" />
     <PackageReference Include="System.Buffers" Version="4.5.1" />
